@@ -28,10 +28,14 @@ export function useProgress() {
     if (initialSyncDone.current) return
     initialSyncDone.current = true
 
+    let mounted = true
+    const controller = new AbortController()
+
     async function syncFromServer() {
       try {
         setSyncing(true)
-        const remote = await progressApi.load()
+        const remote = await progressApi.load(controller.signal)
+        if (!mounted) return
         const local = loadProgress()
 
         // Merge: for each question, keep whichever has the latest timestamp
@@ -52,21 +56,28 @@ export function useProgress() {
 
         // Save merged state both locally and remotely
         saveProgress(merged)
+        if (!mounted) return
         setProgress({ ...merged })
 
         // Push merged state back to server (in case local had newer data)
         await progressApi.save(merged)
 
+        if (!mounted) return
         setSyncError(null)
       } catch (err) {
+        if (!mounted) return
         console.warn('MongoDB sync failed, using localStorage:', err)
         setSyncError('Không thể kết nối server. Dùng dữ liệu local.')
       } finally {
-        setSyncing(false)
+        if (mounted) setSyncing(false)
       }
     }
 
     syncFromServer()
+    return () => {
+      mounted = false
+      controller.abort()
+    }
   }, [])
 
   /* ──────────────────────────────────────────

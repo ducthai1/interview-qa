@@ -3,6 +3,7 @@ import type { Question } from '../types'
 
 // These will be populated by the data generation agents
 let allQuestions: Question[] = []
+let loadingPromise: Promise<Question[]> | null = null
 
 /* Dynamically import all question modules */
 async function loadQuestions(): Promise<Question[]> {
@@ -20,8 +21,12 @@ async function loadQuestions(): Promise<Question[]> {
 }
 
 export async function getAllQuestions(): Promise<Question[]> {
-  if (allQuestions.length === 0) {
-    allQuestions = await loadQuestions()
-  }
-  return allQuestions
+  if (allQuestions.length > 0) return allQuestions
+  if (loadingPromise) return loadingPromise
+  loadingPromise = loadQuestions().then((q) => {
+    allQuestions = q
+    loadingPromise = null
+    return q
+  })
+  return loadingPromise
 }

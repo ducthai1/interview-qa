@@ -7,14 +7,18 @@ export interface AIFeedbackResult {
   suggestions: string[]
 }
 
-function buildPrompt(question: Question, userAnswer: string): string {
+function buildPrompt(question: Question, userAnswer: string, language: string): string {
   const modelAnswer = question.solutionCode
     ? `Model solution code:\n${question.solutionCode}`
     : `Model answer: ${String(question.answer)}`
 
   const codeSection = question.code ? `\nCode provided in question:\n${question.code}` : ''
 
-  return `You are a senior frontend interviewer. Review this answer to the question below.
+  const langInstruction = language === 'vi'
+    ? '\nIMPORTANT: Write your feedback and suggestions in Vietnamese (Tiếng Việt).'
+    : ''
+
+  return `You are a senior frontend interviewer. Review this answer to the question below.${langInstruction}
 
 Question: ${question.question}${codeSection}
 ${modelAnswer}
@@ -127,10 +131,9 @@ async function callAnthropic(prompt: string, apiKey: string): Promise<AIFeedback
   // Anthropic direct browser calls hit CORS — route through backend proxy
   const res = await fetch('/api/ai-proxy', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${apiKey}` },
     body: JSON.stringify({
       provider: 'anthropic',
-      apiKey,
       prompt,
     }),
   })
@@ -146,6 +149,7 @@ export async function getAIFeedback(
   question: Question,
   userAnswer: string,
   config: AIConfig,
+  language = 'en',
 ): Promise<{ result: AIFeedbackResult; updatedConfig: AIConfig }> {
   // Refresh daily usage
   let cfg = resetUsageIfNeeded(config)
@@ -157,7 +161,7 @@ export async function getAIFeedback(
     throw new Error('rate-limited')
   }
 
-  const prompt = buildPrompt(question, userAnswer)
+  const prompt = buildPrompt(question, userAnswer, language)
 
   let result: AIFeedbackResult
   if (cfg.provider === 'groq') {

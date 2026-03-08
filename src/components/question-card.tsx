@@ -434,6 +434,7 @@ function McqOptions({ options, correctIdx, selectedOption, isRevealed, onSelect,
 function TrueFalseOptions({ correctAnswer, userAnswer, isRevealed, onSelect }: {
   correctAnswer: boolean; userAnswer: boolean | null; isRevealed: boolean; onSelect: (val: boolean) => void
 }) {
+  const { t } = useTranslation()
   return (
     <div className="mt-3 flex gap-3">
       {[true, false].map((val) => {
@@ -445,7 +446,7 @@ function TrueFalseOptions({ correctAnswer, userAnswer, isRevealed, onSelect }: {
         return (
           <button key={String(val)} onClick={() => onSelect(val)} disabled={isRevealed}
             className={`flex-1 rounded-lg border p-3 text-sm font-medium transition-colors ${cls}`}>
-            {val ? 'True' : 'False'}
+            {val ? t('common.true') : t('common.false')}
           </button>
         )
       })}

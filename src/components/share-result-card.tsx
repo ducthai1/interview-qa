@@ -7,6 +7,14 @@ export interface TopicBreakdownItem {
   total: number
 }
 
+export interface ShareCardLabels {
+  modeLabel: string
+  accuracyLabel: string
+  scoreLabel: string
+  correctLabel: string
+  topicBreakdownLabel: string
+}
+
 export interface ShareCardProps {
   score?: number
   accuracy: number
@@ -15,6 +23,7 @@ export interface ShareCardProps {
   topicBreakdown: TopicBreakdownItem[]
   mode: 'mock' | 'challenge' | 'stats'
   date: string
+  labels?: ShareCardLabels
 }
 
 const MODE_LABELS: Record<ShareCardProps['mode'], string> = {
@@ -29,8 +38,12 @@ const MODE_LABELS: Record<ShareCardProps['mode'], string> = {
  * Must be rendered in the DOM (can be off-screen) before capture.
  */
 export const ShareResultCard = forwardRef<HTMLDivElement, ShareCardProps>(
-  ({ score, accuracy, totalAnswered, correctCount, topicBreakdown, mode, date }, ref) => {
-    const modeLabel = MODE_LABELS[mode]
+  ({ score, accuracy, totalAnswered, correctCount, topicBreakdown, mode, date, labels }, ref) => {
+    const modeLabel = labels?.modeLabel ?? MODE_LABELS[mode]
+    const accuracyLabel = labels?.accuracyLabel ?? 'Accuracy'
+    const scoreLabel = labels?.scoreLabel ?? 'Score'
+    const correctLabel = labels?.correctLabel ?? 'Correct'
+    const topicBreakdownLabel = labels?.topicBreakdownLabel ?? 'Topic Breakdown'
     const topTopics = topicBreakdown.slice(0, 5)
 
     return (
@@ -99,7 +112,7 @@ export const ShareResultCard = forwardRef<HTMLDivElement, ShareCardProps>(
               {accuracy}%
             </div>
             <div style={{ fontSize: '11px', color: '#94a3b8', marginTop: '4px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-              Accuracy
+              {accuracyLabel}
             </div>
           </div>
 
@@ -110,7 +123,7 @@ export const ShareResultCard = forwardRef<HTMLDivElement, ShareCardProps>(
                 {score.toLocaleString()}
               </div>
               <div style={{ fontSize: '11px', color: '#94a3b8', marginTop: '4px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                Score
+                {scoreLabel}
               </div>
             </div>
           )}
@@ -122,7 +135,7 @@ export const ShareResultCard = forwardRef<HTMLDivElement, ShareCardProps>(
               <span style={{ fontSize: '20px', color: '#64748b', fontWeight: 500 }}>/{totalAnswered}</span>
             </div>
             <div style={{ fontSize: '11px', color: '#94a3b8', marginTop: '4px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-              Correct
+              {correctLabel}
             </div>
           </div>
         </div>
@@ -131,7 +144,7 @@ export const ShareResultCard = forwardRef<HTMLDivElement, ShareCardProps>(
         {topTopics.length > 0 && (
           <div style={{ flex: 1, marginBottom: '16px' }}>
             <div style={{ fontSize: '11px', color: '#64748b', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-              Topic Breakdown
+              {topicBreakdownLabel}
             </div>
             {topTopics.map((item) => {
               const pct = item.total > 0 ? Math.round((item.correct / item.total) * 100) : 0

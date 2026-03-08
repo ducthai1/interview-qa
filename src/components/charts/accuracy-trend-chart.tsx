@@ -13,6 +13,7 @@ import type { DailyPoint } from '../../utils/analytics'
 interface Props {
   data: DailyPoint[]
   noDataLabel: string
+  accuracyLabel?: string
 }
 
 function formatDate(dateStr: string): string {
@@ -20,7 +21,7 @@ function formatDate(dateStr: string): string {
   return `${d.getMonth() + 1}/${d.getDate()}`
 }
 
-export function AccuracyTrendChart({ data, noDataLabel }: Props) {
+export function AccuracyTrendChart({ data, noDataLabel, accuracyLabel = 'Accuracy' }: Props) {
   const hasData = data.some((d) => d.count > 0)
 
   if (!hasData) {
@@ -57,7 +58,7 @@ export function AccuracyTrendChart({ data, noDataLabel }: Props) {
           width={36}
         />
         <Tooltip
-          formatter={(value: number) => [`${value}%`, 'Accuracy']}
+          formatter={(value: number) => [`${value}%`, accuracyLabel]}
           labelFormatter={(label: string) => formatDate(label)}
           contentStyle={{
             backgroundColor: 'var(--color-bg-card)',

@@ -4,8 +4,9 @@ import { en } from './en'
 import { vi } from './vi'
 
 /* Detect saved language preference or fall back to browser locale */
-const savedLang = localStorage.getItem('fe-interview-lang')
-const browserLang = navigator.language.startsWith('vi') ? 'vi' : 'en'
+let savedLang: string | null = null
+try { savedLang = localStorage.getItem('fe-interview-lang') } catch { /* ignore */ }
+const browserLang = (typeof navigator !== 'undefined' && navigator.language.startsWith('vi')) ? 'vi' : 'en'
 
 i18n.use(initReactI18next).init({
   resources: {

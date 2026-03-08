@@ -11,9 +11,10 @@ import type { TopicAccuracy } from '../../utils/analytics'
 interface Props {
   data: TopicAccuracy[]
   noDataLabel: string
+  accuracyLabel?: string
 }
 
-export function TopicRadarChart({ data, noDataLabel }: Props) {
+export function TopicRadarChart({ data, noDataLabel, accuracyLabel = 'Accuracy' }: Props) {
   if (data.length === 0) {
     return (
       <div className="flex h-[300px] items-center justify-center text-sm text-[var(--color-text-secondary)]">
@@ -38,7 +39,7 @@ export function TopicRadarChart({ data, noDataLabel }: Props) {
           strokeWidth={2}
         />
         <Tooltip
-          formatter={(value: number) => [`${value}%`, 'Accuracy']}
+          formatter={(value: number) => [`${value}%`, accuracyLabel]}
           contentStyle={{
             backgroundColor: 'var(--color-bg-card)',
             borderColor: 'var(--color-border)',

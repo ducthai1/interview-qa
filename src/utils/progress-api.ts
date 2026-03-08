@@ -6,7 +6,7 @@ const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3001/api'
 function getUserId(): string {
   let id = localStorage.getItem('fe-interview-hub-user-id')
   if (!id) {
-    id = 'user-' + Math.random().toString(36).slice(2, 10)
+    id = 'user-' + crypto.randomUUID()
     localStorage.setItem('fe-interview-hub-user-id', id)
   }
   return id
@@ -14,9 +14,9 @@ function getUserId(): string {
 
 export const progressApi = {
   /** Fetch full progress from MongoDB */
-  async load(): Promise<UserProgress> {
+  async load(signal?: AbortSignal): Promise<UserProgress> {
     const userId = getUserId()
-    const res = await fetch(`${API_BASE}/progress/${userId}`)
+    const res = await fetch(`${API_BASE}/progress/${userId}`, { signal })
     if (!res.ok) throw new Error(`Load failed: ${res.status}`)
     return res.json()
   },

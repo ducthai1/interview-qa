@@ -21,7 +21,7 @@ export function useTimer(initialSeconds: number) {
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current)
     }
-  }, [isRunning, seconds])
+  }, [isRunning])
 
   const start = useCallback(() => setIsRunning(true), [])
   const pause = useCallback(() => setIsRunning(false), [])

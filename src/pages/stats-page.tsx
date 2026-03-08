@@ -116,6 +116,7 @@ export function StatsPage({ questions, progress, onReset }: StatsPageProps) {
           <TopicRadarChart
             data={topicAccuracy}
             noDataLabel={t('stats.noData')}
+            accuracyLabel={t('common.accuracy')}
           />
         </section>
 
@@ -126,6 +127,7 @@ export function StatsPage({ questions, progress, onReset }: StatsPageProps) {
           <AccuracyTrendChart
             data={trendData}
             noDataLabel={t('stats.noData')}
+            accuracyLabel={t('common.accuracy')}
           />
         </section>
       </div>

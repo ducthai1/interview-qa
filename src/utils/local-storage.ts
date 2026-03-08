@@ -71,7 +71,7 @@ export function updateReview(
   const progress = loadProgress()
   const existing = progress.reviews?.[questionId]
   const currentBox = existing?.box ?? 1
-  const entry = getNextReview(currentBox, correct, difficulty, questionType)
+  const entry = getNextReview(currentBox, correct, difficulty, questionType, questionId)
   progress.reviews = { ...(progress.reviews ?? {}), [questionId]: entry }
   saveProgress(progress)
   return progress

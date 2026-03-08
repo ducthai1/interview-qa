@@ -3,7 +3,7 @@ import { Share2, Download, Copy, Check, Loader2 } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { ShareResultCard } from './share-result-card'
 import { captureCard, copyToClipboard, downloadImage, canShare, shareNative } from '../utils/share-utils'
-import type { ShareCardProps } from './share-result-card'
+import type { ShareCardProps, ShareCardLabels } from './share-result-card'
 
 interface ShareButtonProps {
   cardProps: ShareCardProps
@@ -11,12 +11,26 @@ interface ShareButtonProps {
 
 type ShareAction = 'copy' | 'download' | 'share'
 
+const MODE_LABEL_KEYS: Record<ShareCardProps['mode'], string> = {
+  mock: 'share.mockResult',
+  challenge: 'share.challengeResult',
+  stats: 'share.statsResult',
+}
+
 export function ShareButton({ cardProps }: ShareButtonProps) {
   const { t } = useTranslation()
   const cardRef = useRef<HTMLDivElement>(null)
   const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState<ShareAction | null>(null)
   const [copied, setCopied] = useState(false)
+
+  const shareLabels: ShareCardLabels = {
+    modeLabel: t(MODE_LABEL_KEYS[cardProps.mode]),
+    accuracyLabel: t('common.accuracy'),
+    scoreLabel: t('challenge.score'),
+    correctLabel: t('common.correct'),
+    topicBreakdownLabel: t('stats.byTopic'),
+  }
 
   const handleAction = async (action: ShareAction) => {
     if (!cardRef.current || loading) return
@@ -58,7 +72,7 @@ export function ShareButton({ cardProps }: ShareButtonProps) {
         aria-hidden="true"
         style={{ position: 'fixed', left: '-9999px', top: 0, pointerEvents: 'none', zIndex: -1 }}
       >
-        <ShareResultCard ref={cardRef} {...cardProps} />
+        <ShareResultCard ref={cardRef} {...cardProps} labels={shareLabels} />
       </div>
 
       {/* Trigger button */}

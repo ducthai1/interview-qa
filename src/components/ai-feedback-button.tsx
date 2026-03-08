@@ -64,7 +64,7 @@ function FeedbackCard({ result }: { result: AIFeedbackResult }) {
 }
 
 export function AIFeedbackButton({ question, userAnswer, visible, onOpenSettings }: AIFeedbackButtonProps) {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const [loading, setLoading] = useState(false)
   const [result, setResult] = useState<AIFeedbackResult | null>(null)
   const [error, setError] = useState<string | null>(null)
@@ -74,12 +74,14 @@ export function AIFeedbackButton({ question, userAnswer, visible, onOpenSettings
   const hasKey = config.provider !== 'none' && config.apiKey.trim().length > 0
   const limitReached = hasKey && !canUseAI(config)
 
+  const currentLang = i18n.language
+
   const handleReview = useCallback(async () => {
     const freshConfig = loadAIConfig()
     setLoading(true)
     setError(null)
     try {
-      const { result: res } = await getAIFeedback(question, userAnswer, freshConfig)
+      const { result: res } = await getAIFeedback(question, userAnswer, freshConfig, currentLang)
       setResult(res)
     } catch (err) {
       const msg = err instanceof Error ? err.message : String(err)
@@ -87,7 +89,7 @@ export function AIFeedbackButton({ question, userAnswer, visible, onOpenSettings
     } finally {
       setLoading(false)
     }
-  }, [question, userAnswer])
+  }, [question, userAnswer, currentLang])
 
   if (!visible) return null
 

@@ -12,7 +12,7 @@ interface AISettingsModalProps {
 }
 
 export function AISettingsModal({ open, onClose }: AISettingsModalProps) {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
   const [config, setConfig] = useState<AIConfig>(getDefaultConfig)
   const [showKey, setShowKey] = useState(false)
   const [testing, setTesting] = useState(false)
@@ -106,32 +106,14 @@ export function AISettingsModal({ open, onClose }: AISettingsModalProps) {
             <option value="openai">OpenAI (GPT-4o mini)</option>
             <option value="anthropic">Anthropic (Claude)</option>
           </select>
-          {config.provider === 'groq' && (
+          {(config.provider === 'groq' || config.provider === 'gemini') && (
             <p className="mt-1.5 text-xs text-[var(--color-success)]">
-              {i18n.language === 'vi'
-                ? 'Groq hoàn toàn miễn phí! 14,400 requests/ngày. Lấy key tại console.groq.com'
-                : 'Groq is completely free! 14,400 requests/day. Get key at console.groq.com'}
+              {t(config.provider === 'groq' ? 'ai.groqHint' : 'ai.geminiHint')}
             </p>
           )}
-          {config.provider === 'gemini' && (
-            <p className="mt-1.5 text-xs text-[var(--color-success)]">
-              {i18n.language === 'vi'
-                ? 'Gemini API hoàn toàn miễn phí! Lấy key tại aistudio.google.com'
-                : 'Gemini API is completely free! Get your key at aistudio.google.com'}
-            </p>
-          )}
-          {config.provider === 'openai' && (
+          {(config.provider === 'openai' || config.provider === 'anthropic') && (
             <p className="mt-1.5 text-xs text-amber-500">
-              {i18n.language === 'vi'
-                ? 'OpenAI yêu cầu tài khoản trả phí.'
-                : 'OpenAI requires a paid account.'}
-            </p>
-          )}
-          {config.provider === 'anthropic' && (
-            <p className="mt-1.5 text-xs text-amber-500">
-              {i18n.language === 'vi'
-                ? 'Anthropic yêu cầu backend proxy và tài khoản trả phí.'
-                : 'Anthropic requires a backend proxy and paid account.'}
+              {t(config.provider === 'openai' ? 'ai.openaiHint' : 'ai.anthropicHint')}
             </p>
           )}
         </div>
@@ -173,7 +155,7 @@ export function AISettingsModal({ open, onClose }: AISettingsModalProps) {
                 rel="noopener noreferrer"
                 className="mt-1 inline-block text-xs font-medium text-[var(--color-primary)] hover:underline"
               >
-                {i18n.language === 'vi' ? '→ Lấy API key miễn phí tại Groq Console' : '→ Get free API key at Groq Console'}
+                {t('ai.groqKeyLink')}
               </a>
             )}
             {config.provider === 'gemini' && (
@@ -183,7 +165,7 @@ export function AISettingsModal({ open, onClose }: AISettingsModalProps) {
                 rel="noopener noreferrer"
                 className="mt-1 inline-block text-xs font-medium text-[var(--color-primary)] hover:underline"
               >
-                {i18n.language === 'vi' ? '→ Lấy API key miễn phí tại Google AI Studio' : '→ Get free API key at Google AI Studio'}
+                {t('ai.geminiKeyLink')}
               </a>
             )}
           </div>
@@ -195,7 +177,7 @@ export function AISettingsModal({ open, onClose }: AISettingsModalProps) {
             <div className="flex items-center justify-between">
               <span>{t('ai.usage', { used: config.dailyUsage, limit: config.dailyLimit })}</span>
               <span className="text-xs opacity-60">
-                {config.provider === 'gemini' ? 'Free tier' : 'Paid API'}
+                {(config.provider === 'groq' || config.provider === 'gemini') ? t('ai.freeTier') : t('ai.paidApi')}
               </span>
             </div>
             {/* Usage progress bar */}
@@ -245,7 +227,7 @@ export function AISettingsModal({ open, onClose }: AISettingsModalProps) {
               onClick={onClose}
               className="rounded-lg border border-[var(--color-border)] px-4 py-2 text-sm font-medium text-[var(--color-text-secondary)] transition-colors hover:bg-[var(--color-bg-secondary)]"
             >
-              {i18n.language === 'vi' ? 'Hủy' : 'Cancel'}
+              {t('ai.cancel')}
             </button>
             <button
               onClick={handleSave}

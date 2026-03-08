@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useRef, useEffect } from 'react'
 import { Play, RotateCcw, Timer, CheckCircle2, XCircle } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { QuestionCard } from '../components/question-card'
@@ -26,6 +26,13 @@ export function MockInterviewPage({ questions, progress, onAnswer, onBookmark, o
   const [mockQuestions, setMockQuestions] = useState<Question[]>([])
   const [currentIdx, setCurrentIdx] = useState(0)
   const timer = useTimer(TIME_LIMIT)
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current)
+    }
+  }, [])
 
   const startInterview = () => {
     const picked = pickRandomQuestions(questions, QUESTION_COUNT)
@@ -40,7 +47,8 @@ export function MockInterviewPage({ questions, progress, onAnswer, onBookmark, o
   const handleAnswer = (questionId: string, correct: boolean) => {
     onAnswer(questionId, correct)
     // Auto-advance after a short delay
-    setTimeout(() => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current)
+    timeoutRef.current = setTimeout(() => {
       if (currentIdx < mockQuestions.length - 1) {
         setCurrentIdx((i) => i + 1)
       } else {
@@ -58,9 +66,11 @@ export function MockInterviewPage({ questions, progress, onAnswer, onBookmark, o
   }, [finished, mockQuestions, progress])
 
   // Time's up
-  if (timer.seconds === 0 && started && !finished) {
-    setFinished(true)
-  }
+  useEffect(() => {
+    if (timer.seconds === 0 && started && !finished) {
+      setFinished(true)
+    }
+  }, [timer.seconds, started, finished])
 
   // Not started yet
   if (!started) {

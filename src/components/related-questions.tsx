@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import type { Question, UserProgress } from '../types'
+import { useQuestionTranslation } from '../hooks/use-question-translation'
 
 interface Props {
   currentQuestion: Question
@@ -38,6 +39,7 @@ function findRelated(current: Question, all: Question[], progress: UserProgress)
 
 export function RelatedQuestions({ currentQuestion, allQuestions, progress }: Props) {
   const { t } = useTranslation()
+  const { tq } = useQuestionTranslation()
   const related = findRelated(currentQuestion, allQuestions, progress)
 
   if (related.length === 0) return null
@@ -58,7 +60,7 @@ export function RelatedQuestions({ currentQuestion, allQuestions, progress }: Pr
               className="flex items-center justify-between gap-3 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-secondary)] px-3 py-2 no-underline transition-colors hover:border-[var(--color-primary)]"
             >
               <span className="min-w-0 flex-1 truncate text-sm text-[var(--color-text)]">
-                {q.question}
+                {tq(q).question}
               </span>
               <span
                 className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold capitalize ${DIFFICULTY_COLOR[q.difficulty] ?? ''}`}

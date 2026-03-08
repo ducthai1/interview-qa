@@ -17,13 +17,16 @@ export function useQuestionTranslation() {
   const isVi = i18n.language === 'vi'
 
   useEffect(() => {
-    if (isVi && !loaded) {
-      loadQuestionTranslations().then((m) => {
-        cachedMap = m
-        loaded = true
-        setMap(m)
-      })
+    if (!isVi) {
+      loaded = false
+      return
     }
+    if (loaded) return
+    loadQuestionTranslations().then((m) => {
+      cachedMap = m
+      loaded = true
+      setMap(m)
+    })
   }, [isVi])
 
   /** Get translated question text fields, falling back to originals */

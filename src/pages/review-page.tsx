@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { CheckCircle2, XCircle, BookOpen } from 'lucide-react'
 import { QuestionCard } from '../components/question-card'
@@ -24,6 +24,13 @@ export function ReviewPage({ questions, progress, onAnswer, onBookmark, onRetry 
 
   /* Snapshot the due list at session start so it doesn't shift mid-session */
   const [sessionQuestions, setSessionQuestions] = useState<Question[]>([])
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current)
+    }
+  }, [])
 
   function startSession() {
     setSessionQuestions([...dueQuestions])
@@ -37,7 +44,8 @@ export function ReviewPage({ questions, progress, onAnswer, onBookmark, onRetry 
     if (correct) setCorrectIds((prev) => [...prev, questionId])
 
     // Auto-advance after short delay to let the card show its result
-    setTimeout(() => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current)
+    timeoutRef.current = setTimeout(() => {
       setCurrentIdx((prev) => prev + 1)
     }, 1200)
   }

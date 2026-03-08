@@ -22,6 +22,7 @@ export function getNextReview(
   correct: boolean,
   difficulty?: Difficulty,
   questionType?: QuestionType,
+  questionId?: string,
 ): ReviewEntry {
   const isSeniorOrLead = difficulty === 'senior' || difficulty === 'lead'
   const isJunior = difficulty === 'junior'
@@ -30,12 +31,13 @@ export function getNextReview(
   // Senior/Lead: need 2 consecutive correct to promote
   let promote = correct
   if (correct && isSeniorOrLead) {
-    const key = `${currentBox}`
+    const key = questionId ?? `box-${currentBox}`
     consecutiveCorrect[key] = (consecutiveCorrect[key] ?? 0) + 1
     promote = consecutiveCorrect[key] >= 2
     if (promote) consecutiveCorrect[key] = 0
   } else if (!correct) {
-    consecutiveCorrect[`${currentBox}`] = 0
+    const key = questionId ?? `box-${currentBox}`
+    consecutiveCorrect[key] = 0
   }
 
   // Junior: skip a box on correct (faster)

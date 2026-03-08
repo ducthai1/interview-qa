@@ -93,6 +93,7 @@ export function ChallengePage({
   const [savedResult, setSavedResult] = useState<ChallengeBest | null>(null)
 
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const timerRef = useRef(0)
   const sessionRef = useRef<ChallengeSession | null>(null)
 
@@ -155,6 +156,7 @@ export function ChallengePage({
 
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current)
+      if (timeoutRef.current) clearTimeout(timeoutRef.current)
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state])
@@ -196,7 +198,8 @@ export function ChallengePage({
       return updated
     })
     // Auto-advance after brief delay
-    setTimeout(() => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current)
+    timeoutRef.current = setTimeout(() => {
       setCurrentIdx((idx) => {
         const nextIdx = idx + 1
         if (nextIdx >= (sessionRef.current?.questions.length ?? 0)) {
