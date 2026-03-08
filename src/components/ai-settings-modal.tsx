@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { X, Eye, EyeOff, Loader2, CheckCircle2, AlertCircle, Settings } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import type { AIConfig } from '../types/question'
@@ -52,8 +53,8 @@ export function AISettingsModal({ open, onClose }: AISettingsModalProps) {
 
   const canTest = config.provider !== 'none' && config.apiKey.trim().length > 0
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto p-4">
+  return createPortal(
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
       {/* Backdrop */}
       <div
         className="fixed inset-0 bg-black/50 backdrop-blur-sm"
@@ -61,7 +62,7 @@ export function AISettingsModal({ open, onClose }: AISettingsModalProps) {
       />
 
       {/* Modal — centered with max-height and scroll */}
-      <div className="relative z-10 my-auto w-full max-w-md rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-card)] p-6 shadow-2xl max-h-[90vh] overflow-y-auto">
+      <div className="relative z-10 w-full max-w-md rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-card)] p-6 shadow-2xl max-h-[90vh] overflow-y-auto">
         {/* Header */}
         <div className="mb-5 flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -231,6 +232,7 @@ export function AISettingsModal({ open, onClose }: AISettingsModalProps) {
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   )
 }
