@@ -108,6 +108,16 @@ export const cssQuestions: Question[] = [
   flex: 1 0 200px;
   min-width: 0;
 }`,
+    solutionCode: `.container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.item {
+  flex: 1 0 200px;
+  min-width: 0;
+}`,
     explanation: 'Without a constrained width on the flex container, it may grow to fit all items on one line (e.g., when inside an absolutely-positioned or inline context). Ensuring the container has a defined or percentage-based width lets the browser calculate when wrapping is needed. Additionally, `flex-shrink: 0` in the shorthand prevents items from shrinking below `flex-basis: 200px`, which triggers wrapping correctly once the container is constrained.',
     references: ['https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap'],
     tags: ['flexbox', 'flex-wrap', 'debug'],
@@ -427,6 +437,20 @@ p:last-child {
 .card {
   position: relative;
   /* Removed: transform: translateZ(0) — this was creating a new stacking context */
+}
+
+.tooltip {
+  position: absolute;
+  z-index: 9999;
+}
+
+.overlay {
+  position: fixed;
+  z-index: 1;
+}`,
+    solutionCode: `.card {
+  position: relative;
+  /* transform: translateZ(0) removed — was creating an unintended stacking context */
 }
 
 .tooltip {
@@ -1185,6 +1209,16 @@ Fixes:
   /* overflow: hidden — REMOVED: this was creating a scroll container,
      trapping the sticky positioning within its scroll area */
   overflow: clip; /* Alternative: stops overflow without creating a scroll container */
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: white;
+}`,
+    solutionCode: `.page-wrapper {
+  overflow: clip; /* use clip instead of hidden — no scroll container created */
 }
 
 .header {

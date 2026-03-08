@@ -624,6 +624,18 @@ console.log('end')`,
     console.error('Error:', error.message)
   }
 }`,
+    solutionCode: `async function getData(url) {
+  try {
+    const response = await fetch(url)
+    if (!response.ok) {
+      throw new Error(response.status)
+    }
+    const data = await response.json()
+    return data
+  } catch (error) {
+    console.error('Error:', error.message)
+  }
+}`,
     explanation:
       '`fetch` only rejects on **network errors** (no connection, DNS failure). HTTP error status codes (4xx, 5xx) are considered **successful** responses — the promise resolves. You must manually check `response.ok` (true for 200-299) or `response.status` and throw an error yourself. This is a very common interview bug.',
     references: [
@@ -1141,6 +1153,12 @@ populateList(ul, ['Apple', 'Banana', 'Cherry', 'Date', 'Elderberry'])`,
     handleAction(button.dataset.action)
   }
 })`,
+    solutionCode: `document.querySelector('.toolbar').addEventListener('click', (e) => {
+  const button = e.target.closest('button')
+  if (button) {
+    handleAction(button.dataset.action)
+  }
+})`,
     explanation:
       'When clicking the `<span>` inside the `<button>`, `e.target` is the `<span>`, not the `<button>`. The `tagName === "BUTTON"` check fails. The fix uses `e.target.closest("button")` which traverses up from the actual clicked element (the span) and finds the nearest `<button>` ancestor (or the button itself). This is the correct pattern for event delegation with nested elements.',
     references: [
@@ -1227,6 +1245,12 @@ localStorage.setItem('user', user)
 const saved = localStorage.getItem('user')
 console.log(saved) // "[object Object]"`,
     answer: `const user = { name: 'Alice', role: 'admin' }
+
+localStorage.setItem('user', JSON.stringify(user))
+
+const saved = JSON.parse(localStorage.getItem('user'))
+console.log(saved) // { name: 'Alice', role: 'admin' }`,
+    solutionCode: `const user = { name: 'Alice', role: 'admin' }
 
 localStorage.setItem('user', JSON.stringify(user))
 

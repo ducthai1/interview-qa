@@ -350,6 +350,25 @@ const allData = generateData(100000)`,
   return <DataTable items={processedData} />
 }`,
     answer: 'Issue 1: config object is recreated on every render. Issue 2: config in deps array causes useEffect to re-run every render (new reference). Issue 3: filter creates a new array on every render even when data hasn\'t changed.',
+    solutionCode: `// Fix 1: move stable config outside component
+const config = { theme: 'dark', lang: 'en' }
+
+function Dashboard({ userId }) {
+  const [data, setData] = useState(null)
+
+  // Fix 2: config is now stable (defined outside), no need to include in deps
+  useEffect(() => {
+    fetchDashboard(userId, config).then(setData)
+  }, [userId])
+
+  // Fix 3: memoize derived data to avoid new array reference on every render
+  const processedData = useMemo(
+    () => data?.items.filter(item => item.active) ?? [],
+    [data]
+  )
+
+  return <DataTable items={processedData} />
+}`,
     explanation: 'Fixes: (1) Move config outside component (constant) or use useMemo. (2) Remove config from deps since it\'s stable after fix 1, or use useRef. (3) Wrap filter in useMemo: const processedData = useMemo(() => data?.items.filter(i => i.active) ?? [], [data]). The root issue is unstable references in dependency arrays causing infinite effect loops.',
     tags: ['useEffect', 'useMemo', 'performance', 're-renders', 'deps-array'],
     year: 2025,

@@ -231,6 +231,22 @@ app.use(cors({
   credentials: true,
 }))`,
     answer: "Bug: origin: '*' with credentials: true is invalid. When credentials are included, Access-Control-Allow-Origin cannot be a wildcard. Fix: set origin to the specific allowed origin, e.g., origin: 'https://app.example.com' or use a function that validates against an allowlist.",
+    solutionCode: `// Frontend at https://app.example.com
+const response = await fetch('https://api.example.com/data', {
+  method: 'POST',
+  credentials: 'include',
+  headers: {
+    'Content-Type': 'application/json',
+    'X-Custom-Header': 'value',
+  },
+  body: JSON.stringify({ query: 'test' }),
+})
+
+// Server CORS config (Express) — FIXED
+app.use(cors({
+  origin: 'https://app.example.com', // specific origin, not wildcard
+  credentials: true,
+}))`,
     explanation:
       'The CORS specification explicitly forbids Access-Control-Allow-Origin: * when Access-Control-Allow-Credentials: true because a wildcard origin combined with credentials would allow any site to make credentialed requests (a security hole). The browser blocks such responses. Additionally, the X-Custom-Header requires Access-Control-Allow-Headers: X-Custom-Header in the preflight response. Fix the server config: cors({ origin: "https://app.example.com", credentials: true }). In development, both frontend and backend typically run on the same origin so CORS does not apply.',
     references: [
@@ -305,6 +321,23 @@ app.use(cors({
       throw err
     })
 }`,
+    solutionCode: `function fetchWithTimeout(url, options = {}, timeoutMs = 5000) {
+  const controller = new AbortController()
+  const timeoutId = setTimeout(() => controller.abort(), timeoutMs)
+
+  return fetch(url, { ...options, signal: controller.signal })
+    .then(response => {
+      clearTimeout(timeoutId)
+      return response
+    })
+    .catch(err => {
+      clearTimeout(timeoutId)
+      if (err.name === 'AbortError') {
+        throw new Error(\`Request timed out after \${timeoutMs}ms\`)
+      }
+      throw err
+    })
+}`,
     explanation:
       'AbortController creates an abort signal that can be passed to fetch. When controller.abort() is called, the fetch promise rejects with a DOMException named "AbortError". Always clear the timeout in both success and error paths to avoid memory leaks. Note that aborting fetch only prevents the browser from processing the response — the server may have already received and processed the request (important for non-idempotent requests like POST).',
     references: [
@@ -342,6 +375,34 @@ app.use(cors({
     type: 'code-write',
     question: 'Implement a retry utility that retries a fetch request with exponential backoff on network errors or 5xx responses, up to a maximum number of attempts.',
     answer: `async function fetchWithRetry(url, options = {}, maxRetries = 3, baseDelayMs = 1000) {
+  let lastError
+
+  for (let attempt = 0; attempt <= maxRetries; attempt++) {
+    try {
+      const response = await fetch(url, options)
+
+      // Retry on 5xx server errors
+      if (response.status >= 500 && attempt < maxRetries) {
+        lastError = new Error(\`Server error: \${response.status}\`)
+        const delay = baseDelayMs * Math.pow(2, attempt) + Math.random() * 100
+        await new Promise(resolve => setTimeout(resolve, delay))
+        continue
+      }
+
+      return response
+    } catch (err) {
+      // Network errors (no response received)
+      lastError = err
+      if (attempt < maxRetries) {
+        const delay = baseDelayMs * Math.pow(2, attempt) + Math.random() * 100
+        await new Promise(resolve => setTimeout(resolve, delay))
+      }
+    }
+  }
+
+  throw lastError
+}`,
+    solutionCode: `async function fetchWithRetry(url, options = {}, maxRetries = 3, baseDelayMs = 1000) {
   let lastError
 
   for (let attempt = 0; attempt <= maxRetries; attempt++) {
@@ -509,6 +570,63 @@ app.use(cors({
     type: 'code-write',
     question: 'Implement a WebSocket client class with automatic reconnection using exponential backoff.',
     answer: `class ReconnectingWebSocket {
+  constructor(url, options = {}) {
+    this.url = url
+    this.maxRetries = options.maxRetries ?? 10
+    this.baseDelay = options.baseDelay ?? 1000
+    this.maxDelay = options.maxDelay ?? 30000
+    this.retryCount = 0
+    this.ws = null
+    this.listeners = {}
+    this.connect()
+  }
+
+  connect() {
+    this.ws = new WebSocket(this.url)
+
+    this.ws.onopen = () => {
+      this.retryCount = 0
+      this.emit('open')
+    }
+
+    this.ws.onmessage = (event) => this.emit('message', event.data)
+
+    this.ws.onerror = (error) => this.emit('error', error)
+
+    this.ws.onclose = (event) => {
+      this.emit('close', event)
+      if (!event.wasClean && this.retryCount < this.maxRetries) {
+        const delay = Math.min(
+          this.baseDelay * Math.pow(2, this.retryCount),
+          this.maxDelay
+        )
+        this.retryCount++
+        setTimeout(() => this.connect(), delay)
+      }
+    }
+  }
+
+  send(data) {
+    if (this.ws?.readyState === WebSocket.OPEN) {
+      this.ws.send(data)
+    }
+  }
+
+  on(event, handler) {
+    this.listeners[event] = this.listeners[event] || []
+    this.listeners[event].push(handler)
+  }
+
+  emit(event, ...args) {
+    this.listeners[event]?.forEach(fn => fn(...args))
+  }
+
+  close() {
+    this.maxRetries = 0
+    this.ws?.close(1000, 'Client closed')
+  }
+}`,
+    solutionCode: `class ReconnectingWebSocket {
   constructor(url, options = {}) {
     this.url = url
     this.maxRetries = options.maxRetries ?? 10
@@ -891,6 +1009,54 @@ app.use(cors({
 // Usage
 const limiter = new RateLimiter(10)
 const result = await limiter.execute(() => fetch('/api/data'))`,
+    solutionCode: `class RateLimiter {
+  constructor(maxPerSecond) {
+    this.maxPerSecond = maxPerSecond
+    this.queue = []
+    this.running = 0
+    this.windowStart = Date.now()
+    this.windowCount = 0
+  }
+
+  async execute(fn) {
+    return new Promise((resolve, reject) => {
+      this.queue.push({ fn, resolve, reject })
+      this.processQueue()
+    })
+  }
+
+  async processQueue() {
+    if (this.queue.length === 0) return
+
+    const now = Date.now()
+    if (now - this.windowStart >= 1000) {
+      this.windowStart = now
+      this.windowCount = 0
+    }
+
+    if (this.windowCount >= this.maxPerSecond) {
+      const delay = 1000 - (now - this.windowStart)
+      setTimeout(() => this.processQueue(), delay)
+      return
+    }
+
+    const { fn, resolve, reject } = this.queue.shift()
+    this.windowCount++
+
+    try {
+      const result = await fn()
+      resolve(result)
+    } catch (err) {
+      reject(err)
+    }
+
+    this.processQueue()
+  }
+}
+
+// Usage
+const limiter = new RateLimiter(10)
+const result = await limiter.execute(() => fetch('/api/data'))`,
     explanation:
       'The rate limiter tracks requests in a sliding 1-second window. When the window count reaches the max, it delays processing until the window resets. Requests are queued and processed in order (FIFO). In production, also consider: token bucket algorithm (smoother than fixed window), per-endpoint rate limits, and combining with server 429 responses. Libraries like bottleneck or p-throttle provide battle-tested implementations.',
     references: [
@@ -984,6 +1150,41 @@ await uploadFileInChunks(
   '/api/upload/chunk',
   (pct) => console.log(\`\${pct}% uploaded\`)
 )`,
+    solutionCode: `async function uploadFileInChunks(file, uploadUrl, onProgress, chunkSize = 5 * 1024 * 1024) {
+  const totalChunks = Math.ceil(file.size / chunkSize)
+  let uploadedBytes = 0
+
+  for (let chunkIndex = 0; chunkIndex < totalChunks; chunkIndex++) {
+    const start = chunkIndex * chunkSize
+    const end = Math.min(start + chunkSize, file.size)
+    const chunk = file.slice(start, end)
+
+    const formData = new FormData()
+    formData.append('chunk', chunk)
+    formData.append('chunkIndex', String(chunkIndex))
+    formData.append('totalChunks', String(totalChunks))
+    formData.append('fileName', file.name)
+
+    const response = await fetch(uploadUrl, {
+      method: 'POST',
+      body: formData,
+    })
+
+    if (!response.ok) {
+      throw new Error(\`Chunk \${chunkIndex} failed: \${response.status}\`)
+    }
+
+    uploadedBytes += chunk.size
+    onProgress(Math.round((uploadedBytes / file.size) * 100))
+  }
+}
+
+// Usage
+await uploadFileInChunks(
+  file,
+  '/api/upload/chunk',
+  (pct) => console.log(\`\${pct}% uploaded\`)
+)`,
     explanation:
       'File.slice() creates a Blob for each chunk without copying the entire file into memory. The server receives each chunk with its index and total count, reassembles them when all chunks are received. Improvements for production: parallel chunk uploads (Promise.all with concurrency limiting), retry failed chunks without restarting, resumable uploads by tracking which chunks succeeded (store in localStorage), and using the Fetch API with ReadableStream for true streaming progress.',
     references: [
@@ -1001,6 +1202,47 @@ await uploadFileInChunks(
     type: 'code-write',
     question: 'Implement an SSE client using the EventSource API that reconnects and handles different event types.',
     answer: `function createSSEConnection(url, handlers = {}) {
+  const eventSource = new EventSource(url, { withCredentials: true })
+
+  eventSource.onopen = () => {
+    console.log('SSE connection established')
+    handlers.onOpen?.()
+  }
+
+  // Default message event (no event: field in stream)
+  eventSource.onmessage = (event) => {
+    try {
+      const data = JSON.parse(event.data)
+      handlers.onMessage?.(data)
+    } catch {
+      handlers.onMessage?.(event.data)
+    }
+  }
+
+  // Custom named events
+  if (handlers.eventTypes) {
+    for (const [type, handler] of Object.entries(handlers.eventTypes)) {
+      eventSource.addEventListener(type, (event) => {
+        handler(JSON.parse(event.data))
+      })
+    }
+  }
+
+  eventSource.onerror = (err) => {
+    console.error('SSE error:', err)
+    handlers.onError?.(err)
+    // EventSource auto-reconnects unless we close it
+    if (eventSource.readyState === EventSource.CLOSED) {
+      handlers.onClose?.()
+    }
+  }
+
+  return {
+    close: () => eventSource.close(),
+    readyState: () => eventSource.readyState,
+  }
+}`,
+    solutionCode: `function createSSEConnection(url, handlers = {}) {
   const eventSource = new EventSource(url, { withCredentials: true })
 
   eventSource.onopen = () => {
@@ -1290,6 +1532,22 @@ console.log(JSON.stringify(obj))`,
   }
 }`,
     answer: "Bug: HTTP errors (4xx, 5xx) are not checked — response.json() succeeds even on 404/500, returning the error body as data. Additionally, all errors return null with no logging, making debugging impossible. Fix: check response.ok before calling response.json(), throw specific errors for different failure modes, and log errors.",
+    solutionCode: `async function getUser(id) {
+  try {
+    const response = await fetch(\`/api/users/\${id}\`)
+    if (!response.ok) {
+      throw new Error(\`HTTP \${response.status}: \${response.statusText}\`)
+    }
+    return await response.json()
+  } catch (error) {
+    if (error instanceof TypeError) {
+      console.error('Network error:', error)
+      throw new Error('Network unavailable')
+    }
+    console.error('API error:', error)
+    throw error // Re-throw so callers can handle it
+  }
+}`,
     explanation:
       'The corrected version:\n\nasync function getUser(id) {\n  try {\n    const response = await fetch(`/api/users/${id}`)\n    if (!response.ok) {\n      throw new Error(`HTTP ${response.status}: ${response.statusText}`)\n    }\n    return await response.json()\n  } catch (error) {\n    if (error instanceof TypeError) {\n      console.error("Network error:", error)\n      throw new Error("Network unavailable")\n    }\n    console.error("API error:", error)\n    throw error // Re-throw so callers can handle it\n  }\n}\n\nKey principles: (1) Always check response.ok. (2) Distinguish network errors (TypeError) from HTTP errors. (3) Re-throw or transform errors — returning null silently hides failures from callers.',
     references: [
@@ -1606,6 +1864,29 @@ function PostItem({ post, authorId }) {
   return <div>{post.title} by {data?.user.name}</div>
 }`,
     answer: "N+1 problem: the PostList makes 1 query for posts, then PostItem makes 1 separate user query per post. With 20 posts, that is 21 total requests. Fix: include the author fields directly in the posts query using nested selection, or use a DataLoader on the server to batch author lookups.",
+    solutionCode: `// Fixed: fetch author data in the same query as posts
+function PostList() {
+  const { data } = useQuery(gql\`
+    query {
+      posts {
+        id
+        title
+        author {
+          name
+          avatar
+        }
+      }
+    }
+  \`)
+
+  return data?.posts.map(post => (
+    <PostItem key={post.id} post={post} author={post.author} />
+  ))
+}
+
+function PostItem({ post, author }) {
+  return <div>{post.title} by {author.name}</div>
+}`,
     explanation:
       'The solution on the client side is to fetch all required data in a single query using nested fields:\n\nquery {\n  posts {\n    id\n    title\n    author {\n      name\n      avatar\n    }\n  }\n}\n\nThis leverages GraphQL\'s strength — fetching related data in one request. On the server side, even with a single query, the author resolver may fire once per post if not batched. DataLoader batches and deduplicates resolver calls within a single tick. With GraphQL fragments, you can co-locate each component\'s data requirements and compose them into a single efficient query at the route level.',
     references: [

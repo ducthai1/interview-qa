@@ -86,6 +86,19 @@ export const reactPracticalQuestions: Question[] = [
     </button>
   );
 }`,
+    solutionCode: `function Toggle() {
+  const [isOn, setIsOn] = React.useState(false);
+
+  function handleClick() {
+    setIsOn(prev => !prev);
+  }
+
+  return (
+    <button onClick={handleClick}>
+      {isOn ? 'ON' : 'OFF'}
+    </button>
+  );
+}`,
     explanation:
       'Local variables do not trigger re-renders. React has no way to know the variable changed, so the UI never updates. You must use useState (or useReducer) so React can schedule a re-render when the value changes. Using the functional updater (prev => !prev) avoids stale-closure issues.',
     tags: ['useState', 'state', 'common-bugs'],
@@ -100,6 +113,26 @@ export const reactPracticalQuestions: Question[] = [
       'Build a controlled text input that shows a character count below the input and disables a "Submit" button when the count exceeds 280 characters.',
     answer:
       `function TweetBox() {
+  const [text, setText] = React.useState('');
+  const remaining = 280 - text.length;
+
+  return (
+    <div>
+      <textarea
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        placeholder="What's happening?"
+      />
+      <p style={{ color: remaining < 0 ? 'red' : 'inherit' }}>
+        {remaining} characters remaining
+      </p>
+      <button disabled={remaining < 0 || text.length === 0}>
+        Submit
+      </button>
+    </div>
+  );
+}`,
+    solutionCode: `function TweetBox() {
   const [text, setText] = React.useState('');
   const remaining = 280 - text.length;
 
@@ -232,6 +265,42 @@ export const reactPracticalQuestions: Question[] = [
   }
   return null;
 }`,
+    solutionCode: `function ConnectivityBanner() {
+  const [isOnline, setIsOnline] = React.useState(navigator.onLine);
+  const [showBack, setShowBack] = React.useState(false);
+
+  React.useEffect(() => {
+    const goOnline = () => {
+      setIsOnline(true);
+      setShowBack(true);
+    };
+    const goOffline = () => {
+      setIsOnline(false);
+      setShowBack(false);
+    };
+
+    window.addEventListener('online', goOnline);
+    window.addEventListener('offline', goOffline);
+    return () => {
+      window.removeEventListener('online', goOnline);
+      window.removeEventListener('offline', goOffline);
+    };
+  }, []);
+
+  React.useEffect(() => {
+    if (!showBack) return;
+    const timer = setTimeout(() => setShowBack(false), 3000);
+    return () => clearTimeout(timer);
+  }, [showBack]);
+
+  if (!isOnline) {
+    return <div style={{ background: 'red', color: 'white', padding: 8 }}>You are offline</div>;
+  }
+  if (showBack) {
+    return <div style={{ background: 'green', color: 'white', padding: 8 }}>Back online</div>;
+  }
+  return null;
+}`,
     explanation:
       'This uses the browser "online" and "offline" events to track connectivity. Two pieces of state (isOnline, showBack) drive conditional rendering. The auto-dismiss timer is managed in a separate useEffect that cleans up on unmount or when showBack changes, preventing memory leaks.',
     tags: ['conditional-rendering', 'useEffect', 'events', 'cleanup'],
@@ -266,6 +335,12 @@ export const reactPracticalQuestions: Question[] = [
 <Greeting user={{ name: 'Alice', age: 30 }} />`,
     answer:
       `function Greeting({ user }) {
+  return <h1>Hello, {user.name}</h1>;
+}
+
+// Usage:
+<Greeting user={{ name: 'Alice', age: 30 }} />`,
+    solutionCode: `function Greeting({ user }) {
   return <h1>Hello, {user.name}</h1>;
 }
 
@@ -323,6 +398,31 @@ export const reactPracticalQuestions: Question[] = [
 // <AsyncRenderer isLoading={isLoading} error={error} data={users} onRetry={refetch}>
 //   {(users) => <UserList users={users} />}
 // </AsyncRenderer>`,
+    solutionCode: `function AsyncRenderer({ isLoading, error, data, onRetry, children }) {
+  if (isLoading) {
+    return <div className="spinner" aria-label="Loading">Loading...</div>;
+  }
+
+  if (error) {
+    return (
+      <div role="alert">
+        <p>Error: {error.message}</p>
+        {onRetry && <button onClick={onRetry}>Retry</button>}
+      </div>
+    );
+  }
+
+  if (data === undefined || data === null) {
+    return <p>No data available.</p>;
+  }
+
+  return <>{children(data)}</>;
+}
+
+// Usage:
+// <AsyncRenderer isLoading={isLoading} error={error} data={users} onRetry={refetch}>
+//   {(users) => <UserList users={users} />}
+// </AsyncRenderer>`,
     explanation:
       'This pattern centralises loading/error/empty state handling into a single reusable component. The render-prop pattern (children as a function) gives the consumer full control of how the data is displayed while the AsyncRenderer handles all the state branching. This eliminates repetitive if/else chains scattered across every data-fetching component.',
     tags: ['render-props', 'loading-states', 'patterns', 'reusability'],
@@ -356,6 +456,36 @@ export const reactPracticalQuestions: Question[] = [
       'Build a component that lets users reorder a list via "move up" / "move down" buttons next to each item, updating state immutably.',
     answer:
       `function ReorderableList({ initialItems }) {
+  const [items, setItems] = React.useState(initialItems);
+
+  const moveItem = (index, direction) => {
+    const target = index + direction;
+    if (target < 0 || target >= items.length) return;
+
+    setItems(prev => {
+      const next = [...prev];
+      [next[index], next[target]] = [next[target], next[index]];
+      return next;
+    });
+  };
+
+  return (
+    <ul>
+      {items.map((item, i) => (
+        <li key={item.id}>
+          <span>{item.label}</span>
+          <button onClick={() => moveItem(i, -1)} disabled={i === 0}>
+            Move Up
+          </button>
+          <button onClick={() => moveItem(i, 1)} disabled={i === items.length - 1}>
+            Move Down
+          </button>
+        </li>
+      ))}
+    </ul>
+  );
+}`,
+    solutionCode: `function ReorderableList({ initialItems }) {
   const [items, setItems] = React.useState(initialItems);
 
   const moveItem = (index, direction) => {
@@ -626,6 +756,23 @@ function Search() {
 }`,
     answer:
       `function useWindowSize() {
+  const [size, setSize] = React.useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  React.useEffect(() => {
+    function handleResize() {
+      setSize({ width: window.innerWidth, height: window.innerHeight });
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return size;
+}`,
+    solutionCode: `function useWindowSize() {
   const [size, setSize] = React.useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -920,6 +1067,32 @@ function NavBar() {
     </div>
   );
 }`,
+    solutionCode: `function UserSearch() {
+  const [query, setQuery] = React.useState('');
+  const [results, setResults] = React.useState([]);
+
+  React.useEffect(() => {
+    if (!query.trim()) {
+      setResults([]);
+      return;
+    }
+
+    const controller = new AbortController();
+    fetch(\`/api/search?q=\${query}\`, { signal: controller.signal })
+      .then(r => r.json())
+      .then(data => setResults(data))
+      .catch(() => {});
+
+    return () => controller.abort();
+  }, [query]);
+
+  return (
+    <div>
+      <input value={query} onChange={e => setQuery(e.target.value)} />
+      <ul>{results.map(r => <li key={r.id}>{r.name}</li>)}</ul>
+    </div>
+  );
+}`,
     explanation:
       'The useEffect has no dependency array, so it runs after every render. setResults triggers a re-render, which triggers the effect again, creating an infinite loop. Adding [query] as the dependency array ensures the effect only runs when query changes. The AbortController and empty query guard are additional best practices.',
     tags: ['useEffect', 'infinite-loop', 'dependency-array', 'common-bugs'],
@@ -994,6 +1167,35 @@ function NavBar() {
       'Build a countdown timer component that starts from a given number of seconds, ticks down every second, and displays "Time\'s up!" when it reaches zero.',
     answer:
       `function Countdown({ seconds }) {
+  const [remaining, setRemaining] = React.useState(seconds);
+
+  React.useEffect(() => {
+    if (remaining <= 0) return;
+
+    const timer = setInterval(() => {
+      setRemaining(prev => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [remaining === 0]);
+
+  return (
+    <div>
+      {remaining > 0 ? (
+        <p>{remaining} second{remaining !== 1 ? 's' : ''} remaining</p>
+      ) : (
+        <p>Time's up!</p>
+      )}
+    </div>
+  );
+}`,
+    solutionCode: `function Countdown({ seconds }) {
   const [remaining, setRemaining] = React.useState(seconds);
 
   React.useEffect(() => {
@@ -1117,6 +1319,18 @@ function useCart() {
 
   return <div ref={ref}>Width: {width}px</div>;
 }`,
+    solutionCode: `function MeasuredBox() {
+  const ref = React.useRef(null);
+  const [width, setWidth] = React.useState(0);
+
+  React.useEffect(() => {
+    if (ref.current) {
+      setWidth(ref.current.getBoundingClientRect().width);
+    }
+  }, []);
+
+  return <div ref={ref}>Width: {width}px</div>;
+}`,
     explanation:
       'The original code calls getBoundingClientRect during render, before the DOM node exists. Refs are populated after React commits to the DOM. Moving the measurement into useEffect ensures the ref is attached. Additionally, calling setState directly in the render body causes an infinite loop. For responsive measurements, add a ResizeObserver inside the effect.',
     tags: ['useRef', 'useEffect', 'DOM-measurement', 'render-phase'],
@@ -1183,6 +1397,26 @@ function useCart() {
 // <TogglePanel title="Details">
 //   <p>Some detailed content here.</p>
 // </TogglePanel>`,
+    solutionCode: `function TogglePanel({ title, children }) {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  return (
+    <div>
+      <button
+        onClick={() => setIsOpen(prev => !prev)}
+        aria-expanded={isOpen}
+      >
+        {isOpen ? 'Hide' : 'Show'} {title}
+      </button>
+      {isOpen && <div className="panel">{children}</div>}
+    </div>
+  );
+}
+
+// Usage:
+// <TogglePanel title="Details">
+//   <p>Some detailed content here.</p>
+// </TogglePanel>`,
     explanation:
       'A simple boolean state drives both the button label and conditional rendering of the panel. The functional updater (prev => !prev) is the safe way to toggle. aria-expanded improves accessibility for screen readers. The children prop makes the component reusable for any content.',
     tags: ['useState', 'conditional-rendering', 'accessibility', 'composition'],
@@ -1197,6 +1431,35 @@ function useCart() {
       'Implement a usePrevious hook that returns the previous value of a state variable. Then use it to show "Price went up/down" when a stock price changes.',
     answer:
       `function usePrevious(value) {
+  const ref = React.useRef();
+
+  React.useEffect(() => {
+    ref.current = value;
+  }, [value]);
+
+  return ref.current;
+}
+
+function StockPrice({ symbol, price }) {
+  const previousPrice = usePrevious(price);
+
+  let trend = null;
+  if (previousPrice !== undefined) {
+    if (price > previousPrice) trend = 'up';
+    else if (price < previousPrice) trend = 'down';
+    else trend = 'unchanged';
+  }
+
+  return (
+    <div>
+      <h2>{symbol}: \${price.toFixed(2)}</h2>
+      {trend === 'up' && <span style={{ color: 'green' }}>Price went up</span>}
+      {trend === 'down' && <span style={{ color: 'red' }}>Price went down</span>}
+      {trend === 'unchanged' && <span>No change</span>}
+    </div>
+  );
+}`,
+    solutionCode: `function usePrevious(value) {
   const ref = React.useRef();
 
   React.useEffect(() => {
@@ -1341,6 +1604,38 @@ const fetchUser = (props, signal) =>
   fetch(\`/api/users/\${props.userId}\`, { signal }).then(r => r.json());
 
 const UserProfileWithData = withAsyncData(UserProfile, fetchUser);`,
+    solutionCode: `function withAsyncData(WrappedComponent, fetchFn) {
+  return function AsyncDataWrapper(props) {
+    const [data, setData] = React.useState(null);
+    const [loading, setLoading] = React.useState(true);
+    const [error, setError] = React.useState(null);
+
+    React.useEffect(() => {
+      const controller = new AbortController();
+
+      fetchFn(props, controller.signal)
+        .then(result => { setData(result); setLoading(false); })
+        .catch(err => {
+          if (err.name !== 'AbortError') {
+            setError(err); setLoading(false);
+          }
+        });
+
+      return () => controller.abort();
+    }, [props]);
+
+    if (loading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error.message}</div>;
+
+    return <WrappedComponent {...props} data={data} />;
+  };
+}
+
+// Usage:
+const fetchUser = (props, signal) =>
+  fetch(\`/api/users/\${props.userId}\`, { signal }).then(r => r.json());
+
+const UserProfileWithData = withAsyncData(UserProfile, fetchUser);`,
     explanation:
       'HOCs wrap a component to inject cross-cutting behavior. This HOC handles the loading/error/data lifecycle so the wrapped component only receives ready data. While hooks have largely replaced HOCs, they remain useful for decorating route-level components or integrating with libraries that expect the pattern. The forwardRef and displayName should be added in production code.',
     tags: ['HOC', 'patterns', 'data-fetching', 'code-reuse'],
@@ -1355,6 +1650,47 @@ const UserProfileWithData = withAsyncData(UserProfile, fetchUser);`,
       'Implement a compound component pattern for a Tabs component. The API should look like: <Tabs><Tab label="One">Content 1</Tab><Tab label="Two">Content 2</Tab></Tabs>.',
     answer:
       `const TabsContext = React.createContext();
+
+function Tabs({ children, defaultIndex = 0 }) {
+  const [activeIndex, setActiveIndex] = React.useState(defaultIndex);
+  const tabs = React.Children.toArray(children);
+
+  return (
+    <TabsContext.Provider value={{ activeIndex, setActiveIndex }}>
+      <div className="tabs">
+        <div role="tablist" className="tab-headers">
+          {tabs.map((tab, index) => (
+            <button
+              key={index}
+              role="tab"
+              aria-selected={index === activeIndex}
+              onClick={() => setActiveIndex(index)}
+              className={index === activeIndex ? 'active' : ''}
+            >
+              {tab.props.label}
+            </button>
+          ))}
+        </div>
+        <div role="tabpanel" className="tab-content">
+          {tabs[activeIndex]?.props.children}
+        </div>
+      </div>
+    </TabsContext.Provider>
+  );
+}
+
+function Tab({ children }) {
+  return <>{children}</>;
+}
+
+Tabs.Tab = Tab;
+
+// Usage:
+// <Tabs defaultIndex={0}>
+//   <Tabs.Tab label="Profile">Profile content</Tabs.Tab>
+//   <Tabs.Tab label="Settings">Settings content</Tabs.Tab>
+// </Tabs>`,
+    solutionCode: `const TabsContext = React.createContext();
 
 function Tabs({ children, defaultIndex = 0 }) {
   const [activeIndex, setActiveIndex] = React.useState(defaultIndex);
@@ -1479,6 +1815,63 @@ Tabs.Tab = Tab;
     document.body
   );
 }`,
+    solutionCode: `function Modal({ isOpen, onClose, children }) {
+  const modalRef = React.useRef(null);
+  const previousFocus = React.useRef(null);
+
+  React.useEffect(() => {
+    if (!isOpen) return;
+
+    previousFocus.current = document.activeElement;
+    modalRef.current?.focus();
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') { onClose(); return; }
+
+      if (e.key === 'Tab') {
+        const focusable = modalRef.current?.querySelectorAll(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        if (!focusable?.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      previousFocus.current?.focus();
+    };
+  }, [isOpen, onClose]);
+
+  if (!isOpen) return null;
+
+  return ReactDOM.createPortal(
+    <div className="modal-overlay" onClick={onClose}>
+      <div
+        ref={modalRef}
+        className="modal-content"
+        role="dialog"
+        aria-modal="true"
+        tabIndex={-1}
+        onClick={e => e.stopPropagation()}
+      >
+        {children}
+        <button onClick={onClose}>Close</button>
+      </div>
+    </div>,
+    document.body
+  );
+}`,
     explanation:
       'Portals render outside the parent DOM hierarchy, so the modal always overlays the page regardless of parent CSS (overflow, z-index). Focus trapping cycles Tab/Shift+Tab within the modal. Restoring focus on close returns the user to where they were. Escape key dismissal is expected behavior per WAI-ARIA dialog pattern. Clicking the overlay closes the modal while stopPropagation on the content prevents closing when clicking inside.',
     tags: ['portal', 'modal', 'focus-trap', 'accessibility'],
@@ -1508,6 +1901,22 @@ function App() {
 }`,
     answer:
       `const Greeting = React.memo(function Greeting({ name, style }) {
+  console.log('Greeting rendered');
+  return <h1 style={style}>Hello, {name}</h1>;
+});
+
+function App() {
+  const [count, setCount] = React.useState(0);
+  const style = React.useMemo(() => ({ color: 'blue' }), []);
+
+  return (
+    <div>
+      <button onClick={() => setCount(c => c + 1)}>Count: {count}</button>
+      <Greeting name="Alice" style={style} />
+    </div>
+  );
+}`,
+    solutionCode: `const Greeting = React.memo(function Greeting({ name, style }) {
   console.log('Greeting rendered');
   return <h1 style={style}>Hello, {name}</h1>;
 });
@@ -1582,6 +1991,35 @@ function useMousePosition() {
 
   return position;
 }`,
+    solutionCode: `function MouseTracker({ render }) {
+  const [position, setPosition] = React.useState({ x: 0, y: 0 });
+
+  React.useEffect(() => {
+    const handleMouseMove = (e) => {
+      setPosition({ x: e.clientX, y: e.clientY });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  return render(position);
+}
+
+// Alternative: custom hook version
+function useMousePosition() {
+  const [position, setPosition] = React.useState({ x: 0, y: 0 });
+
+  React.useEffect(() => {
+    const handleMouseMove = (e) => {
+      setPosition({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  return position;
+}`,
     explanation:
       'Render props allow a component to share behavior (mouse tracking) while letting the consumer control the UI. The pattern pre-dates hooks and is still valid for component-level code sharing. The hook version (useMousePosition) is the modern equivalent and is typically preferred for new code. Both use the same cleanup pattern for event listeners.',
     tags: ['render-props', 'patterns', 'custom-hooks', 'event-listeners'],
@@ -1610,6 +2048,45 @@ function useMousePosition() {
       'Implement a click-outside hook that closes a dropdown when the user clicks anywhere outside of it.',
     answer:
       `function useClickOutside(ref, callback) {
+  React.useEffect(() => {
+    function handleClick(event) {
+      if (ref.current && !ref.current.contains(event.target)) {
+        callback();
+      }
+    }
+
+    document.addEventListener('mousedown', handleClick);
+    document.addEventListener('touchstart', handleClick);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClick);
+      document.removeEventListener('touchstart', handleClick);
+    };
+  }, [ref, callback]);
+}
+
+function Dropdown() {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const dropdownRef = React.useRef(null);
+
+  useClickOutside(dropdownRef, () => setIsOpen(false));
+
+  return (
+    <div ref={dropdownRef}>
+      <button onClick={() => setIsOpen(prev => !prev)}>
+        {isOpen ? 'Close' : 'Open'} Menu
+      </button>
+      {isOpen && (
+        <ul className="dropdown-menu">
+          <li>Option 1</li>
+          <li>Option 2</li>
+          <li>Option 3</li>
+        </ul>
+      )}
+    </div>
+  );
+}`,
+    solutionCode: `function useClickOutside(ref, callback) {
   React.useEffect(() => {
     function handleClick(event) {
       if (ref.current && !ref.current.contains(event.target)) {

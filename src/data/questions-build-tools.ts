@@ -204,6 +204,34 @@ export default defineConfig({
   }
 })`,
     answer: 'Run bundle analysis (rollup-plugin-visualizer), look for: (1) entire libraries imported instead of specific functions (import _ from "lodash" vs import debounce from "lodash/debounce"), (2) large dependencies (moment.js, faker), (3) missing code splitting for routes, (4) duplicate packages at different versions, (5) dev-only code in production.',
+    solutionCode: `// vite.config.ts — FIXED: add bundle analyzer + manual chunks + dynamic imports
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import { visualizer } from 'rollup-plugin-visualizer'
+
+export default defineConfig({
+  plugins: [
+    react(),
+    visualizer({ open: true }), // analyze bundle
+  ],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          // Each route lazy-loaded separately
+        },
+      },
+    },
+  },
+})
+
+// In your route files — use dynamic imports for code splitting:
+// const HeavyPage = lazy(() => import('./pages/HeavyPage'))
+
+// Fix tree-shaking — import specific functions:
+// import debounce from 'lodash-es/debounce'  // not: import _ from 'lodash'
+// import { format } from 'date-fns'           // not: import moment from 'moment'`,
     explanation: 'Diagnosis: add rollup-plugin-visualizer to see bundle composition. Common culprits: lodash (70KB→3KB with tree-shaking), moment.js (use date-fns), large icon libraries (import entire set instead of specific icons), missing dynamic import() for routes, unintentionally including test files or mocks in production. Fix: lazy routes, tree-shaken imports, replace heavy libs.',
     tags: ['bundle-analysis', 'optimization', 'vite', 'performance'],
     year: 2025,
@@ -793,6 +821,46 @@ export default defineConfig({
 // Error: Invalid hook call. Hooks can only be called inside
 // of the body of a function component.`,
     answer: 'React is listed as a "dependencies" instead of "peerDependencies", causing two copies of React to be bundled — one from your library and one from the consumer\'s app. React hooks break when multiple React instances exist.',
+    solutionCode: `// Fixed package.json — move React to peerDependencies
+{
+  "peerDependencies": {
+    "react": ">=17",
+    "react-dom": ">=17"
+  },
+  "devDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  }
+}
+
+// vite.config.ts — externalize React so it's not bundled
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import dts from 'vite-plugin-dts'
+
+export default defineConfig({
+  plugins: [react(), dts()],
+  build: {
+    lib: {
+      entry: 'src/index.ts',
+      formats: ['es', 'cjs'],
+    },
+    rollupOptions: {
+      external: ['react', 'react-dom'],
+      output: {
+        globals: { react: 'React', 'react-dom': 'ReactDOM' },
+      },
+    },
+  },
+})`,
     explanation: 'The fix: move React to "peerDependencies": { "react": ">=17" } and add to "devDependencies" for local development. Also externalize React in your Vite/Rollup config: external: ["react", "react-dom"]. This ensures the consumer\'s single React instance is used. The same issue occurs with context, forwardRef, and any React singleton. Always use peerDependencies for framework packages in libraries.',
     tags: ['react', 'peer-dependencies', 'multiple-instances', 'library-authoring'],
     year: 2025,

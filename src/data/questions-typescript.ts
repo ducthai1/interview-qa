@@ -154,6 +154,17 @@ const val = getProperty(user, 'active');`,
 }`,
     answer:
       "The return type of `pop()` should be `T | undefined` because `Array.prototype.pop()` returns `T | undefined` when the array may be empty. Fix: `pop(): T | undefined { return this.items.pop(); }`",
+    solutionCode: `class Stack<T> {
+  private items: T[] = [];
+
+  push(item: T): void {
+    this.items.push(item);
+  }
+
+  pop(): T | undefined {
+    return this.items.pop();
+  }
+}`,
     explanation:
       '`Array<T>.pop()` returns `T | undefined` — it returns `undefined` when the array is empty. Declaring the return type as `T` without `undefined` causes a type error under `strictNullChecks` because the actual return value from `.pop()` is `T | undefined`, which is not assignable to `T`.',
     tags: ['generics', 'generic-classes', 'strictNullChecks'],
@@ -394,6 +405,20 @@ function makeNoise(animal: Cat | Dog) {
 }`,
     answer:
       "The guard checks `!== undefined` but `(animal as Cat).meow` on a Dog will return `undefined` at runtime — however the cast silences TypeScript. The real bug: accessing `.meow` via `as Cat` cast on a Dog object returns `undefined` correctly, so the logic works — BUT if a Dog accidentally has a `.meow` property the guard fails. The safer check is `typeof (animal as Cat).meow === 'function'`.",
+    solutionCode: `interface Cat { meow(): void; }
+interface Dog { bark(): void; }
+
+function isCat(animal: Cat | Dog): animal is Cat {
+  return 'meow' in animal;  // safer: uses the 'in' operator
+}
+
+function makeNoise(animal: Cat | Dog) {
+  if (isCat(animal)) {
+    animal.meow();
+  } else {
+    animal.bark();
+  }
+}`,
     explanation:
       "The type assertion `(animal as Cat)` bypasses TypeScript's type checking, relying entirely on the runtime value. The comparison `!== undefined` is acceptable since method access on a missing property returns `undefined`. However, the more idiomatic and reliable check is `typeof (animal as Cat).meow === 'function'` or using the `in` operator: `return 'meow' in animal`.",
     tags: ['type-guards', 'type-predicates', 'instanceof', 'in-operator'],
@@ -777,6 +802,22 @@ function FocusInput() {
 }`,
     answer:
       "`useRef(null)` infers `RefObject<null>`. Fix: `useRef<HTMLInputElement>(null)` — this gives `RefObject<HTMLInputElement>`, making `inputRef.current` of type `HTMLInputElement | null`. Then guard the call: `inputRef.current?.focus()`.",
+    solutionCode: `import { useRef } from 'react';
+
+function FocusInput() {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleClick = () => {
+    inputRef.current?.focus();
+  };
+
+  return (
+    <div>
+      <input ref={inputRef} type="text" />
+      <button onClick={handleClick}>Focus</button>
+    </div>
+  );
+}`,
     explanation:
       "`useRef(null)` without a generic argument creates `MutableRefObject<null>` where `.current` is typed as `null`, so `.focus()` is not accessible. Providing the generic `useRef<HTMLInputElement>(null)` tells TypeScript this ref will hold an `HTMLInputElement`. The `.current` is then `HTMLInputElement | null`, requiring an optional chain or null check before calling `.focus()`.",
     tags: ['react', 'useRef', 'refs', 'HTMLElement-types'],
@@ -1189,6 +1230,11 @@ declare module 'my-lib' {
   export const version = '1.0.0'  // <-- error here
 }`,
     answer: "In a `declare module` block, you cannot initialise values — `export const version = '1.0.0'` is an error because ambient declarations only declare types/shapes, not values. Fix: `export const version: string`",
+    solutionCode: `// types/my-lib.d.ts
+declare module 'my-lib' {
+  export function greet(name: string): string
+  export const version: string  // fixed: type annotation only, no initializer
+}`,
     explanation:
       "Ambient declaration files describe the shape of existing JavaScript — they cannot contain value initializers. `export const version = '1.0.0'` attempts to assign a value, which is invalid in an ambient context. The correct form is a type annotation: `export const version: string`. Similarly, `declare function` and `declare class` cannot have method bodies.",
     references: [

@@ -102,8 +102,11 @@ export const vi = {
     debug: 'Sửa lỗi',
     codeWrite: 'Viết Code',
     systemDesign: 'Thiết kế hệ thống',
+    solutionCode: 'Code đã sửa',
     addBookmark: 'Đánh dấu',
     removeBookmark: 'Bỏ đánh dấu',
+    retry: 'Làm lại',
+    attemptCount: 'Lần thử #{{count}}',
   },
 
   /* ─── Code Output Interaction ──────────────────────────────────────────────── */

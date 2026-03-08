@@ -172,6 +172,32 @@ export const accessibilityQuestions: Question[] = [
   )
 }`,
     answer: 'Issues: 1) Labels not associated with inputs (use <label htmlFor>), 2) Error message not linked to inputs (use aria-describedby + aria-invalid), 3) Submit is a div, not a <button type="submit">, 4) Placeholder is not a substitute for labels, 5) Error not announced to screen readers (use role="alert" or aria-live).',
+    solutionCode: `function LoginForm() {
+  return (
+    <form>
+      <label htmlFor="username">Username</label>
+      <input
+        type="text"
+        id="username"
+        placeholder="Enter username"
+        aria-invalid="true"
+        aria-describedby="error-msg"
+      />
+      <label htmlFor="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        placeholder="Enter password"
+        aria-invalid="true"
+        aria-describedby="error-msg"
+      />
+      <div id="error-msg" role="alert" style={{ color: 'red' }}>
+        Error: Invalid credentials
+      </div>
+      <button type="submit" onClick={() => submit()}>Submit</button>
+    </form>
+  )
+}`,
     explanation: 'Fixed version should use: <label htmlFor="username">Username</label> with <input id="username" aria-invalid="true" aria-describedby="error-msg" />. Error div should have role="alert" id="error-msg" for live announcement. Submit should be <button type="submit">. Labels must be programmatically associated via htmlFor/id pair — visual proximity alone doesnt work for screen readers. Placeholders disappear on input and have low contrast, so they should supplement labels, not replace them.',
     tags: ['form', 'label', 'aria-invalid', 'role-alert', 'button'],
     year: 2025,
@@ -532,6 +558,22 @@ export const accessibilityQuestions: Question[] = [
   setTimeout(() => document.body.removeChild(toast), 3000)
 }`,
     answer: 'The live region (role="alert"/"status") is created dynamically at the same time as the content is added. Screen readers only announce content changes in pre-existing live regions — a newly created live region with initial content may not be announced reliably across all screen reader/browser combinations.',
+    solutionCode: `// Step 1: Mount the live region container at app startup (empty)
+// In HTML: <div id="toast-container" role="status" aria-live="polite" aria-atomic="true"></div>
+
+// Step 2: Inject content into the pre-existing container
+function showToast(message: string, type: 'success' | 'error') {
+  const container = document.getElementById('toast-container')
+  if (!container) return
+
+  container.setAttribute('role', type === 'error' ? 'alert' : 'status')
+  container.textContent = message
+  container.style.cssText = 'position:fixed;bottom:20px;right:20px'
+
+  setTimeout(() => {
+    container.textContent = ''
+  }, 5000) // 5s minimum for WCAG 2.2.1
+}`,
     explanation: 'Fix: mount an empty live region container in the DOM at application startup, then inject toast content into it dynamically. In React: render <div role="status" aria-live="polite" aria-atomic="true" id="toast-container"></div> in the app root (or use a portal). When showing a toast, update the content of this existing container. The screen reader observes the pre-existing live region and announces when its content changes. Additionally: provide a minimum visible duration longer than 3 seconds (WCAG 2.2.1), or a way for users to pause auto-dismiss.',
     tags: ['aria-live', 'toast', 'live-region', 'dynamic-content', 'screen-reader'],
     year: 2025,

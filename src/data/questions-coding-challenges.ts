@@ -104,6 +104,15 @@ function debounce(fn, delay) {
     }, delay)
   }
 }`,
+    solutionCode: `function debounce(fn, delay) {
+  let timerId = null
+  return function (...args) {
+    clearTimeout(timerId)
+    timerId = setTimeout(() => {   // store the timer id so clearTimeout works
+      fn.apply(this, args)
+    }, delay)
+  }
+}`,
     explanation:
       '`clearTimeout(timerId)` does nothing useful if `timerId` is never updated. Without storing the new timer id, every scheduled timeout fires independently, completely defeating debouncing.',
     references: ['https://developer.mozilla.org/en-US/docs/Web/API/clearTimeout'],
@@ -1398,6 +1407,16 @@ function compose(...fns) {
 
 // Now compose(addOne, double)(5):
 // reduceRight starts with double: 5*2=10, then addOne: 10+1=11 ✓`,
+    solutionCode: `function compose(...fns) {
+  return function (value) {
+    return fns.reduceRight((acc, fn) => fn(acc), value)
+  }
+}
+
+const double = x => x * 2
+const addOne = x => x + 1
+
+compose(addOne, double)(5) // => 11: double(5)=10, addOne(10)=11`,
     explanation:
       'Mathematical function composition `f ∘ g` means "apply g first, then f". In an array `[f, g]`, the rightmost function executes first. `reduceRight` traverses from right to left, correctly applying the rightmost function first.',
     references: ['https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduceRight'],
@@ -2069,6 +2088,21 @@ function promiseAll(promises) {
     promises.forEach((p, i) => {
       Promise.resolve(p).then(value => {
         results[i] = value   // <-- store at original index
+        remaining--
+        if (remaining === 0) resolve(results)
+      }).catch(reject)
+    })
+  })
+}`,
+    solutionCode: `function promiseAll(promises) {
+  return new Promise((resolve, reject) => {
+    if (!promises.length) return resolve([])
+    const results = new Array(promises.length)
+    let remaining = promises.length
+
+    promises.forEach((p, i) => {
+      Promise.resolve(p).then(value => {
+        results[i] = value   // store at original index to preserve order
         remaining--
         if (remaining === 0) resolve(results)
       }).catch(reject)

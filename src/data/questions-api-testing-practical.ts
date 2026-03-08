@@ -1433,6 +1433,31 @@ function UserComment({ comment }: { comment: { author: string; html: string } })
     </div>
   );
 }`,
+    solutionCode: `import DOMPurify from 'dompurify';
+
+function sanitizeUrl(url: string): string {
+  try {
+    const parsed = new URL(url, window.location.origin);
+    if (!['http:', 'https:'].includes(parsed.protocol)) return '#';
+    return parsed.href;
+  } catch {
+    return '#';
+  }
+}
+
+function UserComment({ comment }: { comment: { author: string; html: string; profileUrl: string } }) {
+  return (
+    <div className="comment">
+      <h3>{comment.author}</h3>
+      <div
+        dangerouslySetInnerHTML={{
+          __html: DOMPurify.sanitize(comment.html),
+        }}
+      />
+      <a href={sanitizeUrl(comment.profileUrl)}>Profile</a>
+    </div>
+  );
+}`,
     explanation:
       'Two vulnerabilities: (1) dangerouslySetInnerHTML renders raw HTML which can contain <script>, <img onerror=>, or <a href="javascript:"> — DOMPurify strips all dangerous tags and attributes while preserving safe formatting. (2) The href uses comment.author directly, which could be "javascript:alert(1)" — the sanitizeUrl function validates it\'s a safe http/https URL. The author name in {curly braces} is safe because React auto-escapes strings in JSX. Always sanitize: HTML content with DOMPurify, URLs with protocol validation, and consider Content-Security-Policy as defense in depth.',
     references: [
@@ -1580,6 +1605,20 @@ export function middleware(request: NextRequest) {
   return data;
 }`,
     answer: `async function loadUserProfile(): Promise<UserProfile> {
+  const response = await fetch('https://api.example.com/user', {
+    method: 'GET',
+    headers: {
+      Authorization: \`Bearer \${getAccessToken()}\`, // from memory, not localStorage
+    },
+    credentials: 'include',
+  });
+
+  if (!response.ok) throw new Error('Failed to load profile');
+
+  const data: UserProfile = await response.json();
+  return data;
+}`,
+    solutionCode: `async function loadUserProfile(): Promise<UserProfile> {
   const response = await fetch('https://api.example.com/user', {
     method: 'GET',
     headers: {

@@ -102,8 +102,11 @@ export const en = {
     debug: 'Debug',
     codeWrite: 'Code Writing',
     systemDesign: 'System Design',
+    solutionCode: 'Corrected Code',
     addBookmark: 'Add bookmark',
     removeBookmark: 'Remove bookmark',
+    retry: 'Try Again',
+    attemptCount: 'Attempt #{{count}}',
   },
 
   /* ─── Code Output Interaction ──────────────────────────────────────────────── */

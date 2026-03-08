@@ -479,6 +479,16 @@ fetchData('https://api.example.com/data')
       'Change `async function` to a regular function',
     ],
     answer: 1,
+    solutionCode: `async function fetchData(url) {
+  const res = await fetch(url)
+  if (!res.ok) throw new Error(\`HTTP error: \${res.status}\`)
+  const data = await res.json()    // fixed: added await
+  return data
+}
+
+fetchData('https://api.example.com/data')
+  .then(d => console.log(d))
+  .catch(e => console.error(e))`,
     explanation:
       '`res.json()` returns a Promise. Without `await`, `data` is a pending Promise rather than the parsed JSON. The fix is `const data = await res.json()`. Additionally, `res.ok` should be checked before parsing to handle HTTP errors, which `fetch` does not reject on by itself.',
     references: [
@@ -932,6 +942,16 @@ try {
       'Add `return null` inside the catch block — this fixes it',
     ],
     answer: 1,
+    solutionCode: `async function loadUser(id) {
+  try {
+    const res = await fetch(\`/api/users/\${id}\`)
+    if (!res.ok) throw new Error(\`HTTP \${res.status}: \${res.statusText}\`)
+    return await res.json()
+  } catch (e) {
+    console.error('Failed to load user:', e)
+    throw e  // re-throw so the caller can react
+  }
+}`,
     explanation:
       'Swallowing errors makes debugging impossible and hides failures from callers. The fix is to either re-throw (`throw e`), return a typed error result, or log and rethrow. Also note that `fetch` only rejects on network failure — HTTP 4xx/5xx are successful fetches. Always check `res.ok` before parsing.',
     references: [
@@ -1743,6 +1763,18 @@ console.log('#balance' in acc)`,
       'Missing `async` on the outer function',
     ],
     answer: 1,
+    solutionCode: `async function fetchWithTimeout(url, ms) {
+  const controller = new AbortController()
+  const timeoutId = setTimeout(() => controller.abort(), ms)
+
+  try {
+    const response = await fetch(url, { signal: controller.signal })
+    const data = await response.json()
+    return data
+  } finally {
+    clearTimeout(timeoutId)  // fixed: always clear the timeout
+  }
+}`,
     explanation:
       'If `fetch` completes successfully before the timeout fires, `timeoutId` still runs later and calls `controller.abort()`. While this controller instance is not reused here, the timer wastes resources and could cause issues in more complex scenarios. The fix is to clear the timeout on success: add `clearTimeout(timeoutId)` after `await response.json()`, or use a `try/finally` block: `try { ... } finally { clearTimeout(timeoutId) }`.',
     references: [
@@ -1803,6 +1835,18 @@ export default config`,
       'Top-level await requires Node.js 20+',
     ],
     answer: 1,
+    solutionCode: `// Option 1: rename to config.mjs (ES module by extension)
+// file: config.mjs
+const config = await fetch('/api/config').then(r => r.json())
+export default config
+
+// Option 2: wrap in async IIFE for CommonJS
+// file: config.js
+let config
+;(async () => {
+  config = await fetch('/api/config').then(r => r.json())
+})()
+module.exports = config`,
     explanation:
       'Top-level `await` is an ES module feature. In Node.js, a `.js` file is treated as CommonJS by default unless `"type": "module"` is set in `package.json` or the file uses the `.mjs` extension. Using top-level `await` in a CommonJS context is a `SyntaxError`. The fix is to use `.mjs` extension or set `"type": "module"` in `package.json`.',
     references: [

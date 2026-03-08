@@ -177,6 +177,18 @@ export const cssStylingQuestions: Question[] = [
   height: 100px;
 }`,
     answer: 'Missing align-items: center on the container.',
+    solutionCode: `.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 400px;
+}
+
+.child {
+  width: 100px;
+  height: 100px;
+}`,
     explanation: 'justify-content: center centers items on the main axis (horizontal in row direction). To center on the cross axis (vertical), you need align-items: center. Without it, align-items defaults to stretch, placing items at the top of the container.',
     tags: ['flexbox', 'centering', 'debug'],
     year: 2025,
@@ -372,6 +384,16 @@ export const cssStylingQuestions: Question[] = [
   width: 250px; /* BUG */
 }`,
     answer: 'The .sidebar has width: 250px which overrides the 200px grid track, causing it to overflow into adjacent cells.',
+    solutionCode: `.grid {
+  display: grid;
+  grid-template-columns: 200px 1fr 200px;
+  width: 100%;
+}
+
+.sidebar {
+  grid-column: 1;
+  /* Removed: width: 250px — let the grid track control sizing */
+}`,
     explanation: 'In CSS Grid, setting explicit width on a grid item can break the grid layout. The grid track width (200px) defines the column width, but explicit width on the item creates overflow or shrinks the grid track behavior unpredictably. Remove width: 250px from .sidebar and let the grid track control sizing. Use minmax() on the column if flexible sizing is needed.',
     tags: ['css-grid', 'overflow', 'debug'],
     year: 2025,
@@ -697,6 +719,16 @@ button { color: green; }`,
   }
 }`,
     answer: 'Missing container-type on .sidebar. Without container-type, the element is not a query container and @container rules targeting it are ignored.',
+    solutionCode: `.sidebar {
+  container-type: inline-size; /* required to establish a query container */
+  container-name: sidebar;
+}
+
+@container sidebar (min-width: 300px) {
+  .widget {
+    display: grid;
+  }
+}`,
     explanation: 'To establish a containment context, you must set container-type: inline-size (for width queries), container-type: size (for width and height queries), or the shorthand container: sidebar / inline-size. container-name alone does not make an element a container. Fix: add container-type: inline-size to .sidebar. The container shorthand can combine both: container: sidebar / inline-size.',
     tags: ['container-queries', 'container-type', 'debug', 'css'],
     year: 2025,

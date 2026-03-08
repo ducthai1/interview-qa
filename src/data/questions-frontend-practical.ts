@@ -45,6 +45,20 @@ html {
 section[id] {
   scroll-margin-top: 80px;
 }`,
+    solutionCode: `/* Current CSS */
+header {
+  position: fixed;
+  top: 0;
+  height: 64px;
+}
+main {
+  margin-top: 64px;
+}
+
+/* Fix: add scroll-padding-top to account for the fixed header */
+html {
+  scroll-padding-top: 80px; /* header height + some breathing room */
+}`,
     explanation:
       'scroll-padding-top on the html/body element tells the browser to offset the scroll snap position when navigating to anchors (via href="#section" or scrollIntoView). Set it slightly larger than the header height for visual breathing room. scroll-margin-top on target elements achieves the same per-element. The old hack was adding an invisible pseudo-element with negative margin, but scroll-padding-top is the modern, clean solution. Works with both anchor clicks and browser back/forward navigation to anchors.',
     references: [
@@ -146,6 +160,19 @@ section[id] {
       'thead should have position: sticky instead of individual th',
     ],
     answer: 1,
+    solutionCode: `<!-- Fix option 1: give the wrapper a fixed height with overflow-y: auto
+     so sticky positions work within the vertical scroll container -->
+<div class="table-wrapper" style="overflow-x: auto; overflow-y: auto; max-height: 400px;">
+  <table>
+    <thead>
+      <tr>
+        <th style="position: sticky; top: 0; background: white;">Name</th>
+        <th style="position: sticky; top: 0; background: white;">Email</th>
+      </tr>
+    </thead>
+    <tbody><!-- many rows --></tbody>
+  </table>
+</div>`,
     explanation:
       'position: sticky only works relative to the nearest ancestor with a scrolling mechanism. When .table-wrapper has overflow-x: auto, it creates a new scroll container. The sticky th tries to stick within that container, not the page. If the wrapper itself is not scrolling vertically (only horizontally), sticky has no effect on the vertical axis. Fix options: 1) Remove overflow-x from wrapper and handle horizontal scroll differently. 2) Set a fixed height on .table-wrapper with overflow-y: auto so the sticky header works within that scrollable area. 3) Use a virtualized table with a fixed header row separate from the scrollable tbody.',
     tags: ['sticky', 'overflow', 'table', 'debugging'],
@@ -1004,6 +1031,44 @@ function updateParallax() {
 }
 
 const parallaxElements = document.querySelectorAll('.parallax');`,
+    solutionCode: `// Optimized: use IntersectionObserver + requestAnimationFrame
+// 1. Visibility detection with IntersectionObserver (no scroll listener needed)
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target); // stop watching once visible
+      }
+    });
+  },
+  { threshold: 0.1 }
+);
+
+document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+  observer.observe(el);
+});
+
+// 2. Parallax effect with rAF throttling
+let ticking = false;
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    requestAnimationFrame(() => {
+      updateParallax();
+      ticking = false;
+    });
+    ticking = true;
+  }
+}, { passive: true });
+
+function updateParallax() {
+  parallaxElements.forEach((el) => {
+    const offset = el.dataset.offset || 0.5;
+    el.style.transform = \`translateY(\${window.scrollY * offset}px)\`;
+  });
+}
+
+const parallaxElements = document.querySelectorAll('.parallax');`,
     explanation:
       'Three optimizations: 1) Replace scroll-based visibility checks with IntersectionObserver — it runs off the main thread and fires only when elements enter/leave the viewport. 2) Throttle remaining scroll work with requestAnimationFrame (rAF) — ensures the handler runs at most once per frame (60fps). The ticking flag prevents queueing multiple rAF callbacks. 3) Add { passive: true } to the scroll listener — tells the browser the handler wont call preventDefault(), enabling scroll optimizations. Additional: cache DOM queries outside handlers (querySelectorAll is expensive), use transform instead of top/left (triggers only compositing, not layout), and avoid getBoundingClientRect in scroll handlers (forces synchronous layout).',
     tags: ['scroll', 'raf', 'intersection-observer', 'passive-events', 'jank'],
@@ -1089,6 +1154,24 @@ const parallaxElements = document.querySelectorAll('.parallax');`,
     </div>
   </div>
 </div>`,
+    solutionCode: `<!-- Fixed: semantic table with proper headers -->
+<table>
+  <caption>Team Members</caption>
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Role</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Alice</td>
+      <td>alice@co.com</td>
+      <td>Admin</td>
+    </tr>
+  </tbody>
+</table>`,
     explanation:
       'Screen readers use table semantics to let users navigate by row and column (Ctrl+Alt+Arrow keys in NVDA/JAWS). Without <table>, <th>, and <td>, the reader sees a flat list of divs. Key elements: 1) <caption> gives the table an accessible name. 2) <th scope="col"> associates each header with its column — screen readers announce "Name: Alice" when navigating down. 3) <thead>/<tbody> provide grouping semantics. 4) For row headers, use <th scope="row">. If you must use divs (for virtual scrolling libraries), replicate the full ARIA table model with role="table", role="row", role="columnheader", and role="cell". But native HTML tables are always preferred.',
     references: [
@@ -1296,6 +1379,15 @@ function onRouteChange(newPageTitle) {
       'The form needs an enctype attribute',
     ],
     answer: 1,
+    solutionCode: `<form action="/submit" method="POST">
+  <label for="username">Username</label>
+  <input type="text" id="username" name="username" placeholder="Username" />
+
+  <label for="email">Email</label>
+  <input type="email" id="email" name="email" placeholder="Email" />
+
+  <button type="submit">Register</button>
+</form>`,
     explanation:
       'HTML form data is sent as key-value pairs where the key is the name attribute. Without name attributes, the inputs have no key and their values are excluded from the form submission. Fix: add name="username" and name="email" to the inputs. Option C (missing label association) is also a real issue (accessibility) but doesnt cause empty submissions. While youre fixing this, also add: id on inputs + for on labels (accessibility), required attribute (validation), and autocomplete attributes (browser autofill). A common interview trap: developers used to React state management sometimes forget that native HTML forms rely entirely on the name attribute.',
     tags: ['forms', 'name-attribute', 'debugging', 'html-basics'],

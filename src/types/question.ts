@@ -33,6 +33,7 @@ export interface Question {
   code?: string
   options?: string[]
   answer: number | string | boolean
+  solutionCode?: string
   explanation: string
   references?: string[]
   tags: string[]
@@ -50,6 +51,6 @@ export interface TopicInfo {
 
 /* User progress stored in localStorage */
 export interface UserProgress {
-  answered: Record<string, { correct: boolean; timestamp: number }>
+  answered: Record<string, { correct: boolean; timestamp: number; attempts: number }>
   bookmarked: string[]
 }

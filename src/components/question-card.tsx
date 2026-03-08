@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Bookmark, BookmarkCheck, CheckCircle2, XCircle } from 'lucide-react'
+import { Bookmark, BookmarkCheck, CheckCircle2, XCircle, RotateCcw } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import type { Question, UserProgress } from '../types'
 import { useQuestionTranslation } from '../hooks/use-question-translation'
@@ -14,6 +14,7 @@ interface QuestionCardProps {
   progress: UserProgress
   onAnswer: (questionId: string, correct: boolean) => void
   onBookmark: (questionId: string) => void
+  onRetry: (questionId: string) => void
 }
 
 const difficultyColors: Record<string, string> = {
@@ -23,7 +24,7 @@ const difficultyColors: Record<string, string> = {
   lead: 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400',
 }
 
-export function QuestionCard({ question: rawQuestion, progress, onAnswer, onBookmark }: QuestionCardProps) {
+export function QuestionCard({ question: rawQuestion, progress, onAnswer, onBookmark, onRetry }: QuestionCardProps) {
   const { t } = useTranslation()
   const { tq } = useQuestionTranslation()
   const question = tq(rawQuestion)
@@ -61,6 +62,13 @@ export function QuestionCard({ question: rawQuestion, progress, onAnswer, onBook
   const handleReveal = () => {
     if (!answered) onAnswer(question.id, true)
     setShowAnswer(true)
+  }
+
+  const handleRetry = () => {
+    onRetry(question.id)
+    setSelectedOption(null)
+    setTfAnswer(null)
+    setShowAnswer(false)
   }
 
   return (
@@ -146,10 +154,22 @@ export function QuestionCard({ question: rawQuestion, progress, onAnswer, onBook
       {/* Answer & Explanation */}
       {isRevealed && (
         <div className="mt-4 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-secondary)] p-4">
-          {(question.type !== 'mcq' && question.type !== 'true-false') && (
-            <div className="mb-2">
-              <span className="text-xs font-medium text-[var(--color-text-secondary)]">{t('common.answer')}: </span>
-              <span className="text-sm font-semibold text-[var(--color-text)]">{String(question.answer)}</span>
+          {/* Solution code — corrected/model code shown for questions with code snippets */}
+          {question.solutionCode && (
+            <div className="mb-3">
+              <span className="mb-1 block text-xs font-medium text-[var(--color-success)]">{t('question.solutionCode')}:</span>
+              <CodeBlock code={question.solutionCode} />
+            </div>
+          )}
+          {/* Text answer for non-MCQ/non-true-false (only when no solutionCode, to avoid redundancy) */}
+          {(question.type !== 'mcq' && question.type !== 'true-false') && !question.solutionCode && (
+            <div className="mb-3">
+              <span className="mb-1 block text-xs font-medium text-[var(--color-text-secondary)]">{t('common.answer')}:</span>
+              {isCodeAnswer(question.type) ? (
+                <CodeBlock code={String(question.answer)} />
+              ) : (
+                <p className="text-sm font-semibold text-[var(--color-text)]">{String(question.answer)}</p>
+              )}
             </div>
           )}
           <p className="text-sm leading-relaxed text-[var(--color-text)]">{question.explanation}</p>
@@ -162,10 +182,29 @@ export function QuestionCard({ question: rawQuestion, progress, onAnswer, onBook
               ))}
             </div>
           )}
+          <div className="mt-3 flex items-center justify-between border-t border-[var(--color-border)] pt-3">
+            {answered && (
+              <span className="text-xs text-[var(--color-text-secondary)]">
+                {t('question.attemptCount', { count: answered.attempts || 1 })}
+              </span>
+            )}
+            <button
+              onClick={handleRetry}
+              className="inline-flex items-center gap-1.5 rounded-lg bg-[var(--color-primary)] px-3 py-1.5 text-xs font-medium text-white transition-colors hover:opacity-90"
+            >
+              <RotateCcw className="h-3.5 w-3.5" />
+              {t('question.retry')}
+            </button>
+          </div>
         </div>
       )}
     </div>
   )
+}
+
+/* Check if the answer field contains code (should render as CodeBlock) */
+function isCodeAnswer(type: string): boolean {
+  return type === 'code-write' || type === 'debug' || type === 'code-output'
 }
 
 /* MCQ options sub-component */

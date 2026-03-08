@@ -405,6 +405,11 @@ export const htmlQuestions: Question[] = [
   <input type="email" id="email" name="email" required />
   <button type="submit">Subscribe</button>
 </form>`,
+    solutionCode: `<form>
+  <label for="email">Email Address</label>
+  <input type="email" id="email" name="email" required />
+  <button type="submit">Subscribe</button>
+</form>`,
     explanation: 'The <p> tag provides no programmatic association between the label text and the input. Replacing it with <label for="email"> associates the label so screen readers announce it when the input is focused. Clicking the label also focuses the input, improving usability. Adding required provides built-in validation.',
     references: ['https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label'],
     tags: ['accessibility', 'forms', 'label'],
@@ -652,6 +657,9 @@ customElements.define('greeting-message', GreetingMessage)`,
 >
   Submit
 </div>`,
+    solutionCode: `<button type="submit" onclick="submitForm()">
+  Submit
+</button>`,
     explanation: 'A div with role="button" is missing tabindex="0" (not keyboard focusable) and keyboard event handlers (Enter/Space should activate buttons per ARIA authoring practices). The best fix is using a native <button> which has all these behaviours built in — native HTML semantics are always preferred over ARIA workarounds.',
     references: ['https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/button_role'],
     tags: ['aria', 'accessibility', 'keyboard-navigation', 'debug'],
@@ -1169,6 +1177,13 @@ console.log(document.readyState)`,
   <a href="/contact">Contact</a>
 </div>`,
     answer: `<nav aria-label="Primary">
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/contact">Contact</a></li>
+  </ul>
+</nav>`,
+    solutionCode: `<nav aria-label="Primary">
   <ul>
     <li><a href="/">Home</a></li>
     <li><a href="/about">About</a></li>

@@ -61,6 +61,12 @@ function increment() {
       'Both B and C are correct',
     ],
     answer: 3,
+    solutionCode: `// Goal: n should go from 0 to 3 in one click
+function increment() {
+  setN(prev => prev + 1);
+  setN(prev => prev + 1);
+  setN(prev => prev + 1);
+}`,
     explanation:
       'The functional updater form `setN(prev => prev + 1)` enqueues a transformation based on the most recent state, not the closed-over snapshot. React applies all queued updaters in sequence: 0→1→2→3. `setN(n + 3)` also works when `n` is the correct snapshot, but it is less composable. Both B and C achieve n=3 in one click.',
     tags: ['useState', 'functional-updates', 'batching'],
@@ -122,6 +128,17 @@ function increment() {
       'Infinite loop: `setUser` should be in the deps array',
     ],
     answer: 1,
+    solutionCode: `function UserProfile({ userId }) {
+  const [user, setUser] = React.useState(null);
+
+  React.useEffect(() => {
+    fetch(\`/api/users/\${userId}\`)
+      .then(r => r.json())
+      .then(data => setUser(data));
+  }, [userId]);
+
+  return <div>{user?.name}</div>;
+}`,
     explanation:
       'The dep array `[user]` causes the effect to re-run whenever `user` changes. The effect itself changes `user` via `setUser(data)`, creating a cycle. The correct dep is `[userId]` — re-fetch when the target user ID changes, not when the loaded data changes.',
     tags: ['useEffect', 'infinite-loop', 'deps-array', 'debug'],
@@ -193,6 +210,16 @@ function increment() {
       'Both A and B are valid approaches',
     ],
     answer: 3,
+    solutionCode: `React.useEffect(() => {
+  const controller = new AbortController();
+  fetch('/api/data', { signal: controller.signal })
+    .then(r => r.json())
+    .then(data => setData(data))
+    .catch(err => {
+      if (err.name !== 'AbortError') console.error(err);
+    });
+  return () => controller.abort();
+}, []);`,
     explanation:
       'Both approaches work. The `AbortController` pattern (`const controller = new AbortController(); fetch(url, { signal: controller.signal }); return () => controller.abort()`) natively cancels the network request. The flag pattern (`let cancelled = false; ... if (!cancelled) setData(data); return () => { cancelled = true }`) prevents the state update but does not cancel the network request. `AbortController` is preferred for performance; the flag is simpler and supported everywhere.',
     tags: ['useEffect', 'fetch', 'AbortController', 'cleanup', 'race-condition'],
@@ -370,6 +397,25 @@ function Parent() {
       'No bug — `React.memo` only prevents re-renders if children are passed',
     ],
     answer: 1,
+    solutionCode: `const Child = React.memo(function Child({ onSave }) {
+  console.log('child rendered');
+  return <button onClick={onSave}>Save</button>;
+});
+
+function Parent() {
+  const [count, setCount] = React.useState(0);
+
+  const handleSave = React.useCallback(() => {
+    console.log('saved');
+  }, []);
+
+  return (
+    <>
+      <button onClick={() => setCount(c => c + 1)}>+{count}</button>
+      <Child onSave={handleSave} />
+    </>
+  );
+}`,
     explanation:
       'Arrow functions in the render body are recreated on every render. `React.memo` uses `Object.is` (shallow comparison) on each prop. Since `handleSave` is a new function reference each render, `onSave !== prevOnSave` is always true and `Child` re-renders. Wrapping `handleSave` in `useCallback([], [])` gives it a stable reference, fixing the issue.',
     tags: ['useCallback', 'React.memo', 'referential-equality', 'debug'],
@@ -787,6 +833,19 @@ function reducer(state, action) {
       'Bug: the `action` prop should be `onSubmit`',
     ],
     answer: 1,
+    solutionCode: `function SubmitButton() {
+  const { pending } = useFormStatus();
+  return <button disabled={pending}>Submit</button>;
+}
+
+function MyForm() {
+  async function action(formData) { /* server action */ }
+  return (
+    <form action={action}>
+      <SubmitButton />
+    </form>
+  );
+}`,
     explanation:
       '`useFormStatus` reads context from the nearest parent `<form>`. If called in the same component that renders the `<form>`, it has no parent form context and always returns `{ pending: false }`. The fix is to move the button into a separate child component: `function SubmitButton() { const { pending } = useFormStatus(); return <button disabled={pending}>Submit</button>; }`.',
     tags: ['useFormStatus', 'react-19', 'forms', 'debug'],
@@ -992,6 +1051,13 @@ function reducer(state, action) {
       'Bug: `fetchProfile` must be in the deps array',
     ],
     answer: 1,
+    solutionCode: `function Profile({ userId }) {
+  React.useEffect(() => {
+    fetchProfile({ userId, includeDetails: true });
+  }, [userId]); // list primitive deps directly
+
+  return <div>...</div>;
+}`,
     explanation:
       'React compares deps with `Object.is`. A new object literal `{}` always has a different reference than the previous one, even if contents are identical. Solutions: (1) Destructure to primitives in the deps: `[userId, includeDetails]`. (2) `useMemo(() => ({ userId, includeDetails: true }), [userId])` to memoize the object. (3) Move the object outside the component if it never changes. The same issue applies to arrays and functions.',
     tags: ['useEffect', 'deps-array', 'object-reference', 'pitfall', 'debug'],
@@ -1036,6 +1102,15 @@ function reducer(state, action) {
       'Violation because `useState` cannot be nested inside `if` blocks syntactically',
     ],
     answer: 1,
+    solutionCode: `function Form({ hasDiscount }) {
+  const [price, setPrice] = useState(100);
+  const [discount, setDiscount] = useState(10); // always call, use conditionally
+  const [name, setName] = useState('');
+
+  // Use the discount value conditionally in the render, not the hook call:
+  const effectivePrice = hasDiscount ? price - discount : price;
+  // ...
+}`,
     explanation:
       'React tracks hook state by call order (an internal index). On render 1 with `hasDiscount=true`: hooks are called in order — price(0), discount(1), name(2). On render 2 with `hasDiscount=false`: price(0), name(1) — React assigns the `discount` slot\'s value to `name`, corrupting state. This is why hooks must always be called in the same order. `eslint-plugin-react-hooks` (rules-of-hooks) catches this at lint time.',
     tags: ['rules-of-hooks', 'conditional-hooks', 'debug', 'eslint-plugin-react-hooks'],

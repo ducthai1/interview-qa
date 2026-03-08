@@ -291,6 +291,13 @@ function App() {
       'Bug: `&&` does not work in JSX, use a ternary instead',
     ],
     answer: 1,
+    solutionCode: `function NotificationBadge({ count }) {
+  return (
+    <div>
+      {count > 0 && <span className="badge">{count}</span>}
+    </div>
+  );
+}`,
     explanation:
       'When `count` is `0`, `0 && <span>...</span>` short-circuits and the expression evaluates to `0`. React renders `0` in the DOM, which is probably unintended. The fix is `count > 0 && <span>...</span>` or `Boolean(count) && <span>...</span>` to ensure a proper boolean.',
     tags: ['conditional-rendering', 'falsy', 'debug', 'zero'],
@@ -370,6 +377,15 @@ function App() {
       '`onSubmit` should be `on-submit`',
     ],
     answer: 1,
+    solutionCode: `function Form() {
+  function handleSubmit(e) {
+    // prevent page reload
+    e.preventDefault();
+    console.log('submitted');
+  }
+
+  return <form onSubmit={handleSubmit}>...</form>;
+}`,
     explanation:
       '`e.preventDefault` without `()` simply references the method without invoking it. The form will still submit and cause a page reload. This is a very common typo. Always call it as `e.preventDefault()` with parentheses.',
     tags: ['events', 'preventDefault', 'debug'],
@@ -390,6 +406,8 @@ function App() {
       '`onClick={deleteItem.bind(id)}` — bind only works for class components',
     ],
     answer: 1,
+    solutionCode: `// Correct: call deleteItem(id) when button is clicked
+<button onClick={() => deleteItem(id)}>Delete</button>`,
     explanation:
       '`onClick={deleteItem(id)}` immediately calls `deleteItem(id)` during render and assigns the return value as the handler — almost always a bug. The correct pattern is to wrap in an arrow function: `onClick={() => deleteItem(id)}`. Alternatively, `onClick={deleteItem.bind(null, id)}` also works but is less idiomatic in modern React.',
     tags: ['events', 'event-handlers', 'arrow-functions'],
@@ -432,6 +450,10 @@ function App() {
       'Error: `useState` does not accept `undefined`',
     ],
     answer: 1,
+    solutionCode: `function SearchBox() {
+  const [query, setQuery] = React.useState('');
+  return <input value={query} onChange={e => setQuery(e.target.value)} />;
+}`,
     explanation:
       'React raises "A component is changing an uncontrolled input to be controlled" when the `value` prop transitions from `undefined`/`null` to an actual string. The fix is to initialize state with an empty string `""` so the input is controlled from the very first render.',
     tags: ['controlled-components', 'uncontrolled-components', 'debug', 'warning'],
@@ -848,6 +870,18 @@ function App() {
       'Sorting arrays always requires `React.startTransition`',
     ],
     answer: 1,
+    solutionCode: `function SortableList({ items }) {
+  return (
+    <ul>
+      {items.map((item) => (
+        <li key={item.id}>
+          <input defaultValue={item.name} />
+        </li>
+      ))}
+    </ul>
+  );
+}
+// items reorder: [A, B, C] → [C, A, B]`,
     explanation:
       'Index-as-key causes React to reuse existing DOM nodes for items at the same index position. When the list reorders, the DOM input at index 0 retains whatever the user typed (its DOM state), while the `defaultValue` prop reflects the new item. Since `defaultValue` only sets the initial value, the input shows stale user input for a different item. Stable, item-derived keys (`key={item.id}`) ensure DOM nodes follow the data correctly.',
     tags: ['key', 'index-as-key', 'reconciliation', 'uncontrolled', 'debug'],

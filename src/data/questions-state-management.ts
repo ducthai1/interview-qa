@@ -167,6 +167,24 @@ console.log(doubled().type)`,
   }),
 })`,
     answer: 'updateUser should use builder.mutation(), not builder.query()',
+    solutionCode: `const apiSlice = createApi({
+  reducerPath: 'api',
+  baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
+  endpoints: (builder) => ({
+    getUser: builder.query({
+      query: (id) => \`/users/\${id}\`,
+      providesTags: ['User'],
+    }),
+    updateUser: builder.mutation({  // FIXED: use builder.mutation()
+      query: ({ id, data }) => ({
+        url: \`/users/\${id}\`,
+        method: 'PUT',
+        body: data,
+      }),
+      invalidatesTags: ['User'],  // invalidate cache after mutation
+    }),
+  }),
+})`,
     explanation: 'builder.query() is for read operations (GET). builder.mutation() is for write operations (POST, PUT, PATCH, DELETE). Using builder.query() for a PUT creates the wrong hook (useUpdateUserQuery instead of useUpdateUserMutation) and lacks mutation-specific features like invalidatesTags.',
     tags: ['rtk-query', 'builder.mutation', 'endpoints'],
     year: 2025,
@@ -269,6 +287,17 @@ const totalAtom = atom((get) => get(priceAtom) * (1 + get(taxAtom)))
   },
 }))`,
     answer: 'The count update should use set() with a callback to read fresh state, or combine both updates in one set() call.',
+    solutionCode: `const useStore = create((set) => ({
+  items: [],
+  count: 0,
+  addItem: (item) => {
+    // FIXED: combine both updates in a single set() call using updater function
+    set((state) => ({
+      items: [...state.items, item],
+      count: state.items.length + 1,
+    }))
+  },
+}))`,
     explanation: 'After the first set() call, the second set() should use the updated items array. The fix is to combine: set((state) => ({ items: [...state.items, item], count: state.items.length + 1 })). Calling set() twice risks race conditions and the count reads stale items length from the first set.',
     tags: ['zustand', 'stale-closure', 'set', 'get'],
     year: 2025,
@@ -565,6 +594,14 @@ console.log(useStore.getState().bears)`,
   // Missing required option
 })`,
     answer: 'Missing getNextPageParam — TanStack Query cannot determine the next page cursor without it.',
+    solutionCode: `const { data, fetchNextPage, hasNextPage } = useInfiniteQuery({
+  queryKey: ['posts'],
+  queryFn: ({ pageParam = 1 }) =>
+    fetch(\`/api/posts?page=\${pageParam}\`).then(r => r.json()),
+  // FIXED: add getNextPageParam to enable pagination
+  getNextPageParam: (lastPage) => lastPage.nextPage ?? undefined,
+  initialPageParam: 1,
+})`,
     explanation: 'useInfiniteQuery requires getNextPageParam: (lastPage, allPages) => nextCursor | undefined. It receives the last fetched page and all pages, and must return the next pageParam value (or undefined to signal no more pages). Without it, fetchNextPage() has no way to know what to pass as pageParam. Example fix: getNextPageParam: (last) => last.nextPage ?? undefined.',
     tags: ['tanstack-query', 'useInfiniteQuery', 'pagination', 'debug'],
     year: 2025,

@@ -92,6 +92,15 @@ function AuthProvider({ children }) {
       'Use a `ref` instead of state inside the provider',
     ],
     answer: 0,
+    solutionCode: `function AuthProvider({ children }) {
+  const [user, setUser] = React.useState(null);
+  const value = React.useMemo(() => ({ user, setUser }), [user]);
+  return (
+    <AuthContext.Provider value={value}>
+      {children}
+    </AuthContext.Provider>
+  );
+}`,
     explanation:
       'Every render of `AuthProvider` creates a new `{ user, setUser }` object, causing all consumers to re-render. Fix: `const value = useMemo(() => ({ user, setUser }), [user])`. Better: split into two contexts — one for the stable setter (`SetUserContext`) and one for the data (`UserContext`). Components that only dispatch never re-render when `user` changes.',
     tags: ['context', 'useMemo', 'performance', 're-render', 'pattern'],
@@ -585,6 +594,20 @@ function ParentList({ items }) {
       'Bug: arrow functions should be used instead of function declarations',
     ],
     answer: 1,
+    solutionCode: `// Fixed: ItemRow defined at module scope
+function ItemRow({ item }) {
+  return <li>{item.name}</li>;
+}
+
+function ParentList({ items }) {
+  return (
+    <ul>
+      {items.map(item => (
+        <ItemRow key={item.id} item={item} />
+      ))}
+    </ul>
+  );
+}`,
     explanation:
       'Defining a component inside another component\'s render body means a new function reference is created every render. React uses the element type for reconciliation — a new type means teardown + remount. This resets all state and kills in-progress animations/transitions. Always define sub-components at the module level (or use `useMemo` in extreme cases).',
     tags: ['performance', 'reconciliation', 'component-definition', 'anti-pattern'],

@@ -58,6 +58,34 @@ export const jsTsPracticalQuestions: Question[] = [
     clearInterval(interval);
   };
 }, [channelId]);`,
+    solutionCode: `function LiveDashboard({ channelId }) {
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    const ws = new WebSocket(\`wss://api.example.com/\${channelId}\`);
+    const handleMessage = (event) => {
+      setMessages((prev) => [...prev, JSON.parse(event.data)]);
+    };
+    ws.addEventListener('message', handleMessage);
+
+    const resizeHandler = () => console.log('resized');
+    window.addEventListener('resize', resizeHandler);
+
+    const interval = setInterval(() => {
+      fetch(\`/api/heartbeat/\${channelId}\`);
+    }, 30000);
+
+    // fixed: return cleanup function
+    return () => {
+      ws.removeEventListener('message', handleMessage);
+      ws.close();
+      window.removeEventListener('resize', resizeHandler);
+      clearInterval(interval);
+    };
+  }, [channelId]);
+
+  return <MessageList messages={messages} />;
+}`,
     explanation:
       'Three leaks: (1) WebSocket never closed — each channelId change opens a new connection without closing the old one. (2) window resize listener accumulates because handleResize is re-created each render and never removed. (3) setInterval is never cleared. The fix returns a cleanup function that closes the WebSocket, removes the event listener (using a stable reference), and clears the interval. This cleanup runs on unmount and before each re-run when channelId changes.',
     tags: ['memory-leak', 'useEffect', 'cleanup', 'websocket', 'event-listeners'],
@@ -129,6 +157,24 @@ async function loadDashboard() {
   return { user, orders, notifications, analytics, recommendations };
 }`,
     answer: `async function loadDashboard() {
+  const [user, orders, notifications, analytics, recommendations] =
+    await Promise.allSettled([
+      fetchUser(),
+      fetchOrders(),
+      fetchNotifications(),
+      fetchAnalytics(),
+      fetchRecommendations(),
+    ]);
+
+  return {
+    user: user.status === 'fulfilled' ? user.value : null,
+    orders: orders.status === 'fulfilled' ? orders.value : null,
+    notifications: notifications.status === 'fulfilled' ? notifications.value : null,
+    analytics: analytics.status === 'fulfilled' ? analytics.value : null,
+    recommendations: recommendations.status === 'fulfilled' ? recommendations.value : null,
+  };
+}`,
+    solutionCode: `async function loadDashboard() {
   const [user, orders, notifications, analytics, recommendations] =
     await Promise.allSettled([
       fetchUser(),
@@ -291,6 +337,23 @@ async function loadDashboard() {
 
   return { cleaned, formatted, config, price };
 }`,
+    solutionCode: `function formatUserData(input) {
+  // Fix 1: replaceAll not available in older Safari — use split/join or global regex
+  const cleaned = input.split('-').join('/');
+
+  // Fix 2: Safari is strict about date string parsing — ensure ISO 8601 with timezone
+  const date = new Date('2025-03-15T10:30:00Z');
+  const formatted = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+  // Fix 3: ??= (logical nullish assignment) needs Safari 14+
+  const config = {};
+  config.theme = config.theme ?? 'dark';
+
+  // Fix 4: Lookbehind regex not supported in Safari <16.4 — use capture group instead
+  const price = '$42.99'.match(/\\$(\\d+\\.\\d+)/)?.[1];
+
+  return { cleaned, formatted, config, price };
+}`,
     explanation:
       'Safari has historically lagged behind Chrome in JS feature support. (1) String.prototype.replaceAll was added in Safari 13.1 but not available in older iOS WebViews. split/join is universally supported. (2) Safari is notoriously strict with Date parsing — "2025-03-15T10:30:00" without a timezone is interpreted as local in Chrome but may return NaN in Safari. Always append "Z" for UTC or use explicit offsets. (3) Logical assignment operators (??=, ||=, &&=) require Safari 14+. (4) Regex lookbehind assertions are only supported in Safari 16.4+. Using a capture group instead is backward-compatible. Always check caniuse.com for target browser support.',
     tags: ['cross-browser', 'safari', 'compatibility', 'polyfill', 'date-parsing'],
@@ -396,6 +459,22 @@ async function loadDashboard() {
   result.reverse();
   return result;
 }`,
+    solutionCode: `function flatten(arr) {
+  const result = [];
+  const stack = [...arr];
+
+  while (stack.length > 0) {
+    const item = stack.pop();
+    if (Array.isArray(item)) {
+      stack.push(...item);
+    } else {
+      result.push(item);
+    }
+  }
+
+  result.reverse();
+  return result;
+}`,
     explanation:
       'The recursive version creates a new stack frame for every element in the array — 100k elements means 100k stack frames, exceeding the browser call stack limit (~10k-25k depending on the engine). The iterative solution uses an explicit stack (array) on the heap, which has no practical size limit. We pop from the end (O(1)) and push sub-arrays back onto the stack. Since pop processes items in reverse order, we reverse the result at the end. Alternatively, you could use shift() and avoid the reverse, but shift is O(n). Another approach is a trampoline pattern, but the iterative rewrite is cleaner and faster.',
     tags: ['stack-overflow', 'recursion', 'iterative', 'flatten', 'optimization'],
@@ -475,6 +554,26 @@ async function loadDashboard() {
   });
 }`,
     answer: `const { promisify } = require('util');
+const readFile = promisify(fs.readFile);
+
+async function processUserData(userId) {
+  const user = await db.getUser(userId);
+  const [config, permissions] = await Promise.all([
+    readFile(user.configPath, 'utf-8'),
+    api.fetchPermissions(user.role),
+  ]);
+
+  const result = mergeData(user, JSON.parse(config), permissions);
+
+  try {
+    await cache.set(userId, result);
+  } catch (err) {
+    console.warn('Non-critical: cache write failed', err);
+  }
+
+  return result;
+}`,
+    solutionCode: `const { promisify } = require('util');
 const readFile = promisify(fs.readFile);
 
 async function processUserData(userId) {
@@ -601,6 +700,18 @@ console.log('5');`,
     selectItem(li.dataset.id);
   }
 });`,
+    solutionCode: `document.getElementById('list').addEventListener('click', (e) => {
+  const li = e.target.closest('li');  // fixed: walk up to the nearest <li>
+  if (li && li.dataset.id) {
+    selectItem(li.dataset.id);
+  }
+});
+
+// HTML:
+// <ul id="list">
+//   <li data-id="1"><span class="icon">★</span> Item 1</li>
+//   <li data-id="2"><span class="icon">★</span> Item 2</li>
+// </ul>`,
     explanation:
       'When clicking the <span> inside a <li>, e.target is the <span>, not the <li>. The original code uses strict tagName comparison, which fails for nested elements. Element.closest() traverses up the DOM tree from the clicked element to find the nearest ancestor matching the selector. If the click is on the span, closest("li") finds the parent li. If the click is directly on the li, closest("li") returns the li itself. This is the standard pattern for event delegation with nested elements.',
     tags: ['event-delegation', 'closest', 'DOM', 'dynamic-content', 'bubbling'],
@@ -651,6 +762,12 @@ console.log(filterItems(items, 'java')); // Expected: [{ name: 'JavaScript Basic
   const lowerQuery = query.toLowerCase();
   return items.filter((item) => {
     return item.name.toLowerCase().includes(lowerQuery);
+  });
+}`,
+    solutionCode: `function filterItems(items, query) {
+  const lowerQuery = query.toLowerCase();  // fixed: convert query to lowercase
+  return items.filter((item) => {
+    return item.name.toLowerCase().includes(lowerQuery);  // fixed: compare case-insensitively
   });
 }`,
     explanation:
@@ -996,6 +1113,38 @@ async function renderDashboard() {
     }
   }
 }`,
+    solutionCode: `import { z } from 'zod';
+
+// fixed: define schema for runtime validation
+const UserSchema = z.object({
+  id: z.number(),
+  name: z.string(),
+  role: z.enum(['admin', 'user']),
+  metadata: z.record(z.string()).default({}),
+});
+
+type UserFromAPI = z.infer<typeof UserSchema>;
+
+async function getUser(id: number): Promise<UserFromAPI> {
+  const response = await fetch(\`/api/users/\${id}\`);
+  if (!response.ok) {
+    throw new Error(\`HTTP \${response.status}: Failed to fetch user \${id}\`);
+  }
+  const data = await response.json();
+  return UserSchema.parse(data); // fixed: validates at runtime, throws on mismatch
+}
+
+async function renderDashboard() {
+  try {
+    const user = await getUser(42);
+    console.log(user.name.toUpperCase());
+    console.log(user.metadata['theme'] ?? 'default');
+  } catch (err) {
+    if (err instanceof z.ZodError) {
+      console.error('API response validation failed:', err.issues);
+    }
+  }
+}`,
     explanation:
       'The root cause is that response.json() returns Promise<any>, which bypasses TypeScript type checking entirely. Casting the response to UserFromAPI provides zero runtime safety — TypeScript types are erased at compile time. The fix introduces runtime validation using Zod (or alternatives like io-ts, valibot, superstruct). Zod.parse() throws if the actual data does not match the schema, catching bugs at the API boundary rather than deep in rendering logic. z.infer derives the TypeScript type from the schema, keeping the type and validator in sync. This pattern is called "parsing, not validation" — you transform unknown data into a known shape.',
     tags: ['runtime-validation', 'zod', 'type-safety-gap', 'api-boundary', 'any-escape-hatch'],
@@ -1287,6 +1436,33 @@ function filterRows(rows: CSVRow[], column: string, value: string): CSVRow[] {
 function sumColumn(rows: CSVRow[], column: string): number {
   return rows.reduce((sum, row) => sum + Number(row[column] || 0), 0);
 }`,
+    solutionCode: `type CSVRow = Record<string, string>;
+
+function parseCSV(csvString: string, hasHeader: boolean = true): CSVRow[] {
+  const lines = csvString.trim().split('\\n');
+  const headers: string[] = hasHeader
+    ? lines[0].split(',').map((h) => h.trim())
+    : lines[0].split(',').map((_, i) => \`col_\${i}\`);
+
+  const dataLines = hasHeader ? lines.slice(1) : lines;
+
+  return dataLines.map((line) => {
+    const values = line.split(',').map((v) => v.trim());
+    const row: CSVRow = {};
+    headers.forEach((header, i) => {
+      row[header] = values[i] ?? '';
+    });
+    return row;
+  });
+}
+
+function filterRows(rows: CSVRow[], column: string, value: string): CSVRow[] {
+  return rows.filter((row) => row[column] === value);
+}
+
+function sumColumn(rows: CSVRow[], column: string): number {
+  return rows.reduce((sum, row) => sum + Number(row[column] || 0), 0);
+}`,
     explanation:
       'The key decision is typing CSVRow as Record<string, string> instead of any. Since CSV columns are dynamic (determined at parse time, not compile time), we cannot know exact property names. Record<string, string> says "any string key maps to a string value" which matches CSV semantics — all values start as strings. This is NOT the same as "any": accessing row.nonExistent returns string|undefined (with noUncheckedIndexedAccess), the value is always string (not number or boolean), and you cannot call methods that do not exist on string. For stricter typing, you could use a generic: parseCSV<T extends string>(csv, columns: T[]): Record<T, string>[] to lock column names at call sites.',
     tags: ['js-to-ts', 'Record', 'dynamic-keys', 'no-any', 'migration'],
@@ -1429,6 +1605,40 @@ function TodoApp() {
   }
 
   function removeTodo(id: number) {
+    setTodos((prev) => prev.filter((todo) => todo.id !== id));
+  }
+
+  return null;
+}`,
+    solutionCode: `interface Todo {
+  id: number;
+  text: string;
+  completed: boolean;
+}
+
+function TodoApp() {
+  const [todos, setTodos] = useState<Todo[]>([]);   // fixed: explicit generic
+  const [input, setInput] = useState<string>('');   // fixed: type + initial value
+
+  function addTodo() {
+    if (!input.trim()) return;
+    const newTodo: Todo = {
+      id: Date.now(),
+      text: input,
+      completed: false,
+    };
+    setTodos((prev) => [...prev, newTodo]);
+  }
+
+  function toggleTodo(id: number) {  // fixed: typed parameter
+    setTodos((prev) =>
+      prev.map((todo) =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      )
+    );
+  }
+
+  function removeTodo(id: number) {  // fixed: typed parameter
     setTodos((prev) => prev.filter((todo) => todo.id !== id));
   }
 

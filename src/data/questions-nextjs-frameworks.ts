@@ -214,6 +214,20 @@ export async function deletePost(postId: string) {
 // Called from client:
 // <button onClick={() => deletePost(post.id)}>Delete</button>`,
     answer: 'No authorization check — any authenticated (or unauthenticated) user can delete any post by calling this action with any postId.',
+    solutionCode: `'use server'
+
+export async function deletePost(postId: string) {
+  const session = await getSession()
+  if (!session) throw new Error('Unauthorized')
+
+  const post = await db.posts.findUnique({ where: { id: postId } })
+  if (!post || post.authorId !== session.userId) {
+    throw new Error('Forbidden')
+  }
+
+  await db.posts.delete({ where: { id: postId } })
+  revalidatePath('/posts')
+}`,
     explanation: 'Server Actions are public endpoints. Always validate: (1) that the user is authenticated (check session), (2) that they own the resource or have permission. Add: const session = await getSession(); if (!session || session.userId !== post.authorId) throw new Error("Unauthorized"). Never trust client-provided IDs without ownership verification.',
     tags: ['nextjs', 'server-actions', 'security', 'authorization'],
     year: 2025,
@@ -652,6 +666,24 @@ export const config = {
   matcher: ['/((?!_next/static|_next/image|favicon.ico).*)'],
 }`,
     answer: 'The matcher includes /login itself — unauthenticated users are redirected to /login, which also runs middleware, which redirects to /login again, creating an infinite loop.',
+    solutionCode: `// middleware.ts — FIXED: exclude /login from the matcher
+import { NextResponse } from 'next/server'
+import type { NextRequest } from 'next/server'
+
+export function middleware(request: NextRequest) {
+  const token = request.cookies.get('token')
+
+  if (!token) {
+    return NextResponse.redirect(new URL('/login', request.url))
+  }
+
+  return NextResponse.next()
+}
+
+export const config = {
+  // Exclude /login (and other public routes) from the matcher
+  matcher: ['/((?!_next/static|_next/image|favicon.ico|login).*)'],
+}`,
     explanation: 'The matcher catches all routes except Next.js internals, but /login is not excluded. When an unauthenticated user hits /login, middleware redirects them to /login, which triggers middleware again — infinite loop. Fix: add /login to the exclusion pattern: matcher: ["/((?!_next/static|_next/image|favicon.ico|login).*)"] or check if the pathname is already /login before redirecting.',
     tags: ['nextjs', 'middleware', 'redirect-loop', 'debug'],
     year: 2025,

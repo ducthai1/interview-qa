@@ -234,6 +234,22 @@ afterAll(() => server.close())`,
 // EventDate component:
 // new Date('2025-06-15').toLocaleDateString('en-US', { ... })`,
     answer: 'Timezone difference: new Date("2025-06-15") is parsed as UTC midnight. On a machine west of UTC (e.g., US Pacific UTC-7), toLocaleDateString() shows "June 14, 2025" instead of "June 15". CI servers in UTC would pass, but local dev machines in western timezones would fail (or vice versa).',
+    solutionCode: `// Option 1: mock system time so timezone is irrelevant
+test('displays formatted date', () => {
+  vi.useFakeTimers()
+  vi.setSystemTime(new Date('2025-06-15T12:00:00.000Z'))
+
+  render(<EventDate date={new Date('2025-06-15T12:00:00.000Z')} />)
+  expect(screen.getByText('June 15, 2025')).toBeInTheDocument()
+
+  vi.useRealTimers()
+})
+
+// Option 2: parse date as local time (no Z suffix)
+// new Date('2025-06-15T00:00:00') // treated as local midnight
+
+// Option 3: enforce UTC in CI via environment
+// TZ=UTC vitest  — or set in vitest.config.ts`,
     explanation: 'Per the spec, date-only strings (YYYY-MM-DD) are parsed as UTC. So new Date("2025-06-15") = June 15 00:00:00 UTC. On a UTC-7 machine, that\'s June 14 at 17:00 local time, so toLocaleDateString() shows June 14. Fix: use new Date("2025-06-15T00:00:00") which parses as local time, or mock dates with vi.setSystemTime(), or set TZ=UTC in CI config.',
     tags: ['testing', 'timezone', 'date', 'ci-cd'],
     year: 2025,
@@ -784,6 +800,14 @@ test('increments counter', () => {
   await expect(page.locator('.notification')).toBeVisible()
 })`,
     answer: 'page.waitForTimeout(1000) is a fixed delay that is both fragile (fails on slow CI) and slow (wastes time on fast machines). Replace with expect(page.locator(".notification")).toBeVisible() which has built-in auto-waiting and retries.',
+    solutionCode: `test('shows notification after save', async ({ page }) => {
+  await page.goto('/settings')
+  await page.click('button[data-testid="save-btn"]')
+  // FIXED: use Playwright's auto-waiting assertion instead of fixed timeout
+  await expect(page.locator('.notification')).toBeVisible()
+  // Optionally verify the notification content
+  await expect(page.locator('.notification')).toContainText('Saved')
+})`,
     explanation: 'Fixed timeouts are the primary cause of flaky Playwright tests. The notification may appear in 200ms or 2000ms depending on server load. Playwright\'s expect assertions auto-wait (default 5s timeout): await expect(page.locator(".notification")).toBeVisible() polls until the element is visible or the timeout expires. Never use waitForTimeout for element appearance — only for deliberate pauses when there is no actionable event to wait for.',
     tags: ['playwright', 'flaky-tests', 'auto-waiting', 'waitForTimeout'],
     year: 2025,

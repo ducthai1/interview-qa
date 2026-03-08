@@ -46,6 +46,30 @@ export const securityQuestions: Question[] = [
   )
 }`,
     answer: 'Two vulnerabilities: 1) dangerouslySetInnerHTML renders user.bio as raw HTML — XSS if bio contains <script> tags. 2) user.website could be "javascript:alert(1)" — XSS via href.',
+    solutionCode: `import DOMPurify from 'dompurify'
+
+function isSafeUrl(url: string): boolean {
+  try {
+    const parsed = new URL(url)
+    return parsed.protocol === 'https:' || parsed.protocol === 'http:'
+  } catch {
+    return false
+  }
+}
+
+function UserProfile({ user }) {
+  return (
+    <div>
+      <h1>{user.name}</h1>
+      {/* Fix 1: sanitize HTML before rendering */}
+      <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(user.bio) }} />
+      {/* Fix 2: validate URL protocol to prevent javascript: XSS */}
+      {isSafeUrl(user.website) && (
+        <a href={user.website} rel="noopener noreferrer">Visit website</a>
+      )}
+    </div>
+  )
+}`,
     explanation: 'Fixes: 1) Sanitize the bio with DOMPurify: dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(user.bio) }}. Or better, use a markdown renderer that doesnt allow raw HTML. 2) Validate the website URL: only allow http/https protocols. Check with: new URL(user.website).protocol === "https:" before rendering. Or use a URL validation library. Never trust user-provided URLs or HTML content without sanitization.',
     references: ['https://github.com/cure53/DOMPurify'],
     tags: ['xss', 'dangerouslySetInnerHTML', 'dompurify', 'url-validation'],
@@ -355,6 +379,24 @@ export default function handler(req, res) {
   }
 })`,
     answer: 'Missing origin validation — any webpage can send a message to this handler. A malicious site in another tab can call window.opener.postMessage({ type: "PAYMENT_COMPLETE", amount: 0, currency: "USD" }) to trigger a fake payment confirmation.',
+    solutionCode: `const TRUSTED_ORIGIN = 'https://payment.trusted-provider.com'
+let paymentIframe: HTMLIFrameElement | null = null
+
+window.addEventListener('message', (event) => {
+  // Fix 1: validate origin
+  if (event.origin !== TRUSTED_ORIGIN) return
+
+  // Fix 2: validate source (ensure it's from our payment iframe)
+  if (event.source !== paymentIframe?.contentWindow) return
+
+  const { type, amount, currency } = event.data
+
+  // Fix 3: validate data types before using in business logic
+  if (type === 'PAYMENT_COMPLETE' && typeof amount === 'number' && typeof currency === 'string') {
+    updateOrderStatus(amount, currency)
+    showSuccessMessage()
+  }
+})`,
     explanation: 'Fix: always validate event.origin before processing: if (event.origin !== "https://payment.trusted-provider.com") return; Never process postMessage data without checking the origin. Also validate event.source to ensure it is the expected frame. Secure pattern: window.addEventListener("message", (event) => { if (event.origin !== TRUSTED_ORIGIN) return; if (event.source !== paymentIframe.contentWindow) return; // process safely }). Additionally: validate the data schema/types before using values in business logic, and use structuredClone() if you need to store the data to avoid prototype pollution.',
     tags: ['postMessage', 'origin-validation', 'iframe', 'xss', 'cross-origin'],
     year: 2025,

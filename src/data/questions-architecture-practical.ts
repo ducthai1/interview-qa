@@ -351,6 +351,37 @@ function useUserDashboard(userId: string) {
     isRecommendationsLoading: recommendations.isLoading,
   }
 }`,
+    solutionCode: `import { useQuery } from '@tanstack/react-query'
+
+function useUserDashboard(userId: string) {
+  const profile = useQuery({
+    queryKey: ['user', userId],
+    queryFn: () => fetch(\`/api/users/\${userId}\`).then(r => r.json()),
+  })
+
+  const orders = useQuery({
+    queryKey: ['orders', userId],
+    queryFn: () => fetch(\`/api/users/\${userId}/orders\`).then(r => r.json()),
+    enabled: !!userId,
+  })
+
+  const recommendations = useQuery({
+    queryKey: ['recommendations', userId],
+    queryFn: () => fetch(\`/api/users/\${userId}/recommendations\`).then(r => r.json()),
+    enabled: !!profile.data, // only fetch after profile loads
+    staleTime: 5 * 60 * 1000, // recommendations are less time-sensitive
+  })
+
+  return {
+    profile: profile.data,
+    orders: orders.data,
+    recommendations: recommendations.data,
+    isLoading: profile.isLoading || orders.isLoading,
+    isError: profile.isError || orders.isError,
+    error: profile.error || orders.error,
+    isRecommendationsLoading: recommendations.isLoading,
+  }
+}`,
     explanation:
       'TanStack Query handles parallel and dependent queries elegantly: (1) Independent queries (profile, orders) fire in parallel automatically. (2) Dependent queries use enabled flag — recommendations wait for profile. (3) Each query manages its own cache, loading, error state. (4) staleTime controls background refetching frequency per query. (5) The combined hook provides a clean API for the component. (6) Error boundaries can catch individual query failures. This replaces hundreds of lines of useEffect + useState + try/catch boilerplate.',
     tags: ['tanstack-query', 'data-fetching', 'custom-hooks', 'loading-states'],
@@ -390,6 +421,72 @@ function useUndoRedo(initialShapes: Shape[]) {
   // Your implementation here
 }`,
     answer: `import { useCallback, useRef, useState } from 'react'
+
+type Shape = { id: string; type: string; x: number; y: number; color: string }
+
+function useUndoRedo(initialShapes: Shape[]) {
+  const [shapes, setShapes] = useState<Shape[]>(initialShapes)
+  const undoStack = useRef<Shape[][]>([])
+  const redoStack = useRef<Shape[][]>([])
+
+  const pushToUndo = useCallback((currentShapes: Shape[]) => {
+    undoStack.current = [...undoStack.current, currentShapes]
+    redoStack.current = [] // clear redo on new action
+  }, [])
+
+  const addShape = useCallback((shape: Shape) => {
+    setShapes(prev => {
+      pushToUndo(prev)
+      return [...prev, shape]
+    })
+  }, [pushToUndo])
+
+  const moveShape = useCallback((id: string, x: number, y: number) => {
+    setShapes(prev => {
+      pushToUndo(prev)
+      return prev.map(s => (s.id === id ? { ...s, x, y } : s))
+    })
+  }, [pushToUndo])
+
+  const changeColor = useCallback((id: string, color: string) => {
+    setShapes(prev => {
+      pushToUndo(prev)
+      return prev.map(s => (s.id === id ? { ...s, color } : s))
+    })
+  }, [pushToUndo])
+
+  const undo = useCallback(() => {
+    if (undoStack.current.length === 0) return
+    const previous = undoStack.current[undoStack.current.length - 1]
+    undoStack.current = undoStack.current.slice(0, -1)
+    setShapes(current => {
+      redoStack.current = [...redoStack.current, current]
+      return previous
+    })
+  }, [])
+
+  const redo = useCallback(() => {
+    if (redoStack.current.length === 0) return
+    const next = redoStack.current[redoStack.current.length - 1]
+    redoStack.current = redoStack.current.slice(0, -1)
+    setShapes(current => {
+      undoStack.current = [...undoStack.current, current]
+      return next
+    })
+  }, [])
+
+  return {
+    shapes,
+    addShape,
+    moveShape,
+    changeColor,
+    undo,
+    redo,
+    canUndo: undoStack.current.length > 0,
+    canRedo: redoStack.current.length > 0,
+  }
+}`,
+    solutionCode: `import { useCallback, useRef, useState } from 'react'
 
 type Shape = { id: string; type: string; x: number; y: number; color: string }
 
@@ -524,6 +621,25 @@ function useUndoRedo(initialShapes: Shape[]) {
   return loading ? <Spinner /> : <div>{user.name}</div>
 }`,
     answer: 'The fetchUser function is recreated on every render, causing the useEffect dependency to change and re-trigger infinitely. Fix: either move fetchUser inside useEffect, or wrap it with useCallback with [userId] as dependency.',
+    solutionCode: `function UserProfile({ userId }) {
+  const [user, setUser] = useState(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    // Move fetchUser inside useEffect to avoid stale closure and infinite loop
+    const fetchUser = async () => {
+      setLoading(true)
+      const res = await fetch(\`/api/users/\${userId}\`)
+      const data = await res.json()
+      setUser(data)
+      setLoading(false)
+    }
+
+    fetchUser()
+  }, [userId]) // only depends on userId, not fetchUser
+
+  return loading ? <Spinner /> : <div>{user?.name}</div>
+}`,
     explanation:
       'The bug: fetchUser is defined in the component body, so it gets a new reference every render. useEffect depends on [fetchUser], sees a new reference, re-runs, which calls setUser/setLoading, which triggers a re-render, which creates a new fetchUser... infinite loop. Fix options: (1) Best: move the async function inside useEffect and depend on [userId]. (2) Alternative: wrap fetchUser with useCallback(() => { ... }, [userId]). (3) Modern: use TanStack Query which handles this entirely. This is one of the most common React bugs in real codebases.',
     tags: ['useEffect', 'infinite-loop', 'useCallback', 'debugging'],
@@ -868,6 +984,63 @@ export async function POST(request: NextRequest) {
 
   return NextResponse.json({ revalidated: true, slug })
 }`,
+    solutionCode: `// app/blog/[slug]/page.tsx
+import { notFound } from 'next/navigation'
+
+interface BlogPost {
+  slug: string
+  title: string
+  content: string
+}
+
+async function getPost(slug: string): Promise<BlogPost | null> {
+  const res = await fetch(\`https://cms.example.com/api/posts/\${slug}\`, {
+    next: { revalidate: 3600, tags: [\`post-\${slug}\`] },
+  })
+  if (!res.ok) return null
+  return res.json()
+}
+
+export async function generateStaticParams() {
+  const res = await fetch('https://cms.example.com/api/posts')
+  const posts: BlogPost[] = await res.json()
+  return posts.map((post) => ({ slug: post.slug }))
+}
+
+export default async function BlogPostPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
+  const { slug } = await params
+  const post = await getPost(slug)
+  if (!post) notFound()
+
+  return (
+    <article>
+      <h1>{post.title}</h1>
+      <div dangerouslySetInnerHTML={{ __html: post.content }} />
+    </article>
+  )
+}
+
+// app/api/revalidate/route.ts
+import { revalidateTag } from 'next/cache'
+import { NextRequest, NextResponse } from 'next/server'
+
+export async function POST(request: NextRequest) {
+  const secret = request.headers.get('x-revalidation-secret')
+  if (secret !== process.env.REVALIDATION_SECRET) {
+    return NextResponse.json({ message: 'Invalid secret' }, { status: 401 })
+  }
+
+  const body = await request.json()
+  const slug = body.slug as string
+
+  revalidateTag(\`post-\${slug}\`)
+
+  return NextResponse.json({ revalidated: true, slug })
+}`,
     explanation:
       'ISR with on-demand revalidation: (1) Page — uses fetch with next: { revalidate: 3600, tags: ["post-slug"] }. Page is statically generated at build time and revalidated every hour as fallback. (2) Tags — fetch cache tagged with post-specific identifier. (3) Webhook handler — CMS calls /api/revalidate when content updates. Handler validates secret (prevent unauthorized revalidation), then calls revalidateTag("post-slug") which invalidates the cached page. (4) Next request to that page triggers regeneration with fresh CMS data. (5) generateStaticParams pre-renders known posts at build time. New posts are generated on first request (dynamic params). (6) Security — always authenticate webhooks with a shared secret.',
     tags: ['isr', 'revalidation', 'webhook', 'nextjs-app-router', 'caching'],
@@ -918,6 +1091,27 @@ export default async function ProductsPage() {
   )
 }`,
     answer: 'In Next.js App Router, fetch requests are cached by default (equivalent to force-cache). The fetch call needs either { cache: "no-store" } for always-fresh data, or { next: { revalidate: 60 } } for time-based revalidation, or tag-based revalidation with revalidateTag().',
+    solutionCode: `// app/products/page.tsx
+async function getProducts() {
+  // FIXED: add cache: "no-store" for always-fresh data
+  const res = await fetch('https://api.example.com/products', {
+    cache: 'no-store',
+  })
+  return res.json()
+}
+
+export default async function ProductsPage() {
+  const products = await getProducts()
+
+  return (
+    <div>
+      <h1>Products</h1>
+      {products.map((p: any) => (
+        <div key={p.id}>{p.name} - \${p.price}</div>
+      ))}
+    </div>
+  )
+}`,
     explanation:
       'Next.js App Router caching gotcha: By default, fetch() in Server Components is cached indefinitely (static rendering). This is the #1 confusion in App Router. Fix options: (1) Dynamic data — fetch(url, { cache: "no-store" }) fetches fresh on every request. (2) Time-based ISR — fetch(url, { next: { revalidate: 60 } }) caches for 60 seconds. (3) On-demand — fetch(url, { next: { tags: ["products"] } }) + revalidateTag("products") in a webhook/server action. (4) Page-level — export const dynamic = "force-dynamic" makes the entire page dynamic. (5) The correct choice depends on data freshness requirements: product catalog (revalidate: 300), stock/pricing (no-store or revalidate: 10), static content (default cache).',
     tags: ['nextjs-caching', 'app-router', 'stale-data', 'debugging', 'isr'],
