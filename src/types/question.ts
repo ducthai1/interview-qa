@@ -23,6 +23,7 @@ export type Topic =
   | 'ai-frontend'
   | 'accessibility'
   | 'security'
+  | 'real-world'
 
 export interface Question {
   id: string

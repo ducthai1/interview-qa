@@ -32,8 +32,8 @@ export function LearningPathPage({ questions, progress }: LearningPathPageProps)
         </p>
       </div>
 
-      {/* Path cards grid */}
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {/* Path cards grid — max 2 cols to give cards enough width */}
+      <div className="grid gap-4 sm:grid-cols-2">
         {learningPaths.map((path) => {
           const percent = getOverallPercent(path.id)
           const steps = getSteps(path.id)
@@ -44,7 +44,7 @@ export function LearningPathPage({ questions, progress }: LearningPathPageProps)
           return (
             <div
               key={path.id}
-              className={`col-span-1 ${isExpanded ? 'sm:col-span-2 lg:col-span-3' : ''}`}
+              className={`col-span-1 ${isExpanded ? 'sm:col-span-2' : ''}`}
             >
               {/* Card */}
               <button
@@ -90,17 +90,12 @@ export function LearningPathPage({ questions, progress }: LearningPathPageProps)
                   />
                 </div>
 
-                {/* Footer row */}
+                {/* Footer — 2 rows for clarity */}
                 <div className="flex items-center justify-between text-xs text-[var(--color-text-secondary)]">
                   <span>
                     {completedCount} / {path.steps.length} {isVi ? 'chủ đề hoàn thành' : 'topics done'}
                   </span>
-                  {currentStep && (
-                    <span className="font-medium" style={{ color: path.color }}>
-                      {isVi ? 'Đang học' : 'Current'}: {currentStep.topicLabel}
-                    </span>
-                  )}
-                  <span className="font-medium" style={{ color: path.color }}>
+                  <span className="shrink-0 font-medium" style={{ color: path.color }}>
                     {isExpanded ? '▲' : '▼'} {isExpanded
                       ? (isVi ? 'Thu gọn' : 'Collapse')
                       : percent > 0
@@ -108,6 +103,14 @@ export function LearningPathPage({ questions, progress }: LearningPathPageProps)
                       : t('path.startPath')}
                   </span>
                 </div>
+                {currentStep && (
+                  <div className="mt-1.5 text-xs">
+                    <span className="text-[var(--color-text-secondary)]">{isVi ? 'Đang học' : 'Current'}: </span>
+                    <span className="font-medium" style={{ color: path.color }}>
+                      {currentStep.topicLabel}
+                    </span>
+                  </div>
+                )}
               </button>
 
               {/* Inline roadmap (expanded) */}

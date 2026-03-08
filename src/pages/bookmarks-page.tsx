@@ -11,7 +11,7 @@ interface BookmarksPageProps {
   onBookmark: (questionId: string) => void
 }
 
-const PAGE_SIZE = 15
+const PAGE_SIZE = 10
 
 export function BookmarksPage({ questions, progress, onBookmark }: BookmarksPageProps) {
   const { t } = useTranslation()

@@ -22,7 +22,7 @@ const PAGE_SIZE = 10
 export function PracticePage({ questions, progress, onAnswer, onBookmark, onRetry }: PracticePageProps) {
   const { t } = useTranslation()
   const { tq } = useQuestionTranslation()
-  const [searchParams] = useSearchParams()
+  const [searchParams, setSearchParams] = useSearchParams()
   const initialTopic = searchParams.get('topic') as Topic | null
   const initialDifficulty = searchParams.get('difficulty') as Difficulty | null
   const initialType = searchParams.get('type') as QuestionType | null
@@ -31,7 +31,17 @@ export function PracticePage({ questions, progress, onAnswer, onBookmark, onRetr
   const [selectedDifficulties, setSelectedDifficulties] = useState<Difficulty[]>(initialDifficulty ? [initialDifficulty] : [])
   const [selectedTypes, setSelectedTypes] = useState<QuestionType[]>(initialType ? [initialType] : [])
   const [search, setSearch] = useState('')
-  const [page, setPage] = useState(1)
+
+  // Persist page in URL so reload keeps the same page
+  const page = Math.max(1, parseInt(searchParams.get('page') ?? '1', 10))
+  const setPage = (p: number) => {
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev)
+      if (p <= 1) next.delete('page')
+      else next.set('page', String(p))
+      return next
+    })
+  }
 
   const filtered = useMemo(
     () => filterQuestions(questions, { topics: selectedTopics, difficulties: selectedDifficulties, types: selectedTypes, search }),

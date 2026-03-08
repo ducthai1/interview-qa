@@ -21,4 +21,5 @@ export const topics: TopicInfo[] = [
   { id: 'ai-frontend', label: 'AI & Frontend', icon: 'AI', description: 'Vercel AI SDK, LLM integration, streaming UI', color: '#10b981' },
   { id: 'accessibility', label: 'Accessibility', icon: 'A11Y', description: 'ARIA, screen readers, keyboard navigation', color: '#0ea5e9' },
   { id: 'security', label: 'Security', icon: 'SEC', description: 'XSS, CSRF, CSP, auth patterns, sanitization', color: '#ef4444' },
+  { id: 'real-world', label: 'Real-World Scenarios', icon: '🏗️', description: 'Production bugs, feature development, team collaboration, deployment issues', color: '#f97316' },
 ]

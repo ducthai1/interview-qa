@@ -90,6 +90,25 @@ export function StatsPage({ questions, progress, onReset }: StatsPageProps) {
         <StatBox label={t('common.accuracy')} value={`${accuracy}%`} color="var(--color-primary)" />
       </div>
 
+      {/* Bookmarks link */}
+      {progress.bookmarked.length > 0 && (
+        <div className="mb-8">
+          <Link
+            to="/bookmarks"
+            className="flex items-center justify-between rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-card)] px-4 py-3 no-underline transition-colors hover:border-[var(--color-primary)]"
+          >
+            <div className="flex items-center gap-2">
+              <Bookmark className="h-5 w-5 text-[var(--color-primary)]" />
+              <span className="text-sm font-semibold text-[var(--color-text)]">{t('stats.bookmarked')}</span>
+              <span className="rounded-full bg-[var(--color-primary-bg)] px-2 py-0.5 text-xs font-medium text-[var(--color-primary)]">
+                {progress.bookmarked.length}
+              </span>
+            </div>
+            <ChevronRight className="h-4 w-4 text-[var(--color-text-secondary)]" />
+          </Link>
+        </div>
+      )}
+
       {/* Weak Areas */}
       {hasData && weakTopics.length > 0 && (
         <section className="mb-8">
@@ -176,25 +195,6 @@ export function StatsPage({ questions, progress, onReset }: StatsPageProps) {
           )
         })}
       </div>
-
-      {/* Bookmarks link */}
-      {progress.bookmarked.length > 0 && (
-        <div className="mt-8">
-          <Link
-            to="/bookmarks"
-            className="flex items-center justify-between rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-card)] px-4 py-3 no-underline transition-colors hover:border-[var(--color-primary)]"
-          >
-            <div className="flex items-center gap-2">
-              <Bookmark className="h-5 w-5 text-[var(--color-primary)]" />
-              <span className="text-sm font-semibold text-[var(--color-text)]">{t('stats.bookmarked')}</span>
-              <span className="rounded-full bg-[var(--color-primary-bg)] px-2 py-0.5 text-xs font-medium text-[var(--color-primary)]">
-                {progress.bookmarked.length}
-              </span>
-            </div>
-            <ChevronRight className="h-4 w-4 text-[var(--color-text-secondary)]" />
-          </Link>
-        </div>
-      )}
 
       {/* Reset */}
       <div className="mt-8 border-t border-[var(--color-border)] pt-6">

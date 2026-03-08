@@ -2,11 +2,11 @@ import type { ReviewEntry, UserProgress, Question, Difficulty, QuestionType } fr
 
 /* Leitner box intervals in milliseconds */
 export const BOX_INTERVALS: Record<number, number> = {
-  1: 1 * 24 * 60 * 60 * 1000,   // 1 day
-  2: 3 * 24 * 60 * 60 * 1000,   // 3 days
-  3: 7 * 24 * 60 * 60 * 1000,   // 7 days
-  4: 14 * 24 * 60 * 60 * 1000,  // 14 days
-  5: 30 * 24 * 60 * 60 * 1000,  // 30 days
+  1: 4 * 60 * 60 * 1000,        // 4 hours — review soon after first encounter
+  2: 1 * 24 * 60 * 60 * 1000,   // 1 day
+  3: 3 * 24 * 60 * 60 * 1000,   // 3 days
+  4: 7 * 24 * 60 * 60 * 1000,   // 7 days
+  5: 14 * 24 * 60 * 60 * 1000,  // 14 days
 }
 
 /* Track consecutive correct answers per question for senior/lead promotion */
