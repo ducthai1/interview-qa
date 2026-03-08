@@ -1,10 +1,11 @@
 import { useState, useMemo } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useSearchParams, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-react'
+import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Sparkles } from 'lucide-react'
 import { FilterBar } from '../components/filter-bar'
 import { QuestionCard } from '../components/question-card'
 import { filterQuestions } from '../utils/question-filters'
+import { getRecommendedQuestions } from '../utils/smart-question-picker'
 import type { Question, Topic, Difficulty, QuestionType, UserProgress } from '../types'
 
 interface PracticePageProps {
@@ -21,10 +22,12 @@ export function PracticePage({ questions, progress, onAnswer, onBookmark, onRetr
   const { t } = useTranslation()
   const [searchParams] = useSearchParams()
   const initialTopic = searchParams.get('topic') as Topic | null
+  const initialDifficulty = searchParams.get('difficulty') as Difficulty | null
+  const initialType = searchParams.get('type') as QuestionType | null
 
   const [selectedTopics, setSelectedTopics] = useState<Topic[]>(initialTopic ? [initialTopic] : [])
-  const [selectedDifficulties, setSelectedDifficulties] = useState<Difficulty[]>([])
-  const [selectedTypes, setSelectedTypes] = useState<QuestionType[]>([])
+  const [selectedDifficulties, setSelectedDifficulties] = useState<Difficulty[]>(initialDifficulty ? [initialDifficulty] : [])
+  const [selectedTypes, setSelectedTypes] = useState<QuestionType[]>(initialType ? [initialType] : [])
   const [search, setSearch] = useState('')
   const [page, setPage] = useState(1)
 
@@ -68,9 +71,41 @@ export function PracticePage({ questions, progress, onAnswer, onBookmark, onRetr
     return pages
   }
 
+  const recommended = useMemo(
+    () => getRecommendedQuestions(questions, progress, 3),
+    [questions, progress],
+  )
+
+  const hasProgress = Object.keys(progress.answered).length > 0
+
   return (
     <div className="mx-auto max-w-4xl px-4 py-8">
       <h1 className="mb-6 text-2xl font-bold text-[var(--color-text)]">{t('practice.title')}</h1>
+
+      {/* Recommended section */}
+      {hasProgress && recommended.length > 0 && (
+        <div className="mb-8 rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-card)] p-4">
+          <div className="mb-3 flex items-center gap-2">
+            <Sparkles className="h-4 w-4 text-[var(--color-primary)]" />
+            <span className="text-sm font-semibold text-[var(--color-text)]">{t('practice.recommended')}</span>
+            <span className="text-xs text-[var(--color-text-secondary)]">— {t('practice.recommendedHint')}</span>
+          </div>
+          <div className="space-y-3">
+            {recommended.map((q) => (
+              <Link
+                key={q.id}
+                to={`/practice?topic=${q.topic}`}
+                className="flex items-start justify-between gap-3 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-secondary)] px-3 py-2.5 text-sm text-[var(--color-text)] transition-colors hover:border-[var(--color-primary)]"
+              >
+                <span className="line-clamp-2 flex-1">{q.question}</span>
+                <span className="shrink-0 rounded px-1.5 py-0.5 text-xs font-medium capitalize text-[var(--color-primary)] ring-1 ring-inset ring-[var(--color-primary)]/30">
+                  {q.difficulty}
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
 
       <FilterBar
         selectedTopics={selectedTopics}

@@ -3,6 +3,7 @@ import { Zap, Target, Flame, Trophy, RotateCcw, ChevronLeft } from 'lucide-react
 import { useTranslation } from 'react-i18next'
 import { QuestionCard } from '../components/question-card'
 import { ShareButton } from '../components/share-button'
+import { NextStepsSection } from '../components/next-steps-section'
 import { pickRandomQuestions, filterQuestions } from '../utils/question-filters'
 import { CHALLENGE_PRESETS, calculateScore, isNewBest } from '../utils/challenge-scoring'
 import type { ChallengePreset } from '../utils/challenge-scoring'
@@ -341,6 +342,7 @@ export function ChallengePage({
             {t('challenge.backToMenu')}
           </button>
         </div>
+        <NextStepsSection questions={questions} progress={progress} />
       </div>
     )
   }

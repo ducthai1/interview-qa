@@ -10,4 +10,5 @@ export type {
   AIConfig,
   LearningPath,
   LearningPathStep,
+  AttemptRecord,
 } from './question'

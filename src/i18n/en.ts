@@ -103,6 +103,17 @@ export const en = {
   practice: {
     title: 'Practice Questions',
     showing: 'Showing {{shown}} of {{total}} questions',
+    recommended: 'Recommended for You',
+    recommendedHint: 'Based on your weak areas and learning progress',
+  },
+
+  /* ─── Next Steps (post-session guidance) ───────────────────────────────────── */
+  nextSteps: {
+    title: "What's Next?",
+    weakTopics: 'Focus on weak areas',
+    reviewDue: '{{count}} questions due for review',
+    continuePath: 'Continue your learning path',
+    practiceMore: 'Practice more questions',
   },
 
   /* ─── Pagination ─────────────────────────────────────────────────────────── */
@@ -160,6 +171,14 @@ export const en = {
     removeBookmark: 'Remove bookmark',
     retry: 'Try Again',
     attemptCount: 'Attempt #{{count}}',
+    showHint: 'Show Hint',
+    hintNumber: 'Hint {{number}}',
+    noMoreHints: 'No more hints',
+    optionWrong: 'Why wrong',
+    selfRateNailed: 'Nailed it',
+    selfRatePartial: 'Partially correct',
+    flagQuestion: 'Report unclear question',
+    unflagQuestion: 'Remove flag',
   },
 
   /* ─── Code Output Interaction ──────────────────────────────────────────────── */
@@ -194,6 +213,15 @@ export const en = {
     showModelAnswer: 'Show model answer',
   },
 
+  /* ─── Streak & Daily Goal ──────────────────────────────────────────────────── */
+  streak: {
+    current: '{{count}} day streak',
+    longest: 'Longest: {{count}} days',
+    dailyGoal: '{{done}} / {{goal}} today',
+    goalReached: 'Daily goal reached!',
+    setGoal: 'Set daily goal',
+  },
+
   /* ─── Learning Paths ───────────────────────────────────────────────────────── */
   path: {
     title: 'Learning Paths',
@@ -206,6 +234,8 @@ export const en = {
     completionRequired: '{{percent}}% required to unlock next',
     startPath: 'Start Path',
     continuePath: 'Continue',
+    estimatedDays: '~{{days}} days remaining',
+    noEstimate: 'Answer more questions to estimate',
   },
 
   /* ─── Share Results ─────────────────────────────────────────────────────────── */
@@ -220,6 +250,20 @@ export const en = {
     mockResult: 'Mock Interview Result',
     challengeResult: 'Challenge Result',
     statsResult: 'My Progress',
+  },
+
+  /* ─── Related Questions ─────────────────────────────────────────────────────── */
+  related: {
+    title: 'Related Questions',
+    hint: 'Similar concepts you might want to practice',
+  },
+
+  /* ─── Difficulty Suggestion ──────────────────────────────────────────────────── */
+  difficulty: {
+    suggestion: 'Based on your performance',
+    tryHarder: "You're doing great on {{level}}! Try {{nextLevel}} questions.",
+    reviewEasier: 'Consider reviewing {{prevLevel}} questions first.',
+    dismiss: 'Dismiss',
   },
 
   /* ─── AI Feedback ───────────────────────────────────────────────────────────── */

@@ -1,4 +1,4 @@
-import type { UserProgress } from '../types'
+import type { UserProgress, Difficulty, QuestionType } from '../types'
 import { getNextReview } from './spaced-repetition'
 
 const STORAGE_KEY = 'fe-interview-hub-progress'
@@ -21,11 +21,21 @@ export function saveProgress(progress: UserProgress): void {
 }
 
 /* Record an answer for a question */
-export function recordAnswer(questionId: string, correct: boolean): UserProgress {
+export function recordAnswer(questionId: string, correct: boolean, timeSpent?: number): UserProgress {
   const progress = loadProgress()
   const existing = progress.answered[questionId]
   const attempts = existing ? existing.attempts + 1 : 1
-  progress.answered[questionId] = { correct, timestamp: Date.now(), attempts }
+  const now = Date.now()
+  progress.answered[questionId] = { correct, timestamp: now, attempts, ...(timeSpent !== undefined ? { timeSpent } : {}) }
+
+  // Append to attempt history
+  const history = progress.attemptHistory ?? {}
+  const prevHistory = history[questionId] ?? []
+  progress.attemptHistory = {
+    ...history,
+    [questionId]: [...prevHistory, { correct, timestamp: now, timeSpent: timeSpent ?? 0 }],
+  }
+
   saveProgress(progress)
   return progress
 }
@@ -52,12 +62,47 @@ export function toggleBookmark(questionId: string): UserProgress {
 }
 
 /* Update spaced repetition review entry for a question */
-export function updateReview(questionId: string, correct: boolean): UserProgress {
+export function updateReview(
+  questionId: string,
+  correct: boolean,
+  difficulty?: Difficulty,
+  questionType?: QuestionType,
+): UserProgress {
   const progress = loadProgress()
   const existing = progress.reviews?.[questionId]
   const currentBox = existing?.box ?? 1
-  const entry = getNextReview(currentBox, correct)
+  const entry = getNextReview(currentBox, correct, difficulty, questionType)
   progress.reviews = { ...(progress.reviews ?? {}), [questionId]: entry }
+  saveProgress(progress)
+  return progress
+}
+
+/* Update streak based on today's activity */
+export function updateStreak(): UserProgress {
+  const progress = loadProgress()
+  const today = new Date().toISOString().slice(0, 10)
+  const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10)
+  const streak = progress.streak ?? { current: 0, longest: 0, lastActiveDate: '' }
+
+  if (streak.lastActiveDate === today) {
+    // Already counted today
+    return progress
+  }
+
+  const newCurrent = streak.lastActiveDate === yesterday ? streak.current + 1 : 1
+  progress.streak = {
+    current: newCurrent,
+    longest: Math.max(streak.longest, newCurrent),
+    lastActiveDate: today,
+  }
+  saveProgress(progress)
+  return progress
+}
+
+/* Set daily goal */
+export function setDailyGoal(goal: number): UserProgress {
+  const progress = loadProgress()
+  progress.dailyGoal = goal
   saveProgress(progress)
   return progress
 }

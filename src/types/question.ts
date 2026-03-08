@@ -35,6 +35,12 @@ export interface Question {
   answer: number | string | boolean
   solutionCode?: string
   explanation: string
+  /* Per-option explanations for MCQ: why each wrong option is wrong */
+  optionExplanations?: string[]
+  /* Hints shown before revealing full answer (progressive disclosure) */
+  hints?: string[]
+  /* IDs of related questions covering similar concepts */
+  relatedIds?: string[]
   references?: string[]
   tags: string[]
   year: number
@@ -62,9 +68,16 @@ export interface ChallengeBest {
   date: number
 }
 
+/* Individual attempt record for full history */
+export interface AttemptRecord {
+  correct: boolean
+  timestamp: number
+  timeSpent: number // milliseconds spent on the question
+}
+
 /* User progress stored in localStorage */
 export interface UserProgress {
-  answered: Record<string, { correct: boolean; timestamp: number; attempts: number }>
+  answered: Record<string, { correct: boolean; timestamp: number; attempts: number; timeSpent?: number }>
   bookmarked: string[]
   /* Spaced repetition state per question */
   reviews?: Record<string, ReviewEntry>
@@ -74,6 +87,14 @@ export interface UserProgress {
   challengeBests?: Record<string, ChallengeBest>
   /* Daily activity log: 'YYYY-MM-DD' → count of answers */
   dailyActivity?: Record<string, number>
+  /* Full attempt history per question */
+  attemptHistory?: Record<string, AttemptRecord[]>
+  /* Streak tracking */
+  streak?: { current: number; longest: number; lastActiveDate: string }
+  /* Daily goal target */
+  dailyGoal?: number
+  /* Flagged questions (quality issues reported by user) */
+  flaggedQuestions?: string[]
 }
 
 /* AI provider configuration (stored in localStorage separately) */

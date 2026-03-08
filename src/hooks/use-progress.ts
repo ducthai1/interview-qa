@@ -9,6 +9,7 @@ import {
   updateReview,
   trackDailyActivity,
   saveChallengeResult,
+  updateStreak,
 } from '../utils/local-storage'
 import { progressApi } from '../utils/progress-api'
 import type { UserProgress } from '../types'
@@ -72,10 +73,11 @@ export function useProgress() {
    * Answer: save to localStorage immediately,
    * then sync to MongoDB in background.
    * ────────────────────────────────────────── */
-  const answer = useCallback((questionId: string, correct: boolean) => {
+  const answer = useCallback((questionId: string, correct: boolean, timeSpent?: number) => {
     // Local first (instant feedback) — record answer, then update review + daily activity
-    localRecordAnswer(questionId, correct)
+    localRecordAnswer(questionId, correct, timeSpent)
     trackDailyActivity()
+    updateStreak()
     const withReview = updateReview(questionId, correct)
     setProgress({ ...withReview })
 

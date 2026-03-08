@@ -1,4 +1,4 @@
-import type { ReviewEntry, UserProgress, Question } from '../types'
+import type { ReviewEntry, UserProgress, Question, Difficulty, QuestionType } from '../types'
 
 /* Leitner box intervals in milliseconds */
 export const BOX_INTERVALS: Record<number, number> = {
@@ -9,13 +9,43 @@ export const BOX_INTERVALS: Record<number, number> = {
   5: 30 * 24 * 60 * 60 * 1000,  // 30 days
 }
 
+/* Track consecutive correct answers per question for senior/lead promotion */
+const consecutiveCorrect: Record<string, number> = {}
+
 /**
  * Calculate new ReviewEntry after answering.
  * Correct: promote box (max 5). Incorrect: reset to box 1.
+ * difficulty/questionType adjust intervals and promotion thresholds.
  */
-export function getNextReview(currentBox: number, correct: boolean): ReviewEntry {
-  const newBox = correct ? Math.min(currentBox + 1, 5) : 1
-  const interval = BOX_INTERVALS[newBox]
+export function getNextReview(
+  currentBox: number,
+  correct: boolean,
+  difficulty?: Difficulty,
+  questionType?: QuestionType,
+): ReviewEntry {
+  const isSeniorOrLead = difficulty === 'senior' || difficulty === 'lead'
+  const isJunior = difficulty === 'junior'
+  const isHardType = questionType === 'code-write' || questionType === 'system-design'
+
+  // Senior/Lead: need 2 consecutive correct to promote
+  let promote = correct
+  if (correct && isSeniorOrLead) {
+    const key = `${currentBox}`
+    consecutiveCorrect[key] = (consecutiveCorrect[key] ?? 0) + 1
+    promote = consecutiveCorrect[key] >= 2
+    if (promote) consecutiveCorrect[key] = 0
+  } else if (!correct) {
+    consecutiveCorrect[`${currentBox}`] = 0
+  }
+
+  // Junior: skip a box on correct (faster)
+  const boxIncrement = correct && isJunior ? 2 : 1
+  const newBox = promote ? Math.min(currentBox + boxIncrement, 5) : correct ? currentBox : 1
+
+  let interval = BOX_INTERVALS[newBox] ?? BOX_INTERVALS[5]
+  // Hard question types: 1.5x longer intervals
+  if (isHardType) interval = Math.round(interval * 1.5)
+
   return {
     box: newBox,
     nextReviewAt: Date.now() + interval,

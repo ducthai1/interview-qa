@@ -3,6 +3,7 @@ import { Play, RotateCcw, Timer, CheckCircle2, XCircle } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { QuestionCard } from '../components/question-card'
 import { ShareButton } from '../components/share-button'
+import { NextStepsSection } from '../components/next-steps-section'
 import { pickRandomQuestions } from '../utils/question-filters'
 import { useTimer } from '../hooks/use-timer'
 import type { Question, UserProgress } from '../types'
@@ -139,6 +140,7 @@ export function MockInterviewPage({ questions, progress, onAnswer, onBookmark, o
             }}
           />
         </div>
+        <NextStepsSection questions={questions} progress={progress} />
       </div>
     )
   }

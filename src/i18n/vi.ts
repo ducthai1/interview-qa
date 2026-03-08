@@ -103,6 +103,17 @@ export const vi = {
   practice: {
     title: 'Luyện tập',
     showing: 'Hiển thị {{shown}} / {{total}} câu hỏi',
+    recommended: 'Đề xuất cho bạn',
+    recommendedHint: 'Dựa trên điểm yếu và tiến trình học tập',
+  },
+
+  /* ─── Next Steps (post-session guidance) ───────────────────────────────────── */
+  nextSteps: {
+    title: 'Bước tiếp theo?',
+    weakTopics: 'Tập trung vào điểm yếu',
+    reviewDue: '{{count}} câu cần ôn tập',
+    continuePath: 'Tiếp tục lộ trình học',
+    practiceMore: 'Luyện tập thêm',
   },
 
   /* ─── Pagination ─────────────────────────────────────────────────────────── */
@@ -160,6 +171,14 @@ export const vi = {
     removeBookmark: 'Bỏ đánh dấu',
     retry: 'Làm lại',
     attemptCount: 'Lần thử #{{count}}',
+    showHint: 'Xem gợi ý',
+    hintNumber: 'Gợi ý {{number}}',
+    noMoreHints: 'Hết gợi ý',
+    optionWrong: 'Tại sao sai',
+    selfRateNailed: 'Hoàn toàn đúng',
+    selfRatePartial: 'Đúng một phần',
+    flagQuestion: 'Báo câu hỏi không rõ',
+    unflagQuestion: 'Bỏ báo cáo',
   },
 
   /* ─── Code Output Interaction ──────────────────────────────────────────────── */
@@ -194,6 +213,15 @@ export const vi = {
     showModelAnswer: 'Xem đáp án mẫu',
   },
 
+  /* ─── Streak & Daily Goal ──────────────────────────────────────────────────── */
+  streak: {
+    current: '{{count}} ngày liên tiếp',
+    longest: 'Kỷ lục: {{count}} ngày',
+    dailyGoal: '{{done}} / {{goal}} hôm nay',
+    goalReached: 'Đạt mục tiêu hôm nay!',
+    setGoal: 'Đặt mục tiêu',
+  },
+
   /* ─── Learning Paths ───────────────────────────────────────────────────────── */
   path: {
     title: 'Lộ trình học tập',
@@ -206,6 +234,8 @@ export const vi = {
     completionRequired: 'Cần {{percent}}% để mở khóa tiếp',
     startPath: 'Bắt đầu lộ trình',
     continuePath: 'Tiếp tục',
+    estimatedDays: '~{{days}} ngày còn lại',
+    noEstimate: 'Trả lời thêm câu hỏi để ước tính',
   },
 
   /* ─── Share Results ─────────────────────────────────────────────────────────── */
@@ -220,6 +250,20 @@ export const vi = {
     mockResult: 'Kết quả phỏng vấn thử',
     challengeResult: 'Kết quả thử thách',
     statsResult: 'Tiến trình của tôi',
+  },
+
+  /* ─── Related Questions ─────────────────────────────────────────────────────── */
+  related: {
+    title: 'Câu hỏi liên quan',
+    hint: 'Các khái niệm tương tự bạn có thể luyện tập',
+  },
+
+  /* ─── Difficulty Suggestion ──────────────────────────────────────────────────── */
+  difficulty: {
+    suggestion: 'Dựa trên kết quả của bạn',
+    tryHarder: 'Bạn đang làm tốt ở {{level}}! Thử {{nextLevel}} nhé.',
+    reviewEasier: 'Hãy ôn lại {{prevLevel}} trước.',
+    dismiss: 'Bỏ qua',
   },
 
   /* ─── AI Feedback ───────────────────────────────────────────────────────────── */

@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { TopicCard } from '../components/topic-card'
+import { StreakBanner } from '../components/streak-banner'
 import { topics } from '../data/topics'
 import type { Question, UserProgress } from '../types'
 
@@ -15,6 +16,9 @@ export function HomePage({ questions, progress }: HomePageProps) {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-8">
+      {/* Streak Banner */}
+      <StreakBanner progress={progress} />
+
       {/* Hero */}
       <div className="mb-8 text-center">
         <h1 className="mb-2 text-3xl font-bold text-[var(--color-text)] md:text-4xl">

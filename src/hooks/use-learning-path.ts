@@ -81,6 +81,36 @@ export function getOverallPathCompletion(
   return Math.round((sum / steps.length) * 100)
 }
 
+/**
+ * Estimate days remaining to complete a learning path.
+ * Returns null if not enough data (< 2 active days).
+ */
+export function getEstimatedDays(
+  pathId: string,
+  progress: UserProgress,
+  questions: Question[],
+): number | null {
+  const dailyActivity = progress.dailyActivity ?? {}
+  const activeDays = Object.values(dailyActivity).filter((c) => c > 0)
+  if (activeDays.length < 2) return null
+
+  const avgPerDay = activeDays.reduce((a, b) => a + b, 0) / activeDays.length
+
+  const steps = getPathProgress(pathId, questions, progress)
+  const completionMap = buildTopicCompletionMap(questions, progress)
+  let remaining = 0
+
+  for (const step of steps) {
+    const topicQs = questions.filter((q) => q.topic === step.topic)
+    const needed = Math.ceil(step.requiredCompletion * topicQs.length)
+    const correct = Math.round((completionMap[step.topic] ?? 0) * topicQs.length)
+    remaining += Math.max(0, needed - correct)
+  }
+
+  if (remaining === 0) return 0
+  return Math.ceil(remaining / avgPerDay)
+}
+
 export function useLearningPath(questions: Question[], progress: UserProgress) {
   const topicCompletionMap = useMemo(
     () => buildTopicCompletionMap(questions, progress),
@@ -109,5 +139,11 @@ export function useLearningPath(questions: Question[], progress: UserProgress) {
     [getSteps, getOverallPercent],
   )
 
-  return { topicCompletionMap, getSteps, getOverallPercent, allPathStatuses }
+  const estimateDays = useCallback(
+    (pathId: string): number | null => getEstimatedDays(pathId, progress, questions),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [topicCompletionMap],
+  )
+
+  return { topicCompletionMap, getSteps, getOverallPercent, allPathStatuses, estimateDays }
 }

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { CheckCircle2, XCircle, BookOpen } from 'lucide-react'
 import { QuestionCard } from '../components/question-card'
+import { NextStepsSection } from '../components/next-steps-section'
 import { useSpacedRepetition } from '../hooks/use-spaced-repetition'
 import type { Question, UserProgress } from '../types'
 
@@ -96,6 +97,8 @@ export function ReviewPage({ questions, progress, onAnswer, onBookmark, onRetry 
         <div className="mt-10">
           <BoxStats stats={stats} t={t} />
         </div>
+
+        <NextStepsSection questions={questions} progress={progress} />
       </div>
     )
   }
