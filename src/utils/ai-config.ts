@@ -11,7 +11,7 @@ export function getDefaultConfig(): AIConfig {
     provider: 'none',
     apiKey: '',
     dailyUsage: 0,
-    dailyLimit: 20,
+    dailyLimit: 1500, // Gemini free tier default
     lastResetDate: today(),
   }
 }

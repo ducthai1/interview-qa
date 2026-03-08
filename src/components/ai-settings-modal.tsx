@@ -88,10 +88,13 @@ export function AISettingsModal({ open, onClose }: AISettingsModalProps) {
           <select
             value={config.provider}
             onChange={(e) => {
+              const provider = e.target.value as AIConfig['provider']
+              const dailyLimit = provider === 'gemini' ? 1500 : provider === 'none' ? 20 : 50
               setConfig((c) => ({
                 ...c,
-                provider: e.target.value as AIConfig['provider'],
+                provider,
                 apiKey: '',
+                dailyLimit,
               }))
               setTestStatus('idle')
             }}
@@ -168,25 +171,28 @@ export function AISettingsModal({ open, onClose }: AISettingsModalProps) {
           </div>
         )}
 
-        {/* Daily Limit */}
-        <div className="mb-4">
-          <label className="mb-1.5 block text-sm font-medium text-[var(--color-text)]">
-            {t('ai.dailyLimit')}
-          </label>
-          <input
-            type="number"
-            min={1}
-            max={500}
-            value={config.dailyLimit}
-            onChange={(e) => setConfig((c) => ({ ...c, dailyLimit: Math.max(1, Number(e.target.value)) }))}
-            className="w-full rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] px-3 py-2 text-sm text-[var(--color-text)] focus:border-[var(--color-primary)] focus:outline-none"
-          />
-        </div>
-
         {/* Usage Display */}
-        <div className="mb-5 rounded-lg bg-[var(--color-bg-secondary)] px-3 py-2 text-sm text-[var(--color-text-secondary)]">
-          {t('ai.usage', { used: config.dailyUsage, limit: config.dailyLimit })}
-        </div>
+        {config.provider !== 'none' && (
+          <div className="mb-5 rounded-lg bg-[var(--color-bg-secondary)] px-3 py-2.5 text-sm text-[var(--color-text-secondary)]">
+            <div className="flex items-center justify-between">
+              <span>{t('ai.usage', { used: config.dailyUsage, limit: config.dailyLimit })}</span>
+              <span className="text-xs opacity-60">
+                {config.provider === 'gemini' ? 'Free tier' : 'Paid API'}
+              </span>
+            </div>
+            {/* Usage progress bar */}
+            <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-[var(--color-border)]">
+              <div
+                className={`h-full rounded-full transition-all ${
+                  config.dailyUsage / config.dailyLimit > 0.8
+                    ? 'bg-[var(--color-error)]'
+                    : 'bg-[var(--color-primary)]'
+                }`}
+                style={{ width: `${Math.min(100, (config.dailyUsage / config.dailyLimit) * 100)}%` }}
+              />
+            </div>
+          </div>
+        )}
 
         {/* Test connection result */}
         {testStatus === 'success' && (
