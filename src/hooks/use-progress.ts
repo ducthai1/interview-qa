@@ -4,6 +4,7 @@ import {
   recordAnswer as localRecordAnswer,
   toggleBookmark as localToggleBookmark,
   resetProgress as localResetProgress,
+  retryQuestion as localRetryQuestion,
   saveProgress,
 } from '../utils/local-storage'
 import { progressApi } from '../utils/progress-api'
@@ -103,5 +104,17 @@ export function useProgress() {
     })
   }, [])
 
-  return { progress, answer, bookmark, reset, syncing, syncError }
+  /* ──────────────────────────────────────────
+   * Retry: remove answer locally and sync.
+   * ────────────────────────────────────────── */
+  const retry = useCallback((questionId: string) => {
+    const updated = localRetryQuestion(questionId)
+    setProgress({ ...updated })
+
+    progressApi.retry(questionId).catch((err) => {
+      console.warn('Failed to sync retry to MongoDB:', err)
+    })
+  }, [])
+
+  return { progress, answer, bookmark, reset, retry, syncing, syncError }
 }

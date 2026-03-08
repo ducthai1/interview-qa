@@ -59,6 +59,16 @@ export const progressApi = {
     })
   },
 
+  /** Retry a question (remove from answered) */
+  async retry(questionId: string): Promise<void> {
+    const userId = getUserId()
+    await fetch(`${API_BASE}/progress/${userId}/retry`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ questionId }),
+    })
+  },
+
   /** Get current userId */
   getUserId,
 }

@@ -22,7 +22,17 @@ export function saveProgress(progress: UserProgress): void {
 /* Record an answer for a question */
 export function recordAnswer(questionId: string, correct: boolean): UserProgress {
   const progress = loadProgress()
-  progress.answered[questionId] = { correct, timestamp: Date.now() }
+  const existing = progress.answered[questionId]
+  const attempts = existing ? existing.attempts + 1 : 1
+  progress.answered[questionId] = { correct, timestamp: Date.now(), attempts }
+  saveProgress(progress)
+  return progress
+}
+
+/* Remove a question's answer so it can be retried */
+export function retryQuestion(questionId: string): UserProgress {
+  const progress = loadProgress()
+  delete progress.answered[questionId]
   saveProgress(progress)
   return progress
 }

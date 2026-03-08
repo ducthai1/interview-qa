@@ -15,7 +15,7 @@ import './index.css'
 export default function App() {
   const { t } = useTranslation()
   const { theme, toggleTheme } = useTheme()
-  const { progress, answer, bookmark, reset } = useProgress()
+  const { progress, answer, bookmark, reset, retry } = useProgress()
   const [questions, setQuestions] = useState<Question[]>([])
   const [loading, setLoading] = useState(true)
 
@@ -43,8 +43,8 @@ export default function App() {
         <Header theme={theme} onToggleTheme={toggleTheme} />
         <Routes>
           <Route path="/" element={<HomePage questions={questions} progress={progress} />} />
-          <Route path="/practice" element={<PracticePage questions={questions} progress={progress} onAnswer={answer} onBookmark={bookmark} />} />
-          <Route path="/mock-interview" element={<MockInterviewPage questions={questions} progress={progress} onAnswer={answer} onBookmark={bookmark} />} />
+          <Route path="/practice" element={<PracticePage questions={questions} progress={progress} onAnswer={answer} onBookmark={bookmark} onRetry={retry} />} />
+          <Route path="/mock-interview" element={<MockInterviewPage questions={questions} progress={progress} onAnswer={answer} onBookmark={bookmark} onRetry={retry} />} />
           <Route path="/stats" element={<StatsPage questions={questions} progress={progress} onReset={reset} />} />
         </Routes>
       </div>

@@ -11,12 +11,13 @@ interface MockInterviewPageProps {
   progress: UserProgress
   onAnswer: (questionId: string, correct: boolean) => void
   onBookmark: (questionId: string) => void
+  onRetry: (questionId: string) => void
 }
 
 const QUESTION_COUNT = 20
 const TIME_LIMIT = 30 * 60 // 30 minutes
 
-export function MockInterviewPage({ questions, progress, onAnswer, onBookmark }: MockInterviewPageProps) {
+export function MockInterviewPage({ questions, progress, onAnswer, onBookmark, onRetry }: MockInterviewPageProps) {
   const { t } = useTranslation()
   const [started, setStarted] = useState(false)
   const [finished, setFinished] = useState(false)
@@ -144,6 +145,7 @@ export function MockInterviewPage({ questions, progress, onAnswer, onBookmark }:
           progress={progress}
           onAnswer={handleAnswer}
           onBookmark={onBookmark}
+          onRetry={onRetry}
         />
       )}
 

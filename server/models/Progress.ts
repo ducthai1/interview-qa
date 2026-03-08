@@ -1,9 +1,10 @@
 import mongoose, { Schema, type Document } from 'mongoose'
 
 /* Shape of a single answered question */
-interface AnsweredEntry {
+export interface AnsweredEntry {
   correct: boolean
   timestamp: number
+  attempts: number
 }
 
 /* Full progress document stored in MongoDB */
@@ -29,6 +30,7 @@ const ProgressSchema = new Schema<IProgress>(
         {
           correct: { type: Boolean, required: true },
           timestamp: { type: Number, required: true },
+          attempts: { type: Number, required: true, default: 1 },
         },
         { _id: false }
       ),

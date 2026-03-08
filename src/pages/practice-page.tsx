@@ -12,11 +12,12 @@ interface PracticePageProps {
   progress: UserProgress
   onAnswer: (questionId: string, correct: boolean) => void
   onBookmark: (questionId: string) => void
+  onRetry: (questionId: string) => void
 }
 
 const PAGE_SIZE = 10
 
-export function PracticePage({ questions, progress, onAnswer, onBookmark }: PracticePageProps) {
+export function PracticePage({ questions, progress, onAnswer, onBookmark, onRetry }: PracticePageProps) {
   const { t } = useTranslation()
   const [searchParams] = useSearchParams()
   const initialTopic = searchParams.get('topic') as Topic | null
@@ -89,7 +90,7 @@ export function PracticePage({ questions, progress, onAnswer, onBookmark }: Prac
 
       <div className="space-y-4">
         {paginated.map((q) => (
-          <QuestionCard key={q.id} question={q} progress={progress} onAnswer={onAnswer} onBookmark={onBookmark} />
+          <QuestionCard key={q.id} question={q} progress={progress} onAnswer={onAnswer} onBookmark={onBookmark} onRetry={onRetry} />
         ))}
       </div>
 
