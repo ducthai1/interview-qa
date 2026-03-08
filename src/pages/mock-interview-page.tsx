@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef, useEffect } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { Play, RotateCcw, Timer, CheckCircle2, XCircle } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { QuestionCard } from '../components/question-card'
@@ -27,15 +27,8 @@ export function MockInterviewPage({ questions, progress, onAnswer, onBookmark, o
   const [currentIdx, setCurrentIdx] = useState(0)
   const [selectedLevel, setSelectedLevel] = useState<Difficulty>('junior')
   const timer = useTimer(TIME_LIMIT)
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const LEVELS: Difficulty[] = ['junior', 'mid', 'senior', 'lead']
-
-  useEffect(() => {
-    return () => {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current)
-    }
-  }, [])
 
   const startInterview = () => {
     const picked = pickWithDifficultyMix(questions, QUESTION_COUNT, selectedLevel)
@@ -49,16 +42,7 @@ export function MockInterviewPage({ questions, progress, onAnswer, onBookmark, o
 
   const handleAnswer = (questionId: string, correct: boolean) => {
     onAnswer(questionId, correct)
-    // Auto-advance after a short delay
-    if (timeoutRef.current) clearTimeout(timeoutRef.current)
-    timeoutRef.current = setTimeout(() => {
-      if (currentIdx < mockQuestions.length - 1) {
-        setCurrentIdx((i) => i + 1)
-      } else {
-        setFinished(true)
-        timer.pause()
-      }
-    }, 1500)
+    // No auto-advance — user reads explanation then clicks Next
   }
 
   const results = useMemo(() => {
@@ -208,6 +192,7 @@ export function MockInterviewPage({ questions, progress, onAnswer, onBookmark, o
           onAnswer={handleAnswer}
           onBookmark={onBookmark}
           onRetry={onRetry}
+          hideRetry
         />
       )}
 

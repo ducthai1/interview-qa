@@ -1,6 +1,7 @@
-import { RotateCcw } from 'lucide-react'
+import { RotateCcw, Bookmark, ExternalLink } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { useMemo } from 'react'
+import { Link } from 'react-router-dom'
 import { topics } from '../data/topics'
 import type { Question, UserProgress } from '../types'
 import { ShareButton } from '../components/share-button'
@@ -179,8 +180,45 @@ export function StatsPage({ questions, progress, onReset }: StatsPageProps) {
       {/* Bookmarks */}
       {progress.bookmarked.length > 0 && (
         <div className="mt-8">
-          <h2 className="mb-2 text-lg font-semibold text-[var(--color-text)]">{t('stats.bookmarked')}</h2>
-          <p className="text-sm text-[var(--color-text-secondary)]">{t('stats.bookmarkedCount', { count: progress.bookmarked.length })}</p>
+          <div className="mb-3 flex items-center gap-2">
+            <Bookmark className="h-5 w-5 text-[var(--color-primary)]" />
+            <h2 className="text-lg font-semibold text-[var(--color-text)]">{t('stats.bookmarked')}</h2>
+            <span className="rounded-full bg-[var(--color-primary-bg)] px-2 py-0.5 text-xs font-medium text-[var(--color-primary)]">
+              {progress.bookmarked.length}
+            </span>
+          </div>
+          <div className="space-y-2">
+            {progress.bookmarked.map((qId) => {
+              const q = questions.find((x) => x.id === qId)
+              if (!q) return null
+              const answered = progress.answered[qId]
+              return (
+                <Link
+                  key={qId}
+                  to={`/practice?topic=${q.topic}`}
+                  className="flex items-center justify-between gap-3 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-card)] px-3 py-2.5 text-sm text-[var(--color-text)] no-underline transition-colors hover:border-[var(--color-primary)]"
+                >
+                  <div className="min-w-0 flex-1">
+                    <span className="line-clamp-1">{q.question}</span>
+                    <div className="mt-0.5 flex items-center gap-2 text-xs text-[var(--color-text-secondary)]">
+                      <span className="capitalize">{t(`filter.${q.difficulty}`)}</span>
+                      <span>·</span>
+                      <span>{q.topic}</span>
+                      {answered && (
+                        <>
+                          <span>·</span>
+                          <span className={answered.correct ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]'}>
+                            {answered.correct ? t('common.correct') : t('mock.wrong')}
+                          </span>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                  <ExternalLink className="h-4 w-4 shrink-0 text-[var(--color-text-secondary)]" />
+                </Link>
+              )
+            })}
+          </div>
         </div>
       )}
 

@@ -18,6 +18,8 @@ interface QuestionCardProps {
   onBookmark: (questionId: string) => void
   onRetry: (questionId: string) => void
   onFlag?: (questionId: string) => void
+  /** Hide retry button in exam modes (mock interview, challenge) */
+  hideRetry?: boolean
 }
 
 const difficultyColors: Record<string, string> = {
@@ -100,7 +102,7 @@ function SelfRateRubric({ onRate }: { onRate: (level: 'nailed' | 'partial' | 're
   )
 }
 
-export function QuestionCard({ question: rawQuestion, progress, onAnswer, onBookmark, onRetry, onFlag }: QuestionCardProps) {
+export function QuestionCard({ question: rawQuestion, progress, onAnswer, onBookmark, onRetry, onFlag, hideRetry }: QuestionCardProps) {
   const { t } = useTranslation()
   const { tq } = useQuestionTranslation()
   const question = tq(rawQuestion)
@@ -362,20 +364,22 @@ export function QuestionCard({ question: rawQuestion, progress, onAnswer, onBook
             <SelfRateRubric onRate={handleSelfRate} />
           )}
 
-          <div className="mt-3 flex items-center justify-between border-t border-[var(--color-border)] pt-3">
-            {answered && (
-              <span className="text-xs text-[var(--color-text-secondary)]">
-                {t('question.attemptCount', { count: answered.attempts || 1 })}
-              </span>
-            )}
-            <button
-              onClick={handleRetry}
-              className="inline-flex items-center gap-1.5 rounded-lg bg-[var(--color-primary)] px-3 py-1.5 text-xs font-medium text-white transition-colors hover:opacity-90"
-            >
-              <RotateCcw className="h-3.5 w-3.5" />
-              {t('question.retry')}
-            </button>
-          </div>
+          {!hideRetry && (
+            <div className="mt-3 flex items-center justify-between border-t border-[var(--color-border)] pt-3">
+              {answered && (
+                <span className="text-xs text-[var(--color-text-secondary)]">
+                  {t('question.attemptCount', { count: answered.attempts || 1 })}
+                </span>
+              )}
+              <button
+                onClick={handleRetry}
+                className="inline-flex items-center gap-1.5 rounded-lg bg-[var(--color-primary)] px-3 py-1.5 text-xs font-medium text-white transition-colors hover:opacity-90"
+              >
+                <RotateCcw className="h-3.5 w-3.5" />
+                {t('question.retry')}
+              </button>
+            </div>
+          )}
         </div>
       )}
 

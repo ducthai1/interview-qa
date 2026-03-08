@@ -401,6 +401,7 @@ export function ChallengePage({
             onAnswer={handleAnswer}
             onBookmark={onBookmark}
             onRetry={onRetry}
+            hideRetry
           />
         )}
       </div>
