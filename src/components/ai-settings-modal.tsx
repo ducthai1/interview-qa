@@ -89,7 +89,7 @@ export function AISettingsModal({ open, onClose }: AISettingsModalProps) {
             value={config.provider}
             onChange={(e) => {
               const provider = e.target.value as AIConfig['provider']
-              const dailyLimit = provider === 'gemini' ? 1500 : provider === 'none' ? 20 : 50
+              const dailyLimit = provider === 'groq' ? 14400 : provider === 'gemini' ? 1500 : provider === 'none' ? 20 : 50
               setConfig((c) => ({
                 ...c,
                 provider,
@@ -101,10 +101,18 @@ export function AISettingsModal({ open, onClose }: AISettingsModalProps) {
             className="w-full rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] px-3 py-2 text-sm text-[var(--color-text)] focus:border-[var(--color-primary)] focus:outline-none"
           >
             <option value="none">{t('ai.none')}</option>
+            <option value="groq">Groq (Llama 3.3 70B) — FREE</option>
             <option value="gemini">Gemini (Google) — FREE</option>
             <option value="openai">OpenAI (GPT-4o mini)</option>
             <option value="anthropic">Anthropic (Claude)</option>
           </select>
+          {config.provider === 'groq' && (
+            <p className="mt-1.5 text-xs text-[var(--color-success)]">
+              {i18n.language === 'vi'
+                ? 'Groq hoàn toàn miễn phí! 14,400 requests/ngày. Lấy key tại console.groq.com'
+                : 'Groq is completely free! 14,400 requests/day. Get key at console.groq.com'}
+            </p>
+          )}
           {config.provider === 'gemini' && (
             <p className="mt-1.5 text-xs text-[var(--color-success)]">
               {i18n.language === 'vi'
@@ -142,7 +150,7 @@ export function AISettingsModal({ open, onClose }: AISettingsModalProps) {
                   setConfig((c) => ({ ...c, apiKey: e.target.value }))
                   setTestStatus('idle')
                 }}
-                placeholder={`${config.provider === 'gemini' ? 'AIza...' : config.provider === 'openai' ? 'sk-...' : 'sk-ant-...'}`}
+                placeholder={`${config.provider === 'groq' ? 'gsk_...' : config.provider === 'gemini' ? 'AIza...' : config.provider === 'openai' ? 'sk-...' : 'sk-ant-...'}`}
                 className="w-full rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] py-2 pl-3 pr-10 font-mono text-sm text-[var(--color-text)] focus:border-[var(--color-primary)] focus:outline-none"
               />
               <button
@@ -158,6 +166,16 @@ export function AISettingsModal({ open, onClose }: AISettingsModalProps) {
               <AlertCircle className="h-3.5 w-3.5 shrink-0 text-amber-500" />
               {t('ai.apiKeyHint')}
             </p>
+            {config.provider === 'groq' && (
+              <a
+                href="https://console.groq.com/keys"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-1 inline-block text-xs font-medium text-[var(--color-primary)] hover:underline"
+              >
+                {i18n.language === 'vi' ? '→ Lấy API key miễn phí tại Groq Console' : '→ Get free API key at Groq Console'}
+              </a>
+            )}
             {config.provider === 'gemini' && (
               <a
                 href="https://aistudio.google.com/apikey"

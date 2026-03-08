@@ -98,6 +98,31 @@ async function callOpenAI(prompt: string, apiKey: string): Promise<AIFeedbackRes
   return parseAIResponse(text)
 }
 
+async function callGroq(prompt: string, apiKey: string): Promise<AIFeedbackResult> {
+  const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${apiKey}`,
+    },
+    body: JSON.stringify({
+      model: 'llama-3.3-70b-versatile',
+      messages: [{ role: 'user', content: prompt }],
+      temperature: 0.3,
+      max_tokens: 1024,
+    }),
+  })
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({})) as { error?: { message?: string } }
+    throw new Error(err?.error?.message ?? `Groq error ${res.status}`)
+  }
+  const data = await res.json() as {
+    choices?: Array<{ message?: { content?: string } }>
+  }
+  const text = data.choices?.[0]?.message?.content ?? ''
+  return parseAIResponse(text)
+}
+
 async function callAnthropic(prompt: string, apiKey: string): Promise<AIFeedbackResult> {
   // Anthropic direct browser calls hit CORS — route through backend proxy
   const res = await fetch('/api/ai-proxy', {
@@ -135,7 +160,9 @@ export async function getAIFeedback(
   const prompt = buildPrompt(question, userAnswer)
 
   let result: AIFeedbackResult
-  if (cfg.provider === 'gemini') {
+  if (cfg.provider === 'groq') {
+    result = await callGroq(prompt, cfg.apiKey)
+  } else if (cfg.provider === 'gemini') {
     result = await callGemini(prompt, cfg.apiKey)
   } else if (cfg.provider === 'openai') {
     result = await callOpenAI(prompt, cfg.apiKey)
@@ -155,7 +182,9 @@ export async function getAIFeedback(
 export async function testAIConnection(config: AIConfig): Promise<void> {
   const testPrompt = 'Reply with only valid JSON: {"score":7,"feedback":"test","suggestions":[]}'
 
-  if (config.provider === 'gemini') {
+  if (config.provider === 'groq') {
+    await callGroq(testPrompt, config.apiKey)
+  } else if (config.provider === 'gemini') {
     await callGemini(testPrompt, config.apiKey)
   } else if (config.provider === 'openai') {
     await callOpenAI(testPrompt, config.apiKey)

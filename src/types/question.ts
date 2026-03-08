@@ -99,7 +99,7 @@ export interface UserProgress {
 
 /* AI provider configuration (stored in localStorage separately) */
 export interface AIConfig {
-  provider: 'gemini' | 'openai' | 'anthropic' | 'none'
+  provider: 'groq' | 'gemini' | 'openai' | 'anthropic' | 'none'
   apiKey: string
   dailyUsage: number
   dailyLimit: number
