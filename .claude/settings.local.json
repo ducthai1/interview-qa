@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm:*)",
+      "Bash(npx:*)",
+      "Bash(cp:*)",
+      "Bash(ls:*)",
+      "Bash(wc:*)",
+      "Bash(curl:*)",
+      "Bash(pkill:*)",
+      "Bash(git add -A)",
+      "Bash(awk 'END {print \"\"FILES:\"\"NR}')",
+      "Bash(git init)",
+      "Bash(git config user.email \"claude@anthropic.com\")",
+      "Bash(git config user.name \"Claude\")",
+      "Bash(grep:*)"
+    ]
+  }
+}
