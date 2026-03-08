@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 interface DebugInteractionProps {
   originalCode: string
   revealed: boolean
-  onSubmit: () => void
+  onSubmit: (userCode?: string) => void
   onReveal: () => void
 }
 
@@ -17,7 +17,7 @@ export function DebugInteraction({ originalCode, revealed, onSubmit, onReveal }:
 
   const handleSubmit = () => {
     setSubmitted(true)
-    onSubmit()
+    onSubmit(userCode)
   }
 
   if (revealed && !submitted) return null

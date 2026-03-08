@@ -1,6 +1,5 @@
-import type { AIConfig } from '../types/question'
-import type { Question } from '../types/question'
-import { resetUsageIfNeeded, incrementUsage, saveAIConfig } from './ai-config'
+import type { AIConfig, Question } from '../types/question'
+import { resetUsageIfNeeded, incrementUsage } from './ai-config'
 
 export interface AIFeedbackResult {
   score: number        // 1-10
@@ -146,9 +145,8 @@ export async function getAIFeedback(
     throw new Error('Unknown provider')
   }
 
-  // Increment usage and persist
+  // Increment usage (also persists to localStorage)
   cfg = incrementUsage(cfg)
-  saveAIConfig(cfg)
 
   return { result, updatedConfig: cfg }
 }

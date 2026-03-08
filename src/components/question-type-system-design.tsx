@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 
 interface SystemDesignInteractionProps {
   revealed: boolean
-  onSubmit: () => void
+  onSubmit: (userAnswer?: string) => void
   onReveal: () => void
 }
 
@@ -16,7 +16,7 @@ export function SystemDesignInteraction({ revealed, onSubmit, onReveal }: System
 
   const handleSubmit = () => {
     setSubmitted(true)
-    onSubmit()
+    onSubmit(userAnswer)
   }
 
   if (revealed && !submitted) return null

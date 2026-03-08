@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import { Zap, Target, Flame, Trophy, RotateCcw, ChevronLeft } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { QuestionCard } from '../components/question-card'
+import { ShareButton } from '../components/share-button'
 import { pickRandomQuestions, filterQuestions } from '../utils/question-filters'
 import { CHALLENGE_PRESETS, calculateScore, isNewBest } from '../utils/challenge-scoring'
 import type { ChallengePreset } from '../utils/challenge-scoring'
@@ -303,7 +304,7 @@ export function ChallengePage({
           </div>
         </div>
 
-        <div className="flex justify-center gap-3">
+        <div className="flex flex-wrap justify-center gap-3">
           <button
             onClick={() => handleRetry(session.preset)}
             className="inline-flex items-center gap-2 rounded-lg bg-[var(--color-primary)] px-6 py-2.5 font-medium text-white transition-colors hover:bg-[var(--color-primary-hover)]"
@@ -311,6 +312,27 @@ export function ChallengePage({
             <RotateCcw className="h-4 w-4" />
             {t('challenge.tryAgain')}
           </button>
+          <ShareButton
+            cardProps={{
+              score: finalScore,
+              accuracy: accuracyPct,
+              totalAnswered: answered,
+              correctCount: correct,
+              topicBreakdown: session.questions.reduce<{ topic: string; correct: number; total: number }[]>((acc, q) => {
+                const existing = acc.find((e) => e.topic === q.topic)
+                const isCorrect = session.answers[q.id] === true
+                if (existing) {
+                  existing.total += 1
+                  if (isCorrect) existing.correct += 1
+                } else {
+                  acc.push({ topic: q.topic, correct: isCorrect ? 1 : 0, total: 1 })
+                }
+                return acc
+              }, []),
+              mode: 'challenge',
+              date: new Date().toLocaleDateString(),
+            }}
+          />
           <button
             onClick={() => setState('select')}
             className="inline-flex items-center gap-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-secondary)] px-6 py-2.5 font-medium text-[var(--color-text)] transition-colors hover:bg-[var(--color-border)]"

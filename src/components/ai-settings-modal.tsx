@@ -11,7 +11,7 @@ interface AISettingsModalProps {
 }
 
 export function AISettingsModal({ open, onClose }: AISettingsModalProps) {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const [config, setConfig] = useState<AIConfig>(getDefaultConfig)
   const [showKey, setShowKey] = useState(false)
   const [testing, setTesting] = useState(false)
@@ -189,7 +189,7 @@ export function AISettingsModal({ open, onClose }: AISettingsModalProps) {
               onClick={onClose}
               className="rounded-lg border border-[var(--color-border)] px-4 py-2 text-sm font-medium text-[var(--color-text-secondary)] transition-colors hover:bg-[var(--color-bg-secondary)]"
             >
-              {t('common.tryAgain').includes('Thử') ? 'Hủy' : 'Cancel'}
+              {i18n.language === 'vi' ? 'Hủy' : 'Cancel'}
             </button>
             <button
               onClick={handleSave}

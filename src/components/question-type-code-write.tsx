@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 
 interface CodeWriteInteractionProps {
   revealed: boolean
-  onSubmit: () => void
+  onSubmit: (userCode?: string) => void
   onReveal: () => void
 }
 
@@ -16,7 +16,7 @@ export function CodeWriteInteraction({ revealed, onSubmit, onReveal }: CodeWrite
 
   const handleSubmit = () => {
     setSubmitted(true)
-    onSubmit()
+    onSubmit(userCode)
   }
 
   if (revealed && !submitted) return null

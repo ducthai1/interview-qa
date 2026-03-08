@@ -8,6 +8,8 @@ import { CodeOutputInteraction } from './question-type-code-output'
 import { DebugInteraction } from './question-type-debug'
 import { CodeWriteInteraction } from './question-type-code-write'
 import { SystemDesignInteraction } from './question-type-system-design'
+import { AIFeedbackButton } from './ai-feedback-button'
+import { AISettingsModal } from './ai-settings-modal'
 
 interface QuestionCardProps {
   question: Question
@@ -32,6 +34,8 @@ export function QuestionCard({ question: rawQuestion, progress, onAnswer, onBook
   const [tfAnswer, setTfAnswer] = useState<boolean | null>(null)
   const [showAnswer, setShowAnswer] = useState(false)
   const [pendingSelfRate, setPendingSelfRate] = useState(false)
+  const [userAnswerForAI, setUserAnswerForAI] = useState('')
+  const [aiSettingsOpen, setAiSettingsOpen] = useState(false)
 
   const answered = progress.answered[question.id]
   const isBookmarked = progress.bookmarked.includes(question.id)
@@ -78,6 +82,7 @@ export function QuestionCard({ question: rawQuestion, progress, onAnswer, onBook
     setTfAnswer(null)
     setShowAnswer(false)
     setPendingSelfRate(false)
+    setUserAnswerForAI('')
   }
 
   return (
@@ -137,7 +142,7 @@ export function QuestionCard({ question: rawQuestion, progress, onAnswer, onBook
         <DebugInteraction
           originalCode={question.code || ''}
           revealed={isRevealed}
-          onSubmit={() => { setPendingSelfRate(true); setShowAnswer(true) }}
+          onSubmit={(code) => { if (code !== undefined) setUserAnswerForAI(code); setPendingSelfRate(true); setShowAnswer(true) }}
           onReveal={handleReveal}
         />
       )}
@@ -146,7 +151,7 @@ export function QuestionCard({ question: rawQuestion, progress, onAnswer, onBook
       {question.type === 'code-write' && !isRevealed && (
         <CodeWriteInteraction
           revealed={isRevealed}
-          onSubmit={() => { setPendingSelfRate(true); setShowAnswer(true) }}
+          onSubmit={(code) => { if (code !== undefined) setUserAnswerForAI(code); setPendingSelfRate(true); setShowAnswer(true) }}
           onReveal={handleReveal}
         />
       )}
@@ -155,7 +160,7 @@ export function QuestionCard({ question: rawQuestion, progress, onAnswer, onBook
       {question.type === 'system-design' && !isRevealed && (
         <SystemDesignInteraction
           revealed={isRevealed}
-          onSubmit={() => { setPendingSelfRate(true); setShowAnswer(true) }}
+          onSubmit={(text) => { if (text !== undefined) setUserAnswerForAI(text); setPendingSelfRate(true); setShowAnswer(true) }}
           onReveal={handleReveal}
         />
       )}
@@ -209,6 +214,16 @@ export function QuestionCard({ question: rawQuestion, progress, onAnswer, onBook
               ))}
             </div>
           )}
+          {/* AI Feedback — shown for code-write, debug, system-design after submission */}
+          {isSelfRateType && isRevealed && (
+            <AIFeedbackButton
+              question={rawQuestion}
+              userAnswer={userAnswerForAI}
+              visible={true}
+              onOpenSettings={() => setAiSettingsOpen(true)}
+            />
+          )}
+
           {/* Self-rate prompt for open-ended types (debug, code-write, system-design) */}
           {pendingSelfRate && !answered && (
             <div className="mt-3 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] p-3">
@@ -247,6 +262,8 @@ export function QuestionCard({ question: rawQuestion, progress, onAnswer, onBook
           </div>
         </div>
       )}
+
+      <AISettingsModal open={aiSettingsOpen} onClose={() => setAiSettingsOpen(false)} />
     </div>
   )
 }
