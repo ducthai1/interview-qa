@@ -6,6 +6,9 @@ import {
   resetProgress as localResetProgress,
   retryQuestion as localRetryQuestion,
   saveProgress,
+  updateReview,
+  trackDailyActivity,
+  saveChallengeResult,
 } from '../utils/local-storage'
 import { progressApi } from '../utils/progress-api'
 import type { UserProgress } from '../types'
@@ -70,9 +73,11 @@ export function useProgress() {
    * then sync to MongoDB in background.
    * ────────────────────────────────────────── */
   const answer = useCallback((questionId: string, correct: boolean) => {
-    // Local first (instant feedback)
-    const updated = localRecordAnswer(questionId, correct)
-    setProgress({ ...updated })
+    // Local first (instant feedback) — record answer, then update review + daily activity
+    localRecordAnswer(questionId, correct)
+    trackDailyActivity()
+    const withReview = updateReview(questionId, correct)
+    setProgress({ ...withReview })
 
     // MongoDB sync (fire-and-forget)
     progressApi.recordAnswer(questionId, correct).catch((err) => {
@@ -116,5 +121,16 @@ export function useProgress() {
     })
   }, [])
 
-  return { progress, answer, bookmark, reset, retry, syncing, syncError }
+  /* ──────────────────────────────────────────
+   * Save challenge result to localStorage.
+   * ────────────────────────────────────────── */
+  const saveChallenge = useCallback(
+    (presetId: string, result: { score: number; accuracy: number; date: number }) => {
+      const updated = saveChallengeResult(presetId, result)
+      setProgress({ ...updated })
+    },
+    [],
+  )
+
+  return { progress, answer, bookmark, reset, retry, saveChallenge, syncing, syncError }
 }

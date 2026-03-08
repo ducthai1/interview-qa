@@ -1,4 +1,5 @@
 import type { UserProgress } from '../types'
+import { getNextReview } from './spaced-repetition'
 
 const STORAGE_KEY = 'fe-interview-hub-progress'
 const THEME_KEY = 'fe-interview-hub-theme'
@@ -45,6 +46,41 @@ export function toggleBookmark(questionId: string): UserProgress {
     progress.bookmarked.splice(idx, 1)
   } else {
     progress.bookmarked.push(questionId)
+  }
+  saveProgress(progress)
+  return progress
+}
+
+/* Update spaced repetition review entry for a question */
+export function updateReview(questionId: string, correct: boolean): UserProgress {
+  const progress = loadProgress()
+  const existing = progress.reviews?.[questionId]
+  const currentBox = existing?.box ?? 1
+  const entry = getNextReview(currentBox, correct)
+  progress.reviews = { ...(progress.reviews ?? {}), [questionId]: entry }
+  saveProgress(progress)
+  return progress
+}
+
+/* Increment today's answer count in dailyActivity */
+export function trackDailyActivity(): UserProgress {
+  const progress = loadProgress()
+  const today = new Date().toISOString().slice(0, 10) // 'YYYY-MM-DD'
+  const existing = progress.dailyActivity ?? {}
+  progress.dailyActivity = { ...existing, [today]: (existing[today] ?? 0) + 1 }
+  saveProgress(progress)
+  return progress
+}
+
+/* Save challenge result and update personal best */
+export function saveChallengeResult(
+  presetId: string,
+  result: { score: number; accuracy: number; date: number },
+): UserProgress {
+  const progress = loadProgress()
+  const currentBest = progress.challengeBests?.[presetId]
+  if (!currentBest || result.score > currentBest.score) {
+    progress.challengeBests = { ...(progress.challengeBests ?? {}), [presetId]: result }
   }
   saveProgress(progress)
   return progress

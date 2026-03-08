@@ -5,4 +5,9 @@ export type {
   Topic,
   TopicInfo,
   UserProgress,
+  ReviewEntry,
+  ChallengeBest,
+  AIConfig,
+  LearningPath,
+  LearningPathStep,
 } from './question'

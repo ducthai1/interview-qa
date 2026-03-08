@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react'
 import { Play, RotateCcw, Timer, CheckCircle2, XCircle } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { QuestionCard } from '../components/question-card'
+import { ShareButton } from '../components/share-button'
 import { pickRandomQuestions } from '../utils/question-filters'
 import { useTimer } from '../hooks/use-timer'
 import type { Question, UserProgress } from '../types'
@@ -82,6 +83,18 @@ export function MockInterviewPage({ questions, progress, onAnswer, onBookmark, o
   // Finished - show results
   if (finished && results) {
     const pct = results.answered > 0 ? Math.round((results.correct / results.answered) * 100) : 0
+
+    // Build per-topic breakdown from mockQuestions
+    const topicBreakdown = Array.from(
+      mockQuestions.reduce((acc, q) => {
+        const entry = acc.get(q.topic) ?? { topic: q.topic, correct: 0, total: 0 }
+        entry.total += 1
+        if (progress.answered[q.id]?.correct) entry.correct += 1
+        acc.set(q.topic, entry)
+        return acc
+      }, new Map<string, { topic: string; correct: number; total: number }>()),
+    ).map(([, v]) => v)
+
     return (
       <div className="mx-auto max-w-2xl px-4 py-16 text-center">
         <h1 className="mb-6 text-3xl font-bold text-[var(--color-text)]">{t('mock.complete')}</h1>
@@ -108,12 +121,24 @@ export function MockInterviewPage({ questions, progress, onAnswer, onBookmark, o
         <p className="mb-6 text-lg text-[var(--color-text)]">
           {t('common.accuracy')}: <span className="font-bold text-[var(--color-primary)]">{pct}%</span>
         </p>
-        <button
-          onClick={startInterview}
-          className="inline-flex items-center gap-2 rounded-lg bg-[var(--color-primary)] px-6 py-2.5 font-medium text-white transition-colors hover:bg-[var(--color-primary-hover)]"
-        >
-          <RotateCcw className="h-4 w-4" /> {t('common.tryAgain')}
-        </button>
+        <div className="flex items-center justify-center gap-3">
+          <button
+            onClick={startInterview}
+            className="inline-flex items-center gap-2 rounded-lg bg-[var(--color-primary)] px-6 py-2.5 font-medium text-white transition-colors hover:bg-[var(--color-primary-hover)]"
+          >
+            <RotateCcw className="h-4 w-4" /> {t('common.tryAgain')}
+          </button>
+          <ShareButton
+            cardProps={{
+              accuracy: pct,
+              totalAnswered: results.answered,
+              correctCount: results.correct,
+              topicBreakdown,
+              mode: 'mock',
+              date: new Date().toLocaleDateString(),
+            }}
+          />
+        </div>
       </div>
     )
   }

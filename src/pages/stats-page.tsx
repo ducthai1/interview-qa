@@ -1,7 +1,19 @@
 import { RotateCcw } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
+import { useMemo } from 'react'
 import { topics } from '../data/topics'
 import type { Question, UserProgress } from '../types'
+import { ShareButton } from '../components/share-button'
+import { TopicRadarChart } from '../components/charts/radar-chart'
+import { AccuracyTrendChart } from '../components/charts/accuracy-trend-chart'
+import { ActivityHeatmap } from '../components/charts/activity-heatmap'
+import { WeakAreas } from '../components/weak-areas'
+import {
+  getTopicAccuracy,
+  getDailyTrend,
+  getActivityData,
+  getWeakTopics,
+} from '../utils/analytics'
 
 interface StatsPageProps {
   questions: Question[]
@@ -15,9 +27,59 @@ export function StatsPage({ questions, progress, onReset }: StatsPageProps) {
   const totalCorrect = Object.values(progress.answered).filter((a) => a.correct).length
   const accuracy = totalAnswered > 0 ? Math.round((totalCorrect / totalAnswered) * 100) : 0
 
+  const hasData = totalAnswered > 0
+
+  const topicAccuracy = useMemo(
+    () => getTopicAccuracy(progress.answered, questions),
+    [progress.answered, questions],
+  )
+
+  const trendData = useMemo(
+    () => getDailyTrend(progress.answered, 30),
+    [progress.answered],
+  )
+
+  const heatCells = useMemo(
+    () => getActivityData(progress.answered, progress.dailyActivity, 105),
+    [progress.answered, progress.dailyActivity],
+  )
+
+  const weakTopics = useMemo(
+    () => getWeakTopics(progress.answered, questions, 3),
+    [progress.answered, questions],
+  )
+
+  // Build topic breakdown for share card from answered questions
+  const shareTopicBreakdown = useMemo(() => {
+    const map = new Map<string, { topic: string; correct: number; total: number }>()
+    for (const q of questions) {
+      const ans = progress.answered[q.id]
+      if (!ans) continue
+      const entry = map.get(q.topic) ?? { topic: q.topic, correct: 0, total: 0 }
+      entry.total += 1
+      if (ans.correct) entry.correct += 1
+      map.set(q.topic, entry)
+    }
+    return Array.from(map.values()).sort((a, b) => b.total - a.total)
+  }, [questions, progress.answered])
+
   return (
     <div className="mx-auto max-w-4xl px-4 py-8">
-      <h1 className="mb-6 text-2xl font-bold text-[var(--color-text)]">{t('stats.title')}</h1>
+      <div className="mb-6 flex items-center justify-between">
+        <h1 className="text-2xl font-bold text-[var(--color-text)]">{t('stats.title')}</h1>
+        {totalAnswered > 0 && (
+          <ShareButton
+            cardProps={{
+              accuracy,
+              totalAnswered,
+              correctCount: totalCorrect,
+              topicBreakdown: shareTopicBreakdown,
+              mode: 'stats',
+              date: new Date().toLocaleDateString(),
+            }}
+          />
+        )}
+      </div>
 
       {/* Overall stats */}
       <div className="mb-8 grid grid-cols-2 gap-4 md:grid-cols-4">
@@ -26,6 +88,61 @@ export function StatsPage({ questions, progress, onReset }: StatsPageProps) {
         <StatBox label={t('common.correct')} value={totalCorrect} color="var(--color-success)" />
         <StatBox label={t('common.accuracy')} value={`${accuracy}%`} color="var(--color-primary)" />
       </div>
+
+      {/* Weak Areas */}
+      {hasData && weakTopics.length > 0 && (
+        <section className="mb-8">
+          <h2 className="mb-4 text-lg font-semibold text-[var(--color-text)]">
+            {t('stats.weakAreas')}
+          </h2>
+          <WeakAreas
+            weakTopics={weakTopics}
+            labels={{
+              practiceNow: t('stats.practiceNow'),
+              needsWork: t('stats.needsWork'),
+              improving: t('stats.improving'),
+              noData: t('stats.noData'),
+            }}
+          />
+        </section>
+      )}
+
+      {/* Charts: Radar + Trend */}
+      <div className="mb-8 grid grid-cols-1 gap-6 md:grid-cols-2">
+        <section className="rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-card)] p-4">
+          <h2 className="mb-3 text-sm font-semibold text-[var(--color-text)]">
+            {t('stats.radarTitle')}
+          </h2>
+          <TopicRadarChart
+            data={topicAccuracy}
+            noDataLabel={t('stats.noData')}
+          />
+        </section>
+
+        <section className="rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-card)] p-4">
+          <h2 className="mb-3 text-sm font-semibold text-[var(--color-text)]">
+            {t('stats.trendTitle')}
+          </h2>
+          <AccuracyTrendChart
+            data={trendData}
+            noDataLabel={t('stats.noData')}
+          />
+        </section>
+      </div>
+
+      {/* Activity Heatmap */}
+      <section className="mb-8 rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-card)] p-4">
+        <h2 className="mb-3 text-sm font-semibold text-[var(--color-text)]">
+          {t('stats.heatmapTitle')}
+        </h2>
+        <ActivityHeatmap
+          cells={heatCells}
+          answersOnDayLabel={(count, date) =>
+            t('stats.answersOnDay', { count, date })
+          }
+          activeDaysLabel={(count) => t('stats.activeDays', { count })}
+        />
+      </section>
 
       {/* Per-topic breakdown */}
       <h2 className="mb-4 text-lg font-semibold text-[var(--color-text)]">{t('stats.byTopic')}</h2>

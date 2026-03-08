@@ -6,8 +6,12 @@ import { HomePage } from './pages/home-page'
 import { PracticePage } from './pages/practice-page'
 import { MockInterviewPage } from './pages/mock-interview-page'
 import { StatsPage } from './pages/stats-page'
+import { LearningPathPage } from './pages/learning-path-page'
+import { ReviewPage } from './pages/review-page'
+import { ChallengePage } from './pages/challenge-page'
 import { useTheme } from './hooks/use-theme'
 import { useProgress } from './hooks/use-progress'
+import { useSpacedRepetition } from './hooks/use-spaced-repetition'
 import { getAllQuestions } from './data'
 import type { Question } from './types'
 import './index.css'
@@ -15,9 +19,11 @@ import './index.css'
 export default function App() {
   const { t } = useTranslation()
   const { theme, toggleTheme } = useTheme()
-  const { progress, answer, bookmark, reset, retry } = useProgress()
+  const { progress, answer, bookmark, reset, retry, saveChallenge } = useProgress()
   const [questions, setQuestions] = useState<Question[]>([])
   const [loading, setLoading] = useState(true)
+
+  const { dueCount } = useSpacedRepetition(progress, questions)
 
   useEffect(() => {
     getAllQuestions().then((qs) => {
@@ -40,12 +46,15 @@ export default function App() {
   return (
     <BrowserRouter>
       <div className="min-h-screen bg-[var(--color-bg)]">
-        <Header theme={theme} onToggleTheme={toggleTheme} />
+        <Header theme={theme} onToggleTheme={toggleTheme} reviewDueCount={dueCount} />
         <Routes>
           <Route path="/" element={<HomePage questions={questions} progress={progress} />} />
           <Route path="/practice" element={<PracticePage questions={questions} progress={progress} onAnswer={answer} onBookmark={bookmark} onRetry={retry} />} />
+          <Route path="/review" element={<ReviewPage questions={questions} progress={progress} onAnswer={answer} onBookmark={bookmark} onRetry={retry} />} />
           <Route path="/mock-interview" element={<MockInterviewPage questions={questions} progress={progress} onAnswer={answer} onBookmark={bookmark} onRetry={retry} />} />
           <Route path="/stats" element={<StatsPage questions={questions} progress={progress} onReset={reset} />} />
+          <Route path="/challenge" element={<ChallengePage questions={questions} progress={progress} onAnswer={answer} onBookmark={bookmark} onRetry={retry} onSaveChallenge={saveChallenge} />} />
+          <Route path="/learning-path" element={<LearningPathPage questions={questions} progress={progress} />} />
         </Routes>
       </div>
     </BrowserRouter>
