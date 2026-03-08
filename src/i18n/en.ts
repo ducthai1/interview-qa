@@ -261,6 +261,13 @@ export const en = {
     statsResult: 'My Progress',
   },
 
+  /* ─── Bookmarks Page ───────────────────────────────────────────────────────── */
+  bookmarks: {
+    empty: 'No bookmarked questions yet. Bookmark questions during practice!',
+    goToPractice: 'Go to Practice',
+    showing: '{{start}}–{{end}} of {{total}} bookmarked',
+  },
+
   /* ─── Related Questions ─────────────────────────────────────────────────────── */
   related: {
     title: 'Related Questions',

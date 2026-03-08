@@ -261,6 +261,13 @@ export const vi = {
     statsResult: 'Tiến trình của tôi',
   },
 
+  /* ─── Bookmarks Page ───────────────────────────────────────────────────────── */
+  bookmarks: {
+    empty: 'Chưa có câu hỏi nào được đánh dấu. Hãy đánh dấu khi luyện tập!',
+    goToPractice: 'Đi luyện tập',
+    showing: '{{start}}–{{end}} / {{total}} đã đánh dấu',
+  },
+
   /* ─── Related Questions ─────────────────────────────────────────────────────── */
   related: {
     title: 'Câu hỏi liên quan',
