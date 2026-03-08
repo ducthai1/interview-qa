@@ -4,9 +4,9 @@ import { useTranslation } from 'react-i18next'
 import { QuestionCard } from '../components/question-card'
 import { ShareButton } from '../components/share-button'
 import { NextStepsSection } from '../components/next-steps-section'
-import { pickRandomQuestions } from '../utils/question-filters'
+import { pickWithDifficultyMix } from '../utils/question-filters'
 import { useTimer } from '../hooks/use-timer'
-import type { Question, UserProgress } from '../types'
+import type { Question, Difficulty, UserProgress } from '../types'
 
 interface MockInterviewPageProps {
   questions: Question[]
@@ -25,8 +25,11 @@ export function MockInterviewPage({ questions, progress, onAnswer, onBookmark, o
   const [finished, setFinished] = useState(false)
   const [mockQuestions, setMockQuestions] = useState<Question[]>([])
   const [currentIdx, setCurrentIdx] = useState(0)
+  const [selectedLevel, setSelectedLevel] = useState<Difficulty>('junior')
   const timer = useTimer(TIME_LIMIT)
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  const LEVELS: Difficulty[] = ['junior', 'mid', 'senior', 'lead']
 
   useEffect(() => {
     return () => {
@@ -35,7 +38,7 @@ export function MockInterviewPage({ questions, progress, onAnswer, onBookmark, o
   }, [])
 
   const startInterview = () => {
-    const picked = pickRandomQuestions(questions, QUESTION_COUNT)
+    const picked = pickWithDifficultyMix(questions, QUESTION_COUNT, selectedLevel)
     setMockQuestions(picked)
     setCurrentIdx(0)
     setStarted(true)
@@ -78,9 +81,31 @@ export function MockInterviewPage({ questions, progress, onAnswer, onBookmark, o
       <div className="mx-auto max-w-2xl px-4 py-16 text-center">
         <Timer className="mx-auto mb-4 h-16 w-16 text-[var(--color-primary)]" />
         <h1 className="mb-2 text-3xl font-bold text-[var(--color-text)]">{t('mock.title')}</h1>
-        <p className="mb-6 text-[var(--color-text-secondary)]">
+        <p className="mb-8 text-[var(--color-text-secondary)]">
           {t('mock.description', { count: QUESTION_COUNT, minutes: TIME_LIMIT / 60 })}
         </p>
+
+        {/* Difficulty selector */}
+        <div className="mx-auto mb-8 max-w-sm">
+          <p className="mb-2 text-sm font-medium text-[var(--color-text)]">{t('mock.selectLevel')}</p>
+          <div className="grid grid-cols-4 gap-2">
+            {LEVELS.map((lvl) => (
+              <button
+                key={lvl}
+                onClick={() => setSelectedLevel(lvl)}
+                className={`rounded-lg border px-3 py-2 text-sm font-medium capitalize transition-colors ${
+                  selectedLevel === lvl
+                    ? 'border-[var(--color-primary)] bg-[var(--color-primary)] text-white'
+                    : 'border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-primary)]'
+                }`}
+              >
+                {t(`filter.${lvl}`)}
+              </button>
+            ))}
+          </div>
+          <p className="mt-2 text-xs text-[var(--color-text-secondary)]">{t('mock.selectLevelHint')}</p>
+        </div>
+
         <button
           onClick={startInterview}
           className="inline-flex items-center gap-2 rounded-lg bg-[var(--color-primary)] px-8 py-3 text-base font-semibold text-white transition-colors hover:bg-[var(--color-primary-hover)]"

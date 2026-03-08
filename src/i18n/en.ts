@@ -58,6 +58,11 @@ export const en = {
     newBest: 'New Personal Best!',
     tryAgain: 'Try Again',
     backToMenu: 'Back to Menu',
+    selectLevel: 'Your Level',
+    selectLevelHint: 'We\'ll add a few harder questions to test your potential',
+    questionOf: 'Question {{current}}/{{total}}',
+    finishEarly: 'Finish early',
+    timeUsed: 'Time used',
   },
 
   /* ─── Review Page ──────────────────────────────────────────────────────────── */
@@ -134,6 +139,8 @@ export const en = {
     complete: 'Interview Complete!',
     wrong: 'Wrong',
     questionProgress: 'Question {{current}} / {{total}}',
+    selectLevel: 'Your Level',
+    selectLevelHint: 'We\'ll add a few harder questions to test your potential',
   },
 
   /* ─── Stats Page ───────────────────────────────────────────────────────────── */

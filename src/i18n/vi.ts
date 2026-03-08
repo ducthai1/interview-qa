@@ -58,6 +58,11 @@ export const vi = {
     newBest: 'Kỷ lục mới!',
     tryAgain: 'Thử lại',
     backToMenu: 'Quay lại',
+    selectLevel: 'Trình độ của bạn',
+    selectLevelHint: 'Chúng tôi sẽ thêm vài câu khó hơn để đánh giá tiềm năng',
+    questionOf: 'Câu {{current}}/{{total}}',
+    finishEarly: 'Kết thúc sớm',
+    timeUsed: 'Thời gian',
   },
 
   /* ─── Review Page ──────────────────────────────────────────────────────────── */
@@ -134,6 +139,8 @@ export const vi = {
     complete: 'Phỏng vấn hoàn tất!',
     wrong: 'Sai',
     questionProgress: 'Câu {{current}} / {{total}}',
+    selectLevel: 'Trình độ của bạn',
+    selectLevelHint: 'Chúng tôi sẽ thêm vài câu khó hơn để đánh giá tiềm năng',
   },
 
   /* ─── Stats Page ───────────────────────────────────────────────────────────── */

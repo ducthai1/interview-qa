@@ -4,10 +4,10 @@ import { useTranslation } from 'react-i18next'
 import { QuestionCard } from '../components/question-card'
 import { ShareButton } from '../components/share-button'
 import { NextStepsSection } from '../components/next-steps-section'
-import { pickRandomQuestions, filterQuestions } from '../utils/question-filters'
+import { pickWithDifficultyMix } from '../utils/question-filters'
 import { CHALLENGE_PRESETS, calculateScore, isNewBest } from '../utils/challenge-scoring'
 import type { ChallengePreset } from '../utils/challenge-scoring'
-import type { Question, UserProgress, ChallengeBest } from '../types'
+import type { Question, Difficulty, UserProgress, ChallengeBest } from '../types'
 
 interface ChallengePageProps {
   questions: Question[]
@@ -84,6 +84,7 @@ export function ChallengePage({
   onSaveChallenge,
 }: ChallengePageProps) {
   const { t } = useTranslation()
+  const LEVELS: Difficulty[] = ['junior', 'mid', 'senior', 'lead']
   const [state, setState] = useState<PageState>('select')
   const [session, setSession] = useState<ChallengeSession | null>(null)
   const [currentIdx, setCurrentIdx] = useState(0)
@@ -91,6 +92,7 @@ export function ChallengePage({
   const [newBest, setNewBest] = useState(false)
   const [finalScore, setFinalScore] = useState(0)
   const [savedResult, setSavedResult] = useState<ChallengeBest | null>(null)
+  const [selectedLevel, setSelectedLevel] = useState<Difficulty>('junior')
 
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -162,17 +164,7 @@ export function ChallengePage({
   }, [state])
 
   function startChallenge(preset: ChallengePreset) {
-    const filtered = preset.difficulties.length
-      ? filterQuestions(questions, {
-          topics: [],
-          difficulties: preset.difficulties as ('junior' | 'mid' | 'senior' | 'lead')[],
-          types: [],
-          search: '',
-        })
-      : questions
-
-    const pool = filtered.length >= preset.questions ? filtered : questions
-    const picked = pickRandomQuestions(pool, preset.questions)
+    const picked = pickWithDifficultyMix(questions, preset.questions, selectedLevel)
     const totalSeconds = preset.timeMinutes * 60
 
     const newSession: ChallengeSession = {
@@ -226,6 +218,27 @@ export function ChallengePage({
           <Trophy className="mx-auto mb-3 h-12 w-12 text-[var(--color-primary)]" />
           <h1 className="mb-2 text-3xl font-bold text-[var(--color-text)]">{t('challenge.title')}</h1>
           <p className="text-[var(--color-text-secondary)]">{t('challenge.subtitle')}</p>
+        </div>
+
+        {/* Difficulty selector */}
+        <div className="mx-auto mb-8 max-w-md">
+          <p className="mb-2 text-center text-sm font-medium text-[var(--color-text)]">{t('challenge.selectLevel')}</p>
+          <div className="grid grid-cols-4 gap-2">
+            {LEVELS.map((lvl) => (
+              <button
+                key={lvl}
+                onClick={() => setSelectedLevel(lvl)}
+                className={`rounded-lg border px-3 py-2 text-sm font-medium capitalize transition-colors ${
+                  selectedLevel === lvl
+                    ? 'border-[var(--color-primary)] bg-[var(--color-primary)] text-white'
+                    : 'border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-primary)]'
+                }`}
+              >
+                {t(`filter.${lvl}`)}
+              </button>
+            ))}
+          </div>
+          <p className="mt-2 text-center text-xs text-[var(--color-text-secondary)]">{t('challenge.selectLevelHint')}</p>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-3">
@@ -298,7 +311,7 @@ export function ChallengePage({
           </div>
           <div className="rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-card)] p-4">
             <p className="text-2xl font-bold text-[var(--color-text)]">{timeUsedFormatted}</p>
-            <p className="text-xs text-[var(--color-text-secondary)]">Time used</p>
+            <p className="text-xs text-[var(--color-text-secondary)]">{t('challenge.timeUsed')}</p>
           </div>
           <div className="rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-card)] p-4">
             <p className="text-2xl font-bold text-[var(--color-text)]">
@@ -364,13 +377,13 @@ export function ChallengePage({
         {/* Progress */}
         <div className="mb-4 flex items-center justify-between">
           <span className="text-sm font-medium text-[var(--color-text)]">
-            Question {Math.min(currentIdx + 1, totalQ)}/{totalQ}
+            {t('challenge.questionOf', { current: Math.min(currentIdx + 1, totalQ), total: totalQ })}
           </span>
           <button
             onClick={() => finishChallenge(false)}
             className="text-xs text-[var(--color-text-secondary)] underline hover:text-[var(--color-text)]"
           >
-            Finish early
+            {t('challenge.finishEarly')}
           </button>
         </div>
         <div className="mb-6 h-1.5 overflow-hidden rounded-full bg-[var(--color-bg-secondary)]">
