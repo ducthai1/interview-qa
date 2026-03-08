@@ -41,8 +41,8 @@ export function CodeOutputInteraction({ correctAnswer, revealed, onSubmit, onRev
     return (
       <div className={`mt-3 flex items-center gap-2 rounded-lg border p-3 ${
         isCorrect
-          ? 'border-[var(--color-success)] bg-green-50 dark:bg-green-900/20'
-          : 'border-[var(--color-error)] bg-red-50 dark:bg-red-900/20'
+          ? 'border-[var(--color-success)] bg-[var(--color-success-bg)]'
+          : 'border-[var(--color-error)] bg-[var(--color-error-bg)]'
       }`}>
         {isCorrect
           ? <CheckCircle2 className="h-5 w-5 shrink-0 text-[var(--color-success)]" />

@@ -78,8 +78,8 @@ export function DifficultySuggestion({ questions, progress, currentTopic }: Prop
     <div
       className={`flex items-start justify-between gap-3 rounded-xl border px-4 py-3 text-sm ${
         isPositive
-          ? 'border-green-200 bg-green-50 text-green-800 dark:border-green-800/50 dark:bg-green-900/20 dark:text-green-300'
-          : 'border-amber-200 bg-amber-50 text-amber-800 dark:border-amber-800/50 dark:bg-amber-900/20 dark:text-amber-300'
+          ? 'border-[var(--color-success-border)] bg-[var(--color-success-bg)] text-[var(--color-success)]'
+          : 'border-[var(--color-warning-border)] bg-[var(--color-warning-bg)] text-[var(--color-warning)]'
       }`}
     >
       <div className="min-w-0 flex-1">

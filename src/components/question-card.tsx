@@ -21,10 +21,10 @@ interface QuestionCardProps {
 }
 
 const difficultyColors: Record<string, string> = {
-  junior: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400',
-  mid: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
-  senior: 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400',
-  lead: 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400',
+  junior: 'bg-[var(--color-junior-bg)] text-[var(--color-junior)]',
+  mid: 'bg-[var(--color-mid-bg)] text-[var(--color-mid)]',
+  senior: 'bg-[var(--color-senior-bg)] text-[var(--color-senior)]',
+  lead: 'bg-[var(--color-lead-bg)] text-[var(--color-lead)]',
 }
 
 /* Hint section sub-component */
@@ -35,10 +35,10 @@ function HintSection({ hints, currentHintIdx, onShowNextHint }: {
   const [collapsed, setCollapsed] = useState(false)
   const revealed = hints.slice(0, currentHintIdx)
   return (
-    <div className="mt-3 rounded-lg border border-amber-200 bg-amber-50 dark:border-amber-800 dark:bg-amber-900/20 p-3">
+    <div className="mt-3 rounded-lg border border-[var(--color-warning-border)] bg-[var(--color-warning-bg)] p-3">
       <button
         onClick={() => setCollapsed(c => !c)}
-        className="flex w-full items-center justify-between text-xs font-medium text-amber-700 dark:text-amber-400"
+        className="flex w-full items-center justify-between text-xs font-medium text-[var(--color-warning)]"
       >
         <span>{t('question.hintNumber', { number: currentHintIdx })}</span>
         {collapsed ? <ChevronDown className="h-3.5 w-3.5" /> : <ChevronUp className="h-3.5 w-3.5" />}
@@ -46,7 +46,7 @@ function HintSection({ hints, currentHintIdx, onShowNextHint }: {
       {!collapsed && (
         <ul className="mt-2 flex flex-col gap-1.5">
           {revealed.map((hint, i) => (
-            <li key={i} className="text-sm text-amber-800 dark:text-amber-300">
+            <li key={i} className="text-sm text-[var(--color-warning)]">
               <span className="font-medium">{i + 1}.</span> {hint}
             </li>
           ))}
@@ -55,13 +55,13 @@ function HintSection({ hints, currentHintIdx, onShowNextHint }: {
       {!collapsed && currentHintIdx < hints.length && (
         <button
           onClick={onShowNextHint}
-          className="mt-2 text-xs font-medium text-amber-600 hover:text-amber-800 dark:text-amber-400 dark:hover:text-amber-200 underline"
+          className="mt-2 text-xs font-medium text-[var(--color-warning)] hover:opacity-80 underline"
         >
           {t('question.showHint')}
         </button>
       )}
       {!collapsed && currentHintIdx >= hints.length && (
-        <p className="mt-2 text-xs italic text-amber-600 dark:text-amber-400">{t('question.noMoreHints')}</p>
+        <p className="mt-2 text-xs italic text-[var(--color-warning)]">{t('question.noMoreHints')}</p>
       )}
     </div>
   )
@@ -76,21 +76,21 @@ function SelfRateRubric({ onRate }: { onRate: (level: 'nailed' | 'partial' | 're
       <div className="flex flex-wrap gap-2">
         <button
           onClick={() => onRate('nailed')}
-          className="flex items-center gap-1.5 rounded-lg border border-[var(--color-success)] px-3 py-1.5 text-sm font-medium text-[var(--color-success)] transition-colors hover:bg-green-50 dark:hover:bg-green-900/20"
+          className="flex items-center gap-1.5 rounded-lg border border-[var(--color-success)] px-3 py-1.5 text-sm font-medium text-[var(--color-success)] transition-colors hover:bg-[var(--color-success-bg)]"
         >
           <CheckCircle2 className="h-3.5 w-3.5" />
           {t('question.selfRateNailed')}
         </button>
         <button
           onClick={() => onRate('partial')}
-          className="flex items-center gap-1.5 rounded-lg border border-amber-500 px-3 py-1.5 text-sm font-medium text-amber-600 dark:text-amber-400 transition-colors hover:bg-amber-50 dark:hover:bg-amber-900/20"
+          className="flex items-center gap-1.5 rounded-lg border border-[var(--color-warning)] px-3 py-1.5 text-sm font-medium text-[var(--color-warning)] transition-colors hover:bg-[var(--color-warning-bg)]"
         >
           <CheckCircle2 className="h-3.5 w-3.5" />
           {t('question.selfRatePartial')}
         </button>
         <button
           onClick={() => onRate('review')}
-          className="flex items-center gap-1.5 rounded-lg border border-[var(--color-error)] px-3 py-1.5 text-sm font-medium text-[var(--color-error)] transition-colors hover:bg-red-50 dark:hover:bg-red-900/20"
+          className="flex items-center gap-1.5 rounded-lg border border-[var(--color-error)] px-3 py-1.5 text-sm font-medium text-[var(--color-error)] transition-colors hover:bg-[var(--color-error-bg)]"
         >
           <XCircle className="h-3.5 w-3.5" />
           {t('question.selfRateIncorrect')}
@@ -282,7 +282,7 @@ export function QuestionCard({ question: rawQuestion, progress, onAnswer, onBook
           {hasHints && !allHintsShown && currentHintIdx === 0 && (
             <button
               onClick={() => setCurrentHintIdx(1)}
-              className="rounded-lg border border-amber-400 px-4 py-2 text-sm font-medium text-amber-600 dark:text-amber-400 transition-colors hover:bg-amber-50 dark:hover:bg-amber-900/20"
+              className="rounded-lg border border-[var(--color-warning)] px-4 py-2 text-sm font-medium text-[var(--color-warning)] transition-colors hover:bg-[var(--color-warning-bg)]"
             >
               {t('question.showHint')}
             </button>
@@ -305,8 +305,8 @@ export function QuestionCard({ question: rawQuestion, progress, onAnswer, onBook
           {answered && (
             <div className={`mb-3 flex items-center gap-2 rounded-lg border p-2.5 ${
               answered.correct
-                ? 'border-[var(--color-success)] bg-green-50 dark:bg-green-900/20'
-                : 'border-[var(--color-error)] bg-red-50 dark:bg-red-900/20'
+                ? 'border-[var(--color-success)] bg-[var(--color-success-bg)]'
+                : 'border-[var(--color-error)] bg-[var(--color-error-bg)]'
             }`}>
               {answered.correct
                 ? <CheckCircle2 className="h-4 w-4 shrink-0 text-[var(--color-success)]" />
@@ -400,10 +400,10 @@ function McqOptions({ options, correctIdx, selectedOption, isRevealed, onSelect,
       {options.map((opt, idx) => {
         let cls = 'border-[var(--color-border)] hover:border-[var(--color-primary)]'
         if (isRevealed) {
-          if (idx === correctIdx) cls = 'border-[var(--color-success)] bg-green-50 dark:bg-green-900/20'
-          else if (selectedOption === idx) cls = 'border-[var(--color-error)] bg-red-50 dark:bg-red-900/20'
+          if (idx === correctIdx) cls = 'border-[var(--color-success)] bg-[var(--color-success-bg)]'
+          else if (selectedOption === idx) cls = 'border-[var(--color-error)] bg-[var(--color-error-bg)]'
         } else if (selectedOption === idx) {
-          cls = 'border-[var(--color-primary)] bg-indigo-50 dark:bg-indigo-900/20'
+          cls = 'border-[var(--color-primary)] bg-[var(--color-primary-bg)]'
         }
         const explanation = optionExplanations?.[idx]
         const isWrong = isRevealed && idx !== correctIdx
@@ -440,8 +440,8 @@ function TrueFalseOptions({ correctAnswer, userAnswer, isRevealed, onSelect }: {
       {[true, false].map((val) => {
         let cls = 'border-[var(--color-border)] hover:border-[var(--color-primary)]'
         if (isRevealed) {
-          if (val === correctAnswer) cls = 'border-[var(--color-success)] bg-green-50 dark:bg-green-900/20'
-          else if (userAnswer === val) cls = 'border-[var(--color-error)] bg-red-50 dark:bg-red-900/20'
+          if (val === correctAnswer) cls = 'border-[var(--color-success)] bg-[var(--color-success-bg)]'
+          else if (userAnswer === val) cls = 'border-[var(--color-error)] bg-[var(--color-error-bg)]'
         }
         return (
           <button key={String(val)} onClick={() => onSelect(val)} disabled={isRevealed}

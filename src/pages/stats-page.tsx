@@ -188,7 +188,7 @@ export function StatsPage({ questions, progress, onReset }: StatsPageProps) {
       <div className="mt-8 border-t border-[var(--color-border)] pt-6">
         <button
           onClick={onReset}
-          className="inline-flex items-center gap-2 rounded-lg border border-[var(--color-error)] px-4 py-2 text-sm font-medium text-[var(--color-error)] transition-colors hover:bg-red-50 dark:hover:bg-red-900/20"
+          className="inline-flex items-center gap-2 rounded-lg border border-[var(--color-error)] px-4 py-2 text-sm font-medium text-[var(--color-error)] transition-colors hover:bg-[var(--color-error-bg)]"
         >
           <RotateCcw className="h-4 w-4" /> {t('stats.resetAll')}
         </button>

@@ -10,10 +10,10 @@ interface Props {
 }
 
 const DIFFICULTY_COLOR: Record<string, string> = {
-  junior: 'bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-400',
-  mid: 'bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-400',
-  senior: 'bg-orange-100 text-orange-700 dark:bg-orange-900/40 dark:text-orange-400',
-  lead: 'bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-400',
+  junior: 'bg-[var(--color-junior-bg)] text-[var(--color-junior)]',
+  mid: 'bg-[var(--color-mid-bg)] text-[var(--color-mid)]',
+  senior: 'bg-[var(--color-senior-bg)] text-[var(--color-senior)]',
+  lead: 'bg-[var(--color-lead-bg)] text-[var(--color-lead)]',
 }
 
 function findRelated(current: Question, all: Question[], progress: UserProgress): Question[] {

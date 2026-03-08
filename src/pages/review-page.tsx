@@ -174,11 +174,11 @@ export function ReviewPage({ questions, progress, onAnswer, onBookmark, onRetry 
 /* ── Box statistics component ─────────────────────────────────────────── */
 function BoxStats({ stats, t }: { stats: ReturnType<typeof import('../utils/spaced-repetition').getReviewStats>; t: (key: string, opts?: Record<string, unknown>) => string }) {
   const boxColors = [
-    'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400',
-    'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400',
-    'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400',
-    'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
-    'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400',
+    'bg-[var(--color-lead-bg)] text-[var(--color-lead)]',
+    'bg-[var(--color-senior-bg)] text-[var(--color-senior)]',
+    'bg-[var(--color-warning-bg)] text-[var(--color-warning)]',
+    'bg-[var(--color-mid-bg)] text-[var(--color-mid)]',
+    'bg-[var(--color-success-bg)] text-[var(--color-success)]',
   ]
 
   return (

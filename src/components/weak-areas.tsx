@@ -14,14 +14,14 @@ interface Props {
 function AccuracyBadge({ accuracy, needsWork, improving }: { accuracy: number; needsWork: string; improving: string }) {
   if (accuracy < 50) {
     return (
-      <span className="rounded-full bg-red-100 px-2 py-0.5 text-[10px] font-semibold text-red-700 dark:bg-red-900/40 dark:text-red-400">
+      <span className="rounded-full bg-[var(--color-error-bg)] px-2 py-0.5 text-[10px] font-semibold text-[var(--color-error)]">
         {needsWork}
       </span>
     )
   }
   if (accuracy < 70) {
     return (
-      <span className="rounded-full bg-orange-100 px-2 py-0.5 text-[10px] font-semibold text-orange-700 dark:bg-orange-900/40 dark:text-orange-400">
+      <span className="rounded-full bg-[var(--color-warning-bg)] px-2 py-0.5 text-[10px] font-semibold text-[var(--color-warning)]">
         {improving}
       </span>
     )

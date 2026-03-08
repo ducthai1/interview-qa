@@ -196,13 +196,13 @@ export function AISettingsModal({ open, onClose }: AISettingsModalProps) {
 
         {/* Test connection result */}
         {testStatus === 'success' && (
-          <div className="mb-4 flex items-center gap-2 rounded-lg border border-[var(--color-success)] bg-green-50 px-3 py-2 text-sm text-[var(--color-success)] dark:bg-green-900/20">
+          <div className="mb-4 flex items-center gap-2 rounded-lg border border-[var(--color-success)] bg-[var(--color-success-bg)] px-3 py-2 text-sm text-[var(--color-success)]">
             <CheckCircle2 className="h-4 w-4 shrink-0" />
             {t('ai.testSuccess')}
           </div>
         )}
         {testStatus === 'fail' && (
-          <div className="mb-4 flex items-start gap-2 rounded-lg border border-[var(--color-error)] bg-red-50 px-3 py-2 text-sm text-[var(--color-error)] dark:bg-red-900/20">
+          <div className="mb-4 flex items-start gap-2 rounded-lg border border-[var(--color-error)] bg-[var(--color-error-bg)] px-3 py-2 text-sm text-[var(--color-error)]">
             <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
             <span>{t('ai.testFailed', { error: testError })}</span>
           </div>

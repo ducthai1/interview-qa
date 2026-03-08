@@ -291,7 +291,7 @@ export function ChallengePage({
     return (
       <div className="mx-auto max-w-2xl px-4 py-12 text-center">
         {newBest && (
-          <div className="mb-6 rounded-xl bg-yellow-50 px-6 py-3 text-yellow-700 dark:bg-yellow-900/20 dark:text-yellow-400">
+          <div className="mb-6 rounded-xl bg-[var(--color-warning-bg)] px-6 py-3 text-[var(--color-warning)]">
             <Trophy className="mx-auto mb-1 h-6 w-6" />
             <span className="font-bold">{t('challenge.newBest')}</span>
           </div>

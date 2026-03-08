@@ -189,7 +189,7 @@ export function MockInterviewPage({ questions, progress, onAnswer, onBookmark, o
         <span className="text-sm font-medium text-[var(--color-text)]">
           {t('mock.questionProgress', { current: currentIdx + 1, total: mockQuestions.length })}
         </span>
-        <span className={`rounded-lg px-3 py-1 text-sm font-mono font-bold ${timer.seconds < 60 ? 'bg-red-100 text-red-600' : 'bg-[var(--color-bg-secondary)] text-[var(--color-text)]'}`}>
+        <span className={`rounded-lg px-3 py-1 text-sm font-mono font-bold ${timer.seconds < 60 ? 'bg-[var(--color-error-bg)] text-[var(--color-error)]' : 'bg-[var(--color-bg-secondary)] text-[var(--color-text)]'}`}>
           {timer.formatted}
         </span>
       </div>

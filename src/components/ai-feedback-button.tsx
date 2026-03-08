@@ -15,10 +15,10 @@ interface AIFeedbackButtonProps {
 function ScoreBadge({ score }: { score: number }) {
   const color =
     score >= 7
-      ? 'bg-green-100 text-green-700 border-green-300 dark:bg-green-900/30 dark:text-green-400 dark:border-green-700'
+      ? 'bg-[var(--color-success-bg)] text-[var(--color-success)] border-[var(--color-success-border)]'
       : score >= 4
-        ? 'bg-yellow-100 text-yellow-700 border-yellow-300 dark:bg-yellow-900/30 dark:text-yellow-400 dark:border-yellow-700'
-        : 'bg-red-100 text-red-700 border-red-300 dark:bg-red-900/30 dark:text-red-400 dark:border-red-700'
+        ? 'bg-[var(--color-warning-bg)] text-[var(--color-warning)] border-[var(--color-warning-border)]'
+        : 'bg-[var(--color-error-bg)] text-[var(--color-error)] border-[var(--color-error-border)]'
 
   return (
     <span className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-sm font-semibold ${color}`}>
@@ -113,7 +113,7 @@ export function AIFeedbackButton({ question, userAnswer, visible, onOpenSettings
   // Limit reached
   if (limitReached) {
     return (
-      <div className="mt-3 flex items-center gap-2 rounded-lg border border-amber-300 bg-amber-50 px-3 py-2 text-xs text-amber-700 dark:border-amber-700 dark:bg-amber-900/20 dark:text-amber-400">
+      <div className="mt-3 flex items-center gap-2 rounded-lg border border-[var(--color-warning-border)] bg-[var(--color-warning-bg)] px-3 py-2 text-xs text-[var(--color-warning)]">
         <AlertCircle className="h-3.5 w-3.5 shrink-0" />
         {t('ai.limitReached', { used: config.dailyUsage, limit: config.dailyLimit })}
       </div>
@@ -127,7 +127,7 @@ export function AIFeedbackButton({ question, userAnswer, visible, onOpenSettings
         <button
           onClick={handleReview}
           disabled={loading}
-          className="flex items-center gap-1.5 rounded-lg border border-[var(--color-primary)] px-3 py-1.5 text-sm font-medium text-[var(--color-primary)] transition-colors hover:bg-indigo-50 disabled:opacity-50 dark:hover:bg-indigo-900/20"
+          className="flex items-center gap-1.5 rounded-lg border border-[var(--color-primary)] px-3 py-1.5 text-sm font-medium text-[var(--color-primary)] transition-colors hover:bg-[var(--color-primary-bg)] disabled:opacity-50"
         >
           {loading ? (
             <Loader2 className="h-3.5 w-3.5 animate-spin" />
@@ -140,7 +140,7 @@ export function AIFeedbackButton({ question, userAnswer, visible, onOpenSettings
 
       {/* Error state */}
       {error && !loading && (
-        <div className="mt-2 flex items-start gap-2 rounded-lg border border-[var(--color-error)] bg-red-50 px-3 py-2 text-xs text-[var(--color-error)] dark:bg-red-900/20">
+        <div className="mt-2 flex items-start gap-2 rounded-lg border border-[var(--color-error)] bg-[var(--color-error-bg)] px-3 py-2 text-xs text-[var(--color-error)]">
           <AlertCircle className="mt-0.5 h-3.5 w-3.5 shrink-0" />
           <span>
             {error === 'rate-limited'
