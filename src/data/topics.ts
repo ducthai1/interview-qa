@@ -1,0 +1,24 @@
+import type { TopicInfo } from '../types'
+
+export const topics: TopicInfo[] = [
+  { id: 'html', label: 'HTML', icon: 'HTML', description: 'Semantic HTML, forms, media, Web APIs, SEO markup', color: '#e34f26' },
+  { id: 'css', label: 'CSS', icon: 'CSS', description: 'Flexbox, Grid, animations, responsive design, selectors', color: '#1572b6' },
+  { id: 'browser-dom', label: 'Browser & DOM', icon: 'DOM', description: 'Event delegation, rendering pipeline, Web APIs, observers', color: '#ff9800' },
+  { id: 'coding-challenges', label: 'Coding Challenges', icon: 'LC', description: 'Debounce, throttle, Promise.all, deep clone, curry', color: '#00bcd4' },
+  { id: 'api-networking', label: 'API & Networking', icon: 'API', description: 'REST, GraphQL, CORS, HTTP caching, WebSocket, fetch', color: '#4caf50' },
+  { id: 'javascript-core', label: 'JavaScript Core', icon: 'JS', description: 'ES6+, async/await, closures, prototype, event loop', color: '#f7df1e' },
+  { id: 'typescript', label: 'TypeScript', icon: 'TS', description: 'Generics, utility types, type narrowing, declaration', color: '#3178c6' },
+  { id: 'react-fundamentals', label: 'React Fundamentals', icon: 'RC', description: 'JSX, components, props, state, lifecycle', color: '#61dafb' },
+  { id: 'react-hooks', label: 'React Hooks', icon: 'RH', description: 'useState, useEffect, useRef, useMemo, custom hooks', color: '#61dafb' },
+  { id: 'react-advanced', label: 'React Advanced', icon: 'RA', description: 'memo, context, suspense, RSC, React Compiler', color: '#61dafb' },
+  { id: 'state-management', label: 'State Management', icon: 'SM', description: 'Redux Toolkit, Zustand, Jotai, TanStack Query', color: '#764abc' },
+  { id: 'nextjs-frameworks', label: 'Next.js & Frameworks', icon: 'NX', description: 'App Router, SSR, ISR, Server Actions', color: '#000000' },
+  { id: 'css-styling', label: 'CSS & Styling', icon: 'CS', description: 'TailwindCSS, CSS Modules, animations, responsive', color: '#38bdf8' },
+  { id: 'testing', label: 'Testing', icon: 'TE', description: 'Vitest, React Testing Library, Playwright, MSW', color: '#729b1b' },
+  { id: 'build-tools', label: 'Build Tools', icon: 'BT', description: 'Vite, Turbopack, bundling, tree-shaking', color: '#bd34fe' },
+  { id: 'performance', label: 'Performance', icon: 'PF', description: 'Core Web Vitals, lazy loading, profiling', color: '#ff6b6b' },
+  { id: 'system-design-fe', label: 'System Design FE', icon: 'SD', description: 'Micro-frontends, monorepo, design system', color: '#8b5cf6' },
+  { id: 'ai-frontend', label: 'AI & Frontend', icon: 'AI', description: 'Vercel AI SDK, LLM integration, streaming UI', color: '#10b981' },
+  { id: 'accessibility', label: 'Accessibility', icon: 'A11Y', description: 'ARIA, screen readers, keyboard navigation', color: '#0ea5e9' },
+  { id: 'security', label: 'Security', icon: 'SEC', description: 'XSS, CSRF, CSP, auth patterns, sanitization', color: '#ef4444' },
+]
