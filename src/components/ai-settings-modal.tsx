@@ -53,15 +53,15 @@ export function AISettingsModal({ open, onClose }: AISettingsModalProps) {
   const canTest = config.provider !== 'none' && config.apiKey.trim().length > 0
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto p-4">
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+        className="fixed inset-0 bg-black/50 backdrop-blur-sm"
         onClick={onClose}
       />
 
-      {/* Modal */}
-      <div className="relative z-10 w-full max-w-md rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-card)] p-6 shadow-2xl">
+      {/* Modal — centered with max-height and scroll */}
+      <div className="relative z-10 my-auto w-full max-w-md rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-card)] p-6 shadow-2xl max-h-[90vh] overflow-y-auto">
         {/* Header */}
         <div className="mb-5 flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -97,10 +97,31 @@ export function AISettingsModal({ open, onClose }: AISettingsModalProps) {
             className="w-full rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] px-3 py-2 text-sm text-[var(--color-text)] focus:border-[var(--color-primary)] focus:outline-none"
           >
             <option value="none">{t('ai.none')}</option>
-            <option value="gemini">Gemini (Google)</option>
+            <option value="gemini">Gemini (Google) — FREE</option>
             <option value="openai">OpenAI (GPT-4o mini)</option>
             <option value="anthropic">Anthropic (Claude)</option>
           </select>
+          {config.provider === 'gemini' && (
+            <p className="mt-1.5 text-xs text-[var(--color-success)]">
+              {i18n.language === 'vi'
+                ? 'Gemini API hoàn toàn miễn phí! Lấy key tại aistudio.google.com'
+                : 'Gemini API is completely free! Get your key at aistudio.google.com'}
+            </p>
+          )}
+          {config.provider === 'openai' && (
+            <p className="mt-1.5 text-xs text-amber-500">
+              {i18n.language === 'vi'
+                ? 'OpenAI yêu cầu tài khoản trả phí.'
+                : 'OpenAI requires a paid account.'}
+            </p>
+          )}
+          {config.provider === 'anthropic' && (
+            <p className="mt-1.5 text-xs text-amber-500">
+              {i18n.language === 'vi'
+                ? 'Anthropic yêu cầu backend proxy và tài khoản trả phí.'
+                : 'Anthropic requires a backend proxy and paid account.'}
+            </p>
+          )}
         </div>
 
         {/* API Key */}
@@ -133,6 +154,16 @@ export function AISettingsModal({ open, onClose }: AISettingsModalProps) {
               <AlertCircle className="h-3.5 w-3.5 shrink-0 text-amber-500" />
               {t('ai.apiKeyHint')}
             </p>
+            {config.provider === 'gemini' && (
+              <a
+                href="https://aistudio.google.com/apikey"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-1 inline-block text-xs font-medium text-[var(--color-primary)] hover:underline"
+              >
+                {i18n.language === 'vi' ? '→ Lấy API key miễn phí tại Google AI Studio' : '→ Get free API key at Google AI Studio'}
+              </a>
+            )}
           </div>
         )}
 
