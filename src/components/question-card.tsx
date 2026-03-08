@@ -31,10 +31,12 @@ export function QuestionCard({ question: rawQuestion, progress, onAnswer, onBook
   const [selectedOption, setSelectedOption] = useState<number | null>(null)
   const [tfAnswer, setTfAnswer] = useState<boolean | null>(null)
   const [showAnswer, setShowAnswer] = useState(false)
+  const [pendingSelfRate, setPendingSelfRate] = useState(false)
 
   const answered = progress.answered[question.id]
   const isBookmarked = progress.bookmarked.includes(question.id)
   const isRevealed = showAnswer || !!answered
+  const isSelfRateType = question.type === 'debug' || question.type === 'code-write' || question.type === 'system-design'
 
   const typeLabels: Record<string, string> = {
     mcq: t('question.multipleChoice'),
@@ -60,8 +62,14 @@ export function QuestionCard({ question: rawQuestion, progress, onAnswer, onBook
   }
 
   const handleReveal = () => {
-    if (!answered) onAnswer(question.id, true)
+    if (!answered && !isSelfRateType) onAnswer(question.id, true)
+    if (!answered && isSelfRateType) setPendingSelfRate(true)
     setShowAnswer(true)
+  }
+
+  const handleSelfRate = (correct: boolean) => {
+    setPendingSelfRate(false)
+    onAnswer(question.id, correct)
   }
 
   const handleRetry = () => {
@@ -69,6 +77,7 @@ export function QuestionCard({ question: rawQuestion, progress, onAnswer, onBook
     setSelectedOption(null)
     setTfAnswer(null)
     setShowAnswer(false)
+    setPendingSelfRate(false)
   }
 
   return (
@@ -128,7 +137,7 @@ export function QuestionCard({ question: rawQuestion, progress, onAnswer, onBook
         <DebugInteraction
           originalCode={question.code || ''}
           revealed={isRevealed}
-          onSubmit={() => { onAnswer(question.id, true); setShowAnswer(true) }}
+          onSubmit={() => { setPendingSelfRate(true); setShowAnswer(true) }}
           onReveal={handleReveal}
         />
       )}
@@ -137,7 +146,7 @@ export function QuestionCard({ question: rawQuestion, progress, onAnswer, onBook
       {question.type === 'code-write' && !isRevealed && (
         <CodeWriteInteraction
           revealed={isRevealed}
-          onSubmit={() => { onAnswer(question.id, true); setShowAnswer(true) }}
+          onSubmit={() => { setPendingSelfRate(true); setShowAnswer(true) }}
           onReveal={handleReveal}
         />
       )}
@@ -146,7 +155,7 @@ export function QuestionCard({ question: rawQuestion, progress, onAnswer, onBook
       {question.type === 'system-design' && !isRevealed && (
         <SystemDesignInteraction
           revealed={isRevealed}
-          onSubmit={() => { onAnswer(question.id, true); setShowAnswer(true) }}
+          onSubmit={() => { setPendingSelfRate(true); setShowAnswer(true) }}
           onReveal={handleReveal}
         />
       )}
@@ -154,6 +163,24 @@ export function QuestionCard({ question: rawQuestion, progress, onAnswer, onBook
       {/* Answer & Explanation */}
       {isRevealed && (
         <div className="mt-4 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-secondary)] p-4">
+          {/* Result banner — correct/incorrect indicator */}
+          {answered && (
+            <div className={`mb-3 flex items-center gap-2 rounded-lg border p-2.5 ${
+              answered.correct
+                ? 'border-[var(--color-success)] bg-green-50 dark:bg-green-900/20'
+                : 'border-[var(--color-error)] bg-red-50 dark:bg-red-900/20'
+            }`}>
+              {answered.correct
+                ? <CheckCircle2 className="h-4 w-4 shrink-0 text-[var(--color-success)]" />
+                : <XCircle className="h-4 w-4 shrink-0 text-[var(--color-error)]" />
+              }
+              <span className={`text-sm font-medium ${
+                answered.correct ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]'
+              }`}>
+                {answered.correct ? t('question.resultCorrect') : t('question.resultIncorrect')}
+              </span>
+            </div>
+          )}
           {/* Solution code — corrected/model code shown for questions with code snippets */}
           {question.solutionCode && (
             <div className="mb-3">
@@ -180,6 +207,28 @@ export function QuestionCard({ question: rawQuestion, progress, onAnswer, onBook
                   {t('common.reference')} {i + 1}
                 </a>
               ))}
+            </div>
+          )}
+          {/* Self-rate prompt for open-ended types (debug, code-write, system-design) */}
+          {pendingSelfRate && !answered && (
+            <div className="mt-3 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] p-3">
+              <p className="mb-2 text-sm font-medium text-[var(--color-text)]">{t('question.selfRatePrompt')}</p>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => handleSelfRate(true)}
+                  className="flex items-center gap-1.5 rounded-lg border border-[var(--color-success)] px-3 py-1.5 text-sm font-medium text-[var(--color-success)] transition-colors hover:bg-green-50 dark:hover:bg-green-900/20"
+                >
+                  <CheckCircle2 className="h-3.5 w-3.5" />
+                  {t('question.selfRateCorrect')}
+                </button>
+                <button
+                  onClick={() => handleSelfRate(false)}
+                  className="flex items-center gap-1.5 rounded-lg border border-[var(--color-error)] px-3 py-1.5 text-sm font-medium text-[var(--color-error)] transition-colors hover:bg-red-50 dark:hover:bg-red-900/20"
+                >
+                  <XCircle className="h-3.5 w-3.5" />
+                  {t('question.selfRateIncorrect')}
+                </button>
+              </div>
             </div>
           )}
           <div className="mt-3 flex items-center justify-between border-t border-[var(--color-border)] pt-3">
