@@ -95,15 +95,15 @@ export function PracticePage({ questions, progress, onAnswer, onBookmark, onRetr
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-8">
-      <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
         <h1 className="text-2xl font-bold text-[var(--color-text)]">{t('practice.title')}</h1>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           <Link
             to="/custom-session"
-            className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-card)] px-3 py-2 text-sm font-medium text-[var(--color-text)] no-underline transition-colors hover:border-[var(--color-primary)]"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-card)] px-2.5 py-1.5 text-xs font-medium text-[var(--color-text)] no-underline transition-colors hover:border-[var(--color-primary)]"
           >
-            <Settings2 className="h-4 w-4 text-[var(--color-primary)]" />
-            {t('session.title')}
+            <Settings2 className="h-3.5 w-3.5 text-[var(--color-primary)]" />
+            {t('session.customShort')}
           </Link>
           <PomodoroTimer />
         </div>
@@ -120,15 +120,14 @@ export function PracticePage({ questions, progress, onAnswer, onBookmark, onRetr
         </div>
       )}
 
-      {/* Recommended section */}
+      {/* Recommended section — compact horizontal cards */}
       {hasProgress && recommended.length > 0 && (
-        <div className="mb-8 rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-card)] p-4">
-          <div className="mb-3 flex items-center gap-2">
-            <Sparkles className="h-4 w-4 text-[var(--color-primary)]" />
-            <span className="text-sm font-semibold text-[var(--color-text)]">{t('practice.recommended')}</span>
-            <span className="text-xs text-[var(--color-text-secondary)]">— {t('practice.recommendedHint')}</span>
+        <div className="mb-4">
+          <div className="mb-2 flex items-center gap-1.5">
+            <Sparkles className="h-3.5 w-3.5 text-[var(--color-primary)]" />
+            <span className="text-xs font-semibold text-[var(--color-text)]">{t('practice.recommended')}</span>
           </div>
-          <div className="space-y-3">
+          <div className="flex gap-2 overflow-x-auto pb-1">
             {recommended.map((q) => {
               const translated = tq(q)
               return (
@@ -137,15 +136,14 @@ export function PracticePage({ questions, progress, onAnswer, onBookmark, onRetr
                   onClick={() => {
                     setSelectedTopics([q.topic])
                     setPage(1)
-                    // Scroll to question list after filter applies
                     setTimeout(() => {
                       document.getElementById(`q-${q.id}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' })
                     }, 100)
                   }}
-                  className="flex w-full items-start justify-between gap-3 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-secondary)] px-3 py-2.5 text-left text-sm text-[var(--color-text)] transition-colors hover:border-[var(--color-primary)]"
+                  className="flex min-w-[200px] max-w-[280px] shrink-0 items-start gap-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-card)] px-3 py-2 text-left text-xs transition-colors hover:border-[var(--color-primary)]"
                 >
-                  <span className="line-clamp-2 flex-1">{translated.question}</span>
-                  <span className="shrink-0 rounded px-1.5 py-0.5 text-xs font-medium capitalize text-[var(--color-primary)] ring-1 ring-inset ring-[var(--color-primary)]/30">
+                  <span className="line-clamp-2 flex-1 text-[var(--color-text)]">{translated.question}</span>
+                  <span className="shrink-0 rounded px-1.5 py-0.5 text-[10px] font-medium capitalize text-[var(--color-primary)] ring-1 ring-inset ring-[var(--color-primary)]/30">
                     {t(`filter.${q.difficulty}`)}
                   </span>
                 </button>

@@ -39,6 +39,7 @@ export const vi = {
     learningPath: 'Lộ trình',
     flashcards: 'Flashcard',
     achievements: 'Thành tựu',
+    more: 'Thêm',
     switchTheme: 'Chuyển sang chế độ {{mode}}',
   },
 
@@ -106,6 +107,9 @@ export const vi = {
     debug: 'Sửa lỗi',
     codeWrite: 'Viết code',
     systemDesign: 'Thiết kế hệ thống',
+    filters: 'Bộ lọc',
+    more: 'thêm',
+    showLess: 'Thu gọn',
   },
 
   /* ─── Practice Page ────────────────────────────────────────────────────────── */
@@ -328,6 +332,7 @@ export const vi = {
   /* ─── Custom Session ─────────────────────────────────────────────────────── */
   session: {
     title: 'Phiên luyện tập tùy chỉnh',
+    customShort: 'Tùy chỉnh',
     subtitle: 'Tạo phiên luyện tập riêng với cài đặt tùy chọn.',
     questionCount: 'Số lượng câu hỏi',
     timeLimit: 'Giới hạn thời gian (tùy chọn)',

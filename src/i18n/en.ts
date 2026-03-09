@@ -39,6 +39,7 @@ export const en = {
     learningPath: 'Paths',
     flashcards: 'Flashcards',
     achievements: 'Awards',
+    more: 'More',
     switchTheme: 'Switch to {{mode}} mode',
   },
 
@@ -106,6 +107,9 @@ export const en = {
     debug: 'Debug',
     codeWrite: 'Code Writing',
     systemDesign: 'System Design',
+    filters: 'Filters',
+    more: 'more',
+    showLess: 'Show less',
   },
 
   /* ─── Practice Page ────────────────────────────────────────────────────────── */
@@ -328,6 +332,7 @@ export const en = {
   /* ─── Custom Session ─────────────────────────────────────────────────────── */
   session: {
     title: 'Custom Practice Session',
+    customShort: 'Custom Session',
     subtitle: 'Create your own practice session with custom settings.',
     questionCount: 'Number of Questions',
     timeLimit: 'Time Limit (optional)',
