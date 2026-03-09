@@ -311,4 +311,60 @@ export const vi = {
     freeTier: 'Miễn phí',
     paidApi: 'Trả phí',
   },
+
+  /* ─── Export/Import ──────────────────────────────────────────────────────── */
+  backup: {
+    export: 'Xuất tiến trình',
+    import: 'Nhập tiến trình',
+    exportHint: 'Tải xuống tiến trình dưới dạng file JSON',
+    importHint: 'Khôi phục từ file đã xuất trước đó',
+    importSuccess: 'Khôi phục thành công! Đang tải lại...',
+    importError: 'File không hợp lệ. Vui lòng chọn file backup đúng.',
+    confirmImport: 'Thao tác này sẽ thay thế tiến trình hiện tại. Tiếp tục?',
+  },
+
+  /* ─── Custom Session ─────────────────────────────────────────────────────── */
+  session: {
+    title: 'Phiên luyện tập tùy chỉnh',
+    subtitle: 'Tạo phiên luyện tập riêng với cài đặt tùy chọn.',
+    questionCount: 'Số lượng câu hỏi',
+    timeLimit: 'Giới hạn thời gian (tùy chọn)',
+    noTimeLimit: 'Không giới hạn',
+    minutesSuffix: '{{count}} phút',
+    mixTopics: 'Trộn chủ đề',
+    selectTopics: 'Chọn chủ đề',
+    allTopics: 'Tất cả chủ đề',
+    startSession: 'Bắt đầu',
+    sessionProgress: 'Câu {{current}} / {{total}}',
+    sessionComplete: 'Hoàn thành phiên!',
+    timeUp: 'Hết giờ!',
+    reviewWrong: 'Xem lại câu sai',
+    wrongAnswers: '{{count}} câu sai',
+    noWrong: 'Điểm tuyệt đối!',
+    backToSetup: 'Phiên mới',
+  },
+
+  /* ─── Mistake Patterns ───────────────────────────────────────────────────── */
+  patterns: {
+    title: 'Phân tích lỗi sai',
+    subtitle: 'Các khái niệm bạn hay sai nhất',
+    tag: '{{tag}}',
+    wrongRate: '{{wrong}} sai / {{total}} tổng',
+    noData: 'Trả lời thêm câu hỏi để xem phân tích',
+    topMistakes: 'Lỗi phổ biến nhất',
+  },
+
+  /* ─── Pomodoro ───────────────────────────────────────────────────────────── */
+  pomodoro: {
+    title: 'Chế độ tập trung',
+    study: 'Học',
+    break: 'Nghỉ',
+    start: 'Bắt đầu tập trung',
+    pause: 'Tạm dừng',
+    resume: 'Tiếp tục',
+    skip: 'Bỏ qua nghỉ',
+    sessionCount: 'Phiên {{current}}',
+    studyTime: '{{minutes}} phút học',
+    breakTime: '{{minutes}} phút nghỉ',
+  },
 }

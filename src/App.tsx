@@ -10,6 +10,7 @@ import { LearningPathPage } from './pages/learning-path-page'
 import { ReviewPage } from './pages/review-page'
 import { ChallengePage } from './pages/challenge-page'
 import { BookmarksPage } from './pages/bookmarks-page'
+import { CustomSessionPage } from './pages/custom-session-page'
 import { useTheme } from './hooks/use-theme'
 import { useProgress } from './hooks/use-progress'
 import { useSpacedRepetition } from './hooks/use-spaced-repetition'
@@ -56,6 +57,7 @@ export default function App() {
           <Route path="/stats" element={<StatsPage questions={questions} progress={progress} onReset={reset} />} />
           <Route path="/challenge" element={<ChallengePage questions={questions} progress={progress} onAnswer={answer} onBookmark={bookmark} onRetry={retry} onSaveChallenge={saveChallenge} />} />
           <Route path="/bookmarks" element={<BookmarksPage questions={questions} progress={progress} onBookmark={bookmark} />} />
+          <Route path="/custom-session" element={<CustomSessionPage questions={questions} progress={progress} onAnswer={answer} onBookmark={bookmark} onRetry={retry} />} />
           <Route path="/learning-path" element={<LearningPathPage questions={questions} progress={progress} />} />
         </Routes>
       </div>

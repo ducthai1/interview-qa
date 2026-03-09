@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { Zap, Target, Flame, Trophy, RotateCcw, ChevronLeft } from 'lucide-react'
+import { Zap, Target, Flame, Trophy, RotateCcw, ChevronLeft, XCircle } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { QuestionCard } from '../components/question-card'
 import { ShareButton } from '../components/share-button'
@@ -358,6 +358,35 @@ export function ChallengePage({
             {t('challenge.backToMenu')}
           </button>
         </div>
+        {/* Review wrong answers */}
+        {(() => {
+          const wrongQs = session.questions.filter((q) => session.answers[q.id] === false)
+          if (wrongQs.length === 0) return null
+          return (
+            <div className="mx-auto mt-8 max-w-4xl text-left">
+              <details className="group">
+                <summary className="mb-4 inline-flex cursor-pointer items-center gap-2 rounded-lg border border-[var(--color-error)] px-4 py-2 text-sm font-medium text-[var(--color-error)] transition-colors hover:bg-[var(--color-error-bg)]">
+                  <XCircle className="h-4 w-4" />
+                  {t('session.reviewWrong')} ({t('session.wrongAnswers', { count: wrongQs.length })})
+                </summary>
+                <div className="space-y-4">
+                  {wrongQs.map((q) => (
+                    <QuestionCard
+                      key={q.id}
+                      question={q}
+                      progress={progress}
+                      onAnswer={onAnswer}
+                      onBookmark={onBookmark}
+                      onRetry={onRetry}
+                      hideRetry
+                    />
+                  ))}
+                </div>
+              </details>
+            </div>
+          )
+        })()}
+
         <NextStepsSection questions={questions} progress={progress} />
       </div>
     )

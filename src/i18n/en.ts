@@ -311,4 +311,60 @@ export const en = {
     freeTier: 'Free tier',
     paidApi: 'Paid API',
   },
+
+  /* ─── Export/Import ──────────────────────────────────────────────────────── */
+  backup: {
+    export: 'Export Progress',
+    import: 'Import Progress',
+    exportHint: 'Download your progress as JSON file',
+    importHint: 'Restore from a previously exported file',
+    importSuccess: 'Progress restored successfully! Reloading...',
+    importError: 'Invalid file. Please select a valid backup file.',
+    confirmImport: 'This will replace your current progress. Continue?',
+  },
+
+  /* ─── Custom Session ─────────────────────────────────────────────────────── */
+  session: {
+    title: 'Custom Practice Session',
+    subtitle: 'Create your own practice session with custom settings.',
+    questionCount: 'Number of Questions',
+    timeLimit: 'Time Limit (optional)',
+    noTimeLimit: 'No time limit',
+    minutesSuffix: '{{count}} min',
+    mixTopics: 'Mix Topics',
+    selectTopics: 'Select Topics',
+    allTopics: 'All Topics',
+    startSession: 'Start Session',
+    sessionProgress: 'Question {{current}} / {{total}}',
+    sessionComplete: 'Session Complete!',
+    timeUp: "Time's up!",
+    reviewWrong: 'Review Wrong Answers',
+    wrongAnswers: '{{count}} wrong answers',
+    noWrong: 'Perfect score!',
+    backToSetup: 'New Session',
+  },
+
+  /* ─── Mistake Patterns ───────────────────────────────────────────────────── */
+  patterns: {
+    title: 'Mistake Patterns',
+    subtitle: 'Your most common mistakes by concept',
+    tag: '{{tag}}',
+    wrongRate: '{{wrong}} wrong / {{total}} total',
+    noData: 'Answer more questions to see patterns',
+    topMistakes: 'Top mistakes',
+  },
+
+  /* ─── Pomodoro ───────────────────────────────────────────────────────────── */
+  pomodoro: {
+    title: 'Focus Mode',
+    study: 'Study',
+    break: 'Break',
+    start: 'Start Focus',
+    pause: 'Pause',
+    resume: 'Resume',
+    skip: 'Skip Break',
+    sessionCount: 'Session {{current}}',
+    studyTime: '{{minutes}} min study',
+    breakTime: '{{minutes}} min break',
+  },
 }

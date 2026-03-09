@@ -1,9 +1,11 @@
 import { useState, useMemo } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useSearchParams, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Sparkles } from 'lucide-react'
+import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Sparkles, Settings2 } from 'lucide-react'
 import { FilterBar } from '../components/filter-bar'
 import { QuestionCard } from '../components/question-card'
+import { DifficultySuggestion } from '../components/difficulty-suggestion'
+import { PomodoroTimer } from '../components/pomodoro-timer'
 import { filterQuestions } from '../utils/question-filters'
 import { getRecommendedQuestions } from '../utils/smart-question-picker'
 import { useQuestionTranslation } from '../hooks/use-question-translation'
@@ -92,7 +94,30 @@ export function PracticePage({ questions, progress, onAnswer, onBookmark, onRetr
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-8">
-      <h1 className="mb-6 text-2xl font-bold text-[var(--color-text)]">{t('practice.title')}</h1>
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
+        <h1 className="text-2xl font-bold text-[var(--color-text)]">{t('practice.title')}</h1>
+        <div className="flex items-center gap-3">
+          <Link
+            to="/custom-session"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-card)] px-3 py-2 text-sm font-medium text-[var(--color-text)] no-underline transition-colors hover:border-[var(--color-primary)]"
+          >
+            <Settings2 className="h-4 w-4 text-[var(--color-primary)]" />
+            {t('session.title')}
+          </Link>
+          <PomodoroTimer />
+        </div>
+      </div>
+
+      {/* Adaptive difficulty suggestion */}
+      {hasProgress && (
+        <div className="mb-4">
+          <DifficultySuggestion
+            questions={questions}
+            progress={progress}
+            currentTopic={selectedTopics.length === 1 ? selectedTopics[0] : undefined}
+          />
+        </div>
+      )}
 
       {/* Recommended section */}
       {hasProgress && recommended.length > 0 && (

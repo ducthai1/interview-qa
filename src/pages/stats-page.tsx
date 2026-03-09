@@ -9,6 +9,8 @@ import { TopicRadarChart } from '../components/charts/radar-chart'
 import { AccuracyTrendChart } from '../components/charts/accuracy-trend-chart'
 import { ActivityHeatmap } from '../components/charts/activity-heatmap'
 import { WeakAreas } from '../components/weak-areas'
+import { MistakePatterns } from '../components/mistake-patterns'
+import { ExportImportProgress } from '../components/export-import-progress'
 import {
   getTopicAccuracy,
   getDailyTrend,
@@ -127,6 +129,13 @@ export function StatsPage({ questions, progress, onReset }: StatsPageProps) {
         </section>
       )}
 
+      {/* Mistake Patterns */}
+      {hasData && (
+        <section className="mb-8">
+          <MistakePatterns questions={questions} progress={progress} />
+        </section>
+      )}
+
       {/* Charts: Radar + Trend */}
       <div className="mb-8 grid grid-cols-1 gap-6 md:grid-cols-2">
         <section className="rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-card)] p-4">
@@ -196,8 +205,11 @@ export function StatsPage({ questions, progress, onReset }: StatsPageProps) {
         })}
       </div>
 
-      {/* Reset */}
+      {/* Export/Import + Reset */}
       <div className="mt-8 border-t border-[var(--color-border)] pt-6">
+        <div className="mb-4">
+          <ExportImportProgress />
+        </div>
         <button
           onClick={onReset}
           className="inline-flex items-center gap-2 rounded-lg border border-[var(--color-error)] px-4 py-2 text-sm font-medium text-[var(--color-error)] transition-colors hover:bg-[var(--color-error-bg)]"

@@ -45,12 +45,19 @@ export function MockInterviewPage({ questions, progress, onAnswer, onBookmark, o
     // No auto-advance — user reads explanation then clicks Next
   }
 
+  const [showWrongReview, setShowWrongReview] = useState(false)
+
   const results = useMemo(() => {
     if (!finished) return null
     const answered = mockQuestions.filter((q) => progress.answered[q.id])
     const correct = answered.filter((q) => progress.answered[q.id]?.correct)
     return { total: mockQuestions.length, answered: answered.length, correct: correct.length }
   }, [finished, mockQuestions, progress])
+
+  const wrongQuestions = useMemo(
+    () => finished ? mockQuestions.filter((q) => progress.answered[q.id] && !progress.answered[q.id]?.correct) : [],
+    [finished, mockQuestions, progress],
+  )
 
   // Time's up
   useEffect(() => {
@@ -159,6 +166,34 @@ export function MockInterviewPage({ questions, progress, onAnswer, onBookmark, o
             }}
           />
         </div>
+        {/* Review wrong answers */}
+        {wrongQuestions.length > 0 && (
+          <div className="mx-auto mt-8 max-w-4xl text-left">
+            <button
+              onClick={() => setShowWrongReview(!showWrongReview)}
+              className="mb-4 inline-flex items-center gap-2 rounded-lg border border-[var(--color-error)] px-4 py-2 text-sm font-medium text-[var(--color-error)] transition-colors hover:bg-[var(--color-error-bg)]"
+            >
+              <XCircle className="h-4 w-4" />
+              {t('session.reviewWrong')} ({t('session.wrongAnswers', { count: wrongQuestions.length })})
+            </button>
+            {showWrongReview && (
+              <div className="space-y-4">
+                {wrongQuestions.map((q) => (
+                  <QuestionCard
+                    key={q.id}
+                    question={q}
+                    progress={progress}
+                    onAnswer={onAnswer}
+                    onBookmark={onBookmark}
+                    onRetry={onRetry}
+                    hideRetry
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
         <NextStepsSection questions={questions} progress={progress} />
       </div>
     )
