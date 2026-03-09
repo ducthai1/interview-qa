@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useMemo, useEffect, useCallback } from 'react'
 import { Play, RotateCcw, Timer, CheckCircle2, XCircle } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { QuestionCard } from '../components/question-card'
@@ -6,6 +6,7 @@ import { ShareButton } from '../components/share-button'
 import { NextStepsSection } from '../components/next-steps-section'
 import { pickWithDifficultyMix } from '../utils/question-filters'
 import { useTimer } from '../hooks/use-timer'
+import { useKeyboardShortcuts } from '../hooks/use-keyboard-shortcuts'
 import type { Question, Difficulty, UserProgress } from '../types'
 
 interface MockInterviewPageProps {
@@ -65,6 +66,25 @@ export function MockInterviewPage({ questions, progress, onAnswer, onBookmark, o
       setFinished(true)
     }
   }, [timer.seconds, started, finished])
+
+  const goNext = useCallback(() => {
+    if (currentIdx < mockQuestions.length - 1) setCurrentIdx((i) => i + 1)
+    else { setFinished(true); timer.pause() }
+  }, [currentIdx, mockQuestions.length, timer])
+
+  const goPrev = useCallback(() => {
+    setCurrentIdx((i) => Math.max(0, i - 1))
+  }, [])
+
+  const handleBookmarkCurrent = useCallback(() => {
+    if (mockQuestions[currentIdx]) onBookmark(mockQuestions[currentIdx].id)
+  }, [currentIdx, mockQuestions, onBookmark])
+
+  useKeyboardShortcuts({
+    onNext: started && !finished ? goNext : undefined,
+    onPrevious: started && !finished ? goPrev : undefined,
+    onBookmark: started && !finished ? handleBookmarkCurrent : undefined,
+  })
 
   // Not started yet
   if (!started) {
@@ -234,22 +254,20 @@ export function MockInterviewPage({ questions, progress, onAnswer, onBookmark, o
       {/* Navigation */}
       <div className="mt-4 flex justify-between">
         <button
-          onClick={() => setCurrentIdx((i) => Math.max(0, i - 1))}
+          onClick={goPrev}
           disabled={currentIdx === 0}
           className="rounded-lg border border-[var(--color-border)] px-4 py-2 text-sm disabled:opacity-30"
         >
           {t('common.previous')}
         </button>
         <button
-          onClick={() => {
-            if (currentIdx < mockQuestions.length - 1) setCurrentIdx((i) => i + 1)
-            else { setFinished(true); timer.pause() }
-          }}
+          onClick={goNext}
           className="rounded-lg bg-[var(--color-primary)] px-4 py-2 text-sm font-medium text-white"
         >
           {currentIdx === mockQuestions.length - 1 ? t('common.finish') : t('common.next')}
         </button>
       </div>
+      <p className="mt-2 text-center text-xs text-[var(--color-text-secondary)]">{t('keyboard.hint')}</p>
     </div>
   )
 }

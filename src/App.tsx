@@ -1,10 +1,12 @@
-import { useEffect, useState, lazy, Suspense } from 'react'
+import { useEffect, useState, useCallback, lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Header } from './components/header'
+import { AchievementToast } from './components/achievement-toast'
 import { useTheme } from './hooks/use-theme'
 import { useProgress } from './hooks/use-progress'
 import { useSpacedRepetition } from './hooks/use-spaced-repetition'
+import { checkNewAchievements } from './utils/achievements'
 import { getAllQuestions } from './data'
 import type { Question } from './types'
 import './index.css'
@@ -19,6 +21,8 @@ const ChallengePage = lazy(() => import('./pages/challenge-page').then((m) => ({
 const BookmarksPage = lazy(() => import('./pages/bookmarks-page').then((m) => ({ default: m.BookmarksPage })))
 const CustomSessionPage = lazy(() => import('./pages/custom-session-page').then((m) => ({ default: m.CustomSessionPage })))
 const LearningPathPage = lazy(() => import('./pages/learning-path-page').then((m) => ({ default: m.LearningPathPage })))
+const FlashcardPage = lazy(() => import('./pages/flashcard-page').then((m) => ({ default: m.FlashcardPage })))
+const AchievementsPage = lazy(() => import('./pages/achievements-page').then((m) => ({ default: m.AchievementsPage })))
 
 function PageSpinner() {
   return (
@@ -31,9 +35,10 @@ function PageSpinner() {
 export default function App() {
   const { t } = useTranslation()
   const { theme, toggleTheme } = useTheme()
-  const { progress, answer, bookmark, reset, retry, saveChallenge } = useProgress()
+  const { progress, answer, bookmark, reset, retry, saveChallenge, saveNote, unlockAchievements } = useProgress()
   const [questions, setQuestions] = useState<Question[]>([])
   const [loading, setLoading] = useState(true)
+  const [newAchievements, setNewAchievements] = useState<string[]>([])
 
   const { dueCount } = useSpacedRepetition(progress, questions)
 
@@ -43,6 +48,18 @@ export default function App() {
       setLoading(false)
     })
   }, [])
+
+  /* Check for new achievements whenever progress changes */
+  useEffect(() => {
+    if (questions.length === 0) return
+    const newly = checkNewAchievements(progress, questions.length)
+    if (newly.length > 0) {
+      unlockAchievements(newly)
+      setNewAchievements(newly)
+    }
+  }, [progress, questions.length, unlockAchievements])
+
+  const dismissAchievements = useCallback(() => setNewAchievements([]), [])
 
   if (loading) {
     return (
@@ -58,11 +75,11 @@ export default function App() {
   return (
     <BrowserRouter>
       <div className="min-h-screen bg-[var(--color-bg)]">
-        <Header theme={theme} onToggleTheme={toggleTheme} reviewDueCount={dueCount} />
+        <Header theme={theme} onToggleTheme={toggleTheme} reviewDueCount={dueCount} questions={questions} />
         <Suspense fallback={<PageSpinner />}>
           <Routes>
             <Route path="/" element={<HomePage questions={questions} progress={progress} />} />
-            <Route path="/practice" element={<PracticePage questions={questions} progress={progress} onAnswer={answer} onBookmark={bookmark} onRetry={retry} />} />
+            <Route path="/practice" element={<PracticePage questions={questions} progress={progress} onAnswer={answer} onBookmark={bookmark} onRetry={retry} onSaveNote={saveNote} />} />
             <Route path="/review" element={<ReviewPage questions={questions} progress={progress} onAnswer={answer} onBookmark={bookmark} onRetry={retry} />} />
             <Route path="/mock-interview" element={<MockInterviewPage questions={questions} progress={progress} onAnswer={answer} onBookmark={bookmark} onRetry={retry} />} />
             <Route path="/stats" element={<StatsPage questions={questions} progress={progress} onReset={reset} />} />
@@ -70,8 +87,15 @@ export default function App() {
             <Route path="/bookmarks" element={<BookmarksPage questions={questions} progress={progress} onBookmark={bookmark} />} />
             <Route path="/custom-session" element={<CustomSessionPage questions={questions} progress={progress} onAnswer={answer} onBookmark={bookmark} onRetry={retry} />} />
             <Route path="/learning-path" element={<LearningPathPage questions={questions} progress={progress} />} />
+            <Route path="/flashcards" element={<FlashcardPage questions={questions} progress={progress} onAnswer={answer} onBookmark={bookmark} />} />
+            <Route path="/achievements" element={<AchievementsPage progress={progress} totalQuestions={questions.length} />} />
           </Routes>
         </Suspense>
+
+        {/* Achievement unlock toast */}
+        {newAchievements.length > 0 && (
+          <AchievementToast achievementIds={newAchievements} onDismiss={dismissAchievements} />
+        )}
       </div>
     </BrowserRouter>
   )

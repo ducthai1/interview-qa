@@ -76,9 +76,12 @@ export interface AttemptRecord {
   timeSpent: number // milliseconds spent on the question
 }
 
+/* Confidence level before answering */
+export type ConfidenceLevel = 'sure' | 'maybe' | 'guessing'
+
 /* User progress stored in localStorage */
 export interface UserProgress {
-  answered: Record<string, { correct: boolean; timestamp: number; attempts: number; timeSpent?: number }>
+  answered: Record<string, { correct: boolean; timestamp: number; attempts: number; timeSpent?: number; confidence?: ConfidenceLevel }>
   bookmarked: string[]
   /* Spaced repetition state per question */
   reviews?: Record<string, ReviewEntry>
@@ -96,6 +99,10 @@ export interface UserProgress {
   dailyGoal?: number
   /* Flagged questions (quality issues reported by user) */
   flaggedQuestions?: string[]
+  /* Personal notes per question */
+  notes?: Record<string, string>
+  /* Unlocked achievement IDs with timestamp */
+  achievements?: Record<string, number>
 }
 
 /* AI provider configuration (stored in localStorage separately) */
@@ -122,4 +129,13 @@ export interface LearningPath {
 export interface LearningPathStep {
   topic: Topic
   requiredCompletion: number // 0-1, fraction of topic questions to complete before next unlocks
+}
+
+/* Achievement definition */
+export interface AchievementDef {
+  id: string
+  icon: string
+  labelKey: string       // i18n key for name
+  descriptionKey: string // i18n key for description
+  check: (progress: UserProgress, totalQuestions: number) => boolean
 }

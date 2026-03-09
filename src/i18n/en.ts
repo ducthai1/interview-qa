@@ -37,6 +37,8 @@ export const en = {
     challenge: 'Challenge',
     stats: 'Stats',
     learningPath: 'Paths',
+    flashcards: 'Flashcards',
+    achievements: 'Awards',
     switchTheme: 'Switch to {{mode}} mode',
   },
 
@@ -366,5 +368,84 @@ export const en = {
     sessionCount: 'Session {{current}}',
     studyTime: '{{minutes}} min study',
     breakTime: '{{minutes}} min break',
+  },
+
+  /* ─── Random Question ───────────────────────────────────────────────────── */
+  random: {
+    title: 'Jump to a random question',
+    button: 'Random',
+  },
+
+  /* ─── Confidence Rating ──────────────────────────────────────────────────── */
+  confidence: {
+    prompt: 'How confident are you?',
+    sure: 'Confident',
+    maybe: 'Somewhat',
+    guessing: 'Guessing',
+  },
+
+  /* ─── Question Notes ─────────────────────────────────────────────────────── */
+  notes: {
+    title: 'My Notes',
+    add: 'Add note',
+    edit: 'Edit note',
+    save: 'Save',
+    saved: 'Saved!',
+    placeholder: 'Write your personal notes, tips, or reminders...',
+  },
+
+  /* ─── Achievements ───────────────────────────────────────────────────────── */
+  achievements: {
+    title: 'Achievements',
+    progress: '{{unlocked}} / {{total}} unlocked',
+    unlocked: 'Achievement Unlocked!',
+    firstAnswer: 'First Step',
+    firstAnswerDesc: 'Answer your first question',
+    answer10: 'Getting Started',
+    answer10Desc: 'Answer 10 questions',
+    answer50: 'Dedicated Learner',
+    answer50Desc: 'Answer 50 questions',
+    answer100: 'Century',
+    answer100Desc: 'Answer 100 questions',
+    answer200: 'Knowledge Master',
+    answer200Desc: 'Answer 200 questions',
+    accuracy80: 'Sharp Mind',
+    accuracy80Desc: '80%+ accuracy with 20+ questions',
+    perfect10: 'Perfect Streak',
+    perfect10Desc: '10 correct answers in a row',
+    streak3: 'On Fire',
+    streak3Desc: '3-day practice streak',
+    streak7: 'Week Warrior',
+    streak7Desc: '7-day practice streak',
+    streak30: 'Unstoppable',
+    streak30Desc: '30-day practice streak',
+    topicComplete: 'Explorer',
+    topicCompleteDesc: 'Answer 15% of all questions',
+    bookmark10: 'Collector',
+    bookmark10Desc: 'Bookmark 10 questions',
+    challengeComplete: 'Challenger',
+    challengeCompleteDesc: 'Complete a timed challenge',
+    noteTaker: 'Note Taker',
+    noteTakerDesc: 'Write notes on 5 questions',
+    nightOwl: 'Night Owl',
+    nightOwlDesc: 'Practice between 11 PM and 5 AM',
+  },
+
+  /* ─── Flashcard Mode ─────────────────────────────────────────────────────── */
+  flashcard: {
+    title: 'Flashcard Review',
+    description: 'Quick-fire question and answer cards. Tap to flip, swipe to rate.',
+    selectTopic: 'Select Topic',
+    start: 'Start Flashcards',
+    tapToFlip: 'Tap card or press Space to flip',
+    knewIt: 'Knew it',
+    didntKnow: "Didn't know",
+    complete: 'Deck Complete!',
+    keyboardHint: '← → navigate · Space flip · B bookmark',
+  },
+
+  /* ─── Keyboard Shortcuts ─────────────────────────────────────────────────── */
+  keyboard: {
+    hint: '← → navigate · Space show answer · B bookmark · 1-4 select option',
   },
 }

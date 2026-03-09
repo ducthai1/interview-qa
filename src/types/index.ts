@@ -11,4 +11,6 @@ export type {
   LearningPath,
   LearningPathStep,
   AttemptRecord,
+  ConfidenceLevel,
+  AchievementDef,
 } from './question'

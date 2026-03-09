@@ -10,6 +10,8 @@ import {
   trackDailyActivity,
   saveChallengeResult,
   updateStreak,
+  saveNote as localSaveNote,
+  unlockAchievements as localUnlockAchievements,
 } from '../utils/local-storage'
 import { progressApi } from '../utils/progress-api'
 import type { UserProgress } from '../types'
@@ -145,5 +147,22 @@ export function useProgress() {
     [],
   )
 
-  return { progress, answer, bookmark, reset, retry, saveChallenge, syncing, syncError }
+  /* ──────────────────────────────────────────
+   * Save personal note for a question.
+   * ────────────────────────────────────────── */
+  const saveNote = useCallback((questionId: string, note: string) => {
+    const updated = localSaveNote(questionId, note)
+    setProgress({ ...updated })
+  }, [])
+
+  /* ──────────────────────────────────────────
+   * Unlock achievements (batch).
+   * ────────────────────────────────────────── */
+  const unlockAchievements = useCallback((ids: string[]) => {
+    if (ids.length === 0) return
+    const updated = localUnlockAchievements(ids)
+    setProgress({ ...updated })
+  }, [])
+
+  return { progress, answer, bookmark, reset, retry, saveChallenge, saveNote, unlockAchievements, syncing, syncError }
 }

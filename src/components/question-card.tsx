@@ -10,6 +10,9 @@ import { CodeWriteInteraction } from './question-type-code-write'
 import { SystemDesignInteraction } from './question-type-system-design'
 import { AIFeedbackButton } from './ai-feedback-button'
 import { AISettingsModal } from './ai-settings-modal'
+import { ConfidenceRating } from './confidence-rating'
+import { QuestionNotes } from './question-notes'
+import type { ConfidenceLevel } from '../types'
 
 interface QuestionCardProps {
   question: Question
@@ -18,6 +21,7 @@ interface QuestionCardProps {
   onBookmark: (questionId: string) => void
   onRetry: (questionId: string) => void
   onFlag?: (questionId: string) => void
+  onSaveNote?: (questionId: string, note: string) => void
   /** Hide retry button in exam modes (mock interview, challenge) */
   hideRetry?: boolean
 }
@@ -102,7 +106,7 @@ function SelfRateRubric({ onRate }: { onRate: (level: 'nailed' | 'partial' | 're
   )
 }
 
-export function QuestionCard({ question: rawQuestion, progress, onAnswer, onBookmark, onRetry, onFlag, hideRetry }: QuestionCardProps) {
+export function QuestionCard({ question: rawQuestion, progress, onAnswer, onBookmark, onRetry, onFlag, onSaveNote, hideRetry }: QuestionCardProps) {
   const { t } = useTranslation()
   const { tq } = useQuestionTranslation()
   const question = tq(rawQuestion)
@@ -113,6 +117,7 @@ export function QuestionCard({ question: rawQuestion, progress, onAnswer, onBook
   const [userAnswerForAI, setUserAnswerForAI] = useState('')
   const [aiSettingsOpen, setAiSettingsOpen] = useState(false)
   const [currentHintIdx, setCurrentHintIdx] = useState(0)
+  const [confidence, setConfidence] = useState<ConfidenceLevel | null>(null)
 
   const answered = progress.answered[question.id]
   const isBookmarked = progress.bookmarked.includes(question.id)
@@ -217,6 +222,11 @@ export function QuestionCard({ question: rawQuestion, progress, onAnswer, onBook
 
       {/* Code snippet */}
       {question.code && <CodeBlock code={question.code} />}
+
+      {/* Confidence rating — shown before answering for MCQ/TF/code-output */}
+      {!isRevealed && !answered && !confidence && (question.type === 'mcq' || question.type === 'true-false' || question.type === 'code-output') && (
+        <ConfidenceRating onSelect={setConfidence} />
+      )}
 
       {/* MCQ options */}
       {question.type === 'mcq' && question.options && (
@@ -384,6 +394,15 @@ export function QuestionCard({ question: rawQuestion, progress, onAnswer, onBook
       )}
 
       <AISettingsModal open={aiSettingsOpen} onClose={() => setAiSettingsOpen(false)} />
+
+      {/* Personal notes */}
+      {onSaveNote && (
+        <QuestionNotes
+          questionId={question.id}
+          initialNote={progress.notes?.[question.id] ?? ''}
+          onSave={onSaveNote}
+        />
+      )}
     </div>
   )
 }

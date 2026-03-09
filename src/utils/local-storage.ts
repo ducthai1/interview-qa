@@ -1,4 +1,4 @@
-import type { UserProgress, Difficulty, QuestionType } from '../types'
+import type { UserProgress, Difficulty, QuestionType, ConfidenceLevel } from '../types'
 import { getNextReview } from './spaced-repetition'
 
 const STORAGE_KEY = 'fe-interview-hub-progress'
@@ -20,13 +20,13 @@ export function saveProgress(progress: UserProgress): void {
   } catch { /* storage full or unavailable */ }
 }
 
-/* Record an answer for a question */
-export function recordAnswer(questionId: string, correct: boolean, timeSpent?: number): UserProgress {
+/* Record an answer for a question with optional confidence level */
+export function recordAnswer(questionId: string, correct: boolean, timeSpent?: number, confidence?: ConfidenceLevel): UserProgress {
   const progress = loadProgress()
   const existing = progress.answered[questionId]
   const attempts = existing ? existing.attempts + 1 : 1
   const now = Date.now()
-  progress.answered[questionId] = { correct, timestamp: now, attempts, ...(timeSpent !== undefined ? { timeSpent } : {}) }
+  progress.answered[questionId] = { correct, timestamp: now, attempts, ...(timeSpent !== undefined ? { timeSpent } : {}), ...(confidence ? { confidence } : existing?.confidence ? { confidence: existing.confidence } : {}) }
 
   // Append to attempt history
   const history = progress.attemptHistory ?? {}
@@ -126,6 +126,44 @@ export function saveChallengeResult(
   const currentBest = progress.challengeBests?.[presetId]
   if (!currentBest || result.score > currentBest.score) {
     progress.challengeBests = { ...(progress.challengeBests ?? {}), [presetId]: result }
+  }
+  saveProgress(progress)
+  return progress
+}
+
+/* Save a personal note for a question */
+export function saveNote(questionId: string, note: string): UserProgress {
+  const progress = loadProgress()
+  const notes = progress.notes ?? {}
+  if (note.trim()) {
+    notes[questionId] = note.trim()
+  } else {
+    delete notes[questionId]
+  }
+  progress.notes = notes
+  saveProgress(progress)
+  return progress
+}
+
+/* Record unlocked achievements */
+export function unlockAchievements(ids: string[]): UserProgress {
+  const progress = loadProgress()
+  const achievements = progress.achievements ?? {}
+  const now = Date.now()
+  for (const id of ids) {
+    if (!achievements[id]) achievements[id] = now
+  }
+  progress.achievements = achievements
+  saveProgress(progress)
+  return progress
+}
+
+/* Set confidence level for a question (before answering) */
+export function setConfidence(questionId: string, level: ConfidenceLevel): UserProgress {
+  const progress = loadProgress()
+  const existing = progress.answered[questionId]
+  if (existing) {
+    existing.confidence = level
   }
   saveProgress(progress)
   return progress

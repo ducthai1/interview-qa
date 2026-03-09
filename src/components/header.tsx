@@ -3,14 +3,18 @@ import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { AISettingsModal } from './ai-settings-modal'
+import { RandomQuestionButton } from './random-question-button'
+
+import type { Question } from '../types'
 
 interface HeaderProps {
   theme: 'light' | 'dark'
   onToggleTheme: () => void
   reviewDueCount?: number
+  questions?: Question[]
 }
 
-export function Header({ theme, onToggleTheme, reviewDueCount = 0 }: HeaderProps) {
+export function Header({ theme, onToggleTheme, reviewDueCount = 0, questions = [] }: HeaderProps) {
   const { t, i18n } = useTranslation()
   const location = useLocation()
   const [aiSettingsOpen, setAiSettingsOpen] = useState(false)
@@ -21,7 +25,9 @@ export function Header({ theme, onToggleTheme, reviewDueCount = 0 }: HeaderProps
     { to: '/practice', label: t('nav.practice') },
     { to: '/review', label: t('nav.review'), badge: reviewDueCount > 0 ? reviewDueCount : undefined },
     { to: '/mock-interview', label: t('nav.mockInterview') },
+    { to: '/flashcards', label: t('nav.flashcards') },
     { to: '/challenge', label: t('nav.challenge') },
+    { to: '/achievements', label: t('nav.achievements') },
     { to: '/stats', label: t('nav.stats') },
   ]
 
@@ -63,6 +69,7 @@ export function Header({ theme, onToggleTheme, reviewDueCount = 0 }: HeaderProps
         </nav>
 
         <div className="flex items-center gap-2">
+          {questions.length > 0 && <RandomQuestionButton questions={questions} />}
           <button
             onClick={toggleLanguage}
             className="flex items-center gap-1 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-secondary)] px-2 py-2 text-xs font-medium text-[var(--color-text-secondary)] transition-colors hover:bg-[var(--color-border)]"

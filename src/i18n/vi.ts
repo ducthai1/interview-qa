@@ -37,6 +37,8 @@ export const vi = {
     challenge: 'Thử thách',
     stats: 'Thống kê',
     learningPath: 'Lộ trình',
+    flashcards: 'Flashcard',
+    achievements: 'Thành tựu',
     switchTheme: 'Chuyển sang chế độ {{mode}}',
   },
 
@@ -366,5 +368,84 @@ export const vi = {
     sessionCount: 'Phiên {{current}}',
     studyTime: '{{minutes}} phút học',
     breakTime: '{{minutes}} phút nghỉ',
+  },
+
+  /* ─── Random Question ───────────────────────────────────────────────────── */
+  random: {
+    title: 'Nhảy đến câu hỏi ngẫu nhiên',
+    button: 'Ngẫu nhiên',
+  },
+
+  /* ─── Confidence Rating ──────────────────────────────────────────────────── */
+  confidence: {
+    prompt: 'Bạn tự tin thế nào?',
+    sure: 'Chắc chắn',
+    maybe: 'Có thể',
+    guessing: 'Đoán mò',
+  },
+
+  /* ─── Question Notes ─────────────────────────────────────────────────────── */
+  notes: {
+    title: 'Ghi chú',
+    add: 'Thêm ghi chú',
+    edit: 'Sửa ghi chú',
+    save: 'Lưu',
+    saved: 'Đã lưu!',
+    placeholder: 'Ghi chú cá nhân, mẹo, nhắc nhở...',
+  },
+
+  /* ─── Achievements ───────────────────────────────────────────────────────── */
+  achievements: {
+    title: 'Thành tựu',
+    progress: '{{unlocked}} / {{total}} đã mở khóa',
+    unlocked: 'Mở khóa thành tựu!',
+    firstAnswer: 'Bước đầu tiên',
+    firstAnswerDesc: 'Trả lời câu hỏi đầu tiên',
+    answer10: 'Khởi đầu',
+    answer10Desc: 'Trả lời 10 câu hỏi',
+    answer50: 'Học viên chăm chỉ',
+    answer50Desc: 'Trả lời 50 câu hỏi',
+    answer100: 'Bách phát',
+    answer100Desc: 'Trả lời 100 câu hỏi',
+    answer200: 'Bậc thầy kiến thức',
+    answer200Desc: 'Trả lời 200 câu hỏi',
+    accuracy80: 'Trí tuệ sắc bén',
+    accuracy80Desc: '80%+ chính xác với 20+ câu hỏi',
+    perfect10: 'Chuỗi hoàn hảo',
+    perfect10Desc: '10 câu đúng liên tiếp',
+    streak3: 'Đang cháy',
+    streak3Desc: 'Streak 3 ngày liên tiếp',
+    streak7: 'Chiến binh tuần',
+    streak7Desc: 'Streak 7 ngày liên tiếp',
+    streak30: 'Không thể ngăn cản',
+    streak30Desc: 'Streak 30 ngày liên tiếp',
+    topicComplete: 'Nhà thám hiểm',
+    topicCompleteDesc: 'Trả lời 15% tổng số câu hỏi',
+    bookmark10: 'Nhà sưu tầm',
+    bookmark10Desc: 'Đánh dấu 10 câu hỏi',
+    challengeComplete: 'Người thách đấu',
+    challengeCompleteDesc: 'Hoàn thành thử thách có giờ',
+    noteTaker: 'Người ghi chép',
+    noteTakerDesc: 'Viết ghi chú cho 5 câu hỏi',
+    nightOwl: 'Cú đêm',
+    nightOwlDesc: 'Luyện tập từ 23h đến 5h sáng',
+  },
+
+  /* ─── Flashcard Mode ─────────────────────────────────────────────────────── */
+  flashcard: {
+    title: 'Ôn tập Flashcard',
+    description: 'Thẻ hỏi đáp nhanh. Chạm để lật, đánh giá đúng/sai.',
+    selectTopic: 'Chọn chủ đề',
+    start: 'Bắt đầu Flashcard',
+    tapToFlip: 'Chạm thẻ hoặc nhấn Space để lật',
+    knewIt: 'Biết rồi',
+    didntKnow: 'Chưa biết',
+    complete: 'Hoàn thành bộ thẻ!',
+    keyboardHint: '← → di chuyển · Space lật · B đánh dấu',
+  },
+
+  /* ─── Keyboard Shortcuts ─────────────────────────────────────────────────── */
+  keyboard: {
+    hint: '← → di chuyển · Space xem đáp án · B đánh dấu · 1-4 chọn đáp án',
   },
 }

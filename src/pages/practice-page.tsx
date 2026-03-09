@@ -17,11 +17,12 @@ interface PracticePageProps {
   onAnswer: (questionId: string, correct: boolean) => void
   onBookmark: (questionId: string) => void
   onRetry: (questionId: string) => void
+  onSaveNote?: (questionId: string, note: string) => void
 }
 
 const PAGE_SIZE = 10
 
-export function PracticePage({ questions, progress, onAnswer, onBookmark, onRetry }: PracticePageProps) {
+export function PracticePage({ questions, progress, onAnswer, onBookmark, onRetry, onSaveNote }: PracticePageProps) {
   const { t } = useTranslation()
   const { tq } = useQuestionTranslation()
   const [searchParams, setSearchParams] = useSearchParams()
@@ -173,7 +174,7 @@ export function PracticePage({ questions, progress, onAnswer, onBookmark, onRetr
       <div className="space-y-4">
         {paginated.map((q) => (
           <div key={q.id} id={`q-${q.id}`}>
-            <QuestionCard question={q} progress={progress} onAnswer={onAnswer} onBookmark={onBookmark} onRetry={onRetry} />
+            <QuestionCard question={q} progress={progress} onAnswer={onAnswer} onBookmark={onBookmark} onRetry={onRetry} onSaveNote={onSaveNote} />
           </div>
         ))}
       </div>
@@ -242,6 +243,13 @@ export function PracticePage({ questions, progress, onAnswer, onBookmark, onRetr
             <ChevronsRight className="h-4 w-4" />
           </button>
         </nav>
+      )}
+
+      {/* Keyboard shortcut hint */}
+      {filtered.length > 0 && (
+        <p className="mt-4 text-center text-xs text-[var(--color-text-secondary)]">
+          {t('keyboard.hint')}
+        </p>
       )}
 
       {filtered.length === 0 && (
