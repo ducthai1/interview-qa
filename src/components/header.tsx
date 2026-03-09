@@ -1,6 +1,6 @@
-import { Moon, Sun, Code2, Globe, Settings, ChevronDown, Shuffle } from 'lucide-react'
+import { Moon, Sun, Code2, Globe, Settings, ChevronDown } from 'lucide-react'
 import { useState, useRef, useEffect } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { AISettingsModal } from './ai-settings-modal'
 import type { Question } from '../types'
@@ -21,7 +21,6 @@ interface NavItem {
 export function Header({ theme, onToggleTheme, reviewDueCount = 0, questions = [] }: HeaderProps) {
   const { t, i18n } = useTranslation()
   const location = useLocation()
-  const navigate = useNavigate()
   const [aiSettingsOpen, setAiSettingsOpen] = useState(false)
   const [moreOpen, setMoreOpen] = useState(false)
   const moreRef = useRef<HTMLDivElement>(null)
@@ -52,12 +51,6 @@ export function Header({ theme, onToggleTheme, reviewDueCount = 0, questions = [
     const newLang = i18n.language === 'vi' ? 'en' : 'vi'
     i18n.changeLanguage(newLang)
     localStorage.setItem('fe-interview-lang', newLang)
-  }
-
-  const handleRandom = () => {
-    if (questions.length === 0) return
-    const q = questions[Math.floor(Math.random() * questions.length)]
-    navigate(`/practice?topic=${q.topic}#q-${q.id}`)
   }
 
   /* Close dropdown on outside click */
@@ -123,15 +116,6 @@ export function Header({ theme, onToggleTheme, reviewDueCount = 0, questions = [
 
         {/* Action buttons */}
         <div className="flex items-center gap-1.5">
-          {questions.length > 0 && (
-            <button
-              onClick={handleRandom}
-              className="rounded-lg p-2 text-[var(--color-text-secondary)] transition-colors hover:bg-[var(--color-bg-secondary)] hover:text-[var(--color-primary)]"
-              title={t('random.title')}
-            >
-              <Shuffle className="h-4 w-4" />
-            </button>
-          )}
           <button
             onClick={toggleLanguage}
             className="rounded-lg px-2 py-1.5 text-xs font-semibold text-[var(--color-text-secondary)] transition-colors hover:bg-[var(--color-bg-secondary)] hover:text-[var(--color-text)]"
