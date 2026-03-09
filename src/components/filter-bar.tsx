@@ -131,10 +131,10 @@ export function FilterBar(props: FilterBarProps) {
             </div>
           </div>
 
-          {/* Difficulty + Type in a row */}
-          <div className="flex flex-wrap gap-6">
-            <div>
-              <p className="mb-1.5 text-xs font-medium text-[var(--color-text-secondary)]">{t('filter.difficulty')}</p>
+          {/* Difficulty + Type — each in its own bordered section */}
+          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+            <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-secondary)] p-2.5">
+              <p className="mb-2 text-[10px] font-semibold uppercase tracking-wide text-[var(--color-text-secondary)]">{t('filter.difficulty')}</p>
               <div className="flex flex-wrap gap-1.5">
                 {difficulties.map((d) => (
                   <ToggleChip
@@ -146,8 +146,8 @@ export function FilterBar(props: FilterBarProps) {
                 ))}
               </div>
             </div>
-            <div>
-              <p className="mb-1.5 text-xs font-medium text-[var(--color-text-secondary)]">{t('filter.questionType')}</p>
+            <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-secondary)] p-2.5">
+              <p className="mb-2 text-[10px] font-semibold uppercase tracking-wide text-[var(--color-text-secondary)]">{t('filter.questionType')}</p>
               <div className="flex flex-wrap gap-1.5">
                 {questionTypes.map((qt) => (
                   <ToggleChip
