@@ -1,15 +1,26 @@
-import { Moon, Sun, Code2, Globe, Settings, ChevronDown } from 'lucide-react'
+import { Moon, Sun, Code2, Globe, Settings, ChevronDown, ArrowLeftRight } from 'lucide-react'
 import { useState, useRef, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { AISettingsModal } from './ai-settings-modal'
-import type { Question } from '../types'
+import type { Question, Role } from '../types'
+
+const LANG_CYCLE = ['en', 'vi', 'jp'] as const
+const LANG_LABELS: Record<string, string> = { en: 'EN', vi: 'VI', jp: 'JP' }
+
+const ROLE_LABELS: Record<Role, string> = {
+  frontend: 'FE',
+  ba: 'BA',
+  brse: 'BrSE',
+}
 
 interface HeaderProps {
   theme: 'light' | 'dark'
   onToggleTheme: () => void
   reviewDueCount?: number
   questions?: Question[]
+  role?: Role
+  onSwitchRole?: () => void
 }
 
 interface NavItem {
@@ -18,7 +29,7 @@ interface NavItem {
   badge?: number
 }
 
-export function Header({ theme, onToggleTheme, reviewDueCount = 0, questions = [] }: HeaderProps) {
+export function Header({ theme, onToggleTheme, reviewDueCount = 0, questions = [], role, onSwitchRole }: HeaderProps) {
   const { t, i18n } = useTranslation()
   const location = useLocation()
   const [aiSettingsOpen, setAiSettingsOpen] = useState(false)
@@ -47,10 +58,11 @@ export function Header({ theme, onToggleTheme, reviewDueCount = 0, questions = [
 
   const isMoreActive = moreLinks.some((l) => location.pathname === l.to)
 
-  const toggleLanguage = () => {
-    const newLang = i18n.language === 'vi' ? 'en' : 'vi'
-    i18n.changeLanguage(newLang)
-    localStorage.setItem('fe-interview-lang', newLang)
+  const cycleLanguage = () => {
+    const idx = LANG_CYCLE.indexOf(i18n.language as typeof LANG_CYCLE[number])
+    const next = LANG_CYCLE[(idx + 1) % LANG_CYCLE.length]
+    i18n.changeLanguage(next)
+    localStorage.setItem('fe-interview-lang', next)
   }
 
   /* Close dropdown on outside click */
@@ -116,12 +128,23 @@ export function Header({ theme, onToggleTheme, reviewDueCount = 0, questions = [
 
         {/* Action buttons */}
         <div className="flex items-center gap-1.5">
+          {/* Role indicator + switch */}
+          {role && onSwitchRole && (
+            <button
+              onClick={onSwitchRole}
+              className="flex items-center gap-1 rounded-lg px-2 py-1.5 text-xs font-semibold text-[var(--color-primary)] transition-colors hover:bg-[var(--color-primary-bg)]"
+              title={t('roleSelect.switchRole')}
+            >
+              <ArrowLeftRight className="h-3.5 w-3.5" />
+              {ROLE_LABELS[role]}
+            </button>
+          )}
           <button
-            onClick={toggleLanguage}
+            onClick={cycleLanguage}
             className="rounded-lg px-2 py-1.5 text-xs font-semibold text-[var(--color-text-secondary)] transition-colors hover:bg-[var(--color-bg-secondary)] hover:text-[var(--color-text)]"
             aria-label="Toggle language"
           >
-            {i18n.language === 'vi' ? 'VI' : 'EN'}
+            {LANG_LABELS[i18n.language] || 'EN'}
           </button>
           <button
             onClick={onToggleTheme}

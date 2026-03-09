@@ -1,4 +1,18 @@
 export const vi = {
+  /* ─── Role Selector ──────────────────────────────────────────────────────── */
+  roleSelect: {
+    title: 'Interview Hub',
+    subtitle: 'Chọn vai trò để bắt đầu luyện tập',
+    frontend: 'Frontend Developer',
+    frontendDesc: 'React, TypeScript, CSS, JavaScript, thiết kế hệ thống và nhiều hơn.',
+    ba: 'Business Analyst',
+    baDesc: 'Yêu cầu, user story, quản lý stakeholder, Agile, tài liệu.',
+    brse: 'Bridge SE (BrSE)',
+    brseDesc: 'Tiếng Nhật kinh doanh, phát triển offshore, quản lý dự án.',
+    start: 'Bắt đầu luyện tập',
+    switchRole: 'Đổi vai trò',
+  },
+
   /* ─── Common ───────────────────────────────────────────────────────────────── */
   common: {
     loading: 'Đang tải câu hỏi...',

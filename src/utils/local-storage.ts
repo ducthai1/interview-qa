@@ -1,22 +1,47 @@
-import type { UserProgress, Difficulty, QuestionType, ConfidenceLevel } from '../types'
+import type { UserProgress, Difficulty, QuestionType, ConfidenceLevel, Role } from '../types'
 import { getNextReview } from './spaced-repetition'
 
-const STORAGE_KEY = 'fe-interview-hub-progress'
+const LEGACY_STORAGE_KEY = 'fe-interview-hub-progress'
 const THEME_KEY = 'fe-interview-hub-theme'
 
-/* Load user progress from localStorage */
+/* Current active role for storage key — defaults to 'frontend' */
+let activeRole: Role = 'frontend'
+
+/* Set the active role for all subsequent storage operations */
+export function setStorageRole(role: Role): void {
+  activeRole = role
+}
+
+/* Get storage key for current role */
+function getStorageKey(): string {
+  return `interview-hub-progress-${activeRole}`
+}
+
+/* Load user progress from localStorage (role-aware) */
 export function loadProgress(): UserProgress {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY)
+    // Try role-specific key first
+    const raw = localStorage.getItem(getStorageKey())
     if (raw) return JSON.parse(raw)
+
+    // Fallback: migrate legacy data for frontend role
+    if (activeRole === 'frontend') {
+      const legacy = localStorage.getItem(LEGACY_STORAGE_KEY)
+      if (legacy) {
+        const parsed = JSON.parse(legacy)
+        // Save to new key and keep legacy for safety
+        localStorage.setItem(getStorageKey(), legacy)
+        return parsed
+      }
+    }
   } catch { /* ignore corrupt data */ }
   return { answered: {}, bookmarked: [] }
 }
 
-/* Save user progress to localStorage */
+/* Save user progress to localStorage (role-aware) */
 export function saveProgress(progress: UserProgress): void {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(progress))
+    localStorage.setItem(getStorageKey(), JSON.stringify(progress))
   } catch { /* storage full or unavailable */ }
 }
 

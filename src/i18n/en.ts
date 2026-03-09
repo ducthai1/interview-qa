@@ -1,4 +1,18 @@
 export const en = {
+  /* ─── Role Selector ──────────────────────────────────────────────────────── */
+  roleSelect: {
+    title: 'Interview Hub',
+    subtitle: 'Choose your role to start practicing',
+    frontend: 'Frontend Developer',
+    frontendDesc: 'React, TypeScript, CSS, JavaScript, system design and more.',
+    ba: 'Business Analyst',
+    baDesc: 'Requirements, user stories, stakeholder management, Agile, documentation.',
+    brse: 'Bridge SE (BrSE)',
+    brseDesc: 'Japanese business communication, offshore development, project management.',
+    start: 'Start practicing',
+    switchRole: 'Switch Role',
+  },
+
   /* ─── Common ───────────────────────────────────────────────────────────────── */
   common: {
     loading: 'Loading questions...',

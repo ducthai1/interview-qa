@@ -1,4 +1,5 @@
 export type {
+  Role,
   Question,
   QuestionType,
   Difficulty,

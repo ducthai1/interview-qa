@@ -3,12 +3,14 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Header } from './components/header'
 import { AchievementToast } from './components/achievement-toast'
+import { RoleSelectorPage } from './pages/role-selector-page'
 import { useTheme } from './hooks/use-theme'
+import { useRole } from './hooks/use-role'
 import { useProgress } from './hooks/use-progress'
 import { useSpacedRepetition } from './hooks/use-spaced-repetition'
 import { checkNewAchievements } from './utils/achievements'
-import { getAllQuestions } from './data'
-import type { Question } from './types'
+import { getQuestionsByRole } from './data'
+import type { Question, Role } from './types'
 import './index.css'
 
 /* Lazy-load pages to reduce initial bundle size */
@@ -33,21 +35,50 @@ function PageSpinner() {
 }
 
 export default function App() {
-  const { t } = useTranslation()
+  const { i18n } = useTranslation()
   const { theme, toggleTheme } = useTheme()
-  const { progress, answer, bookmark, reset, retry, saveChallenge, saveNote, unlockAchievements } = useProgress()
+  const { role, setRole, clearRole } = useRole()
+
+  /* When BrSE is selected, auto-switch to Japanese */
+  const handleSelectRole = useCallback((r: Role) => {
+    setRole(r)
+    if (r === 'brse' && i18n.language !== 'jp') {
+      i18n.changeLanguage('jp')
+      localStorage.setItem('fe-interview-lang', 'jp')
+    }
+  }, [setRole, i18n])
+
+  /* Show role selector when no role is chosen */
+  if (!role) {
+    return <RoleSelectorPage onSelectRole={handleSelectRole} />
+  }
+
+  return <MainApp role={role} theme={theme} toggleTheme={toggleTheme} clearRole={clearRole} />
+}
+
+/* Separated to only call useProgress after role is confirmed */
+function MainApp({ role, theme, toggleTheme, clearRole }: {
+  role: Role
+  theme: 'light' | 'dark'
+  toggleTheme: () => void
+  clearRole: () => void
+}) {
+  const { t } = useTranslation()
+  const { progress, answer, bookmark, reset, retry, saveChallenge, saveNote, unlockAchievements } = useProgress(role)
   const [questions, setQuestions] = useState<Question[]>([])
   const [loading, setLoading] = useState(true)
   const [newAchievements, setNewAchievements] = useState<string[]>([])
 
   const { dueCount } = useSpacedRepetition(progress, questions)
 
+  /* Load questions for the current role */
   useEffect(() => {
-    getAllQuestions().then((qs) => {
+    setLoading(true)
+    getQuestionsByRole(role).then((qs) => {
       setQuestions(qs)
       setLoading(false)
     })
-  }, [])
+  }, [role])
 
   /* Check for new achievements whenever progress changes */
   useEffect(() => {
@@ -75,7 +106,14 @@ export default function App() {
   return (
     <BrowserRouter>
       <div className="min-h-screen bg-[var(--color-bg)]">
-        <Header theme={theme} onToggleTheme={toggleTheme} reviewDueCount={dueCount} questions={questions} />
+        <Header
+          theme={theme}
+          onToggleTheme={toggleTheme}
+          reviewDueCount={dueCount}
+          questions={questions}
+          role={role}
+          onSwitchRole={clearRole}
+        />
         <Suspense fallback={<PageSpinner />}>
           <Routes>
             <Route path="/" element={<HomePage questions={questions} progress={progress} />} />

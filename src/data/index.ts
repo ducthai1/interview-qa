@@ -1,32 +1,69 @@
-/* Central data index - imports all question sets and exports combined array */
-import type { Question } from '../types'
+/* Central data index - loads questions by role */
+import type { Question, Role, TopicInfo } from '../types'
+import { topics as frontendTopics } from './topics'
+import { baTopics } from './ba/topics'
+import { brseTopics } from './brse/topics'
 
-// These will be populated by the data generation agents
-let allQuestions: Question[] = []
-let loadingPromise: Promise<Question[]> | null = null
+/* Cache per role to avoid re-loading */
+const cache: Partial<Record<Role, Question[]>> = {}
+const loadingPromises: Partial<Record<Role, Promise<Question[]>>> = {}
 
-/* Dynamically import all question modules */
-async function loadQuestions(): Promise<Question[]> {
-  const modules = import.meta.glob('./questions-*.ts', { eager: false }) as Record<string, () => Promise<Record<string, Question[]>>>
+/* Dynamically import question modules matching a glob pattern */
+async function loadGlob(modules: Record<string, () => Promise<Record<string, Question[]>>>): Promise<Question[]> {
   const questions: Question[] = []
-  const loadedModules = await Promise.all(Object.values(modules).map((load) => load()))
-  for (const mod of loadedModules) {
+  const loaded = await Promise.all(Object.values(modules).map((load) => load()))
+  for (const mod of loaded) {
     for (const exported of Object.values(mod)) {
-      if (Array.isArray(exported)) {
-        questions.push(...exported)
-      }
+      if (Array.isArray(exported)) questions.push(...exported)
     }
   }
   return questions
 }
 
-export async function getAllQuestions(): Promise<Question[]> {
-  if (allQuestions.length > 0) return allQuestions
-  if (loadingPromise) return loadingPromise
-  loadingPromise = loadQuestions().then((q) => {
-    allQuestions = q
-    loadingPromise = null
-    return q
+/* Load questions for a specific role */
+export async function getQuestionsByRole(role: Role): Promise<Question[]> {
+  if (cache[role]) return cache[role]!
+  if (loadingPromises[role]) return loadingPromises[role]!
+
+  let promise: Promise<Question[]>
+
+  switch (role) {
+    case 'frontend':
+      promise = loadGlob(
+        import.meta.glob('./questions-*.ts', { eager: false }) as Record<string, () => Promise<Record<string, Question[]>>>
+      )
+      break
+    case 'ba':
+      promise = loadGlob(
+        import.meta.glob('./ba/questions-*.ts', { eager: false }) as Record<string, () => Promise<Record<string, Question[]>>>
+      )
+      break
+    case 'brse':
+      promise = loadGlob(
+        import.meta.glob('./brse/questions-*.ts', { eager: false }) as Record<string, () => Promise<Record<string, Question[]>>>
+      )
+      break
+  }
+
+  loadingPromises[role] = promise.then((qs) => {
+    cache[role] = qs
+    delete loadingPromises[role]
+    return qs
   })
-  return loadingPromise
+
+  return loadingPromises[role]!
+}
+
+/* Backwards compatibility — loads frontend questions */
+export async function getAllQuestions(): Promise<Question[]> {
+  return getQuestionsByRole('frontend')
+}
+
+/* Get topics for a specific role */
+export function getTopicsByRole(role: Role): TopicInfo[] {
+  switch (role) {
+    case 'frontend': return frontendTopics
+    case 'ba': return baTopics
+    case 'brse': return brseTopics
+  }
 }

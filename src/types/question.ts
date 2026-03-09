@@ -1,3 +1,5 @@
+export type Role = 'frontend' | 'ba' | 'brse'
+
 export type QuestionType = 'mcq' | 'code-output' | 'debug' | 'code-write' | 'system-design' | 'true-false'
 
 export type Difficulty = 'junior' | 'mid' | 'senior' | 'lead'
@@ -24,6 +26,32 @@ export type Topic =
   | 'accessibility'
   | 'security'
   | 'real-world'
+  /* BA topics */
+  | 'requirements-engineering'
+  | 'user-story-use-case'
+  | 'business-process-bpmn'
+  | 'stakeholder-management'
+  | 'agile-scrum'
+  | 'data-analysis-sql'
+  | 'wireframe-prototype'
+  | 'documentation'
+  | 'domain-knowledge'
+  | 'communication-negotiation'
+  | 'uat-quality'
+  | 'system-integration'
+  /* BrSE topics */
+  | 'japanese-business-comm'
+  | 'technical-translation'
+  | 'offshore-process'
+  | 'requirements-spec'
+  | 'brse-project-management'
+  | 'quality-management'
+  | 'japanese-culture'
+  | 'estimation-planning'
+  | 'client-reporting'
+  | 'team-management'
+  | 'brse-system-architecture'
+  | 'risk-management'
 
 export interface Question {
   id: string

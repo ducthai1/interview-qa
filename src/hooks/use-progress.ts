@@ -12,15 +12,28 @@ import {
   updateStreak,
   saveNote as localSaveNote,
   unlockAchievements as localUnlockAchievements,
+  setStorageRole,
 } from '../utils/local-storage'
 import { progressApi } from '../utils/progress-api'
-import type { UserProgress } from '../types'
+import type { UserProgress, Role } from '../types'
 
-export function useProgress() {
-  const [progress, setProgress] = useState<UserProgress>(loadProgress)
+export function useProgress(role: Role = 'frontend') {
+  /* Ensure storage is scoped to current role */
+  setStorageRole(role)
+  const [progress, setProgress] = useState<UserProgress>(() => {
+    setStorageRole(role)
+    return loadProgress()
+  })
   const [syncing, setSyncing] = useState(false)
   const [syncError, setSyncError] = useState<string | null>(null)
   const initialSyncDone = useRef(false)
+
+  /* Re-load progress when role changes */
+  useEffect(() => {
+    setStorageRole(role)
+    setProgress(loadProgress())
+    initialSyncDone.current = false
+  }, [role])
 
   /* ──────────────────────────────────────────
    * On mount: fetch progress from MongoDB and
