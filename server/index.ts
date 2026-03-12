@@ -12,7 +12,11 @@ const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/fe-int
 
 // Middleware
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:4173'], // Vite dev & preview
+  origin: [
+    'http://localhost:5173', 
+    'http://localhost:4173',
+    ...(process.env.FRONTEND_URL ? [process.env.FRONTEND_URL] : [])
+  ],
   credentials: true,
 }))
 app.use(express.json())
