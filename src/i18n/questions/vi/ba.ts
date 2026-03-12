@@ -1714,4 +1714,168 @@ Bảng điều khiển số liệu chất lượng tổng thể:
     ],
     explanation: `Bỏ qua hoàn toàn UAT là vô trách nhiệm (vấn đề sản xuất tốn kém hơn so với việc trì hoãn ra mắt).Tuy nhiên, việc nhấn mạnh vào UAT đầy đủ khi lịch trình là quan trọng có thể không thực tế.Cách tiếp cận dựa trên rủi ro tập trung UAT vào các lộ trình quan trọng (tác động kinh doanh cao nhất), trì hoãn các kịch bản có rủi ro thấp hơn (với sự chấp nhận rủi ro được ghi lại) và cung cấp mạng lưới an toàn (kế hoạch khôi phục, giám sát sau phát hành).Điều này giúp cân bằng chất lượng với tính cấp bách trong kinh doanh - một kỹ năng quan trọng của Lead BA.`,
   },
+  'ba-rw-001': {
+    question: `Một khách hàng liên tục yêu cầu các tính năng mới nhỏ trong tuần cuối cùng của UAT. Hành động ngay lập tức thích hợp nhất của bạn là gì?`,
+    options: [
+      `Chấp nhận mọi yêu cầu để giữ cho khách hàng hài lòng và yêu cầu các nhà phát triển làm việc thêm giờ.`,
+      `Từ chối mọi yêu cầu vì thời hạn đã đến gần.`,
+      `Ghi lại các yêu cầu dưới dạng Yêu cầu Thay đổi (CR), đánh giá tác động của chúng đối với dòng thời gian/chi phí và yêu cầu khách hàng ưu tiên chúng so với phạm vi phát hành hiện tại.`,
+      `Âm thầm đưa các tính năng vào cơ sở mã mà không cần thông báo cho Người quản lý dự án.`
+    ],
+    explanation: `Phạm vi leo thang là một rủi ro lớn, đặc biệt là vào giai đoạn cuối của dự án. Là một BA, bạn không bao giờ nên chấp nhận một cách mù quáng hoặc từ chối một cách cứng nhắc các yêu cầu. Thay vào đó, hãy ghi lại chúng dưới dạng CR, phân tích tác động và trình bày những đánh đổi cho các bên liên quan để đưa ra quyết định sáng suốt.`,
+  },
+  'ba-rw-002': {
+    question: `Trong cuộc họp lập kế hoạch chạy nước rút, nhà phát triển cho biết họ không thể triển khai tính năng như được mô tả trong Câu chuyện người dùng của bạn. Bạn nên trả lời thế nào?`,
+    options: [
+      `Yêu cầu nhà phát triển tuân theo các yêu cầu chính xác như đã viết.`,
+      `Đồng ý ngay lập tức xóa tính năng này mà không cần hỏi Chủ sở hữu sản phẩm.`,
+      `Yêu cầu nhà phát triển giải thích giới hạn kỹ thuật, thảo luận các giải pháp thay thế vẫn đáp ứng mục tiêu kinh doanh và cập nhật Câu chuyện người dùng cho phù hợp.`,
+      `Nâng cao "thái độ không tốt" của nhà phát triển đối với Người quản lý dự án.`
+    ],
+    explanation: `BA đóng vai trò là cầu nối giữa kinh doanh và công nghệ. Nếu tồn tại các hạn chế về mặt kỹ thuật, bạn nên cộng tác với nhà phát triển để tìm giải pháp thay thế đáp ứng nhu cầu kinh doanh cốt lõi, thay vì buộc phải triển khai không thể thực hiện được hoặc loại bỏ hoàn toàn tính năng này.`,
+  },
+  'ba-rw-003': {
+    question: `Bạn nhận được yêu cầu từ bộ phận tiếp thị: "Hệ thống phải hoạt động rất nhanh." Làm thế nào để bạn xử lý yêu cầu mơ hồ này?`,
+    options: [
+      `Viết "Hệ thống phải cực nhanh" trong tài liệu SRS.`,
+      `Đặt các câu hỏi làm rõ để xác định số liệu có thể đo lường được (ví dụ: "Thời gian tải trang phải dưới 2 giây cho 10.000 người dùng đồng thời").`,
+      `Bỏ qua yêu cầu vì nó không thể đạt được.`,
+      `Chỉ định nhóm UI để làm cho thiết kế trông nhanh chóng.`
+    ],
+    explanation: `Các yêu cầu phi chức năng phải cụ thể, có thể đo lường được và có thể kiểm tra được. "Nhanh như chớp" là chủ quan. Việc chuyển đổi nó thành các số liệu có thể đo lường được (thời gian tải, người dùng đồng thời) đảm bảo nhóm phát triển và nhóm QA biết chính xác những gì cần nhắm mục tiêu.`,
+  },
+  'ba-rw-004': {
+    question: `Một bên liên quan quan trọng thường xuyên bỏ lỡ các buổi thu thập yêu cầu, dẫn đến thiếu thông tin. Bạn nên làm gì?`,
+    options: [
+      `Tiến hành mà không cần sự góp ý của họ và thừa nhận những gì họ muốn.`,
+      `Khiếu nại với người quản lý của họ ngay lập tức.`,
+      `Hãy liên hệ trực tiếp để hiểu những ràng buộc về lịch trình của họ, đưa ra các đánh giá không đồng bộ 1-1 (chẳng hạn như nhận xét về tài liệu được chia sẻ) và nhấn mạnh nguy cơ thiếu thông tin đầu vào của họ.`,
+      `Hủy bỏ dự án cho đến khi họ tham dự.`
+    ],
+    explanation: `Sự tham gia của các bên liên quan là chìa khóa. Nếu các cuộc họp đồng bộ không thành công, hãy tìm những cách khác để thu thập ý kiến ​​đóng góp của họ một cách không đồng bộ và giúp họ nhận thức được những rủi ro (sự chậm trễ, tính năng không chính xác) khi không tham gia.`,
+  },
+  'ba-rw-005': {
+    question: `Đúng hay sai: Nếu nhà phát triển phát hiện ra rằng một yêu cầu có sai sót về mặt logic trong quá trình mã hóa, BA nên âm thầm sửa tài liệu để khớp với mã mới của nhà phát triển.`,
+    explanation: `SAI. BA phải phân tích phát hiện của nhà phát triển, xác nhận với các bên liên quan trong kinh doanh rằng thay đổi được đề xuất phù hợp với các quy tắc kinh doanh, cập nhật chính thức yêu cầu và thông báo cho tất cả các nhóm cần thiết (như QA). Những thay đổi im lặng gây ra sai lệch.`,
+  },
+  'ba-rw-006': {
+    question: `Hai trưởng bộ phận hoàn toàn không đồng ý về quy tắc kinh doanh cốt lõi cho quy trình làm việc mới. Bộ A muốn phê duyệt nghiêm ngặt, Bộ B muốn phê duyệt tự động. Là BA, bạn giải quyết vấn đề này như thế nào?`,
+    options: [
+      `Ở bên cạnh trưởng bộ phận có chức danh cao hơn.`,
+      `Triển khai chuyển đổi để hệ thống có thể thực hiện cả hai mà không cần yêu cầu.`,
+      `Tổ chức một hội thảo với cả hai người đứng đầu, vạch ra tác động của cả hai cách tiếp cận đối với mục tiêu kinh doanh tổng thể và tạo điều kiện cho sự thỏa hiệp hoặc leo thang với nhà tài trợ dự án.`,
+      `Đợi đến khi họ ngừng đánh nhau mới tiếp tục làm việc.`
+    ],
+    explanation: `BA phải hỗ trợ giải quyết xung đột bằng cách tập trung vào các tiêu chí khách quan (chi phí, rủi ro, mục tiêu kinh doanh, tuân thủ) thay vì sở thích cá nhân. Nếu không thể đạt được sự đồng thuận, vấn đề cần được chính thức chuyển đến nhà tài trợ dự án có thẩm quyền ra quyết định.`,
+  },
+  'ba-rw-007': {
+    question: `Nhóm phát triển cung cấp một tính năng, nhưng trong quá trình demo, khách hàng nói: "Cái này khớp với tài liệu, nhưng đó không phải là thứ tôi thực sự cần." Điều gì đã xảy ra và làm thế nào để bạn ngăn chặn nó vào lần tiếp theo?`,
+    options: [
+      `Khách hàng chỉ là khó khăn. Từ chối thay đổi nó.`,
+      `Bạn không thể xác nhận chính xác các yêu cầu. Lần tới, hãy sử dụng các nguyên mẫu/khung lưới và các vòng phản hồi thường xuyên thay vì chỉ dựa vào các văn bản phê duyệt nặng nề.`,
+      `Các nhà phát triển đã mã hóa nó kém. Hãy bắt họ viết lại nó.`,
+      `Nhóm QA không thể kiểm tra tính năng này.`
+    ],
+    explanation: `Khách hàng thường đồng ý với các tài liệu văn bản mà không hình dung đầy đủ về sản phẩm cuối cùng. Sử dụng các công cụ hỗ trợ trực quan (wireframe, nguyên mẫu) và thực hiện các vòng lặp demo thường xuyên (phương pháp tiếp cận Agile) đảm bảo phát hiện sớm những điểm không khớp giữa “những gì được viết” và “những gì cần thiết”.`,
+  },
+  'ba-rw-008': {
+    question: `Bạn được giao cho một dự án thay thế hệ thống cũ. Không có tài liệu nào hiện có và các nhà phát triển ban đầu đã rời đi. Làm thế nào để bạn thu thập các yêu cầu?`,
+    options: [
+      `Từ chối bắt đầu cho đến khi khách hàng viết hướng dẫn.`,
+      `Chỉ cần sao chép chính xác màn hình giao diện người dùng vào một khung mới.`,
+      `Tiến hành các phiên theo dõi với người dùng cuối, thực hiện kỹ thuật đảo ngược đối với hoạt động của cơ sở dữ liệu/mã và ghi lại quy trình "Như hiện tại" trước khi thiết kế "Tương lai".`,
+      `Yêu cầu các nhà phát triển mới đoán logic chỉ dựa trên mã nguồn cũ.`
+    ],
+    explanation: `Kỹ thuật đảo ngược kết hợp với việc quan sát người dùng cuối là cách tiếp cận tiêu chuẩn cho các hệ thống cũ không có giấy tờ. Người dùng biết quy trình công việc và việc điều tra lược đồ cơ sở dữ liệu hoặc dấu vết dữ liệu sẽ giúp khám phá logic kinh doanh ẩn.`,
+  },
+  'ba-rw-009': {
+    question: `Bạn nhận thấy yêu cầu do nhóm tuân thủ đưa ra xung đột trực tiếp với yêu cầu từ nhóm bán hàng (ví dụ: Bộ phận bán hàng muốn thanh toán bằng 1 lần nhấp chuột, Bộ phận tuân thủ yêu cầu xác thực 2 yếu tố). Bạn làm nghề gì?`,
+    options: [
+      `Thực hiện những gì Bán hàng mong muốn vì chúng mang lại doanh thu.`,
+      `Thực hiện những gì Tuân thủ mong muốn vì nó an toàn hơn.`,
+      `Ghi lại xung đột, tạo ma trận truy xuất nguồn gốc và sắp xếp cuộc họp giữa Bộ phận Tuân thủ và Bán hàng để thương lượng giải pháp tuân thủ nhưng thân thiện với người dùng.`,
+      `Yêu cầu các nhà phát triển tự mình tìm ra giải pháp trung gian.`
+    ],
+    explanation: `Các yêu cầu xung đột từ các lĩnh vực khác nhau phải được ghi lại và đàm phán rõ ràng. BA tạo điều kiện cho sự thỏa hiệp (ví dụ: xác thực dựa trên rủi ro trong đó 2FA chỉ được yêu cầu đối với giỏ hàng có giá trị cao) đáp ứng cả hai bộ phận.`,
+  },
+  'ba-rw-010': {
+    question: `Đúng hay sai: BA phải luôn đóng vai trò là người đại diện cho Chủ sở hữu sản phẩm (PO), viết câu chuyện, chấp nhận chúng và quản lý tồn đọng một cách độc lập nếu PO quá bận.`,
+    explanation: `SAI. Trong khi BA hỗ trợ PO thì PO cuối cùng lại sở hữu tầm nhìn và mức độ ưu tiên của sản phẩm. Nếu PO hoàn toàn không có, đây là một rủi ro hệ thống cần được tăng cường, vì BA nắm toàn quyền PO mà không có ủy quyền kinh doanh có thể dẫn đến việc phát triển sản phẩm sai hướng.`,
+  },
+  'ba-rw-011': {
+    question: `Trong UAT, người dùng báo cáo 50 "lỗi". Sau khi điều tra, bạn nhận ra 40 trong số đó thực sự là những yêu cầu mới (cải tiến) được ngụy trang dưới dạng lỗi. Làm thế nào để bạn xử lý vấn đề này một cách ngoại giao?`,
+    options: [
+      `Hãy từ chối mạnh mẽ 40 mặt hàng đó và nói với họ rằng họ đã ký SRS, để bây giờ họ không thể khiếu nại nữa.`,
+      `Sửa tất cả 40 mục một cách lặng lẽ để khách hàng chấp nhận hệ thống đúng thời hạn.`,
+      `Phân loại danh sách thành "Lỗi" (sẽ được sửa ngay) và "Yêu cầu thay đổi" (CR). Giải thích phạm vi cơ sở bằng bằng chứng và ước tính CR cho Giai đoạn 2 hoặc chu kỳ thanh toán riêng.`,
+      `Tạm dừng toàn bộ dự án cho đến khi khách hàng thanh toán thêm 40 hạng mục.`
+    ],
+    explanation: `Phân loại là điều cần thiết trong UAT. Sử dụng đường cơ sở đã được phê duyệt (BRD/SRS) để phân biệt giữa các khiếm khuyết (không đáp ứng các yêu cầu đã thống nhất) và các cải tiến. Việc quản lý họ với tư cách là CR sẽ duy trì tiến độ dự án trong khi vẫn bảo vệ phạm vi và nguồn lực của nhà cung cấp mà không gây ra sự đối đầu nghiêm ngặt.`,
+  },
+  'ba-rw-012': {
+    question: `Tổ chức của bạn đang chuyển đổi từ Waterfall sang Agile. Các bên liên quan trong kinh doanh vẫn yêu cầu "trả trước đầy đủ tài liệu yêu cầu chi tiết" trước khi bật đèn xanh cho các nhà phát triển. Bạn hướng dẫn họ như thế nào?`,
+    options: [
+      `Hãy nhượng bộ và viết một bản SRS dài 200 trang vì doanh nghiệp là ông chủ.`,
+      `Từ chối viết bất kỳ tài liệu nào và nói với họ "Chúng tôi là Agile, chúng tôi không làm tài liệu".`,
+      `Giải thích khái niệm Agile về xây dựng tiến bộ. Đề xuất viết tầm nhìn cấp cao và tồn đọng trước, đồng thời nêu chi tiết các yêu cầu (Câu chuyện của người dùng) chỉ 1-2 lần chạy nước rút trước khi phát triển.`,
+      `Đợi Huấn luyện viên Agile nói chuyện với họ.`
+    ],
+    explanation: `Quá trình chuyển đổi linh hoạt đòi hỏi phải huấn luyện các bên liên quan. Các BA phải thu hẹp khoảng cách tư duy này bằng cách chứng minh giá trị thông qua quá trình xây dựng tiến bộ—cung cấp đủ chi tiết đúng lúc, từ đó giảm lãng phí trong khi vẫn đảm bảo đủ sự chắc chắn cho việc lập kế hoạch kinh doanh.`,
+  },
+  'ba-rw-013': {
+    question: `Bạn phát hiện ra rằng việc triển khai hệ thống mới sẽ khiến 30% công việc nhập dữ liệu thủ công của nhân viên vận hành trở nên dư thừa. Các nhân viên đã trở nên phản kháng và từ chối chia sẻ chi tiết quy trình với bạn. Chiến lược của bạn là gì?`,
+    options: [
+      `Báo cáo họ với bộ phận nhân sự vì sự không phối hợp.`,
+      `Thiết kế hệ thống mà không cần thông tin đầu vào của họ bằng cách sử dụng dự đoán tốt nhất của bạn.`,
+      `Tập trung cuộc trò chuyện vào cách hệ thống sẽ loại bỏ công việc tẻ nhạt và cho phép họ nâng cao kỹ năng vào vai trò phân tích. Thu hút họ với tư cách là "Nhà vô địch quy trình" để mang lại cho họ cảm giác sở hữu.`,
+      `Hãy hủy tính năng tự động hóa để không ai bị mất việc.`
+    ],
+    explanation: `Quản lý thay đổi và vượt qua sự phản kháng là những kỹ năng BA cấp cao quan trọng. Giải quyết nỗi sợ hãi tiềm ẩn bằng cách điều chỉnh lại sự thay đổi (từ mất việc làm đến phát triển công việc) và trao quyền cho những người dùng phản kháng vì các chuyên gia về chủ đề này thường phá vỡ các rào cản giao tiếp.`,
+  },
+  'ba-rw-014': {
+    question: `Khách hàng muốn xây dựng "AI học máy để dự đoán hành vi mua hàng của người dùng", nhưng họ có ngân sách eo hẹp, dữ liệu lộn xộn trên 5 hệ thống cũ và thời hạn 3 tháng. Với tư cách là BA cấp cao, bạn xử lý yêu cầu này như thế nào?`,
+    answer: `Xử lý yêu cầu AI không thực tế: 
+
+1. Kiểm tra tính khả thi và thực tế: 
+- Thừa nhận tầm nhìn của họ nhưng giải thích một cách lịch sự các yêu cầu tiên quyết đối với ML (dữ liệu sạch, tập trung, thời gian đào tạo đáng kể). 
+
+2. Phân tích nguyên nhân gốc rễ/mục tiêu: 
+- Hỏi: "Tại sao chúng ta cần AI ngay bây giờ? Chúng ta đang cố gắng giải quyết vấn đề kinh doanh nào?" (Có lẽ họ chỉ muốn tăng lượng bán chéo). 
+
+3. Đề xuất phương pháp tiếp cận theo từng giai đoạn/MVP: 
+- Giai đoạn 1 (3 tháng tới): Xây dựng quy trình ETL để tập trung và làm sạch dữ liệu từ 5 hệ thống cũ. Triển khai các đề xuất dựa trên quy tắc đơn giản (ví dụ: "Khách hàng đã mua X cũng đã mua Y") thay vì ML thực sự. Điều này mang lại giá trị kinh doanh ngay lập tức trong phạm vi ngân sách. 
+- Giai đoạn 2 (Tương lai): Sau khi dữ liệu được cấu trúc và hoạt động phân tích đang chạy, hãy giới thiệu các mô hình ML dự đoán. 
+
+4. Truyền thông rủi ro: 
+- Chính thức ghi lại các rủi ro khi thử ML trên dữ liệu lộn xộn (GIGO - Garbage In, Garbage Out) và thu hút sự tham gia của các bên liên quan theo cách tiếp cận theo từng giai đoạn.`,
+    explanation: `BA cấp cao không chỉ thu thập các yêu cầu; họ đóng vai trò là nhà tư vấn kinh doanh. Khi khách hàng đề xuất các giải pháp nặng về từ thông dụng, không thực tế, BA phải truy ngược lại vấn đề kinh doanh thực tế và đề xuất một lộ trình lặp đi lặp lại, thực tế, tôn trọng các ràng buộc (ngân sách, mức độ trưởng thành của dữ liệu).`,
+  },
+  'ba-rw-015': {
+    question: `Công ty của bạn đã giành được một hợp đồng lớn của chính phủ doanh nghiệp. Bạn được phân công lãnh đạo một nhóm gồm 5 BA Junior/Mid. Các yêu cầu rất phức tạp, được quản lý chặt chẽ và dòng thời gian rất linh hoạt. Phác thảo Chiến lược BA của bạn trong 30 ngày đầu tiên.`,
+    answer: `Chiến lược BA trong 30 ngày đầu tiên: 
+
+1. Giới thiệu & Tiêu chuẩn hóa nhóm (Ngày 1-5): 
+- Xác định mẫu cho BRD, FRD, Câu chuyện của người dùng và tài liệu bản đồ. 
+- Thiết lập một nguồn sự thật duy nhất (ví dụ: Jira + Confluence) và xác định cấu trúc ma trận truy xuất nguồn gốc. 
+- Gán miền (mô-đun) cho từng BA dựa trên thế mạnh của họ. 
+
+2. Kêu gọi & Lập bản đồ các bên liên quan (Ngày 6-15): 
+- Xác định các bên liên quan chính của chính phủ, cán bộ tuân thủ quy định và các doanh nghiệp vừa và nhỏ. 
+- Lập kế hoạch truyền thông và lịch họp. 
+- Tiến hành các hội thảo cấp cao để xác định kiến ​​trúc "Như hiện tại" và các mục tiêu kinh doanh tổng thể. 
+
+3. Điều chỉnh khuôn khổ và tuân thủ (Ngày 16-20): 
+- Đảm bảo tất cả các BA hiểu các yêu cầu quy định cụ thể (bảo mật, kiểm toán, khả năng tiếp cận). 
+- Tích hợp kiểm tra tuân thủ vào "Định nghĩa sẵn sàng" (DoR) cho tất cả Câu chuyện của người dùng. 
+
+4. Tạo & ưu tiên tồn đọng (Ngày 21-30): 
+- Chia nhỏ sử thi thành các phần có thể quản lý được. 
+- Ưu tiên các hồ sơ tồn đọng bằng MoSCoW, trước tiên tập trung vào các ràng buộc pháp lý có rủi ro cao. 
+- Thực hiện quy trình đánh giá ngang hàng trong nhóm BA để đảm bảo chất lượng và tính nhất quán trước khi trình bày cho nhà phát triển/khách hàng. 
+
+5. Quản lý rủi ro liên tục: 
+- Tích cực giám sát phạm vi từ các bên liên quan của chính phủ thông qua các quy trình Kiểm soát Thay đổi nghiêm ngặt được giới thiệu từ Ngày 1.`,
+    explanation: `BA lãnh đạo phải thiết lập các quy trình, quản lý chất lượng và điều chỉnh các nỗ lực của nhóm hướng tới mục tiêu lớn. Trọng tâm chuyển từ "viết yêu cầu" sang "thiết kế khung kỹ thuật yêu cầu", đảm bảo khả năng truy nguyên, tuân thủ và tiêu chuẩn hóa nhóm trên các lĩnh vực phức tạp.`,
+  },
+
 }

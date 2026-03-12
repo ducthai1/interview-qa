@@ -1606,4 +1606,166 @@ Các biện pháp phòng ngừa sự cố:
     ],
     explanation: `\`\`Hệ thống hóa'' là chìa khóa để nâng cao trình độ kiến ​​thức kỹ thuật. ①Buổi học: Các thành viên lần lượt trình bày (kết quả đầu ra là cách học tốt nhất), ②Radar công nghệ: Phân loại công nghệ theo Áp dụng/Thử nghiệm/Đánh giá/Giữ (không khuyến khích), ③PoC: Học tập thực tế với văn hóa “cố gắng”, ④Wiki: Chuyển kiến ​​thức ngầm thành kiến ​​thức rõ ràng. Thay vì dựa vào sự tự hoàn thiện của cá nhân, chúng tôi tạo ra một hệ thống học tập như một tổ chức.`,
   },
+  'brse-rw-001': {
+    question: `Chúng tôi nhận được những hướng dẫn mơ hồ từ một khách hàng Nhật Bản: \`\`Hãy làm cho tính năng đó trông đẹp hơn một chút.'' Với tư cách là BrSE, tôi nên làm gì đầu tiên?`,
+    options: [
+      `Đưa ra hướng dẫn cho nhóm phát triển Việt Nam theo phong cách riêng của bạn`,
+      `Hãy hỏi phía Nhật Bản những câu hỏi để làm cho nó cụ thể hơn, chẳng hạn như, \`\`Chính xác thì những yêu cầu để có được ''cảm giác tốt'' là gì? Có trang web hoặc hình ảnh màn hình nào có thể được sử dụng làm tài liệu tham khảo không?''`,
+      `Do thông số kỹ thuật không rõ ràng, việc phát triển sẽ tạm thời bị dừng lại.`,
+      `Hãy hỏi trực tiếp các nhà phát triển Việt Nam và để họ quyết định`
+    ],
+    explanation: `Văn hóa “đọc không khí” và những hướng dẫn mơ hồ dựa trên “hơi thở của Aun” của Nhật Bản là những khía cạnh nguy hiểm nhất của hoạt động phát triển ngoài khơi. Vì BrSE đóng vai trò là cầu nối chuyển đổi kiến ​​thức ngầm thành kiến ​​thức rõ ràng nên cần phải tiến hành các cuộc phỏng vấn để đưa nó vào các thông số kỹ thuật và yêu cầu cụ thể mà không chuyển tiếp nó như hiện tại.`,
+  },
+  'brse-rw-002': {
+    question: `Nhóm phát triển Việt Nam đặt câu hỏi "Chúng tôi nên xử lý hành vi như thế nào trong những trường hợp không có trong thông số kỹ thuật?" Tôi không có thời gian cho đến ngày giao hàng. Bạn sẽ phản ứng thế nào?`,
+    options: [
+      `Ưu tiên ngày giao hàng và hướng dẫn tiến hành theo phương pháp dễ thực hiện nhất.`,
+      `Hãy liên hệ ngay với người phụ trách phía Nhật Bản, trình bày hai giải pháp khả thi và khối lượng công việc cần thực hiện cho mỗi giải pháp và yêu cầu quyết định.`,
+      `Lỗi của phía Nhật là không ghi trong thông số kỹ thuật nên tôi đã nói với họ là không cần thực hiện.`,
+      `Hãy tự đưa ra quyết định và báo cáo phía Nhật Bản sau.`
+    ],
+    explanation: `Thông số kỹ thuật thiếu thường xuyên xảy ra. Nếu BrSE đưa ra quyết định tùy tiện thì có nguy cơ cao phải làm lại sau này, vì vậy chúng tôi luôn kiểm tra với khách hàng. Khi đó, thay vì chỉ hỏi “Bạn muốn làm gì?”, bằng cách đưa ra các phương án (giải pháp), bạn có thể đẩy nhanh quá trình ra quyết định của khách hàng.`,
+  },
+  'brse-rw-003': {
+    question: `Trong cuộc họp thông thường (web họp), tôi không nghe được lời giải thích nói nhanh của khách hàng Nhật Bản và chỉ hiểu được một nửa nội dung. Tôi nên làm gì?`,
+    options: [
+      `Giả vờ như bạn hiểu và hỏi riêng các thành viên trong nhóm của bạn xem họ có thể xem đoạn ghi âm sau không.`,
+      `Đơn giản chỉ cần nói, \`\`Tôi xin lỗi, nhưng tôi không chắc bạn hiểu gì, vì vậy bạn có thể vui lòng giải thích lại chậm hơn một chút được không?''`,
+      `Hãy im lặng lắng nghe và từ bỏ việc ghi phút.`,
+      `Tiếp tục nói "Có, tôi hiểu" một cách ngẫu nhiên.`
+    ],
+    explanation: `Tiến hành mà không hiểu rõ là nguyên nhân lớn nhất gây ra những hiểu lầm tai hại trong quá trình phát triển ngoài khơi. Trong kinh doanh Nhật Bản cũng vậy, việc kiểm tra mọi thứ ngay tại chỗ sẽ trung thực hơn thay vì tiến hành một cách không chắc chắn và có thể ngăn ngừa những rắc rối lớn (hiểu lầm) sau này.`,
+  },
+  'brse-rw-004': {
+    question: `Một ngày trước ngày giao hàng, chúng tôi nhận được báo cáo từ nhóm phát triển Việt Nam với nội dung: \`\`Thật ra có quá nhiều lỗi nên ngày mai chúng tôi không thể giao được.'' BrSE nên làm gì tiếp theo?`,
+    options: [
+      `Chúng tôi ngay lập tức thông báo cho khách hàng Nhật Bản rằng \`\` việc giao hàng sẽ bị trì hoãn do vấn đề chất lượng '' ('\`Hou'' của Horenso), đồng thời nhanh chóng xác nhận số lượng lỗi hiện tại cũng như triển vọng khắc phục.`,
+      `Tôi nổi giận với đội tuyển Việt Nam và bắt họ phải thức cả đêm để giao hàng vào ngày mai.`,
+      `Giao sản phẩm có lỗi để phía Nhật không phát hiện ra.`,
+      `Đợi cho đến khi khách hàng liên hệ với bạn`
+    ],
+    explanation: `Trong kinh doanh Nhật Bản, nguyên tắc vàng là “tin xấu trước” (báo cáo tin xấu càng sớm càng tốt). Việc che giấu và báo cáo muộn làm suy yếu lòng tin nhiều nhất. Cách chính xác để báo cáo sự việc là trước tiên chỉ báo cáo sự việc, sau đó cung cấp báo cáo chi tiết về nguyên nhân và kế hoạch khắc phục.`,
+  },
+  'brse-rw-005': {
+    question: `[Có hoặc Không] Chúng tôi đã nhận được 50 điểm đánh giá (lỗi và bản sửa lỗi) từ phía Nhật Bản cùng một lúc. Để tránh làm mất tinh thần đội tuyển Việt Nam, BrSE chỉ nên thông báo trước một nửa trong số 25 trường hợp, số còn lại sẽ bí mật liên lạc sau.`,
+    explanation: `×. Nếu bạn làm từng phần nhỏ, bạn sẽ rơi vào tình huống không thể hoàn thành việc ôn tập cho dù mất bao lâu, điều này thực sự sẽ làm giảm động lực của bạn và gây khó khăn cho việc quản lý lịch trình của bạn. Cách tiếp cận đúng là chia sẻ chính xác tất cả các vấn đề, ưu tiên chúng và tiến hành khắc phục một cách có kế hoạch.`,
+  },
+  'brse-rw-006': {
+    question: `Kỳ nghỉ lễ ở Nhật Bản và Việt Nam trùng nhau, điều này có thể ảnh hưởng đến tiến độ dự án. BrSE nên làm gì vào thời điểm trận đấu bắt đầu?`,
+    options: [
+      `Lần đầu tiên tôi kiếm cớ đi nghỉ khi bị chậm tiến độ.`,
+      `Khi bắt đầu, hãy chia sẻ lịch nghỉ lễ của Việt Nam (chẳng hạn như Tết) với phía Nhật Bản và thống nhất lịch trình tổng thể có tính đến việc giảm ngày làm việc.`,
+      `Phía Việt Nam sẽ được yêu cầu làm việc vào các ngày nghỉ lễ theo đúng lịch Nhật Bản.`,
+      `Ước tính ngày giao hàng một cách thích hợp`
+    ],
+    explanation: `Những ngày nghỉ do sự khác biệt về văn hóa và hệ thống (sự khác biệt về lịch nghỉ lễ) là một rủi ro đặc biệt của việc phát triển ra nước ngoài. Nếu sau này bạn nói, “Việt Nam đóng cửa vì hôm nay là ngày nghỉ lễ”, bạn sẽ gặp rắc rối. Điều quan trọng là phải phản ánh điều này trong lịch trình tổng thể ở giai đoạn đầu và đảm bảo rằng tất cả các bên liên quan đều có cùng quan điểm.`,
+  },
+  'brse-rw-007': {
+    question: `Một nhóm phát triển Việt Nam phàn nàn rằng \`\`Lỗi của QA (nhóm kiểm thử) của Nhật Bản quá chi tiết. Họ chỉ ra những khác biệt thậm chí là 1 pixel.'' BrSE sẽ phản hồi như thế nào?`,
+    options: [
+      `Chỉ cần nói với họ rằng “Người Nhật rất đặc biệt nên hãy kiên nhẫn nhé”.`,
+      `Khiếu nại với nhóm QA, \`\`Cái này quá chi tiết, vui lòng kiểm tra đại khái hơn.''`,
+      `Giải thích cơ sở rằng người dùng cuối Nhật Bản rất nhạy cảm với chất lượng UI/UX và nỗ lực thống nhất các nguyên tắc về tiêu chuẩn chất lượng (mức độ chấp nhận được) với bên QA ở giai đoạn đặc tả.`,
+      `Bỏ qua những lời phàn nàn của nhóm phát triển và buộc họ phải sửa nó`
+    ],
+    explanation: `"Tiêu chuẩn chất lượng cao" của Nhật Bản có thể khiến các đội ở nước ngoài khó hiểu. Vai trò của cầu nối là giải thích lý do tại sao một điều gì đó được coi là quan trọng (chẳng hạn như kỳ vọng của người dùng cuối) và đồng thời tạo ra các tiêu chuẩn được thống nhất rõ ràng để ngăn chặn chất lượng quá mức.`,
+  },
+  'brse-rw-008': {
+    question: `Đã xảy ra lỗi hệ thống nghiêm trọng trong quá trình sản xuất. Phía Nhật Bản rất tức giận. Tôi nên nhấn mạnh điều gì nhất trong "Báo cáo sự cố" được gửi dưới dạng BrSE?`,
+    options: [
+      `Tên của lập trình viên cụ thể đã tạo ra lỗi và hình phạt`,
+      `Lý do đầy cảm xúc: “Đội tuyển Việt Nam đã cố gắng hết sức nhưng…”`,
+      `Nguyên nhân xảy ra (tại sao nó xảy ra) và "các biện pháp ngăn chặn tái diễn vĩnh viễn (cải tiến quy trình)" để ngăn chặn lỗi tương tự xảy ra lần nữa trong tương lai`,
+      `Phản biện cho rằng thông số kỹ thuật phía Nhật viết kém`
+    ],
+    explanation: `Trong kinh doanh Nhật Bản, người ta nhấn mạnh nhiều vào việc báo cáo “tại sao sự việc lại xảy ra (nguyên nhân gốc rễ)” và “làm thế nào để ngăn chặn nó (các biện pháp phòng ngừa tái diễn)” hơn là bản thân sai lầm. Thay vì đổ lỗi cho cá nhân, việc đưa ra cách tiếp cận giải quyết vấn đề thông qua các “cơ chế” như hệ thống đánh giá và quy trình kiểm tra sẽ giúp khôi phục lòng tin.`,
+  },
+  'brse-rw-009': {
+    question: `Trong cuộc họp yêu cầu với khách hàng, một yêu cầu được đưa ra không khả thi về mặt kỹ thuật (hoặc cực kỳ tốn kém). Phản ứng thích hợp với tư cách là BrSE là gì?`,
+    options: [
+      `Lạnh lùng từ chối ngay tại chỗ và nói, “Điều đó tuyệt đối không thể được.”`,
+      `Chỉ cần nói "Có, tôi có thể" và mang nó về nhà, để rồi hối hận về sau.`,
+      `\`\`Hiện tại rất khó do những hạn chế về kỹ thuật của 〇〇, nhưng như một phương pháp thay thế, chúng tôi có thể đạt được mục tiêu tương tự với chi phí thấp. Bạn có cân nhắc không?''`,
+      `Im lặng lắng nghe và bỏ qua trong quá trình thực hiện`
+    ],
+    explanation: `Hoạt động truyền thông có giá trị gia tăng cao của BrSE không chỉ đơn giản là phủ nhận rằng điều đó không thể thực hiện được mà còn giải thích một cách hợp lý lý do tại sao việc đó gặp khó khăn (ngân sách, công nghệ, ngày giao hàng) và đưa ra một "giải pháp thay thế" có thể đạt được mục tiêu kinh doanh của khách hàng.`,
+  },
+  'brse-rw-010': {
+    question: `[Đúng hay Sai] Để nâng cao hiệu quả dịch thuật, cách tốt nhất để BrSE làm điều này là lấy nguyên bản thông số tiếng Nhật, chạy qua Google Translate mà không cần suy nghĩ, sau đó chuyển bản tiếng Việt cho nhóm phát triển.`,
+    explanation: `×. Các bản dịch theo nghĩa đen có thể đánh lừa các nhà phát triển vì chúng thiếu "bối cảnh dành riêng cho việc phát triển hệ thống" và "kiến thức ngầm của người Nhật". BrSE phải diễn giải nội dung dưới dạng hành vi và logic có hệ thống, đồng thời thêm các minh họa và giải thích bổ sung khi cần thiết để "hoàn thiện ngữ cảnh thông qua dịch thuật tự do".`,
+  },
+  'brse-rw-011': {
+    question: `Ở giữa dự án, khách hàng bắt đầu thường xuyên yêu cầu "thay đổi thông số kỹ thuật". Ngân sách và ngày giao hàng là cố định. Cách tiếp cận của BrSE cấp cao để tránh thất bại dự án là gì?`,
+    options: [
+      `Chúng tôi làm việc ngoài giờ miễn phí để tránh làm ảnh hưởng đến tâm trạng của khách hàng.`,
+      `Từ chối tất cả các yêu cầu thay đổi là "Giai đoạn 2 trở đi"`,
+      `Tạo bảng quản lý thay đổi và trực quan hóa \`\` phạm vi tác động '' \`\` số giờ công cần thiết '' và \`\` nguy cơ chậm tiến độ '' do các thông số kỹ thuật bổ sung. Đàm phán với khách hàng về những tính năng cần cân nhắc trong phạm vi hiện tại.`,
+      `bỏ dự án giữa chừng`
+    ],
+    explanation: `Đây là phản ứng đối với hiện tượng leo thang phạm vi (mở rộng thông số kỹ thuật không ngừng). Thay vì chỉ từ chối bằng câu trả lời "không", phương pháp kiểm soát chính xác là hình dung thực tế rằng các thay đổi đòi hỏi chi phí và thời gian sử dụng dữ liệu (chẳng hạn như bảng quản lý thay đổi) và để khách hàng quyết định đánh đổi.`,
+  },
+  'brse-rw-012': {
+    question: `Nhân viên hệ thống tại trụ sở chính tại Nhật Bản và người dùng doanh nghiệp tại chỗ có những ý kiến ​​​​khác nhau và bị kẹt ở giữa. Tôi nên hành động như thế nào với tư cách là BrSE?`,
+    options: [
+      `Người phụ trách hệ thống là người trả tiền nên họ bỏ qua ý kiến ​​của người dùng tại chỗ.`,
+      `Tạo một tài liệu trình bày các điểm xung đột giữa hai bên, tính khả thi về mặt kỹ thuật của hệ thống cũng như những thuận lợi và bất lợi trong kinh doanh và hình thành sự đồng thuận trong cuộc họp ba bên có sự tham gia của cả hai bên.`,
+      `Thực hiện cả hai ý kiến ​​như hiện tại và làm phức tạp hệ thống`,
+      `Hãy để nhóm phát triển Việt Nam quyết định áp dụng ý kiến ​​nào.`
+    ],
+    explanation: `Trong các xung đột giữa các bên liên quan, BrSE cần đóng vai trò là người điều phối. Vai trò của thành viên cấp cao trong nhóm là giải quyết các tranh luận của nhau từ góc độ kỹ thuật và vận hành, đồng thời cố gắng xây dựng sự đồng thuận thông qua Nemawashi và các cuộc họp phối hợp.`,
+  },
+  'brse-rw-013': {
+    question: `Đội ngũ phát triển của Việt Nam có tỷ lệ luân chuyển cao, kiến ​​thức ngày càng mang tính cá nhân hóa khiến việc bàn giao dự án trở nên khó khăn. Biện pháp nào sau đây là biện pháp khắc phục hiệu quả nhất cho tình trạng này?`,
+    options: [
+      `Khiếu nại trực tiếp với chủ tịch để tăng gấp đôi lương của bạn`,
+      `Sẽ không có vấn đề gì nếu bạn ngay lập tức thuê một người mới để thay thế người đã rời bỏ công việc của bạn.`,
+      `Vận hành triệt để Wiki (tài liệu) trong dự án, giới thiệu văn hóa đánh giá mã và lập trình cặp, đồng thời xây dựng một hệ thống (tiêu chuẩn hóa) trong đó bí quyết được phân phối và chia sẻ trong toàn nhóm.`,
+      `BrSE tự viết lại toàn bộ code`
+    ],
+    explanation: `“Xóa bỏ cá nhân hóa” và “quản lý tri thức” là những vấn đề quan trọng trong phát triển ngoài khơi. Bằng cách kết hợp các quy trình hiện đại hóa, tiêu chuẩn hóa tài liệu và chất lượng mã thống nhất, bạn có thể tạo ra một nhóm có khả năng chống lại rủi ro biến động tài nguyên, ngay cả khi mọi người nghỉ việc.`,
+  },
+  'brse-rw-014': {
+    question: `Chúng tôi đã giành được một dự án phát triển ngoài khơi quy mô lớn từ một tổ chức tài chính lớn của Nhật Bản. Tuy nhiên, khách hàng phản đối mạnh mẽ các dịch vụ nước ngoài do lo ngại về an ninh và chất lượng. Với tư cách là BrSE cấp cao, vui lòng viết "đề xuất về hệ thống/quy trình ra nước ngoài" để loại bỏ những lo ngại của khách hàng.`,
+    answer: `Đề xuất giải pháp nhằm xua tan mối lo ngại của khách hàng:
+
+1. Xây dựng hệ thống an ninh:
+- Trình bày các biện pháp vật lý (không cho phép sử dụng điện thoại thông minh, phát triển trong phòng an toàn chuyên dụng). 
+- Trình bày các biện pháp mạng (sử dụng VDI/VPN, cấm lưu trữ cục bộ mã nguồn và dữ liệu khách hàng). 
+・Đưa ra bằng chứng về việc thực hiện giáo dục bảo mật thông tin (ISO27001). 
+
+2. Trực quan hóa quy trình đảm bảo chất lượng:
+・Giải thích rằng chúng tôi sẽ xây dựng kế hoạch kiểm tra tuân thủ các tiêu chuẩn chất lượng của Nhật Bản (JSTQB, v.v.), thay vì giao mọi việc cho Việt Nam. 
+- Giới thiệu tự động hóa thử nghiệm (môi trường CI/CD) và đề xuất cơ chế loại bỏ lỗi của con người. 
+・Đánh giá nhiều mã (phân tích tĩnh bằng công cụ + đánh giá ngang hàng + xác nhận cuối cùng của trưởng nhóm công nghệ cấp cao). 
+
+3. Duy trì sự minh bạch trong giao tiếp:
+・Chúng tôi hứa sẽ trực quan hóa 100% tiến độ và các vấn đề thông qua các cuộc họp định kỳ hàng tuần và báo cáo hàng ngày. 
+・Thực hiện báo cáo số liệu chất lượng mục tiêu hàng tháng dựa trên KPI (tỷ lệ phát hiện lỗi, số giờ công ước tính, v.v.). 
+
+Chứng minh bằng “cơ chế và dữ liệu” là hiệu quả nhất đối với những khách hàng bảo thủ như tổ chức tài chính.`,
+    explanation: `Đối với các dự án quan trọng như tổ chức tài chính, cần phải có bằng chứng logic như “bảo vệ thông qua cơ sở hạ tầng vật lý/logic như phòng an toàn” và “loại bỏ lỗi của con người bằng cách sử dụng các công cụ xử lý”, thay vì tâm lý “Tôi sẽ cố gắng hết sức”.`,
+  },
+  'brse-rw-015': {
+    question: `Bạn là một BrSE dẫn đầu, người tập hợp nhiều BrSE lại với nhau. Trong một dự án, một BrSE trẻ phụ trách dự án đang trên bờ vực trầm cảm và có rất nhiều lời phàn nàn từ khách hàng. Nguyên nhân nằm giữa \`\`sự thiếu thận trọng của khách hàng (thường xuyên thay đổi thông số kỹ thuật)'' và \`\`đội ngũ Việt Nam thiếu khả năng phát triển.'' Lập kế hoạch giải cứu trong một tuần để đưa dự án của bạn trở lại đúng hướng.`,
+    answer: `Kế hoạch giải cứu một tuần cho Dự án Burning:
+
+[Ngày 1: Tìm hiểu tình hình hiện tại và cầm máu (phân loại)]
+・Tạm thời đảm nhận khối lượng công việc của các BrSE trẻ và chăm sóc tinh thần. Hãy nghỉ phép ngay lập tức nếu cần thiết. 
+- Thông báo ngay cho khách hàng rằng \`\`Tôi, với tư cách là BrSE lãnh đạo, sẽ can thiệp và xây dựng lại hệ thống'' và tạm dừng (Đóng băng) công việc phát triển hiện tại. 
+
+[Ngày 2-3: Kiểm kê và hình dung các vấn đề]
+-Tạo danh sách dựa trên thực tế bằng cách xác định tất cả "danh sách yêu cầu thay đổi", "nhiệm vụ còn lại" và "lỗi hiện tại" hiện tại. 
+- Phỏng vấn và phân tích các vấn đề kỹ thuật của đội tuyển Việt Nam (tại sao họ tụt hậu, còn thiếu sót về kỹ năng ở đâu). 
+
+[Ngày 4: Xác định lại phạm vi và đàm phán với khách hàng]
+・Tiến hành cuộc họp khẩn cấp với khách hàng. Bình tĩnh giải thích cơ chế suy giảm chất lượng do thay đổi thông số kỹ thuật thường xuyên bằng cách sử dụng dữ liệu (tỷ lệ xuất hiện lỗi, v.v.). 
+- Xác định lại "phạm vi tối thiểu (MVP) có thể được phân phối một cách đáng tin cậy với nguồn lực và thời gian hiện tại", đồng thời đàm phán và thống nhất về việc tách pha cho các yêu cầu chồng chéo. 
+
+[Ngày 5-7: Tái cấu trúc hệ thống và quy trình]
+- Cử thêm các kỹ sư cấp cao vào nhóm phát triển để trợ giúp và thiết lập hệ thống hỗ trợ giải quyết các vấn đề kỹ thuật. 
+- Siết chặt quy trình quản lý thay đổi (quy định không chấp nhận thay đổi tùy tiện và phải có sự đồng ý bằng văn bản). 
+・Thiết lập hệ thống dự phòng (làm rõ lộ trình leo thang) khi các BrSE trẻ quay trở lại và tiếp tục phát triển một cách an toàn.`,
+    explanation: `Lớp dẫn đầu yêu cầu kỹ năng "chữa cháy (xử lý sự cố)". Thay vì buộc mọi người làm việc chăm chỉ dựa trên lý thuyết tinh thần, câu hỏi đặt ra là liệu họ có thể nhanh chóng thực hiện các nguyên tắc quản lý cơ bản của 1) bảo vệ con người (phân chia gánh nặng), 2) hình dung khách quan tình hình, 3) đàm phán phạm vi với khách hàng trên cơ sở bình đẳng và 4) sửa đổi cơ bản các quy trình và hệ thống.`,
+  },
+
 }

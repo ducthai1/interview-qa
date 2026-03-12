@@ -1606,4 +1606,166 @@ Failure prevention measures:
     ],
     explanation: `\`\`Systemization'' is the key to raising the level of technical knowledge. ①Study session: Members take turns presenting (output is the best learning), ②Technology radar: Categorizing technologies by Adopt/Trial/Assess/Hold (not recommended), ③PoC: Practical learning with a culture of "trying", ④Wiki: Converting tacit knowledge to explicit knowledge. Rather than relying on individual self-improvement, we create a system for learning as an organization.`,
   },
+  'brse-rw-001': {
+    question: `We received vague instructions from a Japanese client: \`\`Please make that feature look a little nicer.'' What should I do first as a BrSE?`,
+    options: [
+      `Give instructions to the Vietnamese development team using your own sense of style`,
+      `Ask the Japanese side questions to make it more concrete, such as, \`\`What exactly are the requirements for a \`\`good feeling''?Are there any sites or screen images that can be used as references?''`,
+      `Due to unclear specifications, development will be temporarily halted.`,
+      `Ask Vietnamese developers directly and let them decide`
+    ],
+    explanation: `Japan's culture of "reading the air" and ambiguous instructions based on "Aun's breathing" are the most dangerous aspects of offshore development. Since BrSE plays the role of a bridge that converts tacit knowledge into explicit knowledge, it is necessary to conduct interviews to incorporate it into concrete specifications and requirements without passing it on as is.`,
+  },
+  'brse-rw-002': {
+    question: `The Vietnamese development team asked, "How should we handle the behavior in cases that are not in the specifications?" I don't have time until the delivery date. How will you respond?`,
+    options: [
+      `Give priority to the delivery date and instruct to proceed with the method that is easiest to implement.`,
+      `Immediately contact the person in charge on the Japanese side, present two possible solutions and the amount of work required for each, and ask for a decision.`,
+      `It was a mistake on the Japanese side that it was not written in the specifications, so I told them there was no need to implement it.`,
+      `Make your own decisions and report to the Japanese side later.`
+    ],
+    explanation: `Missing specifications often occur. If BrSE makes an arbitrary decision, there is a high risk of rework later, so we always check with the client. At that time, instead of simply asking, "What would you like to do?", by presenting options (solutions), you can speed up the client's decision-making process.`,
+  },
+  'brse-rw-003': {
+    question: `During a regular meeting (web meeting), I could not hear the Japanese client's fast-talking explanations and could only understand half of the content. What should I do?`,
+    options: [
+      `Pretend you understand and ask your team members privately if they can watch the recording later.`,
+      `Simply say, \`\`I'm sorry, but I'm not sure what you understand, so could you please explain again a little more slowly?''`,
+      `Listen silently and give up on creating minutes.`,
+      `Continue to say "Yes, I understand" at random.`
+    ],
+    explanation: `Proceeding without understanding is the biggest cause of fatal misunderstandings in offshore development. In Japanese business as well, it is more honest to check things on the spot rather than proceeding with uncertainty, and can prevent major troubles (misunderstandings) later on.`,
+  },
+  'brse-rw-004': {
+    question: `The day before the delivery date, we received a report from the Vietnamese development team saying, \`\`Actually, there are so many bugs that we won't be able to deliver tomorrow.'' What action should BrSE take next?`,
+    options: [
+      `We immediately notified the Japanese client that \`\`delivery will be delayed due to quality issues'' (Horenso's \`\`Hou''), and quickly confirmed the current number of bugs and the prospects for recovery.`,
+      `I got angry at the Vietnamese team and forced them to stay up all night to deliver tomorrow.`,
+      `Deliver the product with bugs so that the Japanese side doesn't find out.`,
+      `Wait until the client contacts you`
+    ],
+    explanation: `In Japanese business, the golden rule is "bad news first" (report the bad news as soon as possible). Concealment and late reporting undermine trust the most. The correct way to report the incident is to first report only the facts, and then provide a detailed report on the cause and recovery plan.`,
+  },
+  'brse-rw-005': {
+    question: `[Yes or No] We received 50 review points (bugs and fixes) from the Japanese side at once. In order to avoid demoralizing the Vietnamese team, BrSE should communicate only half of the 25 cases in advance, and secretly communicate the rest at a later date.`,
+    explanation: `×. If you do it in small portions, you will end up in a situation where you will not be able to finish the revisions no matter how long it takes, which will actually lower your motivation and make it difficult to manage your schedule. The correct approach is to accurately share all issues, prioritize them, and proceed with corrections in a planned manner.`,
+  },
+  'brse-rw-006': {
+    question: `The holidays in Japan and Vietnam overlap, which is likely to affect the project schedule. What should BrSE do at the time of kickoff?`,
+    options: [
+      `The first time I make a holiday excuse when I'm behind schedule.`,
+      `At the kickoff, share the calendar of Vietnamese holidays (such as Tet) with the Japanese side and agree on a master schedule that takes into account the reduction in working days.`,
+      `The Vietnamese side will be required to work on public holidays in full accordance with the Japanese calendar.`,
+      `Estimate the delivery date appropriately`
+    ],
+    explanation: `Holidays due to differences in culture and systems (differences in holiday calendars) are a unique risk of offshore development. If you later say, \`\`Vietnam was closed because it's a public holiday,'' you'll get into trouble. It is important to reflect this in the master schedule at the initial stage and ensure that all parties involved are on the same page.`,
+  },
+  'brse-rw-007': {
+    question: `A Vietnamese development team complains that \`\`Japan's QA (testing team)'s bugs are too detailed. They point out even 1 pixel discrepancies.'' How will BrSE respond?`,
+    options: [
+      `Just tell them, “Japanese people are very particular, so be patient.”`,
+      `Complain to the QA team, \`\`This is too detailed, please test more roughly.''`,
+      `Explain the background that Japanese end users are sensitive to UI/UX quality, and work to agree on guidelines for quality standards (how much is acceptable) with the QA side at the specification stage.`,
+      `Ignoring the development team's complaints and forcing them to fix it`
+    ],
+    explanation: `Japan's "high standards of quality" can be difficult for offshore teams to understand. The role of a bridge is to explain the background of why something is considered important (such as end-user expectations) and at the same time create clear agreed standards to prevent excessive quality.`,
+  },
+  'brse-rw-008': {
+    question: `A critical system bug has occurred in production. The Japanese side is very angry. What should I emphasize most in the "Problem Report" submitted as a BrSE?`,
+    options: [
+      `Name of specific programmer who created the bug and punishment`,
+      `Emotional excuse: “The Vietnamese team did their best, but…”`,
+      `The cause of the occurrence (why it happened) and "permanent recurrence prevention measures (process improvement)" to prevent the same bug from occurring again in the future`,
+      `Counterargument that the specifications on the Japanese side were poorly written`
+    ],
+    explanation: `In Japanese business, much emphasis is placed on reporting \`\`why it happened (root cause)'' and \`\`how to prevent it (recurrence prevention measures)'' rather than the mistake itself. Rather than blaming individuals, showing an approach that solves problems through "mechanisms" such as review systems and testing processes will help restore trust.`,
+  },
+  'brse-rw-009': {
+    question: `During a requirements meeting with a client, a request was made that was technically unfeasible (or extremely expensive). What is the appropriate response as a BrSE?`,
+    options: [
+      `Coldly refuse on the spot, saying, \`\`That's absolutely impossible.''`,
+      `Just say "Yes, I can" and take it home, then regret it later.`,
+      `\`\`It is difficult at the moment due to the technical constraints of 〇〇, but as an alternative method, we can achieve a similar goal at a low cost.Would you consider it?''`,
+      `Listen silently and ignore during implementation`
+    ],
+    explanation: `BrSE's high-value-added communication is not simply denying that it can't be done, but logically explaining why it is difficult (budget, technology, delivery date) and presenting an "alternative" that can achieve the client's business objectives.`,
+  },
+  'brse-rw-010': {
+    question: `[True or False] In order to improve translation efficiency, the best way for BrSE to do this is to take the Japanese specifications as is, run them through Google Translate without thinking, and then pass the Vietnamese version to the development team.`,
+    explanation: `×. Literal translations can mislead developers because they lack the "context unique to system development" and "Japanese tacit knowledge." BrSE must interpret the content as systematic behavior and logic, and add illustrations and supplementary explanations as necessary to "complete the context through free translation."`,
+  },
+  'brse-rw-011': {
+    question: `Midway through the project, the client began frequently requesting "specification changes." The budget and delivery date are fixed. What is the senior BrSE's approach to avoid project failure?`,
+    options: [
+      `We work overtime for free to avoid hurting the client's mood.`,
+      `Reject all change requests as "Phase 2 and beyond"`,
+      `Create a change management table and visualize the \`\`scope of impact,'' \`\`required man-hours,'' and \`\`risk of schedule delay'' due to additional specifications. Negotiate with the client which features to trade off within the current scope.`,
+      `abandon a project midway through`
+    ],
+    explanation: `This is a response to scope creep (never-ending specification expansion). Rather than simply refusing with a "no," the correct control method is to visualize the fact that changes require cost and time using data (such as a change management table) and leave the trade-off decision to the client.`,
+  },
+  'brse-rw-012': {
+    question: `The system staff at the head office in Japan and the on-site business users have different opinions and are caught in the middle. How should I act as a BrSE?`,
+    options: [
+      `The person in charge of the system is the one paying the money, so they ignore the opinions of the users on site.`,
+      `Create a document that organizes the points of conflict between the two parties, the technical feasibility of the system, and business advantages and disadvantages, and form a consensus in a three-party meeting involving both parties.`,
+      `Implement both opinions as is and complicate the system`,
+      `Let the Vietnamese development team decide which opinion to adopt.`
+    ],
+    explanation: `In conflicts between stakeholders, BrSE needs to act as a facilitator. The role of the senior team member is to sort out each other's arguments from a technical and operational perspective and try to build consensus through Nemawashi and coordination meetings.`,
+  },
+  'brse-rw-013': {
+    question: `Vietnam's development team has a high turnover rate, and knowledge is becoming individualized, making project handover difficult. Which of the following is the most effective remedy for this situation?`,
+    options: [
+      `Appeal directly to the president to double your salary`,
+      `There is no problem if you immediately hire a new person to replace the person who left your job.`,
+      `Thoroughly operate Wiki (documentation) within the project, introduce a code review culture and pair programming, and build a system (standardization) in which know-how is distributed and shared throughout the team.`,
+      `BrSE rewrites all code by himself`
+    ],
+    explanation: `"Eliminating individualization" and "knowledge management" are important issues in offshore development. By incorporating processes for document modernization, standardization, and uniform code quality, you can create a team that is resistant to the risk of resource fluctuations, even if people quit.`,
+  },
+  'brse-rw-014': {
+    question: `We won a large-scale offshore development project from a major Japanese financial institution. However, customers are strongly opposed to offshore services due to concerns about security and quality. As a senior BrSE, please write a "proposal for an offshore system/process" to eliminate customer concerns.`,
+    answer: `Proposed approach to dispel customer concerns: 
+
+1. Building a security system: 
+- Presentation of physical measures (no smartphones allowed, development in a dedicated secure room). 
+- Presentation of network measures (use of VDI/VPN, prohibition of local storage of source code and customer data). 
+・Show proof of implementation of information security education (ISO27001). 
+
+2. Visualization of quality assurance process: 
+・Explained that we will formulate a test plan that complies with Japanese quality standards (JSTQB, etc.), rather than leaving everything to Vietnam. 
+- Introduced test automation (CI/CD environment) and proposed a mechanism to eliminate human errors. 
+・Multiple code reviews (static analysis using tools + peer review + final confirmation by senior tech lead). 
+
+3. Maintain transparency in communication: 
+・We promise 100% visualization of progress and issues through weekly regular meetings and daily reports. 
+・Perform monthly objective quality metrics reports based on KPIs (bug detection rate, estimated man-hours, etc.). 
+
+Proving with "mechanisms and data" is most effective for conservative clients such as financial institutions.`,
+    explanation: `For mission-critical projects such as financial institutions, logical proofs such as \`\`defense through physical/logical infrastructure such as secure rooms'' and \`\`elimination of human error using process tools'' are required, rather than the mentality of \`\`I will do my best.''`,
+  },
+  'brse-rw-015': {
+    question: `You are a lead BrSE who brings together many BrSEs. During one project, a young BrSE in charge of the project was on the verge of depression, and there were numerous complaints from clients. The cause was caught between \`\`the client's recklessness (frequent changes in specifications)'' and \`\`the Vietnamese team's lack of development ability.'' Create a one-week rescue plan to get your project back on track.`,
+    answer: `One-week rescue plan for the Burning Project: 
+
+[Day 1: Understand the current situation and stop bleeding (triage)] 
+・Temporarily take over the workload of young BrSEs and provide mental care. Take immediate leave if necessary. 
+- Immediately notify the client that \`\`I, as the lead BrSE, will intervene and rebuild the system,'' and temporarily stop (Freeze) the current development work. 
+
+[Day 2-3: Inventory and visualization of issues] 
+-Create a fact-based list by identifying all the current "change request list," "remaining tasks," and "current bugs." 
+- Interview and analyze the technical issues of the Vietnamese team (why they are behind, where are the skill gaps). 
+
+[Day 4: Scope redefinition and client negotiations] 
+・Conducted emergency meeting with client. Calmly explains the mechanism of quality collapse caused by frequent specification changes using data (bug occurrence rate, etc.). 
+- Redefine the "minimum scope (MVP) that can be reliably delivered with current resources and time," and negotiate and agree on phase separation for overlapping requirements. 
+
+[Day 5-7: Restructuring of systems and processes] 
+- Assign additional senior engineers to the development team to provide help and establish a support system to resolve technical issues. 
+- Tighten the change management process (rules that do not accept arbitrary changes and require written agreement). 
+・Establish a backup system (clarification of escalation path) when young BrSEs return and resume development safely.`,
+    explanation: `The lead class requires "firefighting (troubleshooting)" skills. Rather than forcing people to work hard based on mental theory, the question is whether they can quickly implement the basic management principles of 1) protecting people (separating the burden), 2) objectively visualizing the situation, 3) negotiating scope with clients on an equal footing, and 4) fundamentally revising processes and systems.`,
+  },
+
 }

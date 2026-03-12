@@ -13,4 +13,5 @@ export const brseTopics: TopicInfo[] = [
   { id: 'team-management', label: 'チーム管理', icon: '👨‍💼', description: 'メンタリング、モチベーション、コンフリクト解決', color: '#9333ea' },
   { id: 'brse-system-architecture', label: 'システム設計基礎', icon: '🏗️', description: 'アーキテクチャ基礎、DB設計、API設計の基本', color: '#475569' },
   { id: 'risk-management', label: 'リスク管理', icon: '⚠️', description: 'リスク識別、軽減策、コンティンジェンシー計画', color: '#ea580c' },
+  { id: 'real-world-scenarios', label: 'Tình huống thực tế', icon: '🔥', description: '納期遅延、コミュニケーションギャップ、仕様変更対応', color: '#f43f5e' },
 ]

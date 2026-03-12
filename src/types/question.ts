@@ -52,6 +52,7 @@ export type Topic =
   | 'team-management'
   | 'brse-system-architecture'
   | 'risk-management'
+  | 'real-world-scenarios'
 
 export interface Question {
   id: string

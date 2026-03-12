@@ -13,4 +13,5 @@ export const baTopics: TopicInfo[] = [
   { id: 'communication-negotiation', label: 'Communication & Negotiation', icon: '🤝', description: 'Meeting facilitation, presentation, persuasion, conflict', color: '#14b8a6' },
   { id: 'uat-quality', label: 'UAT & Quality', icon: '✅', description: 'Test planning, defect management, sign-off, regression', color: '#22c55e' },
   { id: 'system-integration', label: 'API & System Integration', icon: '🔗', description: 'REST basics, data flow, integration patterns, third-party', color: '#3b82f6' },
+  { id: 'real-world-scenarios', label: 'Tình huống thực tế dự án', icon: '🔥', description: 'Scope creep, conflict resolution, ambiguous requirements', color: '#f43f5e' },
 ]
