@@ -48,7 +48,8 @@ export function ShareButton({ cardProps, role }: ShareButtonProps) {
 
     try {
       const blob = await captureCard(cardRef.current)
-      const filename = `fe-interview-result-${Date.now()}.png`
+      const roleSuffix = role ? `-${role}` : ''
+      const filename = `interview-result${roleSuffix}-${Date.now()}.png`
 
       if (action === 'copy') {
         const ok = await copyToClipboard(blob)
@@ -62,7 +63,7 @@ export function ShareButton({ cardProps, role }: ShareButtonProps) {
       } else if (action === 'download') {
         downloadImage(blob, filename)
       } else if (action === 'share') {
-        await shareNative(blob, 'FE Interview Result')
+        await shareNative(blob, t('nav.brand', { role: role ? ROLE_LABELS[role] : 'FE' }))
       }
     } catch (err) {
       // Silently fail — user will see button return to normal state

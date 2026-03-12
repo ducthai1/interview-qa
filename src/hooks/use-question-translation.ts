@@ -1,38 +1,34 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { loadQuestionTranslations } from '../i18n/questions'
+import { loadQuestionTranslations, caches } from '../i18n/questions'
 import type { QuestionTranslationMap } from '../i18n/questions/types'
 import type { Question } from '../types'
 
-let cachedMap: QuestionTranslationMap = {}
-let loaded = false
-
 /**
  * Returns a function that resolves translated question content.
- * Falls back to original English when no translation exists.
+ * Falls back to original English/Japanese when no translation exists.
  */
 export function useQuestionTranslation() {
   const { i18n } = useTranslation()
-  const [map, setMap] = useState<QuestionTranslationMap>(cachedMap)
-  const isVi = i18n.language === 'vi'
+  const currentLang = i18n.language
+  // Use indexed access with type cast to avoid 'caches' global collision
+  const initialMap = (caches as Record<string, QuestionTranslationMap>)[currentLang] || {}
+  const [map, setMap] = useState<QuestionTranslationMap>(initialMap)
 
   useEffect(() => {
-    if (!isVi) {
-      loaded = false
-      return
-    }
-    if (loaded) return
-    loadQuestionTranslations().then((m) => {
-      cachedMap = m
-      loaded = true
-      setMap(m)
+    let mounted = true
+    loadQuestionTranslations(currentLang).then((m) => {
+      if (mounted) {
+        setMap(m)
+      }
     })
-  }, [isVi])
+    return () => {
+      mounted = false
+    }
+  }, [currentLang])
 
   /** Get translated question text fields, falling back to originals */
   function tq(question: Question) {
-    if (!isVi) return question
-
     const tr = map[question.id]
     if (!tr) return question
 

@@ -1,19 +1,23 @@
 import type { QuestionTranslationMap } from './types'
 
-/* Lazy-load all Vietnamese question translation files */
-const viModules = import.meta.glob('./vi/*.ts', { eager: false }) as Record<
-  string,
-  () => Promise<Record<string, QuestionTranslationMap>>
->
+const langModules: Record<string, Record<string, () => Promise<Record<string, QuestionTranslationMap>>>> = {
+  vi: import.meta.glob('./vi/*.ts', { eager: false }) as any,
+  en: import.meta.glob('./en/*.ts', { eager: false }) as any,
+  jp: import.meta.glob('./jp/*.ts', { eager: false }) as any,
+}
 
-let viCache: QuestionTranslationMap | null = null
+export const caches: Record<string, QuestionTranslationMap> = {}
 
-/** Load all Vietnamese question translations into a single map */
-export async function loadQuestionTranslations(): Promise<QuestionTranslationMap> {
-  if (viCache) return viCache
+/** Load question translations for a specific language into a single map */
+export async function loadQuestionTranslations(lang: string): Promise<QuestionTranslationMap> {
+  if (caches[lang]) return caches[lang]
+
+  const modules = langModules[lang]
+  if (!modules) return {}
 
   const map: QuestionTranslationMap = {}
-  const loaded = await Promise.all(Object.values(viModules).map((load) => load()))
+  const loaded = await Promise.all(Object.values(modules).map((load) => load()))
+  
   for (const mod of loaded) {
     for (const exported of Object.values(mod)) {
       if (typeof exported === 'object' && exported !== null && !Array.isArray(exported)) {
@@ -21,6 +25,7 @@ export async function loadQuestionTranslations(): Promise<QuestionTranslationMap
       }
     }
   }
-  viCache = map
+
+  caches[lang] = map
   return map
 }
