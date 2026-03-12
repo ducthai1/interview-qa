@@ -1,23 +1,25 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { ArrowRight, BookOpen, RotateCcw, Map } from 'lucide-react'
-import type { Question, UserProgress } from '../types'
+import type { Question, UserProgress, Role } from '../types'
 import { getWeakTopics } from '../utils/analytics'
 import { getDueQuestions } from '../utils/spaced-repetition'
-import { learningPaths } from '../data/learning-paths'
+import { getLearningPathsByRole } from '../data'
 
 interface NextStepsSectionProps {
   questions: Question[]
   progress: UserProgress
+  role: Role
 }
 
-export function NextStepsSection({ questions, progress }: NextStepsSectionProps) {
+export function NextStepsSection({ questions, progress, role }: NextStepsSectionProps) {
   const { t } = useTranslation()
 
-  const weakTopics = getWeakTopics(progress.answered, questions, 2)
+  const weakTopics = getWeakTopics(progress.answered, questions, 2, role)
   const dueCount = getDueQuestions(progress, questions).length
 
   // Find active learning path (one with in-progress steps)
+  const learningPaths = getLearningPathsByRole(role)
   const activePath = learningPaths.find((path) => {
     const stepIdx = progress.pathProgress?.[path.id] ?? 0
     return stepIdx > 0 && stepIdx < path.steps.length

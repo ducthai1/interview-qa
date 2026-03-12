@@ -1,16 +1,18 @@
 import { useTranslation } from 'react-i18next'
 import { TopicCard } from '../components/topic-card'
 import { StreakBanner } from '../components/streak-banner'
-import { topics } from '../data/topics'
-import type { Question, UserProgress } from '../types'
+import { getTopicsByRole } from '../data'
+import type { Question, UserProgress, Role } from '../types'
 
 interface HomePageProps {
   questions: Question[]
   progress: UserProgress
+  role: Role
 }
 
-export function HomePage({ questions, progress }: HomePageProps) {
+export function HomePage({ questions, progress, role }: HomePageProps) {
   const { t } = useTranslation()
+  const topics = getTopicsByRole(role)
   const totalAnswered = Object.keys(progress.answered).length
   const totalCorrect = Object.values(progress.answered).filter((a) => a.correct).length
 
@@ -22,10 +24,10 @@ export function HomePage({ questions, progress }: HomePageProps) {
       {/* Hero */}
       <div className="mb-8 text-center">
         <h1 className="mb-2 text-3xl font-bold text-[var(--color-text)] md:text-4xl">
-          {t('home.title')}
+          {t(`home.title.${role}`)}
         </h1>
         <p className="mx-auto max-w-xl text-[var(--color-text-secondary)]">
-          {t('home.subtitle', { count: questions.length })}
+          {t(`home.subtitle.${role}`, { count: questions.length })}
         </p>
       </div>
 

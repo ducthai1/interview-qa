@@ -35,18 +35,12 @@ function PageSpinner() {
 }
 
 export default function App() {
-  const { i18n } = useTranslation()
   const { theme, toggleTheme } = useTheme()
   const { role, setRole, clearRole } = useRole()
 
-  /* When BrSE is selected, auto-switch to Japanese */
   const handleSelectRole = useCallback((r: Role) => {
     setRole(r)
-    if (r === 'brse' && i18n.language !== 'jp') {
-      i18n.changeLanguage('jp')
-      localStorage.setItem('fe-interview-lang', 'jp')
-    }
-  }, [setRole, i18n])
+  }, [setRole])
 
   /* Show role selector when no role is chosen */
   if (!role) {
@@ -63,11 +57,20 @@ function MainApp({ role, theme, toggleTheme, clearRole }: {
   toggleTheme: () => void
   clearRole: () => void
 }) {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const { progress, answer, bookmark, reset, retry, saveChallenge, saveNote, unlockAchievements } = useProgress(role)
   const [questions, setQuestions] = useState<Question[]>([])
   const [loading, setLoading] = useState(true)
   const [newAchievements, setNewAchievements] = useState<string[]>([])
+
+  /* Dynamically update document title based on the selected role */
+  useEffect(() => {
+    const roleLabels: Record<Role, string> = { frontend: 'FE', ba: 'BA', brse: 'BrSE' }
+    const roleName = roleLabels[role]
+    const brand = t('nav.brand', { role: roleName })
+    const title = t(`home.title.${role}`)
+    document.title = `${brand} - ${title}`
+  }, [role, t, i18n.language])
 
   const { dueCount } = useSpacedRepetition(progress, questions)
 
@@ -116,16 +119,16 @@ function MainApp({ role, theme, toggleTheme, clearRole }: {
         />
         <Suspense fallback={<PageSpinner />}>
           <Routes>
-            <Route path="/" element={<HomePage questions={questions} progress={progress} />} />
-            <Route path="/practice" element={<PracticePage questions={questions} progress={progress} onAnswer={answer} onBookmark={bookmark} onRetry={retry} onSaveNote={saveNote} />} />
-            <Route path="/review" element={<ReviewPage questions={questions} progress={progress} onAnswer={answer} onBookmark={bookmark} onRetry={retry} />} />
-            <Route path="/mock-interview" element={<MockInterviewPage questions={questions} progress={progress} onAnswer={answer} onBookmark={bookmark} onRetry={retry} />} />
-            <Route path="/stats" element={<StatsPage questions={questions} progress={progress} onReset={reset} />} />
-            <Route path="/challenge" element={<ChallengePage questions={questions} progress={progress} onAnswer={answer} onBookmark={bookmark} onRetry={retry} onSaveChallenge={saveChallenge} />} />
+            <Route path="/" element={<HomePage questions={questions} progress={progress} role={role} />} />
+            <Route path="/practice" element={<PracticePage questions={questions} progress={progress} onAnswer={answer} onBookmark={bookmark} onRetry={retry} onSaveNote={saveNote} role={role} />} />
+            <Route path="/review" element={<ReviewPage questions={questions} progress={progress} onAnswer={answer} onBookmark={bookmark} onRetry={retry} role={role} />} />
+            <Route path="/mock-interview" element={<MockInterviewPage questions={questions} progress={progress} onAnswer={answer} onBookmark={bookmark} onRetry={retry} role={role} />} />
+            <Route path="/stats" element={<StatsPage questions={questions} progress={progress} onReset={reset} role={role} />} />
+            <Route path="/challenge" element={<ChallengePage questions={questions} progress={progress} onAnswer={answer} onBookmark={bookmark} onRetry={retry} onSaveChallenge={saveChallenge} role={role} />} />
             <Route path="/bookmarks" element={<BookmarksPage questions={questions} progress={progress} onBookmark={bookmark} />} />
-            <Route path="/custom-session" element={<CustomSessionPage questions={questions} progress={progress} onAnswer={answer} onBookmark={bookmark} onRetry={retry} />} />
-            <Route path="/learning-path" element={<LearningPathPage questions={questions} progress={progress} />} />
-            <Route path="/flashcards" element={<FlashcardPage questions={questions} progress={progress} onAnswer={answer} onBookmark={bookmark} />} />
+            <Route path="/custom-session" element={<CustomSessionPage questions={questions} progress={progress} onAnswer={answer} onBookmark={bookmark} onRetry={retry} role={role} />} />
+            <Route path="/learning-path" element={<LearningPathPage questions={questions} progress={progress} role={role} />} />
+            <Route path="/flashcards" element={<FlashcardPage questions={questions} progress={progress} onAnswer={answer} onBookmark={bookmark} role={role} />} />
             <Route path="/achievements" element={<AchievementsPage progress={progress} totalQuestions={questions.length} />} />
           </Routes>
         </Suspense>

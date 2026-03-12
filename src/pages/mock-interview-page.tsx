@@ -7,7 +7,7 @@ import { NextStepsSection } from '../components/next-steps-section'
 import { pickWithDifficultyMix } from '../utils/question-filters'
 import { useTimer } from '../hooks/use-timer'
 import { useKeyboardShortcuts } from '../hooks/use-keyboard-shortcuts'
-import type { Question, Difficulty, UserProgress } from '../types'
+import type { Question, Difficulty, UserProgress, Role } from '../types'
 
 interface MockInterviewPageProps {
   questions: Question[]
@@ -15,12 +15,13 @@ interface MockInterviewPageProps {
   onAnswer: (questionId: string, correct: boolean) => void
   onBookmark: (questionId: string) => void
   onRetry: (questionId: string) => void
+  role: Role
 }
 
 const QUESTION_COUNT = 20
 const TIME_LIMIT = 30 * 60 // 30 minutes
 
-export function MockInterviewPage({ questions, progress, onAnswer, onBookmark, onRetry }: MockInterviewPageProps) {
+export function MockInterviewPage({ questions, progress, onAnswer, onBookmark, onRetry, role }: MockInterviewPageProps) {
   const { t } = useTranslation()
   const [started, setStarted] = useState(false)
   const [finished, setFinished] = useState(false)
@@ -176,6 +177,7 @@ export function MockInterviewPage({ questions, progress, onAnswer, onBookmark, o
             <RotateCcw className="h-4 w-4" /> {t('common.tryAgain')}
           </button>
           <ShareButton
+            role={role}
             cardProps={{
               accuracy: pct,
               totalAnswered: results.answered,
@@ -214,7 +216,7 @@ export function MockInterviewPage({ questions, progress, onAnswer, onBookmark, o
           </div>
         )}
 
-        <NextStepsSection questions={questions} progress={progress} />
+        <NextStepsSection questions={questions} progress={progress} role={role} />
       </div>
     )
   }

@@ -43,7 +43,7 @@ export const vi = {
 
   /* ─── Header / Nav ────────────────────────────────────────────────────────── */
   nav: {
-    brand: 'FE Interview Hub',
+    brand: '{{role}} Interview Practice',
     topics: 'Chủ đề',
     practice: 'Luyện tập',
     review: 'Ôn tập',
@@ -99,8 +99,16 @@ export const vi = {
 
   /* ─── Home Page ────────────────────────────────────────────────────────────── */
   home: {
-    title: 'Luyện Phỏng Vấn Frontend',
-    subtitle: '{{count}}+ câu hỏi phỏng vấn thực tế về React, TypeScript, CSS và nhiều hơn nữa. Không cần đăng nhập. Bắt đầu ngay.',
+    title: {
+      frontend: 'Frontend Interview Practice',
+      ba: 'Business Analyst Interview Practice',
+      brse: 'Bridge SE Interview Practice',
+    },
+    subtitle: {
+      frontend: 'Hơn {{count}} câu hỏi phỏng vấn thực tế về React, TypeScript, CSS và hơn thế nữa. Không cần đăng nhập. Bắt đầu ngay.',
+      ba: 'Hơn {{count}} câu hỏi phỏng vấn thực tế về Kỹ thuật yêu cầu, Agile, SQL và hơn thế nữa. Không cần đăng nhập. Bắt đầu ngay.',
+      brse: 'Hơn {{count}} câu hỏi phỏng vấn thực tế về Quản lý, Dịch thuật, Văn hóa Nhật Bản và hơn thế nữa. Không cần đăng nhập. Bắt đầu ngay.',
+    },
     totalQuestions: 'Tổng câu hỏi',
     chooseATopic: 'Chọn chủ đề',
   },
@@ -275,8 +283,8 @@ export const vi = {
     share: 'Chia sẻ...',
     copied: 'Đã sao chép!',
     downloading: 'Đang tải...',
-    tagline: 'Luyện Phỏng Vấn Frontend',
-    mockResult: 'Kết quả phỏng vấn thử',
+    tagline: 'Luyện Phỏng Vấn {{role}}',
+    mockResult: 'Kết quả Phỏng vấn Thử',
     challengeResult: 'Kết quả thử thách',
     statsResult: 'Tiến trình của tôi',
   },
@@ -460,11 +468,64 @@ export const vi = {
     knewIt: 'Biết rồi',
     didntKnow: 'Chưa biết',
     complete: 'Hoàn thành bộ thẻ!',
-    keyboardHint: '← → di chuyển · Space lật · B đánh dấu',
   },
 
   /* ─── Keyboard Shortcuts ─────────────────────────────────────────────────── */
   keyboard: {
-    hint: '← → di chuyển · Space xem đáp án · B đánh dấu · 1-4 chọn đáp án',
+    hint: '← → điều hướng · Space hiện đáp án · B đánh dấu · 1-4 chọn phương án',
+  },
+
+  /* ─── Topics ─────────────────────────────────────────────────────────────── */
+  topics: {
+    // Frontend Topics
+    'html': { label: 'HTML', desc: 'Thẻ HTML ngữ nghĩa, biểu mẫu, phương tiện, Web API, đánh dấu SEO' },
+    'css': { label: 'CSS', desc: 'Flexbox, Grid, hoạt ảnh, thiết kế đáp ứng, bộ chọn' },
+    'browser-dom': { label: 'Trình duyệt & DOM', desc: 'Ủy quyền sự kiện, quá trình kết xuất, Web API, bộ quan sát' },
+    'coding-challenges': { label: 'Thử thách lập trình', desc: 'Debounce, throttle, Promise.all, sao chép sâu, curry' },
+    'api-networking': { label: 'API & Mạng', desc: 'REST, GraphQL, CORS, bộ nhớ đệm HTTP, WebSocket, fetch' },
+    'javascript-core': { label: 'JavaScript Cơ bản', desc: 'ES6+, async/await, closure, prototype, vòng lặp sự kiện' },
+    'typescript': { label: 'TypeScript', desc: 'Generics, utility types, thu hẹp kiểu, khai báo' },
+    'react-fundamentals': { label: 'React Cơ bản', desc: 'JSX, components, props, state, vòng đời' },
+    'react-hooks': { label: 'React Hooks', desc: 'useState, useEffect, useRef, useMemo, custom hooks' },
+    'react-advanced': { label: 'React Nâng cao', desc: 'memo, context, suspense, RSC, React Compiler' },
+    'state-management': { label: 'Quản lý trạng thái', desc: 'Redux Toolkit, Zustand, Jotai, TanStack Query' },
+    'nextjs-frameworks': { label: 'Next.js & Frameworks', desc: 'App Router, SSR, ISR, Server Actions' },
+    'css-styling': { label: 'CSS & Tạo kiểu', desc: 'TailwindCSS, CSS Modules, hoạt ảnh, thiết kế đáp ứng' },
+    'testing': { label: 'Kiểm thử', desc: 'Vitest, React Testing Library, Playwright, MSW' },
+    'build-tools': { label: 'Công cụ Build', desc: 'Vite, Turbopack, đóng gói, rung cây (tree-shaking)' },
+    'performance': { label: 'Hiệu suất', desc: 'Core Web Vitals, lazy loading, profiling' },
+    'system-design-fe': { label: 'Thiết kế hệ thống FE', desc: 'Micro-frontends, monorepo, hệ thống thiết kế' },
+    'ai-frontend': { label: 'AI & Frontend', desc: 'Vercel AI SDK, tích hợp LLM, giao diện người dùng luồng' },
+    'accessibility': { label: 'Khả năng truy cập', desc: 'ARIA, trình đọc màn hình, điều hướng bằng bàn phím' },
+    'security': { label: 'Bảo mật', desc: 'XSS, CSRF, CSP, mẫu xác thực, làm sạch dữ liệu' },
+    'real-world': { label: 'Các tình huống thực tế', desc: 'Lỗi thực tế, phát triển tính năng, hợp tác nhóm, vấn đề triển khai' },
+
+    // BA Topics
+    'requirements-engineering': { label: 'Kỹ thuật yêu cầu', desc: 'Khơi gợi, phân tích, đặc tả, xác nhận, truy xuất nguồn gốc' },
+    'user-story-use-case': { label: 'User Story & Use Case', desc: 'Viết user story, tiêu chí chấp nhận, sơ đồ use case' },
+    'business-process-bpmn': { label: 'Quy trình nghiệp vụ (BPMN)', desc: 'Mô hình hóa quy trình, swimlane, phân tích as-is/to-be' },
+    'stakeholder-management': { label: 'Quản lý các bên liên quan', desc: 'Nhận diện, ma trận quyền lực-lợi ích, kế hoạch giao tiếp' },
+    'agile-scrum': { label: 'Agile & Scrum', desc: 'Lễ nghi, tạo tác (artifacts), vai trò, SAFe, Kanban' },
+    'data-analysis-sql': { label: 'Phân tích dữ liệu & SQL', desc: 'Truy vấn SQL, báo cáo, ra quyết định dựa trên dữ liệu' },
+    'wireframe-prototype': { label: 'Wireframe & Prototyping', desc: 'Mô phỏng UI, tư duy UX, Figma, luồng người dùng' },
+    'documentation': { label: 'Tài liệu', desc: 'SRS, BRD, FRD, PRD, ma trận truy xuất nguồn gốc' },
+    'domain-knowledge': { label: 'Kiến thức miền', desc: 'Fintech, e-commerce, chăm sóc sức khỏe, logistics, ERP' },
+    'communication-negotiation': { label: 'Giao tiếp & Đàm phán', desc: 'Điều hành cuộc họp, thuyết trình, thuyết phục, giải quyết xung đột' },
+    'uat-quality': { label: 'UAT & Chất lượng', desc: 'Lên kế hoạch kiểm thử, quản lý lỗi, nghiệm thu, hồi quy' },
+    'system-integration': { label: 'API & Tích hợp hệ thống', desc: 'Cơ bản về REST, luồng dữ liệu, mẫu tích hợp, bên thứ ba' },
+
+    // BrSE Topics
+    'japanese-business-comm': { label: 'Tiếng Nhật Kinh doanh', desc: 'Kính ngữ, email, cuộc họp, gọi điện, 매너 비знес' },
+    'technical-translation': { label: 'Dịch thuật Kỹ thuật', desc: 'Dịch các thuật ngữ kỹ thuật Nhật ⇔ Việt ⇔ Anh' },
+    'offshore-process': { label: 'Quy trình Offshore', desc: 'Luồng phát triển offshore, giao tiếp, quản lý vấn đề' },
+    'requirements-spec': { label: 'Yêu cầu & Đặc tả', desc: 'Đọc/viết yêu cầu, thiết kế cơ bản/chi tiết' },
+    'brse-project-management': { label: 'Quản lý dự án', desc: 'WBS, tiến độ, quản lý tiến độ & tài nguyên' },
+    'quality-management': { label: 'Quản lý chất lượng', desc: 'Lên kế hoạch kiểm thử, đánh giá, số liệu chất lượng, JSTQB' },
+    'japanese-culture': { label: 'Văn hóa Kinh doanh Nhật Bản', desc: 'Ho-Ren-So, thương lượng ngầm, đọc không khí, trao đổi danh thiếp' },
+    'estimation-planning': { label: 'Ước lượng & Lập kế hoạch', desc: 'Phương pháp FP, tính toán man-month, dự phòng rủi ro, cơ sở ước lượng' },
+    'client-reporting': { label: 'Báo cáo Khách hàng', desc: 'Báo cáo tuần/tháng, báo cáo mức cảnh báo, báo cáo sự cố' },
+    'team-management': { label: 'Quản lý nhóm', desc: 'Cố vấn, động viên, giải quyết xung đột' },
+    'brse-system-architecture': { label: 'Cơ sở Kiến trúc Hệ thống', desc: 'Kiến trúc cơ bản, thiết kế DB, thiết kế API cơ bản' },
+    'risk-management': { label: 'Quản lý Rủi ro', desc: 'Nhận diện rủi ro, giảm thiểu, kế hoạch dự phòng' },
   },
 }

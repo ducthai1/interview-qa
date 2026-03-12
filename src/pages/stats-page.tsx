@@ -2,8 +2,8 @@ import { RotateCcw, Bookmark, ChevronRight } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
-import { topics } from '../data/topics'
-import type { Question, UserProgress } from '../types'
+import { getTopicsByRole } from '../data'
+import type { Question, UserProgress, Role } from '../types'
 import { ShareButton } from '../components/share-button'
 import { TopicRadarChart } from '../components/charts/radar-chart'
 import { AccuracyTrendChart } from '../components/charts/accuracy-trend-chart'
@@ -22,9 +22,10 @@ interface StatsPageProps {
   questions: Question[]
   progress: UserProgress
   onReset: () => void
+  role: Role
 }
 
-export function StatsPage({ questions, progress, onReset }: StatsPageProps) {
+export function StatsPage({ questions, progress, onReset, role }: StatsPageProps) {
   const { t } = useTranslation()
   const totalAnswered = Object.keys(progress.answered).length
   const totalCorrect = Object.values(progress.answered).filter((a) => a.correct).length
@@ -32,10 +33,13 @@ export function StatsPage({ questions, progress, onReset }: StatsPageProps) {
 
   const hasData = totalAnswered > 0
 
-  const topicAccuracy = useMemo(
-    () => getTopicAccuracy(progress.answered, questions),
-    [progress.answered, questions],
-  )
+  const radarData = useMemo(() => {
+    const rawData = getTopicAccuracy(progress.answered, questions, role)
+    return rawData.map((tAcc) => ({
+      ...tAcc,
+      topic: t(`topics.${tAcc.topicId}.label`, { defaultValue: tAcc.topic }),
+    }))
+  }, [progress.answered, questions, role, t])
 
   const trendData = useMemo(
     () => getDailyTrend(progress.answered, 30),
@@ -47,10 +51,13 @@ export function StatsPage({ questions, progress, onReset }: StatsPageProps) {
     [progress.answered, progress.dailyActivity],
   )
 
-  const weakTopics = useMemo(
-    () => getWeakTopics(progress.answered, questions, 3),
-    [progress.answered, questions],
-  )
+  const weakTopics = useMemo(() => {
+    const rawData = getWeakTopics(progress.answered, questions, 3, role)
+    return rawData.map((tAcc) => ({
+      ...tAcc,
+      topic: t(`topics.${tAcc.topicId}.label`, { defaultValue: tAcc.topic }),
+    }))
+  }, [progress.answered, questions, role, t])
 
   // Build topic breakdown for share card from answered questions
   const shareTopicBreakdown = useMemo(() => {
@@ -63,8 +70,13 @@ export function StatsPage({ questions, progress, onReset }: StatsPageProps) {
       if (ans.correct) entry.correct += 1
       map.set(q.topic, entry)
     }
-    return Array.from(map.values()).sort((a, b) => b.total - a.total)
-  }, [questions, progress.answered])
+    return Array.from(map.values())
+      .sort((a, b) => b.total - a.total)
+      .map((entry) => ({
+        ...entry,
+        topic: t(`topics.${entry.topic}.label`, { defaultValue: entry.topic }),
+      }))
+  }, [questions, progress.answered, t])
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-8">
@@ -72,6 +84,7 @@ export function StatsPage({ questions, progress, onReset }: StatsPageProps) {
         <h1 className="text-2xl font-bold text-[var(--color-text)]">{t('stats.title')}</h1>
         {totalAnswered > 0 && (
           <ShareButton
+            role={role}
             cardProps={{
               accuracy,
               totalAnswered,
@@ -143,7 +156,7 @@ export function StatsPage({ questions, progress, onReset }: StatsPageProps) {
             {t('stats.radarTitle')}
           </h2>
           <TopicRadarChart
-            data={topicAccuracy}
+            data={radarData}
             noDataLabel={t('stats.noData')}
             accuracyLabel={t('common.accuracy')}
           />
@@ -178,7 +191,7 @@ export function StatsPage({ questions, progress, onReset }: StatsPageProps) {
       {/* Per-topic breakdown */}
       <h2 className="mb-4 text-lg font-semibold text-[var(--color-text)]">{t('stats.byTopic')}</h2>
       <div className="space-y-3">
-        {topics.map((topic) => {
+        {getTopicsByRole(role).map((topic) => {
           const topicQs = questions.filter((q) => q.topic === topic.id)
           const topicAnswered = topicQs.filter((q) => progress.answered[q.id])
           const topicCorrect = topicAnswered.filter((q) => progress.answered[q.id]?.correct)

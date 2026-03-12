@@ -4,7 +4,7 @@ import { CheckCircle2, XCircle, BookOpen } from 'lucide-react'
 import { QuestionCard } from '../components/question-card'
 import { NextStepsSection } from '../components/next-steps-section'
 import { useSpacedRepetition } from '../hooks/use-spaced-repetition'
-import type { Question, UserProgress } from '../types'
+import type { Question, UserProgress, Role } from '../types'
 
 interface ReviewPageProps {
   questions: Question[]
@@ -12,9 +12,10 @@ interface ReviewPageProps {
   onAnswer: (questionId: string, correct: boolean) => void
   onBookmark: (questionId: string) => void
   onRetry: (questionId: string) => void
+  role: Role
 }
 
-export function ReviewPage({ questions, progress, onAnswer, onBookmark, onRetry }: ReviewPageProps) {
+export function ReviewPage({ questions, progress, onAnswer, onBookmark, onRetry, role }: ReviewPageProps) {
   const { t } = useTranslation()
   const { dueQuestions, stats } = useSpacedRepetition(progress, questions)
 
@@ -106,7 +107,7 @@ export function ReviewPage({ questions, progress, onAnswer, onBookmark, onRetry 
           <BoxStats stats={stats} t={t} />
         </div>
 
-        <NextStepsSection questions={questions} progress={progress} />
+        <NextStepsSection questions={questions} progress={progress} role={role} />
       </div>
     )
   }

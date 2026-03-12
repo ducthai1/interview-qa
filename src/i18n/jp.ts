@@ -43,7 +43,7 @@ export const jp = {
 
   /* ─── Header / Nav ────────────────────────────────────────────────────────── */
   nav: {
-    brand: 'Interview Hub',
+    brand: '{{role}} 面接ハブ',
     topics: 'トピック',
     practice: '練習',
     review: '復習',
@@ -162,8 +162,16 @@ export const jp = {
 
   /* ─── Home Page ────────────────────────────────────────────────────────────── */
   home: {
-    title: '面接練習',
-    subtitle: '{{count}}以上の実際の面接問題。ログイン不要。今すぐ始めましょう。',
+    title: {
+      frontend: 'フロントエンド面接練習',
+      ba: 'ビジネスアナリスト面接練習',
+      brse: 'ブリッジSE面接練習',
+    },
+    subtitle: {
+      frontend: '{{count}}問以上のReact、TypeScript、CSSなどの実践的な面接問題。ログイン不要。今すぐ練習開始。',
+      ba: '{{count}}問以上の要件定義、アジャイル、SQLなどの実践的な面接問題。ログイン不要。今すぐ練習開始。',
+      brse: '{{count}}問以上の管理、翻訳、日本文化などの実践的な面接問題。ログイン不要。今すぐ練習開始。',
+    },
     totalQuestions: '総問題数',
     chooseATopic: 'トピックを選択',
   },
@@ -230,7 +238,7 @@ export const jp = {
     share: '共有...',
     copied: 'コピーしました！',
     downloading: 'ダウンロード中...',
-    tagline: '面接練習',
+    tagline: '{{role}} 面接練習',
     mockResult: '模擬面接結果',
     challengeResult: 'チャレンジ結果',
     statsResult: '私の進捗',
@@ -371,4 +379,58 @@ export const jp = {
   debugInteraction: { label: '以下のコードのバグを修正してください：', submitFix: '修正を送信', showAnswer: '正しい修正を表示' },
   codeWriteInteraction: { label: '解答を書いてください：', placeholder: '// ここにコードを書いてください...', submitCompare: '送信＆比較', showModelAnswer: '模範解答を表示' },
   systemDesignInteraction: { label: '設計アプローチを説明してください：', placeholder: 'アーキテクチャ、主要コンポーネント、データフロー、トレードオフ...', submitCompare: '送信＆比較', showModelAnswer: '模範解答を表示' },
+
+  /* ─── Topics ─────────────────────────────────────────────────────────────── */
+  topics: {
+    // Frontend Topics
+    'html': { label: 'HTML', desc: 'セマンティックHTML、フォーム、メディア、Web API、SEOマークアップ' },
+    'css': { label: 'CSS', desc: 'Flexbox、Grid、アニメーション、レスポンシブデザイン、セレクタ' },
+    'browser-dom': { label: 'ブラウザ＆DOM', desc: 'イベント委譲、レンダリングパイプライン、Web API、オブザーバー' },
+    'coding-challenges': { label: 'コーディング課題', desc: 'デバウンス、スロットル、Promise.all、ディープクローン、カリー化' },
+    'api-networking': { label: 'API＆ネットワーキング', desc: 'REST、GraphQL、CORS、HTTPキャッシュ、WebSocket、fetch' },
+    'javascript-core': { label: 'JavaScriptコア', desc: 'ES6+、async/await、クロージャ、プロトタイプ、イベントループ' },
+    'typescript': { label: 'TypeScript', desc: 'ジェネリクス、ユーティリティ型、型絞り込み、宣言' },
+    'react-fundamentals': { label: 'Reactの基礎', desc: 'JSX、コンポーネント、props、state、ライフサイクル' },
+    'react-hooks': { label: 'React Hooks', desc: 'useState、useEffect、useRef、useMemo、カスタムフック' },
+    'react-advanced': { label: 'Reactの応用', desc: 'memo、context、suspense、RSC、React Compiler' },
+    'state-management': { label: '状態管理', desc: 'Redux Toolkit、Zustand、Jotai、TanStack Query' },
+    'nextjs-frameworks': { label: 'Next.js＆フレームワーク', desc: 'App Router、SSR、ISR、Server Actions' },
+    'css-styling': { label: 'CSS＆スタイリング', desc: 'TailwindCSS、CSS Modules、アニメーション、レスポンシブ' },
+    'testing': { label: 'テスト', desc: 'Vitest、React Testing Library、Playwright、MSW' },
+    'build-tools': { label: 'ビルドツール', desc: 'Vite、Turbopack、バンドリング、ツリーシェイキング' },
+    'performance': { label: 'パフォーマンス', desc: 'Core Web Vitals、遅延読み込み、プロファイリング' },
+    'system-design-fe': { label: 'システム設計FE', desc: 'マイクロフロントエンド、モノレポ、デザインシステム' },
+    'ai-frontend': { label: 'AI＆フロントエンド', desc: 'Vercel AI SDK、LLM統合、ストリーミングUI' },
+    'accessibility': { label: 'アクセシビリティ', desc: 'ARIA、スクリーンリーダー、キーボードナビゲーション' },
+    'security': { label: 'セキュリティ', desc: 'XSS、CSRF、CSP、認証パターン、サニタイズ' },
+    'real-world': { label: '実世界のシナリオ', desc: '本番のバグ、機能開発、チームコラボレーション、デプロイの問題' },
+
+    // BA Topics
+    'requirements-engineering': { label: '要件工学', desc: '引き出し、分析、仕様化、検証、トレーサビリティ' },
+    'user-story-use-case': { label: 'ユーザーストーリー＆ユースケース', desc: 'ユーザーストーリーの作成、受け入れ基準、ユースケース図' },
+    'business-process-bpmn': { label: 'ビジネスプロセス（BPMN）', desc: 'プロセスモデリング、スイムレーン、現状/あるべき姿の分析' },
+    'stakeholder-management': { label: 'ステークホルダー管理', desc: '識別、権力・関心マトリックス、コミュニケーション計画' },
+    'agile-scrum': { label: 'アジャイル＆スクラム', desc: 'セレモニー、成果物、役割、SAFe、Kanban' },
+    'data-analysis-sql': { label: 'データ分析＆SQL', desc: 'SQLクエリ、レポーティング、データに基づく意思決定' },
+    'wireframe-prototype': { label: 'ワイヤーフレーム＆プロトタイピング', desc: 'UIモックアップ、UX思考、Figma、ユーザーフロー' },
+    'documentation': { label: 'ドキュメンテーション', desc: 'SRS、BRD、FRD、PRD、トレーサビリティマトリックス' },
+    'domain-knowledge': { label: 'ドメイン知識', desc: 'Fintech、eコマース、ヘルスケア、ロジスティクス、ERP' },
+    'communication-negotiation': { label: 'コミュニケーション＆交渉', desc: '会議の進行、プレゼンテーション、説得、対立解決' },
+    'uat-quality': { label: 'UAT＆品質', desc: 'テスト計画、欠陥管理、承認、リグレッション' },
+    'system-integration': { label: 'API＆システム統合', desc: 'RESTの基礎、データフロー、統合パターン、サードパーティ' },
+
+    // BrSE Topics
+    'japanese-business-comm': { label: 'ビジネス日本語', desc: '敬語、メール、会議、電話対応、ビジネスマナー' },
+    'technical-translation': { label: '技術翻訳', desc: '日本語⇔ベトナム語⇔英語の技術用語翻訳' },
+    'offshore-process': { label: 'オフショア開発', desc: 'オフショア開発フロー、コミュニケーション、課題管理' },
+    'requirements-spec': { label: '要件定義・仕様書', desc: '要件定義書、基本設計書、詳細設計書の読解・作成' },
+    'brse-project-management': { label: 'プロジェクト管理', desc: 'WBS、スケジュール、進捗管理、リソース管理' },
+    'quality-management': { label: '品質管理', desc: 'テスト計画、レビュー、品質指標、JSTQB' },
+    'japanese-culture': { label: '日本のビジネス文化', desc: '報連相、根回し、空気を読む、名刺交換' },
+    'estimation-planning': { label: '見積もり・計画', desc: 'FP法、人月計算、リスクバッファー、見積もり根拠' },
+    'client-reporting': { label: '顧客報告', desc: '週報、月報、エスカレーション、問題報告' },
+    'team-management': { label: 'チーム管理', desc: 'メンタリング、モチベーション、コンフリクト解決' },
+    'brse-system-architecture': { label: 'システム設計基礎', desc: 'アーキテクチャ基礎、DB設計、API設計の基本' },
+    'risk-management': { label: 'リスク管理', desc: 'リスク識別、軽減策、コンティンジェンシー計画' },
+  },
 }

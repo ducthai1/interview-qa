@@ -1,7 +1,7 @@
-import type { Question, UserProgress } from '../types'
+import type { Question, UserProgress, Role } from '../types'
 import { getDueQuestions } from './spaced-repetition'
 import { getWeakTopics } from './analytics'
-import { learningPaths } from '../data/learning-paths'
+import { getLearningPathsByRole } from '../data'
 
 /**
  * Return up to `limit` recommended questions ordered by priority:
@@ -15,6 +15,7 @@ export function getRecommendedQuestions(
   questions: Question[],
   progress: UserProgress,
   limit = 3,
+  role: Role = 'frontend',
 ): Question[] {
   const seen = new Set<string>()
   const result: Question[] = []
@@ -32,7 +33,7 @@ export function getRecommendedQuestions(
   if (result.length >= limit) return result
 
   // 2. From weak topics
-  const weakTopics = getWeakTopics(progress.answered, questions, 3).map((t) => t.topicId)
+  const weakTopics = getWeakTopics(progress.answered, questions, 3, role).map((t) => t.topicId)
   const weakQuestions = questions.filter((q) => weakTopics.includes(q.topic))
   weakQuestions.forEach(pick)
 
@@ -40,6 +41,7 @@ export function getRecommendedQuestions(
 
   // 3. From current learning path step
   const pathProgress = progress.pathProgress ?? {}
+  const learningPaths = getLearningPathsByRole(role)
   for (const path of learningPaths) {
     const stepIdx = pathProgress[path.id] ?? 0
     const currentStep = path.steps[stepIdx]

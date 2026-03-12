@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 import { Settings2, Play, CheckCircle2, XCircle, Clock, ChevronDown } from 'lucide-react'
 import { QuestionCard } from '../components/question-card'
 import { NextStepsSection } from '../components/next-steps-section'
-import { topics } from '../data/topics'
-import type { Question, Topic, UserProgress } from '../types'
+import { getTopicsByRole } from '../data'
+import type { Question, Topic, UserProgress, Role } from '../types'
 
 interface CustomSessionPageProps {
   questions: Question[]
@@ -13,6 +13,7 @@ interface CustomSessionPageProps {
   onAnswer: (questionId: string, correct: boolean) => void
   onBookmark: (questionId: string) => void
   onRetry: (questionId: string) => void
+  role: Role
 }
 
 const COUNT_OPTIONS = [5, 10, 15, 20, 30]
@@ -20,7 +21,7 @@ const TIME_OPTIONS = [0, 5, 10, 15, 20, 30, 45, 60] // 0 = no limit
 
 type SessionState = 'setup' | 'active' | 'complete'
 
-export function CustomSessionPage({ questions, progress, onAnswer, onBookmark, onRetry }: CustomSessionPageProps) {
+export function CustomSessionPage({ questions, progress, onAnswer, onBookmark, onRetry, role }: CustomSessionPageProps) {
   const { t } = useTranslation()
 
   // Setup state
@@ -28,6 +29,8 @@ export function CustomSessionPage({ questions, progress, onAnswer, onBookmark, o
   const [timeLimit, setTimeLimit] = useState(0)
   const [selectedTopics, setSelectedTopics] = useState<Topic[]>([])
   const [showTopicPicker, setShowTopicPicker] = useState(false)
+  
+  const topics = useMemo(() => getTopicsByRole(role), [role])
 
   // Session state
   const [state, setState] = useState<SessionState>('setup')
@@ -203,7 +206,7 @@ export function CustomSessionPage({ questions, progress, onAnswer, onBookmark, o
                     }`}
                     style={selectedTopics.includes(topic.id) ? { backgroundColor: topic.color } : undefined}
                   >
-                    {topic.icon} {topic.label}
+                    {topic.icon} {t(`topics.${topic.id}.label`, { defaultValue: topic.label })}
                   </button>
                 ))}
               </div>
@@ -225,7 +228,6 @@ export function CustomSessionPage({ questions, progress, onAnswer, onBookmark, o
 
   // ─── Complete Screen ──────────────────────────────────────
   if (state === 'complete') {
-    const total = sessionQuestions.length
     const answeredCount = correctIds.length + wrongIds.length
     const accuracy = answeredCount > 0 ? Math.round((correctIds.length / answeredCount) * 100) : 0
 
@@ -301,7 +303,7 @@ export function CustomSessionPage({ questions, progress, onAnswer, onBookmark, o
           </Link>
         </div>
 
-        <NextStepsSection questions={questions} progress={progress} />
+        <NextStepsSection questions={questions} progress={progress} role={role} />
       </div>
     )
   }

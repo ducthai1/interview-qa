@@ -39,7 +39,7 @@ export function TopicRadarChart({ data, noDataLabel, accuracyLabel = 'Accuracy' 
           strokeWidth={2}
         />
         <Tooltip
-          formatter={(value: number) => [`${value}%`, accuracyLabel]}
+          formatter={(value: unknown) => [`${value}%`, accuracyLabel]}
           contentStyle={{
             backgroundColor: 'var(--color-bg-card)',
             borderColor: 'var(--color-border)',

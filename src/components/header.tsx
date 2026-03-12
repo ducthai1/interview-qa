@@ -1,4 +1,4 @@
-import { Moon, Sun, Code2, Globe, Settings, ChevronDown, ArrowLeftRight } from 'lucide-react'
+import { Moon, Sun, Code2, Settings, ChevronDown, ArrowLeftRight } from 'lucide-react'
 import { useState, useRef, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
@@ -29,7 +29,7 @@ interface NavItem {
   badge?: number
 }
 
-export function Header({ theme, onToggleTheme, reviewDueCount = 0, questions = [], role, onSwitchRole }: HeaderProps) {
+export function Header({ theme, onToggleTheme, reviewDueCount = 0, questions: _questions = [], role, onSwitchRole }: HeaderProps) {
   const { t, i18n } = useTranslation()
   const location = useLocation()
   const [aiSettingsOpen, setAiSettingsOpen] = useState(false)
@@ -81,8 +81,8 @@ export function Header({ theme, onToggleTheme, reviewDueCount = 0, questions = [
         {/* Brand */}
         <Link to="/" className="flex shrink-0 items-center gap-2 no-underline">
           <Code2 className="h-6 w-6 text-[var(--color-primary)]" />
-          <span className="hidden text-base font-bold text-[var(--color-text)] sm:inline">
-            {t('nav.brand')}
+          <span className="hidden text-xl font-bold tracking-tight text-[var(--color-text)] sm:block">
+            {t('nav.brand', { role: role ? ROLE_LABELS[role] : 'FE' })}
           </span>
         </Link>
 

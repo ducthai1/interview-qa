@@ -3,6 +3,12 @@ import type { Question, Role, TopicInfo } from '../types'
 import { topics as frontendTopics } from './topics'
 import { baTopics } from './ba/topics'
 import { brseTopics } from './brse/topics'
+import { learningPaths as frontendPaths } from './learning-paths'
+import type { LearningPath } from '../types'
+
+// Define default empty paths for ba and brse temporarily
+const baPaths: LearningPath[] = []
+const brsePaths: LearningPath[] = []
 
 /* Cache per role to avoid re-loading */
 const cache: Partial<Record<Role, Question[]>> = {}
@@ -65,5 +71,13 @@ export function getTopicsByRole(role: Role): TopicInfo[] {
     case 'frontend': return frontendTopics
     case 'ba': return baTopics
     case 'brse': return brseTopics
+  }
+}
+
+export function getLearningPathsByRole(role: Role) {
+  switch (role) {
+    case 'frontend': return frontendPaths
+    case 'ba': return baPaths
+    case 'brse': return brsePaths
   }
 }

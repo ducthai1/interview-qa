@@ -58,8 +58,8 @@ export function AccuracyTrendChart({ data, noDataLabel, accuracyLabel = 'Accurac
           width={36}
         />
         <Tooltip
-          formatter={(value: number) => [`${value}%`, accuracyLabel]}
-          labelFormatter={(label: string) => formatDate(label)}
+          formatter={(value: unknown) => [`${value}%`, accuracyLabel]}
+          labelFormatter={(label: unknown) => formatDate(String(label))}
           contentStyle={{
             backgroundColor: 'var(--color-bg-card)',
             borderColor: 'var(--color-border)',

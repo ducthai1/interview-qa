@@ -4,20 +4,23 @@ import { useTranslation } from 'react-i18next'
 import { useQuestionTranslation } from '../hooks/use-question-translation'
 import { useKeyboardShortcuts } from '../hooks/use-keyboard-shortcuts'
 import { CodeBlock } from '../components/code-block'
-import type { Question, UserProgress, Topic } from '../types'
-import { topics } from '../data/topics'
+import { getTopicsByRole } from '../data'
+import type { Question, UserProgress, Topic, Role } from '../types'
 
 interface FlashcardPageProps {
   questions: Question[]
   progress: UserProgress
   onAnswer: (questionId: string, correct: boolean) => void
   onBookmark: (questionId: string) => void
+  role: Role
 }
 
-export function FlashcardPage({ questions, progress, onAnswer, onBookmark }: FlashcardPageProps) {
+export function FlashcardPage({ questions, progress, onAnswer, onBookmark, role }: FlashcardPageProps) {
   const { t } = useTranslation()
   const { tq } = useQuestionTranslation()
   const [started, setStarted] = useState(false)
+  
+  const topicsData = getTopicsByRole(role)
   const [selectedTopic, setSelectedTopic] = useState<Topic | 'all'>('all')
   const [flipped, setFlipped] = useState(false)
   const [currentIdx, setCurrentIdx] = useState(0)
@@ -88,7 +91,7 @@ export function FlashcardPage({ questions, progress, onAnswer, onBookmark }: Fla
             >
               {t('session.allTopics')}
             </button>
-            {topics.map((tp) => (
+            {topicsData.map((tp) => (
               <button
                 key={tp.id}
                 onClick={() => setSelectedTopic(tp.id)}
@@ -98,7 +101,7 @@ export function FlashcardPage({ questions, progress, onAnswer, onBookmark }: Fla
                     : 'border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-primary)]'
                 }`}
               >
-                {tp.icon} {tp.label}
+                {tp.icon} {t(`topics.${tp.id}.label`, { defaultValue: tp.label })}
               </button>
             ))}
           </div>

@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import { Search, X, ChevronDown, ChevronUp } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-import type { Topic, Difficulty, QuestionType } from '../types'
-import { topics } from '../data/topics'
+import type { Topic, Difficulty, QuestionType, TopicInfo } from '../types'
 
 interface FilterBarProps {
   selectedTopics: Topic[]
@@ -14,6 +13,7 @@ interface FilterBarProps {
   onTypesChange: (types: QuestionType[]) => void
   onSearchChange: (search: string) => void
   onClearAll: () => void
+  topics: TopicInfo[]
 }
 
 function ToggleChip({ label, active, onClick }: { label: string; active: boolean; onClick: () => void }) {
@@ -59,8 +59,8 @@ export function FilterBar(props: FilterBarProps) {
     { id: 'system-design', label: t('filter.systemDesign') },
   ]
 
-  const visibleTopics = showAllTopics ? topics : topics.slice(0, VISIBLE_TOPICS)
-  const hiddenCount = topics.length - VISIBLE_TOPICS
+  const visibleTopics = showAllTopics ? props.topics : props.topics.slice(0, VISIBLE_TOPICS)
+  const hiddenCount = props.topics.length - VISIBLE_TOPICS
 
   /* Count active filters for the toggle button */
   const activeCount = props.selectedTopics.length + props.selectedDifficulties.length + props.selectedTypes.length
@@ -107,7 +107,7 @@ export function FilterBar(props: FilterBarProps) {
               {visibleTopics.map((tp) => (
                 <ToggleChip
                   key={tp.id}
-                  label={tp.label}
+                  label={t(`topics.${tp.id}.label`, { defaultValue: tp.label })}
                   active={props.selectedTopics.includes(tp.id)}
                   onClick={() => props.onTopicsChange(toggleItem(props.selectedTopics, tp.id))}
                 />
@@ -177,10 +177,10 @@ export function FilterBar(props: FilterBarProps) {
       {!filtersExpanded && hasFilters && (
         <div className="flex flex-wrap items-center gap-1.5">
           {props.selectedTopics.map((id) => {
-            const tp = topics.find((t) => t.id === id)
+            const tp = props.topics.find((t) => t.id === id)
             return tp ? (
               <span key={id} className="inline-flex items-center gap-1 rounded-full bg-[var(--color-primary-bg)] px-2.5 py-0.5 text-xs font-medium text-[var(--color-primary)]">
-                {tp.label}
+                {t(`topics.${tp.id}.label`, { defaultValue: tp.label })}
                 <button onClick={() => props.onTopicsChange(toggleItem(props.selectedTopics, id))} className="hover:text-[var(--color-error)]">
                   <X className="h-3 w-3" />
                 </button>

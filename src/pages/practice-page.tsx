@@ -9,7 +9,8 @@ import { PomodoroTimer } from '../components/pomodoro-timer'
 import { filterQuestions } from '../utils/question-filters'
 import { getRecommendedQuestions } from '../utils/smart-question-picker'
 import { useQuestionTranslation } from '../hooks/use-question-translation'
-import type { Question, Topic, Difficulty, QuestionType, UserProgress } from '../types'
+import { getTopicsByRole } from '../data'
+import type { Question, Topic, Difficulty, QuestionType, UserProgress, Role } from '../types'
 
 interface PracticePageProps {
   questions: Question[]
@@ -18,11 +19,12 @@ interface PracticePageProps {
   onBookmark: (questionId: string) => void
   onRetry: (questionId: string) => void
   onSaveNote?: (questionId: string, note: string) => void
+  role: Role
 }
 
 const PAGE_SIZE = 10
 
-export function PracticePage({ questions, progress, onAnswer, onBookmark, onRetry, onSaveNote }: PracticePageProps) {
+export function PracticePage({ questions, progress, onAnswer, onBookmark, onRetry, onSaveNote, role }: PracticePageProps) {
   const { t } = useTranslation()
   const { tq } = useQuestionTranslation()
   const [searchParams, setSearchParams] = useSearchParams()
@@ -87,8 +89,8 @@ export function PracticePage({ questions, progress, onAnswer, onBookmark, onRetr
   }
 
   const recommended = useMemo(
-    () => getRecommendedQuestions(questions, progress, 3),
-    [questions, progress],
+    () => getRecommendedQuestions(questions, progress, 3, role),
+    [questions, progress, role],
   )
 
   const hasProgress = Object.keys(progress.answered).length > 0
@@ -163,6 +165,7 @@ export function PracticePage({ questions, progress, onAnswer, onBookmark, onRetr
         onTypesChange={(t) => { setSelectedTypes(t); setPage(1) }}
         onSearchChange={(s) => { setSearch(s); setPage(1) }}
         onClearAll={clearAll}
+        topics={getTopicsByRole(role)}
       />
 
       <p className="my-4 text-sm text-[var(--color-text-secondary)]">

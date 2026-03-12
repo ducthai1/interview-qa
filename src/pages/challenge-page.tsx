@@ -7,7 +7,7 @@ import { NextStepsSection } from '../components/next-steps-section'
 import { pickWithDifficultyMix } from '../utils/question-filters'
 import { CHALLENGE_PRESETS, calculateScore, isNewBest } from '../utils/challenge-scoring'
 import type { ChallengePreset } from '../utils/challenge-scoring'
-import type { Question, Difficulty, UserProgress, ChallengeBest } from '../types'
+import type { Question, Difficulty, UserProgress, ChallengeBest, Role } from '../types'
 
 interface ChallengePageProps {
   questions: Question[]
@@ -16,6 +16,7 @@ interface ChallengePageProps {
   onBookmark: (questionId: string) => void
   onRetry: (questionId: string) => void
   onSaveChallenge: (presetId: string, result: ChallengeBest) => void
+  role: Role
 }
 
 type PageState = 'select' | 'in-progress' | 'results'
@@ -82,6 +83,7 @@ export function ChallengePage({
   onBookmark,
   onRetry,
   onSaveChallenge,
+  role,
 }: ChallengePageProps) {
   const { t } = useTranslation()
   const LEVELS: Difficulty[] = ['junior', 'mid', 'senior', 'lead']
@@ -330,6 +332,7 @@ export function ChallengePage({
             {t('challenge.tryAgain')}
           </button>
           <ShareButton
+            role={role}
             cardProps={{
               score: finalScore,
               accuracy: accuracyPct,
@@ -387,7 +390,7 @@ export function ChallengePage({
           )
         })()}
 
-        <NextStepsSection questions={questions} progress={progress} />
+        <NextStepsSection questions={questions} progress={progress} role={role} />
       </div>
     )
   }

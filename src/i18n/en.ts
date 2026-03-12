@@ -43,7 +43,7 @@ export const en = {
 
   /* ─── Header / Nav ────────────────────────────────────────────────────────── */
   nav: {
-    brand: 'FE Interview Hub',
+    brand: '{{role}} Interview Hub',
     topics: 'Topics',
     practice: 'Practice',
     review: 'Review',
@@ -99,8 +99,16 @@ export const en = {
 
   /* ─── Home Page ────────────────────────────────────────────────────────────── */
   home: {
-    title: 'Frontend Interview Practice',
-    subtitle: '{{count}}+ real interview questions covering React, TypeScript, CSS, and more. No login required. Start practicing now.',
+    title: {
+      frontend: 'Frontend Interview Practice',
+      ba: 'Business Analyst Interview Practice',
+      brse: 'Bridge SE Interview Practice',
+    },
+    subtitle: {
+      frontend: '{{count}}+ real interview questions covering React, TypeScript, CSS, and more. No login required. Start practicing now.',
+      ba: '{{count}}+ real interview questions covering Requirements, Agile, SQL, and more. No login required. Start practicing now.',
+      brse: '{{count}}+ real interview questions covering Management, Translation, Japanese culture, and more. No login required. Start practicing now.',
+    },
     totalQuestions: 'Total Questions',
     chooseATopic: 'Choose a Topic',
   },
@@ -275,7 +283,7 @@ export const en = {
     share: 'Share...',
     copied: 'Copied!',
     downloading: 'Downloading...',
-    tagline: 'Frontend Interview Practice',
+    tagline: '{{role}} Interview Practice',
     mockResult: 'Mock Interview Result',
     challengeResult: 'Challenge Result',
     statsResult: 'My Progress',
@@ -466,5 +474,59 @@ export const en = {
   /* ─── Keyboard Shortcuts ─────────────────────────────────────────────────── */
   keyboard: {
     hint: '← → navigate · Space show answer · B bookmark · 1-4 select option',
+  },
+
+  /* ─── Topics ─────────────────────────────────────────────────────────────── */
+  topics: {
+    // Frontend Topics
+    'html': { label: 'HTML', desc: 'Semantic HTML, forms, media, Web APIs, SEO markup' },
+    'css': { label: 'CSS', desc: 'Flexbox, Grid, animations, responsive design, selectors' },
+    'browser-dom': { label: 'Browser & DOM', desc: 'Event delegation, rendering pipeline, Web APIs, observers' },
+    'coding-challenges': { label: 'Coding Challenges', desc: 'Debounce, throttle, Promise.all, deep clone, curry' },
+    'api-networking': { label: 'API & Networking', desc: 'REST, GraphQL, CORS, HTTP caching, WebSocket, fetch' },
+    'javascript-core': { label: 'JavaScript Core', desc: 'ES6+, async/await, closures, prototype, event loop' },
+    'typescript': { label: 'TypeScript', desc: 'Generics, utility types, type narrowing, declaration' },
+    'react-fundamentals': { label: 'React Fundamentals', desc: 'JSX, components, props, state, lifecycle' },
+    'react-hooks': { label: 'React Hooks', desc: 'useState, useEffect, useRef, useMemo, custom hooks' },
+    'react-advanced': { label: 'React Advanced', desc: 'memo, context, suspense, RSC, React Compiler' },
+    'state-management': { label: 'State Management', desc: 'Redux Toolkit, Zustand, Jotai, TanStack Query' },
+    'nextjs-frameworks': { label: 'Next.js & Frameworks', desc: 'App Router, SSR, ISR, Server Actions' },
+    'css-styling': { label: 'CSS & Styling', desc: 'TailwindCSS, CSS Modules, animations, responsive' },
+    'testing': { label: 'Testing', desc: 'Vitest, React Testing Library, Playwright, MSW' },
+    'build-tools': { label: 'Build Tools', desc: 'Vite, Turbopack, bundling, tree-shaking' },
+    'performance': { label: 'Performance', desc: 'Core Web Vitals, lazy loading, profiling' },
+    'system-design-fe': { label: 'System Design FE', desc: 'Micro-frontends, monorepo, design system' },
+    'ai-frontend': { label: 'AI & Frontend', desc: 'Vercel AI SDK, LLM integration, streaming UI' },
+    'accessibility': { label: 'Accessibility', desc: 'ARIA, screen readers, keyboard navigation' },
+    'security': { label: 'Security', desc: 'XSS, CSRF, CSP, auth patterns, sanitization' },
+    'real-world': { label: 'Real-World Scenarios', desc: 'Production bugs, feature development, team collaboration, deployment issues' },
+
+    // BA Topics
+    'requirements-engineering': { label: 'Requirements Engineering', desc: 'Elicitation, analysis, specification, validation, traceability' },
+    'user-story-use-case': { label: 'User Story & Use Case', desc: 'Writing user stories, acceptance criteria, use case diagrams' },
+    'business-process-bpmn': { label: 'Business Process (BPMN)', desc: 'Process modeling, swimlane, as-is/to-be analysis' },
+    'stakeholder-management': { label: 'Stakeholder Management', desc: 'Identification, power-interest matrix, communication plan' },
+    'agile-scrum': { label: 'Agile & Scrum', desc: 'Ceremonies, artifacts, roles, SAFe, Kanban' },
+    'data-analysis-sql': { label: 'Data Analysis & SQL', desc: 'SQL queries, reporting, data-driven decision making' },
+    'wireframe-prototype': { label: 'Wireframe & Prototyping', desc: 'UI mockups, UX thinking, Figma, user flow' },
+    'documentation': { label: 'Documentation', desc: 'SRS, BRD, FRD, PRD, traceability matrix' },
+    'domain-knowledge': { label: 'Domain Knowledge', desc: 'Fintech, e-commerce, healthcare, logistics, ERP' },
+    'communication-negotiation': { label: 'Communication & Negotiation', desc: 'Meeting facilitation, presentation, persuasion, conflict' },
+    'uat-quality': { label: 'UAT & Quality', desc: 'Test planning, defect management, sign-off, regression' },
+    'system-integration': { label: 'API & System Integration', desc: 'REST basics, data flow, integration patterns, third-party' },
+
+    // BrSE Topics
+    'japanese-business-comm': { label: 'Japanese Business Comm', desc: 'Honorifics, emails, meetings, calls, business manners' },
+    'technical-translation': { label: 'Technical Translation', desc: 'JP ⇔ VN ⇔ EN technical terms translation' },
+    'offshore-process': { label: 'Offshore Process', desc: 'Offshore development flow, communication, issue management' },
+    'requirements-spec': { label: 'Requirements & Specs', desc: 'Reading/writing requirements, basic/detailed designs' },
+    'brse-project-management': { label: 'Project Management', desc: 'WBS, schedule, progress & resource management' },
+    'quality-management': { label: 'Quality Management', desc: 'Test planning, review, quality metrics, JSTQB' },
+    'japanese-culture': { label: 'Japanese Business Culture', desc: 'Ho-Ren-So, groundwork, reading the room, exchanging cards' },
+    'estimation-planning': { label: 'Estimation & Planning', desc: 'FP method, man-month calculation, risk buffers, estimation basis' },
+    'client-reporting': { label: 'Client Reporting', desc: 'Weekly/monthly reports, escalations, issue reporting' },
+    'team-management': { label: 'Team Management', desc: 'Mentoring, motivation, conflict resolution' },
+    'brse-system-architecture': { label: 'System Architecture Basics', desc: 'Basic architecture, DB design, API design basics' },
+    'risk-management': { label: 'Risk Management', desc: 'Risk identification, mitigation, contingency plans' },
   },
 }

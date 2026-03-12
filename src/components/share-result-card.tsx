@@ -13,6 +13,7 @@ export interface ShareCardLabels {
   scoreLabel: string
   correctLabel: string
   topicBreakdownLabel: string
+  brandLabel: string
 }
 
 export interface ShareCardProps {
@@ -44,6 +45,7 @@ export const ShareResultCard = forwardRef<HTMLDivElement, ShareCardProps>(
     const scoreLabel = labels?.scoreLabel ?? 'Score'
     const correctLabel = labels?.correctLabel ?? 'Correct'
     const topicBreakdownLabel = labels?.topicBreakdownLabel ?? 'Topic Breakdown'
+    const brandLabel = labels?.brandLabel ?? 'Interview Hub'
     const topTopics = topicBreakdown.slice(0, 5)
 
     return (
@@ -95,7 +97,7 @@ export const ShareResultCard = forwardRef<HTMLDivElement, ShareCardProps>(
             <Code2 style={{ width: '16px', height: '16px', color: '#ffffff' }} />
           </div>
           <span style={{ fontWeight: 700, fontSize: '16px', color: '#ffffff', letterSpacing: '-0.3px' }}>
-            FE Interview Hub
+            {brandLabel}
           </span>
         </div>
 
@@ -201,7 +203,7 @@ export const ShareResultCard = forwardRef<HTMLDivElement, ShareCardProps>(
           }}
         >
           <span style={{ fontSize: '11px', color: '#475569' }}>{date}</span>
-          <span style={{ fontSize: '11px', color: '#3b82f6', fontWeight: 600 }}>fe-interview-hub.app</span>
+          <span style={{ fontSize: '11px', color: '#3b82f6', fontWeight: 600 }}>interview-hub.app</span>
         </div>
       </div>
     )

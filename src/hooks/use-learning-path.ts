@@ -1,7 +1,6 @@
 import { useMemo, useCallback } from 'react'
-import { topics } from '../data/topics'
-import { learningPaths } from '../data/learning-paths'
-import type { Question, UserProgress, LearningPath } from '../types'
+import type { Question, UserProgress, LearningPath, Role } from '../types'
+import { getTopicsByRole, getLearningPathsByRole } from '../data'
 
 export interface StepStatus {
   topic: string
@@ -21,8 +20,9 @@ export interface PathStatus {
   overallPercent: number // 0-100
 }
 
-function buildTopicCompletionMap(questions: Question[], progress: UserProgress): Record<string, number> {
+function buildTopicCompletionMap(questions: Question[], progress: UserProgress, role: Role): Record<string, number> {
   const map: Record<string, number> = {}
+  const topics = getTopicsByRole(role)
   for (const topic of topics) {
     const topicQs = questions.filter((q) => q.topic === topic.id)
     const correct = topicQs.filter((q) => progress.answered[q.id]?.correct)
@@ -35,11 +35,14 @@ export function getPathProgress(
   pathId: string,
   questions: Question[],
   progress: UserProgress,
+  role: Role,
 ): StepStatus[] {
+  const learningPaths = getLearningPathsByRole(role)
   const path = learningPaths.find((p) => p.id === pathId)
   if (!path) return []
 
-  const completionMap = buildTopicCompletionMap(questions, progress)
+  const completionMap = buildTopicCompletionMap(questions, progress, role)
+  const topics = getTopicsByRole(role)
   const topicInfoMap = Object.fromEntries(topics.map((t) => [t.id, t]))
 
   let currentFound = false
@@ -74,8 +77,9 @@ export function getOverallPathCompletion(
   pathId: string,
   questions: Question[],
   progress: UserProgress,
+  role: Role,
 ): number {
-  const steps = getPathProgress(pathId, questions, progress)
+  const steps = getPathProgress(pathId, questions, progress, role)
   if (!steps.length) return 0
   const sum = steps.reduce((acc, s) => acc + Math.min(s.completion / s.requiredCompletion, 1), 0)
   return Math.round((sum / steps.length) * 100)
@@ -89,6 +93,7 @@ export function getEstimatedDays(
   pathId: string,
   progress: UserProgress,
   questions: Question[],
+  role: Role,
 ): number | null {
   const dailyActivity = progress.dailyActivity ?? {}
   const activeDays = Object.values(dailyActivity).filter((c) => c > 0)
@@ -96,8 +101,8 @@ export function getEstimatedDays(
 
   const avgPerDay = activeDays.reduce((a, b) => a + b, 0) / activeDays.length
 
-  const steps = getPathProgress(pathId, questions, progress)
-  const completionMap = buildTopicCompletionMap(questions, progress)
+  const steps = getPathProgress(pathId, questions, progress, role)
+  const completionMap = buildTopicCompletionMap(questions, progress, role)
   let remaining = 0
 
   for (const step of steps) {
@@ -111,38 +116,40 @@ export function getEstimatedDays(
   return Math.ceil(remaining / avgPerDay)
 }
 
-export function useLearningPath(questions: Question[], progress: UserProgress) {
+export function useLearningPath(questions: Question[], progress: UserProgress, role: Role) {
   const topicCompletionMap = useMemo(
-    () => buildTopicCompletionMap(questions, progress),
-    [questions, progress],
+    () => buildTopicCompletionMap(questions, progress, role),
+    [questions, progress, role],
   )
 
   const getSteps = useCallback(
-    (pathId: string): StepStatus[] => getPathProgress(pathId, questions, progress),
+    (pathId: string): StepStatus[] => getPathProgress(pathId, questions, progress, role),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [topicCompletionMap],
+    [topicCompletionMap, role],
   )
 
   const getOverallPercent = useCallback(
-    (pathId: string): number => getOverallPathCompletion(pathId, questions, progress),
+    (pathId: string): number => getOverallPathCompletion(pathId, questions, progress, role),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [topicCompletionMap],
+    [topicCompletionMap, role],
   )
 
   const allPathStatuses: PathStatus[] = useMemo(
-    () =>
-      learningPaths.map((path) => ({
+    () => {
+      const learningPaths = getLearningPathsByRole(role)
+      return learningPaths.map((path) => ({
         path,
         steps: getSteps(path.id),
         overallPercent: getOverallPercent(path.id),
-      })),
-    [getSteps, getOverallPercent],
+      }))
+    },
+    [getSteps, getOverallPercent, role],
   )
 
   const estimateDays = useCallback(
-    (pathId: string): number | null => getEstimatedDays(pathId, progress, questions),
+    (pathId: string): number | null => getEstimatedDays(pathId, progress, questions, role),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [topicCompletionMap],
+    [topicCompletionMap, role],
   )
 
   return { topicCompletionMap, getSteps, getOverallPercent, allPathStatuses, estimateDays }

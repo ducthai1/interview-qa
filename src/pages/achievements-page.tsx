@@ -8,7 +8,7 @@ interface AchievementsPageProps {
   totalQuestions: number
 }
 
-export function AchievementsPage({ progress, totalQuestions }: AchievementsPageProps) {
+export function AchievementsPage({ progress, totalQuestions: _totalQuestions }: AchievementsPageProps) {
   const { t } = useTranslation()
   const unlocked = progress.achievements ?? {}
   const unlockedCount = Object.keys(unlocked).length

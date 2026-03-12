@@ -4,9 +4,17 @@ import { useTranslation } from 'react-i18next'
 import { ShareResultCard } from './share-result-card'
 import { captureCard, copyToClipboard, downloadImage, canShare, shareNative } from '../utils/share-utils'
 import type { ShareCardProps, ShareCardLabels } from './share-result-card'
+import type { Role } from '../types'
+
+const ROLE_LABELS: Record<Role, string> = {
+  frontend: 'FE',
+  ba: 'BA',
+  brse: 'BrSE',
+}
 
 interface ShareButtonProps {
   cardProps: ShareCardProps
+  role?: Role
 }
 
 type ShareAction = 'copy' | 'download' | 'share'
@@ -17,7 +25,7 @@ const MODE_LABEL_KEYS: Record<ShareCardProps['mode'], string> = {
   stats: 'share.statsResult',
 }
 
-export function ShareButton({ cardProps }: ShareButtonProps) {
+export function ShareButton({ cardProps, role }: ShareButtonProps) {
   const { t } = useTranslation()
   const cardRef = useRef<HTMLDivElement>(null)
   const [open, setOpen] = useState(false)
@@ -30,6 +38,7 @@ export function ShareButton({ cardProps }: ShareButtonProps) {
     scoreLabel: t('challenge.score'),
     correctLabel: t('common.correct'),
     topicBreakdownLabel: t('stats.byTopic'),
+    brandLabel: t('nav.brand', { role: role ? ROLE_LABELS[role] : 'FE' }),
   }
 
   const handleAction = async (action: ShareAction) => {

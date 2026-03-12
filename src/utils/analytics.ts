@@ -1,5 +1,5 @@
-import type { Question, UserProgress } from '../types'
-import { topics } from '../data/topics'
+import type { Question, UserProgress, Role } from '../types'
+import { getTopicsByRole } from '../data'
 
 export interface DailyPoint {
   date: string
@@ -52,6 +52,7 @@ export function groupAnswersByDate(
 export function getTopicAccuracy(
   answered: UserProgress['answered'],
   questions: Question[],
+  role: Role = 'frontend',
 ): TopicAccuracy[] {
   const topicMap = new Map<string, { total: number; correct: number }>()
 
@@ -65,6 +66,7 @@ export function getTopicAccuracy(
   }
 
   return Array.from(topicMap.entries()).map(([topicId, { total, correct }]) => {
+    const topics = getTopicsByRole(role)
     const topicInfo = topics.find((t) => t.id === topicId)
     return {
       topic: topicInfo?.label ?? topicId,
@@ -133,7 +135,8 @@ export function getWeakTopics(
   answered: UserProgress['answered'],
   questions: Question[],
   topN = 3,
+  role: Role = 'frontend',
 ): TopicAccuracy[] {
-  const all = getTopicAccuracy(answered, questions)
+  const all = getTopicAccuracy(answered, questions, role)
   return all.sort((a, b) => a.accuracy - b.accuracy).slice(0, topN)
 }

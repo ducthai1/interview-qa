@@ -2,19 +2,22 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { PathRoadmap } from '../components/path-roadmap'
 import { useLearningPath } from '../hooks/use-learning-path'
-import { learningPaths } from '../data/learning-paths'
-import type { Question, UserProgress } from '../types'
+import { getLearningPathsByRole } from '../data'
+import type { Question, UserProgress, Role } from '../types'
 
 interface LearningPathPageProps {
   questions: Question[]
   progress: UserProgress
+  role: Role
 }
 
-export function LearningPathPage({ questions, progress }: LearningPathPageProps) {
+export function LearningPathPage({ questions, progress, role }: LearningPathPageProps) {
   const { t, i18n } = useTranslation()
   const isVi = i18n.language === 'vi'
-  const { getSteps, getOverallPercent } = useLearningPath(questions, progress)
+  const { getSteps, getOverallPercent } = useLearningPath(questions, progress, role)
   const [expandedPathId, setExpandedPathId] = useState<string | null>(null)
+  
+  const learningPaths = getLearningPathsByRole(role)
 
   function togglePath(id: string) {
     setExpandedPathId((prev) => (prev === id ? null : id))

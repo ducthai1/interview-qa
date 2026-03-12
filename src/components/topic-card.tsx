@@ -27,7 +27,7 @@ export function TopicCard({ topic, questionCount, answeredCount, correctCount }:
         </div>
         <div>
           <h3 className="text-sm font-semibold text-[var(--color-text)] group-hover:text-[var(--color-primary)]">
-            {topic.label}
+            {t(`topics.${topic.id}.label`, { defaultValue: topic.label })}
           </h3>
           <p className="text-xs text-[var(--color-text-secondary)]">
             {questionCount} {t('common.questions')}
@@ -36,7 +36,7 @@ export function TopicCard({ topic, questionCount, answeredCount, correctCount }:
       </div>
 
       <p className="mb-3 text-xs text-[var(--color-text-secondary)]">
-        {topic.description}
+        {t(`topics.${topic.id}.desc`, { defaultValue: topic.description })}
       </p>
 
       {/* Progress bar */}
