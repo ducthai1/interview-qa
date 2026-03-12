@@ -73,6 +73,112 @@ export const baVi: QuestionTranslationMap = {
     explanation: 'Tỷ lệ bỏ giỏ hàng (toàn cầu ~70%) đo lường doanh thu bị mất. Các nguyên nhân phổ biến mà BA nên giải quyết: chi phí vận chuyển bất ngờ, yêu cầu tạo tài khoản, quy trình thanh toán phức tạp, lo ngại về bảo mật và hạn chế phương thức thanh toán. BA có thể xác định các yêu cầu thử nghiệm A/B để tối ưu hóa chuyển đổi thanh toán.',
   },
 
+  // User Story & Use Case
+  'ba-us-001': {
+    question: 'Cấu trúc tiêu chuẩn của một User Story là gì?',
+    options: [
+      'Là [một người dùng], tôi muốn [thực hiện hành động] để [nhận giá trị]',
+      'Hệ thống sẽ cho phép người dùng [thực hiện hành động]',
+      '[Hành động] được thực hiện bởi [người dùng]',
+      'Khi [điều kiện], thì [kết quả]',
+    ],
+    explanation: 'Cấu trúc "As a [role], I want [action], so that [value]" giúp BA tập trung vào người dùng và lợi ích kinh doanh hơn là các chi tiết kỹ thuật.',
+  },
+  'ba-us-002': {
+    question: 'Tiêu chuẩn INVEST trong User Story là viết tắt của những từ nào?',
+    options: [
+      'Independent, Negotiable, Valuable, Estimable, Small, Testable',
+      'Important, Necessary, Valuable, Effective, Smart, Targeted',
+      'Independent, New, Valid, Easy, Simple, Total',
+      'Integration, Network, Value, Entry, System, Task',
+    ],
+    explanation: 'INVEST là một checklist để đánh giá chất lượng của User Story. Story tốt phải độc lập, có thể thương lượng, mang lại giá trị, có thể ước lượng, đủ nhỏ và có thể kiểm thử.',
+  },
+
+  // Business Process (BPMN)
+  'ba-bp-001': {
+    question: 'Trong BPMN, "Pool" và "Lane" khác nhau như thế nào?',
+    options: [
+      'Pool đại diện cho một người, Lane đại diện cho một phòng ban',
+      'Pool đại diện cho một tổ chức/tiến trình chính, Lane đại diện cho các vai trò/phòng ban khác nhau trong Pool đó',
+      'Pool là nơi lưu trữ dữ liệu, Lane là đường dẫn dữ liệu',
+      'Không có sự khác biệt, chúng có thể dùng thay thế nhau',
+    ],
+    explanation: 'Pool thường đại diện cho một thực thể hoặc tổ chức (ví dụ: Khách hàng, Ngân hàng). Lane (làn bơi) phân chia các vai trò hoặc bộ phận bên trong thực thể đó để làm rõ ai thực hiện nhiệm vụ nào.',
+  },
+
+  // Stakeholder Management
+  'ba-sm-001': {
+    question: 'Ma trận Quyền hạn - Lợi ích (Power-Interest Matrix) giúp BA điều gì?',
+    options: [
+      'Xác định xem ai là sếp của ai',
+      'Phân loại các bên liên quan để đưa ra chiến lược giao tiếp phù hợp',
+      'Tính toán lương cho các bên liên quan',
+      'Quyết định ai sẽ bị đuổi khỏi dự án',
+    ],
+    explanation: 'Ma trận này giúp BA biết ai cần được "Quản lý chặt chẽ" (Quyền cao, Lợi ích cao), ai cần "Giữ cho hài lòng" (Quyền cao, Lợi ích thấp), hay ai chỉ cần "Giám sát" hoặc "Cung cấp thông tin".',
+  },
+
+  // Data Analysis & SQL
+  'ba-da-001': {
+    question: 'Trong SQL, lệnh GROUP BY thường được sử dụng cùng với cái gì?',
+    options: [
+      'Các hàm tổng hợp (Aggregate functions) như SUM, AVG, COUNT',
+      'Lệnh INSERT',
+      'Phát biểu CREATE TABLE',
+      'Chỉ dành cho các cột chứa văn bản',
+    ],
+    explanation: 'GROUP BY được dùng để nhóm các hàng có cùng giá trị trong các cột được chỉ định, thường là để thực hiện tính toán trên từng nhóm đó bằng các hàm tổng hợp.',
+  },
+
+  // Wireframe & Prototyping
+  'ba-wp-001': {
+    question: 'Mục đích chính của Wireframe là gì?',
+    options: [
+      'Để cho khách hàng thấy màu sắc và hình ảnh cuối cùng của ứng dụng',
+      'Để mô tả cấu trúc, bố cục và các chức năng chính của giao diện mà không tập trung vào chi tiết thẩm mỹ',
+      'Để viết code cho giao diện',
+      'Để kiểm tra hiệu năng của hệ thống',
+    ],
+    explanation: 'Wireframe là "bản vẽ xương cá" của giao diện, giúp các bên liên quan thống nhất về cấu trúc và dòng chảy của ứng dụng trước khi chuyển sang giai đoạn thiết kế đồ họa chi tiết.',
+  },
+
+  // Communication & Negotiation
+  'ba-cn-001': {
+    question: 'Khi một Stakeholder yêu cầu một tính năng mới vào cuối dự án (Scope Creep), BA nên làm gì đầu tiên?',
+    options: [
+      'Đồng ý ngay lập tức để giữ quan hệ tốt',
+      'Từ chối ngay lập tức vì đã hết thời gian',
+      'Phân tích tác động của yêu cầu đó đối với thời gian, chi phí và nguồn lực của dự án',
+      'Yêu cầu Stakeholder tự đi nói chuyện với đội code',
+    ],
+    explanation: 'Đánh giá tác động (Impact Analysis) là bước quan trọng nhất. BA cần cung cấp dữ liệu về việc tính năng mới sẽ ảnh hưởng thế nào đến tiến độ dự án để các bên liên quan có thể đưa ra quyết định sáng suốt.',
+  },
+
+  // UAT & Quality
+  'ba-uat-001': {
+    question: 'Khác biệt chính giữa System Testing và User Acceptance Testing (UAT) là gì?',
+    options: [
+      'System Testing do QC thực hiện để kiểm tra kỹ thuật; UAT do người dùng cuối thực hiện để kiểm tra mức độ đáp ứng nhu cầu nghiệp vụ',
+      'System Testing kiểm tra mã nguồn; UAT kiểm tra giao diện',
+      'UAT luôn tốn nhiều thời gian hơn System Testing',
+      'Không có sự khác biệt',
+    ],
+    explanation: 'System Testing tập trung vào việc hệ thống có chạy đúng theo thiết kế không. UAT tập trung vào việc hệ thống có giải quyết được vấn đề thực tế của người dùng và sẵn sàng để sử dụng (Go-live) hay không.',
+  },
+
+  // System Integration
+  'ba-si-001': {
+    question: 'Tại sao BA cần hiểu về API khi làm dự án tích hợp hệ thống?',
+    options: [
+      'Để tự viết code tích hợp',
+      'Để hiểu luồng dữ liệu, các điểm chạm giữa các hệ thống và xác định các yêu cầu về dữ liệu trao đổi',
+      'Để sửa lỗi server',
+      'API không liên quan gì đến công việc của BA',
+    ],
+    explanation: 'Mặc dù không cần viết code, BA cần hiểu API để biết thông tin nào được truyền đi, thông tin nào nhận về, và các ràng buộc nghiệp vụ giữa các hệ thống được kết nối.',
+  },
+
   // Requirements Engineering
   'ba-re-001': {
     question: 'Sự khác biệt chính giữa Business Requirements (Yêu cầu kinh doanh) và Functional Requirements (Yêu cầu chức năng) là gì?',

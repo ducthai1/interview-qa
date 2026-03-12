@@ -4,15 +4,17 @@ const langModules: Record<string, Record<string, () => Promise<Record<string, Qu
   vi: import.meta.glob('./vi/*.ts', { eager: false }) as any,
   en: import.meta.glob('./en/*.ts', { eager: false }) as any,
   jp: import.meta.glob('./jp/*.ts', { eager: false }) as any,
+  ja: import.meta.glob('./jp/*.ts', { eager: false }) as any,
 }
 
 export const caches: Record<string, QuestionTranslationMap> = {}
 
 /** Load question translations for a specific language into a single map */
 export async function loadQuestionTranslations(lang: string): Promise<QuestionTranslationMap> {
-  if (caches[lang]) return caches[lang]
+  const normLang = lang.split('-')[0]
+  if (caches[normLang]) return caches[normLang]
 
-  const modules = langModules[lang]
+  const modules = langModules[normLang]
   if (!modules) return {}
 
   const map: QuestionTranslationMap = {}

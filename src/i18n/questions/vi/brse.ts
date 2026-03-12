@@ -54,4 +54,100 @@ export const brseVi: QuestionTranslationMap = {
     ],
     explanation: 'Buffer là bảo hiểm. Các loại rủi ro: (1) rủi ro thay đổi đặc tả (yêu cầu khách hàng thay đổi), (2) rủi ro kỹ thuật, (3) rủi ro nguồn lực (thành viên nghỉ việc/ốm), (4) rủi ro giao tiếp (làm lại do hiểu lầm). Offshore có xu hướng đảm bảo buffer nhiều hơn.',
   },
+
+  // Japanese Business Comm
+  'brse-jc-001': {
+    question: 'Khi viết email cho khách hàng Nhật Bản để báo cáo về một lỗi nghiêm trọng, bạn nên bắt đầu như thế nào?',
+    options: [
+      'Vào thẳng vấn đề lỗi là gì',
+      'Xin lỗi chân thành vì sự bất tiện gây ra trước khi giải thích chi tiết',
+      'Đổ lỗi cho đội phát triển',
+      'Nói rằng lỗi này không quan trọng',
+    ],
+    explanation: 'Trong văn hóa kinh doanh Nhật Bản, việc xin lỗi (O-wabii) vì đã gây ra phiền tóa cho khách hàng là bước đầu tiên cực kỳ quan trọng để duy trì mối quan hệ tin cậy, bất kể nguyên nhân kỹ thuật là gì.',
+  },
+
+  // Technical Translation
+  'brse-tt-001': {
+    question: 'Trong ngữ cảnh phát triển phần mềm, thuật ngữ "仕様書" (Shiyousho) thường được dịch là gì?',
+    options: [
+      'Bản hợp đồng',
+      'Tài liệu đặc tả (Specification Document)',
+      'Bản kế hoạch marketing',
+      'Hướng dẫn sử dụng',
+    ],
+    explanation: 'Shiyousho là tài liệu cốt lõi trong phát triển phần mềm, bao gồm các đặc tả về yêu cầu, chức năng, hoặc thiết kế.',
+  },
+
+  // Offshore Process
+  'brse-op-001': {
+    question: 'Quy trình "Ho-Ren-So" trong làm việc với khách hàng Nhật bao gồm những gì?',
+    options: [
+      'Hokoku (Báo cáo), Renraku (Liên lạc), Sōdan (Thảo luận/Bàn bạc)',
+      'Horu (Đào), Ren (Liên kết), Soru (Giải quyết)',
+      'Hokoku (Báo cáo), Renraku (Liên lạc), Souji (Dọn dẹp)',
+      'Không có quy trình nào như vậy',
+    ],
+    explanation: 'Ho-Ren-So là quy tắc giao tiếp cơ bản trong tổ chức Nhật Bản. Báo cáo tiến độ thường xuyên, liên lạc khi có sự cố và thảo luận khi gặp khó khăn giúp giảm thiểu rủi ro cho dự án offshore.',
+  },
+
+  // Quality Management
+  'brse-qm-001': {
+    question: 'Khi số lượng lỗi (bug) phát sinh trong dự án vượt quá mức cho phép trong kế hoạch chất lượng, BrSE nên làm gì?',
+    options: [
+      'Báo cáo với khách hàng rằng mọi thứ vẫn ổn',
+      'Phân tích nguyên nhân gốc rễ (Root Cause Analysis), đưa ra đối sách khắc phục và phòng ngừa tái phát',
+      'Yêu cầu đội code làm việc nhanh hơn',
+      'Xóa bớt các bản ghi lỗi để đạt KPI',
+    ],
+    explanation: 'Khách hàng Nhật Bản rất coi trọng chất lượng. Khi có sự cố, BrSE cần minh bạch về dữ liệu, phân tích tại sao lỗi xảy ra (Why-Why analysis) và đưa ra các bước cụ thể để đảm bảo lỗi đó không lặp lại.',
+  },
+
+  // Japanese Culture
+  'brse-cu-001': {
+    question: '"Nemawashi" trong văn hóa công sở Nhật Bản có nghĩa là gì?',
+    options: [
+      'Việc trao đổi danh thiếp',
+      'Quá trình chuẩn bị, thảo luận ngầm với các bên liên quan trước khi đưa ra quyết định chính thức trong cuộc họp',
+      'Việc đi uống rượu sau giờ làm',
+      'Việc dán nhãn sản phẩm',
+    ],
+    explanation: 'Nemawashi giúp tạo sự đồng thuận (consensus) từ trước. Khi vào cuộc họp chính thức, mọi người đã hiểu vấn đề và việc thông qua sẽ diễn ra suôn sẻ hơn. BrSE cần vận dụng kỹ năng này để thuyết phục khách hàng hoặc các Stakeholder.',
+  },
+
+  // Client Reporting
+  'brse-cr-001': {
+    question: 'Báo cáo định kỳ (báo cáo tuần, báo cáo tháng) cho khách hàng Nhật nên tập trung vào những gì?',
+    options: [
+      'Chỉ liệt kê những gì đã làm được',
+      'Tiến độ, Chất lượng (số bug), Các vấn đề tồn đọng/Rủi ro và Đối sách giải quyết',
+      'Kể về các hoạt động team building',
+      'Chỉ gửi code link',
+    ],
+    explanation: 'Một báo cáo chuyên nghiệp cần có tính minh bạch: tiến độ (WBS), chất lượng (số lượng bug phát sinh/đã fix) và đặc biệt là liệt kê rõ các vấn đề (Issues) đang gặp phải cùng với phương án xử lý.',
+  },
+
+  // Risk Management
+  'brse-rm-001': {
+    question: 'Khi nhận thấy dự án có nguy cơ chậm tiến độ do thiếu hụt nhân sự, BrSE nên làm gì?',
+    options: [
+      'Âm thầm làm thêm giờ để bù đắp',
+      'Nhận diện rủi ro sớm, báo cáo cho Project Manager và khách hàng cùng với các phương án giảm thiểu (Mitigation plan)',
+      'Hy vọng khách hàng sẽ không nhận ra',
+      'Đổ lỗi cho bộ phận tuyển dụng',
+    ],
+    explanation: 'Quản lý rủi ro (Risk Management) là kỹ năng cốt yếu. BrSE cần chủ động đưa ra các giải pháp như: điều chỉnh phạm vi (scope down), tăng cường nhân sự, hoặc ưu tiên các tính năng quan trọng nhất.',
+  },
+
+  // System Architecture Basics
+  'brse-sa-001': {
+    question: 'Mục đích chính của việc thiết kế API (API Design) là gì?',
+    options: [
+      'Để làm cho code đẹp hơn',
+      'Để định nghĩa cách thức trao đổi dữ liệu giữa các thành phần của hệ thống hoặc giữa các hệ thống khác nhau một cách chuẩn hóa',
+      'Để tăng tốc độ đánh máy',
+      'Để thay thế hoàn toàn cơ sở dữ liệu',
+    ],
+    explanation: 'BrSE cần hiểu thiết kế API để trao đổi với đội phát triển và khách hàng về cách hệ thống tích hợp, các phương thức (GET, POST...), và cấu trúc dữ liệu trao đổi (JSON/XML).',
+  },
 }

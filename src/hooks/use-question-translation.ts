@@ -10,7 +10,7 @@ import type { Question } from '../types'
  */
 export function useQuestionTranslation() {
   const { i18n } = useTranslation()
-  const currentLang = i18n.language
+  const currentLang = i18n.language.split('-')[0]
   // Use indexed access with type cast to avoid 'caches' global collision
   const initialMap = (caches as Record<string, QuestionTranslationMap>)[currentLang] || {}
   const [map, setMap] = useState<QuestionTranslationMap>(initialMap)
