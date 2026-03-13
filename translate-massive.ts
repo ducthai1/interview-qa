@@ -28,10 +28,12 @@ async function translateField(text: string, to: string, retries = 3) {
   return text
 }
 
-// --- HELPER: Escape for TS strings ---
-function escape(str: string) {
+// --- HELPER: Clean for TS strings (No backticks) ---
+function clean(str: string) {
   if (typeof str !== 'string') return String(str)
-  return str.replace(/'/g, "\\'").replace(/\n/g, '\\n')
+  // Ensure we don't have backticks which we use as a health indicator
+  // and which might cause issues in our single-quote / double-quote mixing
+  return str.replace(/`/g, "'")
 }
 
 // --- CONFIG ---
@@ -144,7 +146,7 @@ async function run() {
         process.stdout.write(`  [${i+1}/${role.data.length}] Translating ${q.id}... `)
         
         // ... (translation logic remains same)
-        let tQ, tExp, tAns, tOptionsStr = ''
+        let tQ, tExp, tOptionsStr = ''
         const isSameLang = (q.sourceLang === lang.code)
         
         tQ = isSameLang ? q.question : await translateField(q.question, lang.code)
@@ -163,7 +165,7 @@ async function run() {
 
         if (q.options) {
           const tOptions = isSameLang ? q.options : await Promise.all(q.options.map((opt: string) => translateField(opt, lang.code)))
-          tOptionsStr = `\n    options: [\n      ${tOptions.map((o: string) => `'${escape(o)}'`).join(',\n      ')}\n    ],`
+          tOptionsStr = `\n    options: [\n      ${tOptions.map((o: string) => JSON.stringify(clean(o))).join(',\n      ')}\n    ],`
         }
 
         // Handle number, boolean, or string answers
@@ -171,17 +173,23 @@ async function run() {
         if (typeof finalAns === 'number' || typeof finalAns === 'boolean') {
           answerStr = `\n    answer: ${finalAns},`
         } else if (finalAns !== undefined && finalAns !== null) {
-          answerStr = `\n    answer: '${escape(finalAns)}',`
+          answerStr = `\n    answer: ${JSON.stringify(clean(finalAns))},`
         }
 
-        const body = `question: '${escape(tQ)}',${tOptionsStr}${answerStr}\n    explanation: '${escape(tExp)}',`
+        const body = `question: ${JSON.stringify(clean(tQ))},${tOptionsStr}${answerStr}\n    explanation: ${JSON.stringify(clean(tExp))},`
         existingMap[q.id] = body
         
         // --- INCREMENTAL WRITE ---
         let incrementalContent = `import type { QuestionTranslationMap } from '../types'\n\nexport const ${role.name}${lang.code === 'ja' ? 'Jp' : lang.code.charAt(0).toUpperCase() + lang.code.slice(1)}: QuestionTranslationMap = {\n`
         const sortedIds = Object.keys(existingMap).sort()
         for (const id of sortedIds) {
-          incrementalContent += `  '${id}': {\n    ${existingMap[id]}\n  },\n`
+          const rawBody = existingMap[id].trim()
+          // Ensure proper indentation for all lines in the component
+          const formattedBody = rawBody.split('\n').map((line: string, idx: number) => {
+            return (idx === 0 ? '' : '    ') + line.trim()
+          }).join('\n')
+          
+          incrementalContent += `  '${id}': {\n    ${formattedBody}\n  },\n`
         }
         incrementalContent += `}\n`
         fs.writeFileSync(outFile, incrementalContent)
