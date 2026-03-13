@@ -11,6 +11,7 @@ import { useSpacedRepetition } from './hooks/use-spaced-repetition'
 import { checkNewAchievements } from './utils/achievements'
 import { getQuestionsByRole } from './data'
 import type { Question, Role } from './types'
+import i18n from './i18n'
 import './index.css'
 
 /* Lazy-load pages to reduce initial bundle size */
@@ -40,6 +41,19 @@ export default function App() {
 
   const handleSelectRole = useCallback((r: Role) => {
     setRole(r)
+    try {
+      const hasAccessed = localStorage.getItem(`accessed-${r}`)
+      if (!hasAccessed) {
+        if (r === 'ba') {
+          i18n.changeLanguage('en')
+          localStorage.setItem('fe-interview-lang', 'en')
+        } else if (r === 'brse') {
+          i18n.changeLanguage('jp')
+          localStorage.setItem('fe-interview-lang', 'jp')
+        }
+        localStorage.setItem(`accessed-${r}`, 'true')
+      }
+    } catch { /* ignore */ }
   }, [setRole])
 
   /* Show role selector when no role is chosen */
