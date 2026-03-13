@@ -10,7 +10,7 @@ export const baVi: QuestionTranslationMap = {
       'Hợp tác của khách hàng thông qua đàm phán hợp đồng',
       ''
     ],
-    answer: 2,
+    answer: '2',
     explanation: 'Tuyên ngôn Agile đánh giá cao: (1) Cá nhân và sự tương tác hơn là các quy trình và công cụ, (2) Phần mềm hoạt động hơn là tài liệu toàn diện, (3) Hợp tác với khách hàng hơn là đàm phán hợp đồng, (4) Phản hồi trước sự thay đổi theo kế hoạch. Tuyên ngôn KHÔNG làm giảm giá trị các mặt hàng ở bên phải - nó đánh giá cao mặt bên trái NHIỀU HƠN.',
   },
   'ba-ag-002': {
@@ -22,7 +22,7 @@ export const baVi: QuestionTranslationMap = {
       'Người quản lý dự án',
       ''
     ],
-    answer: 2,
+    answer: '2',
     explanation: 'Chủ sở hữu sản phẩm (PO) là người duy nhất chịu trách nhiệm tối đa hóa giá trị sản phẩm. Họ quản lý Product Backlog: đặt hàng các hạng mục, đảm bảo sự rõ ràng và đưa ra các quyết định ưu tiên. PO đại diện cho lợi ích của các bên liên quan và là người đưa ra quyết định cuối cùng về những gì sẽ được xây dựng. Scrum Master hỗ trợ quá trình này; nhóm phát triển quyết định CÁCH xây dựng nó.',
   },
   'ba-ag-003': {
@@ -47,7 +47,7 @@ export const baVi: QuestionTranslationMap = {
       'Kiểm tra',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Scrum được thành lập dựa trên việc kiểm soát quy trình theo kinh nghiệm với ba trụ cột: Tính minh bạch (tất cả các khía cạnh mà những người chịu trách nhiệm về kết quả có thể nhìn thấy), Kiểm tra (thường xuyên kiểm tra các tạo tác và tiến trình) và Thích ứng (điều chỉnh quy trình hoặc sản phẩm khi phát hiện ra sai lệch). Những trụ cột này cho phép học hỏi và cải tiến liên tục.',
   },
   'ba-ag-005': {
@@ -59,7 +59,7 @@ export const baVi: QuestionTranslationMap = {
       '8 giờ (cả ngày)',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Đối với chạy nước rút kéo dài 2 tuần, quá trình hồi tưởng được đặt khung thời gian là 1,5 giờ (tối đa 3 giờ cho chạy nước rút trong 4 tuần). Quá trình hồi cứu sẽ kiểm tra lần chạy nước rút cuối cùng liên quan đến con người, mối quan hệ, quy trình và công cụ. Nhóm xác định những thay đổi hữu ích nhất và tạo ra một kế hoạch cải tiến có thể thực hiện được. Đây là sự kiện quan trọng để cải tiến liên tục.',
   },
   'ba-ag-006': {
@@ -73,7 +73,7 @@ export const baVi: QuestionTranslationMap = {
       'Ước tính điểm câu chuyện cho từng hạng mục tồn đọng',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Trong quá trình Lập kế hoạch Sprint, BA đóng vai trò là chuyên gia về miền - làm rõ các yêu cầu, giải thích các tiêu chí chấp nhận, cung cấp bối cảnh kinh doanh và trả lời các câu hỏi của nhóm phát triển về nhu cầu của người dùng. Scrum Master điều hành cuộc họp, PO đặt ra các ưu tiên và nhóm phát triển ước tính và lựa chọn công việc. BA thu hẹp khoảng cách giữa mục đích kinh doanh và hiểu biết kỹ thuật.',
   },
   'ba-ag-007': {
@@ -85,7 +85,7 @@ export const baVi: QuestionTranslationMap = {
       'Đánh giá Sprint diễn ra khi bắt đầu một Sprint; Sprint Retrospective diễn ra vào cuối',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Đánh giá Sprint (bản demo): nhóm hiển thị tiến độ công việc cho các bên liên quan, thu thập phản hồi và thảo luận về những việc cần làm tiếp theo - tập trung vào SẢN PHẨM. Hồi tưởng Sprint: nhóm phản ánh về quy trình làm việc của họ, xác định những gì đã diễn ra tốt đẹp, những gì cần cải thiện và cam kết hành động - tập trung vào QUY TRÌNH. Cả hai đều xảy ra ở cuối nước rút, nhưng việc Đánh giá được thực hiện trước.',
   },
   'ba-ag-008': {
@@ -104,7 +104,7 @@ export const baVi: QuestionTranslationMap = {
       'Nhóm đang sử dụng sai ngôn ngữ lập trình',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Việc sàng lọc không đầy đủ là nguyên nhân số 1 gây ra lỗi chạy nước rút liên quan đến yêu cầu. Khi các câu chuyện bước vào một sprint với tiêu chí mơ hồ, sự phụ thuộc không xác định hoặc độ phức tạp tiềm ẩn, nhóm sẽ phát hiện ra các vấn đề ở giữa sprint, gây ra sự chậm trễ và phải làm lại. Cách khắc phục: đầu tư nhiều hơn vào việc sàng lọc các hồ sơ tồn đọng (chuẩn bị chu đáo), đảm bảo các câu chuyện đáp ứng Định nghĩa Sẵn sàng và phân chia các câu chuyện phức tạp sớm hơn.',
   },
   'ba-ag-010': {
@@ -119,7 +119,7 @@ export const baVi: QuestionTranslationMap = {
       'Một công cụ quản lý dự án như Jira hoặc Azure DevOps',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'SAFe giải quyết các thách thức khi nhiều nhóm Scrum phải phối hợp trên một sản phẩm lớn. Các khái niệm chính: Đào tạo phát hành Agile (ART) = nhóm các nhóm (~50-125 người), Lập kế hoạch tăng trưởng chương trình (PI) = lập kế hoạch phòng lớn cứ sau 8-12 tuần và Cấp độ danh mục đầu tư để liên kết chiến lược. SAFe phù hợp với các tổ chức lớn (hơn 100 nhà phát triển) nhưng được coi là nặng nề đối với các nhóm nhỏ.',
   },
   'ba-ag-011': {
@@ -144,7 +144,7 @@ export const baVi: QuestionTranslationMap = {
       'Đề nghị tăng gấp đôi ước tính của nhóm chậm hơn để bình thường hóa',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Điểm câu chuyện có liên quan đến thành tích lịch sử của mỗi đội. Điểm "5" trong Đội A phản ánh sự đánh giá về độ phức tạp của đội ĐÓ chứ không phải là thước đo chung. Việc tiêu chuẩn hóa điểm giữa các nhóm tạo ra sự tương đương sai lệch và hành vi chơi game. Để so sánh giữa các nhóm, hãy sử dụng các số liệu trung lập trong nhóm: thời gian chu kỳ (tốc độ), thông lượng (số lượng mục được phân phối trong mỗi lần chạy nước rút) hoặc giá trị được phân phối (kết quả kinh doanh).',
   },
   'ba-ag-014': {
@@ -206,7 +206,7 @@ export const baVi: QuestionTranslationMap = {
       'Ghi chú về lập kế hoạch và quản lý kinh doanh',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'BPMN (Mô hình và ký hiệu quy trình nghiệp vụ) là ký hiệu đồ họa được tiêu chuẩn hóa để mô hình hóa các quy trình nghiệp vụ. Nó được duy trì bởi OMG (Nhóm quản lý đối tượng). BPMN 2.0 là phiên bản hiện tại và được sử dụng rộng rãi bởi các BA, kỹ sư xử lý và nhóm kỹ thuật vì nó vừa dễ đọc vừa có thể thực thi được trong kinh doanh.',
   },
   'ba-bp-002': {
@@ -218,7 +218,7 @@ export const baVi: QuestionTranslationMap = {
       'Tam giác (△)',
       ''
     ],
-    answer: 2,
+    answer: '2',
     explanation: 'Trong BPMN: Hình chữ nhật tròn = Nhiệm vụ/Hoạt động (công việc cần thực hiện), Kim cương = Cổng (điểm quyết định/phân nhánh), Vòng tròn = Sự kiện (bắt đầu, trung gian, kết thúc), Mũi tên = Luồng trình tự (thứ tự các hoạt động). Hiểu những hình dạng cơ bản này là điều cần thiết để đọc và tạo sơ đồ BPMN.',
   },
   'ba-bp-003': {
@@ -235,7 +235,7 @@ export const baVi: QuestionTranslationMap = {
       'Cổng độc quyền hợp nhất các đường dẫn; Cổng song song chia đường dẫn',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Cổng độc quyền (X hoặc ◇ với X): chính xác một đường dẫn đi được chọn dựa trên một điều kiện (chẳng hạn như if-else). Cổng song song (+ hoặc ◇ với +): TẤT CẢ các đường dẫn đi được kích hoạt đồng thời (thực thi đồng thời). Khi được sử dụng để hợp nhất, Cổng song song sẽ đợi TẤT CẢ các đường dẫn đến hoàn tất trước khi tiếp tục. Cổng bao gồm (O) cho phép một hoặc nhiều đường dẫn.',
   },
   'ba-bp-005': {
@@ -247,7 +247,7 @@ export const baVi: QuestionTranslationMap = {
       'Chúng là các định dạng khác nhau cho cùng một quy trình',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Phân tích nguyên trạng sẽ lập bản đồ trạng thái hiện tại: công việc thực sự được thực hiện như thế nào (không phải nó phải như thế nào), phát hiện các tắc nghẽn, lãng phí, các bước trùng lặp và cách giải quyết thủ công. To-Be thiết kế trạng thái tương lai mong muốn với những cải tiến. Phân tích khoảng cách giữa Hiện tại và Tương lai xác định những thay đổi cần thiết - điều này trực tiếp thúc đẩy các yêu cầu đối với giải pháp.',
   },
   'ba-bp-006': {
@@ -259,7 +259,7 @@ export const baVi: QuestionTranslationMap = {
       'Đối tượng dữ liệu (biểu tượng trang)',
       ''
     ],
-    answer: 2,
+    answer: '2',
     explanation: 'Sự kiện là các vòng tròn trong BPMN. Sự kiện bắt đầu (viền mỏng) kích hoạt quá trình, Sự kiện kết thúc (viền dày) kết thúc quá trình và Sự kiện trung gian (viền kép) xảy ra trong quá trình. Các sự kiện có thể được gõ: tin nhắn (biểu tượng phong bì), bộ đếm thời gian (biểu tượng đồng hồ), lỗi (tia chớp), tín hiệu, v.v. Chúng đại diện cho các yếu tố kích hoạt và kết quả.',
   },
   'ba-bp-007': {
@@ -276,7 +276,7 @@ export const baVi: QuestionTranslationMap = {
       'Mô phỏng Monte Carlo',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Bản đồ dòng giá trị (từ Lean) phân loại từng bước thành: Giá trị gia tăng (khách hàng sẽ trả tiền), Không tăng giá trị nhưng cần thiết (tuân thủ, phê duyệt) hoặc Lãng phí (chờ đợi, làm lại, chuyển giao không cần thiết). Lean nhằm mục đích loại bỏ chất thải (muda). 7 lãng phí: sản xuất thừa, chờ đợi, vận chuyển, xử lý quá mức, tồn kho, chuyển động, sai sót. BA sử dụng điều này để hợp lý hóa các quy trình trước khi tự động hóa.',
   },
   'ba-bp-009': {
@@ -290,7 +290,7 @@ export const baVi: QuestionTranslationMap = {
       'Một quy trình con giống như một nhiệm vụ nhưng có mô tả dài hơn',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Các quy trình con gói gọn sự phức tạp: một nhóm các nhiệm vụ liên quan được hiển thị dưới dạng một hình chữ nhật tròn duy nhất có dấu (+] (thu gọn) hoặc được mở rộng để hiển thị các chi tiết bên trong. Lợi ích: (1) quản lý độ phức tạp về mặt hình ảnh, (2) có thể xác định cách xử lý lỗi cục bộ, (3) có thể được sử dụng lại trên các quy trình, (4) có thể có các sự kiện bắt đầu/kết thúc riêng. Sử dụng khi nhiều tác vụ thuộc về nhau một cách hợp lý (ví dụ: quy trình phụ "Xử lý thanh toán").',
   },
   'ba-bp-010': {
@@ -310,7 +310,7 @@ export const baVi: QuestionTranslationMap = {
       'Chỉ lắng nghe các bên liên quan cấp cao vì họ có nhiều quyền hơn',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Lắng nghe tích cực bao gồm: (1) hoàn toàn chú ý (không bị phân tâm), (2) diễn giải để xác nhận sự hiểu biết ("Vậy điều tôi nghe được là..."), (3) đặt câu hỏi làm rõ, (4) quan sát các tín hiệu phi ngôn ngữ, (5) giữ lại phán xét cho đến khi người nói kết thúc. Đối với BA, điều này rất quan trọng vì việc hiểu sai các yêu cầu sẽ dẫn đến việc làm lại tốn kém.',
   },
   'ba-cn-002': {
@@ -329,7 +329,7 @@ export const baVi: QuestionTranslationMap = {
       'Kết thúc cuộc họp sớm vì không còn hiệu quả',
       ''
     ],
-    answer: 2,
+    answer: '2',
     explanation: 'Kỹ thuật "bãi đậu xe" nắm bắt những mục lạc đề mà không loại bỏ chúng: "Đó là một điểm quan trọng - hãy để tôi thêm nó vào danh sách bãi đậu xe của chúng ta và chúng ta sẽ giải quyết vấn đề đó riêng sau cuộc họp." Điều này tôn trọng các bên liên quan trong khi vẫn giữ cho cuộc họp đi đúng hướng. Xem lại các hạng mục trong bãi đậu xe vào cuối hoặc lên lịch các buổi theo dõi.',
   },
   'ba-cn-004': {
@@ -341,7 +341,7 @@ export const baVi: QuestionTranslationMap = {
       'Một kỹ thuật ưu tiên xếp hạng 5 yêu cầu',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: '5 Whys (từ Hệ thống sản xuất Toyota) đi sâu vào quan hệ nhân quả: "Tại sao giao hàng trễ?" → "Bởi vì QA tìm thấy lỗi" → "Tại sao?" → “Bởi vì yêu cầu không rõ ràng” → “Tại sao?” → "Bởi vì quá trình sàng lọc đã bị bỏ qua" → đã xác định được nguyên nhân gốc rễ. BA sử dụng nó trong quá trình phân tích vấn đề để hiểu vấn đề thực sự đằng sau các triệu chứng. Số 5 là kim chỉ nam - hãy dừng lại khi bạn tìm ra nguyên nhân gốc rễ.',
   },
   'ba-cn-005': {
@@ -356,7 +356,7 @@ export const baVi: QuestionTranslationMap = {
       'Đọc trực tiếp từ slide để đảm bảo độ chính xác',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Các nhà điều hành có thời gian và sự chú ý hạn chế. Sử dụng "nguyên tắc kim tự tháp" (của Barbara Minto): dẫn đầu bằng khuyến nghị, sau đó đưa ra các lập luận và bằng chứng hỗ trợ. Cấu trúc: (1) Tóm tắt kèm theo khuyến nghị, (2) 3-4 điểm hỗ trợ chính, (3) Dữ liệu/bằng chứng cho từng điểm. Giữ nó ngắn gọn, trực quan và định hướng hành động. Chuẩn bị các slide dự phòng chi tiết cho phần hỏi đáp nếu cần.',
   },
   'ba-cn-006': {
@@ -368,7 +368,7 @@ export const baVi: QuestionTranslationMap = {
       'Chúng giống nhau được thể hiện khác nhau',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Ví dụ điển hình: hai đứa trẻ tranh nhau một quả cam (vị thế: “Con muốn quả cam”). Hiểu được sở thích cho thấy một người muốn nước trái cây, người kia muốn vỏ để nướng - cả hai đều có thể hài lòng. Trong công việc BA: bên liên quan nói "Tôi cần tính năng này trước thứ Sáu" (vị trí). Mối quan tâm có thể là "Tôi có bản demo cho khách hàng vào thứ Hai" - biết điều này, bạn có thể cung cấp một nguyên mẫu sẵn sàng cho bản demo thay vì tính năng đầy đủ.',
   },
   'ba-cn-007': {
@@ -390,7 +390,7 @@ export const baVi: QuestionTranslationMap = {
       'Đồng ý với 2,5 tính năng như một sự thỏa hiệp',
       ''
     ],
-    answer: 2,
+    answer: '2',
     explanation: 'Đàm phán theo nguyên tắc (Fisher & Ury, "Getting to Yes") có 4 nguyên tắc: (1) Tách con người ra khỏi vấn đề, (2) Tập trung vào lợi ích chứ không phải vị trí, (3) Tạo ra các phương án để cùng có lợi, (4) Sử dụng các tiêu chí khách quan. Thay vì chấp nhận hoặc từ chối, hãy khám phá TẠI SAO những tính năng này lại cần thiết và đưa ra các lựa chọn thay thế: hoán đổi các tính năng có mức độ ưu tiên thấp hơn, phân phối theo giai đoạn hoặc điều chỉnh ngân sách/dòng thời gian. Điều này bảo vệ các mối quan hệ trong khi duy trì tính toàn vẹn của dự án.',
   },
   'ba-cn-009': {
@@ -407,7 +407,7 @@ export const baVi: QuestionTranslationMap = {
       'BATNA là viết tắt của "Đào tạo và đánh giá phân tích kinh doanh"',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'BATNA (từ "Đi đến Đồng ý") là lựa chọn tốt nhất của bạn nếu cuộc đàm phán này thất bại. Nếu một nhà cung cấp báo giá $500K nhưng bạn có một nhà cung cấp thay thế ở mức $400K, thì BATNA của bạn là $400K — bạn không bao giờ nên chấp nhận mức giá cao hơn. Đối với BA: nếu các bên liên quan yêu cầu các mốc thời gian không thể thực hiện được, BATNA của bạn có thể là cách tiếp cận theo từng giai đoạn hoặc phạm vi giảm bớt. BATNA mạnh mang lại sự tự tin trong đàm phán; BATNA yếu có nghĩa là bạn cần đàm phán chặt chẽ hơn hoặc cải thiện các lựa chọn thay thế của mình.',
   },
   'ba-cn-011': {
@@ -426,7 +426,7 @@ export const baVi: QuestionTranslationMap = {
     question: 'What is the "Yes, and..." technique in facilitation?',
     options: [
       'Agreeing with everything the stakeholder says',
-      'A technique from improvisational theatre used to build on others\\' ideas without immediately shutting them down',
+      'A technique from improvisational theatre used to build on others\' ideas without immediately shutting them down',
       'fostering creativity in sessions',
       'Saying yes but doing the opposite',
       'A way to trick people into agreeing'
@@ -473,7 +473,7 @@ export const baVi: QuestionTranslationMap = {
       'The code written by developers',
       'Body language',
       'eye contact',
-      'and tone of voice — it often reveals more about a stakeholder\\'s true feelings or level of agreement than their words alone',
+      'and tone of voice — it often reveals more about a stakeholder\'s true feelings or level of agreement than their words alone',
       'The silent part of a video call',
       'A type of email that contains no text'
     ],
@@ -489,7 +489,7 @@ export const baVi: QuestionTranslationMap = {
       'Accept any price they give',
       'Cancel the project'
     ],
-    explanation: 'When you can\\'t walk away, you must shift from competitive negotiation (splitting the pie) to collaborative negotiation (finding additional value for both sides).',
+    explanation: 'When you can\'t walk away, you must shift from competitive negotiation (splitting the pie) to collaborative negotiation (finding additional value for both sides).',
   },
   'ba-cn-019': {
     question: 'Which conflict management style is most appropriate when the business relationship is critical and the issue is complex?',
@@ -501,11 +501,11 @@ export const baVi: QuestionTranslationMap = {
       'Accommodating (I lose',
       'you win)'
     ],
-    explanation: 'Collaboration takes longer but ensures both parties\\' interests are met, which is vital for long-term stakeholder partnerships on complex projects.',
+    explanation: 'Collaboration takes longer but ensures both parties\' interests are met, which is vital for long-term stakeholder partnerships on complex projects.',
   },
   'ba-cn-020': {
     question: 'Design a "Feedback Mechanism" to improve BA communication skills across your team of 10 BAs.',
-    answer: 'BA Feedback Loop:\n1. Peer Reviews: BAs attend each others\\' workshops and provide "Post-Session Feedback."\n2. Recording & Analysis: Recording (with permission) key elicitation sessions for self-review.\n3. Stakeholder NPS: Quarterly 3-question survey to internal stakeholders about BA clarity and responsiveness.\n4. Success Stories: Monthly knowledge-sharing sessions where "difficult negotiations" are discussed and learned from.',
+    answer: 'BA Feedback Loop:\n1. Peer Reviews: BAs attend each others\' workshops and provide "Post-Session Feedback."\n2. Recording & Analysis: Recording (with permission) key elicitation sessions for self-review.\n3. Stakeholder NPS: Quarterly 3-question survey to internal stakeholders about BA clarity and responsiveness.\n4. Success Stories: Monthly knowledge-sharing sessions where "difficult negotiations" are discussed and learned from.',
     explanation: 'Communication is a soft skill that requires a culture of continuous feedback and safe practice to improve.',
   },
   'ba-dk-001': {
@@ -520,7 +520,7 @@ export const baVi: QuestionTranslationMap = {
       'Kiến thức về miền thay thế nhu cầu về kỹ thuật thu thập yêu cầu',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Một BA có kiến ​​thức về lĩnh vực có thể: (1) hiểu các thuật ngữ và khái niệm trong ngành mà không cần giải thích liên tục, (2) xác định các yêu cầu ngụ ý mà các bên liên quan cho là hiển nhiên, (3) dự đoán các nhu cầu về quy định và tuân thủ, (4) thách thức các yêu cầu không thực tế dựa trên kinh nghiệm trong ngành, (5) xây dựng uy tín với các bên liên quan trong kinh doanh. Kiến thức về miền là một hệ số nhân cho tất cả các kỹ năng BA khác.',
   },
   'ba-dk-002': {
@@ -532,7 +532,7 @@ export const baVi: QuestionTranslationMap = {
       'Tiện ích kiến ​​thức hệ thống',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'SKU (Đơn vị giữ hàng tồn kho) xác định duy nhất từng biến thể sản phẩm trong quản lý hàng tồn kho. Ví dụ: "Áo thun xanh cỡ M" có SKU khác với "Áo thun xanh cỡ L". Các BA làm việc trên hệ thống thương mại điện tử phải hiểu SKU để quản lý hàng tồn kho, xử lý đơn hàng và yêu cầu báo cáo.',
   },
   'ba-dk-003': {
@@ -552,7 +552,7 @@ export const baVi: QuestionTranslationMap = {
       'Hệ thống phân loại chẩn đoán y tế',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'HL7 (Health Level Seven International) xác định các tiêu chuẩn trao đổi dữ liệu chăm sóc sức khỏe. HL7 v2 sử dụng các bản tin được phân cách bằng dấu sổ đứng (được triển khai rộng rãi nhất). HL7 FHIR (Tài nguyên tương tác chăm sóc sức khỏe nhanh) là tiêu chuẩn dựa trên REST hiện đại. Cử nhân chăm sóc sức khỏe phải hiểu HL7 để xác định các yêu cầu tích hợp giữa các hệ thống lâm sàng (EHR, phòng thí nghiệm, hiệu thuốc, thanh toán).',
   },
   'ba-dk-005': {
@@ -570,7 +570,7 @@ export const baVi: QuestionTranslationMap = {
       'ERP là loại cơ sở dữ liệu được doanh nghiệp sử dụng',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Các hệ thống ERP (Enterprise Resource Planning) như SAP, Oracle, Microsoft Dynamics tích hợp các quy trình kinh doanh cốt lõi vào một hệ thống. Các mô-đun chính: Tài chính (GL, AP, AR), Nhân sự (tiền lương, nhân tài), Chuỗi cung ứng (mua sắm, tồn kho, hậu cần), Sản xuất (MRP, lập kế hoạch sản xuất), Bán hàng & CRM. Các BA làm việc trong các dự án ERP phải hiểu sự phụ thuộc giữa các mô-đun - một thay đổi trong một mô-đun sẽ ảnh hưởng đến các mô-đun khác.',
   },
   'ba-dk-006': {
@@ -582,7 +582,7 @@ export const baVi: QuestionTranslationMap = {
       'Vận chuyển đường dài giữa các quốc gia',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Giao hàng chặng cuối là bước cuối cùng (và thường tốn kém nhất): từ trung tâm/trung tâm phân phối địa phương đến tận nhà khách hàng. Nó chiếm ~53% tổng chi phí vận chuyển do: giao hàng riêng lẻ nhỏ, giao thông đô thị, nỗ lực giao hàng không thành công và khoảng thời gian sẵn có của khách hàng. Cử nhân hậu cần tập trung vào việc tối ưu hóa điều này thông qua tối ưu hóa tuyến đường, khoảng thời gian giao hàng, theo dõi thời gian thực và các điểm giao hàng thay thế (tủ khóa, cửa hàng nhận hàng).',
   },
   'ba-dk-007': {
@@ -599,7 +599,7 @@ export const baVi: QuestionTranslationMap = {
       'Tốc độ tải trang giỏ hàng',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Tỷ lệ bỏ giỏ hàng (trên toàn cầu ~ 70%) đo lường doanh số bán hàng bị mất. Các nguyên nhân phổ biến mà BA nên giải quyết trong các yêu cầu: chi phí vận chuyển không mong muốn (→ hiển thị giao hàng sớm), bắt buộc tạo tài khoản (→ thanh toán cho khách), thanh toán phức tạp (→ ít bước hơn), lo ngại về bảo mật (→ huy hiệu tin cậy) và các hạn chế về phương thức thanh toán (→ nhiều tùy chọn thanh toán). BA có thể xác định các yêu cầu thử nghiệm A/B để tối ưu hóa chuyển đổi thanh toán.',
   },
   'ba-dk-009': {
@@ -622,7 +622,7 @@ export const baVi: QuestionTranslationMap = {
       'Chỉ sử dụng các bài viết trực tuyến và bài đăng trên blog để tìm hiểu tên miền nhanh chóng',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Học về miền hiệu quả: (1) Nghiên cứu các nguyên tắc cơ bản (sách giáo khoa ngành, giáo trình cấp chứng chỉ như LOMA cho bảo hiểm), (2) Phân tích đối thủ cạnh tranh (sử dụng sản phẩm của họ, đọc tài liệu của họ), (3) Các chuyên gia về miền bóng tối trong 2-3 ngày, (4) Lập bản đồ bối cảnh quy định (yêu cầu tuân thủ), (5) Tạo bảng chú giải miền (thuật ngữ chính, từ viết tắt, khái niệm), (6) Tham dự các sự kiện/hội thảo trực tuyến trong ngành. BA không cần phải trở thành chuyên gia về lĩnh vực - họ cần đủ thông thạo để đặt câu hỏi phù hợp và thách thức các giả định.',
   },
   'ba-doc-001': {
@@ -634,7 +634,7 @@ export const baVi: QuestionTranslationMap = {
       'Tóm tắt đánh giá của các bên liên quan',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'SRS (Đặc tả yêu cầu phần mềm) là một tài liệu toàn diện mô tả những gì phần mềm nên làm. Nó thường bao gồm các yêu cầu chức năng, yêu cầu phi chức năng, giao diện hệ thống, các ràng buộc và giả định. IEEE 830 là một tiêu chuẩn được sử dụng rộng rãi cho cấu trúc SRS.',
   },
   'ba-doc-002': {
@@ -646,7 +646,7 @@ export const baVi: QuestionTranslationMap = {
       'Không có sự khác biệt - chúng là cùng một tài liệu',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'BRD nắm bắt các yêu cầu ở cấp độ doanh nghiệp: mục tiêu, phạm vi kinh doanh, các bên liên quan và nhu cầu cấp cao (CÁI GÌ và TẠI SAO). SRS chuyển những thông số này thành các thông số kỹ thuật chi tiết ở cấp hệ thống: yêu cầu chức năng, mô hình dữ liệu, giao diện và các ràng buộc (CÁCH). BRD được viết cho các bên liên quan trong kinh doanh; SRS chủ yếu dành cho nhóm phát triển.',
   },
   'ba-doc-003': {
@@ -663,7 +663,7 @@ export const baVi: QuestionTranslationMap = {
       'Kế hoạch kiểm tra',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'FRD/FSD thu hẹp khoảng cách giữa BRD và việc triển khai. Nó chứa các thông số kỹ thuật chi tiết về chức năng, định nghĩa thành phần dữ liệu, quy tắc nghiệp vụ, bố cục màn hình, thông số kỹ thuật giao diện và xử lý lỗi. Đây là tài liệu tham khảo chính cho các nhà phát triển trong quá trình triển khai và cho QA trong quá trình tạo trường hợp thử nghiệm.',
   },
   'ba-doc-005': {
@@ -678,7 +678,7 @@ export const baVi: QuestionTranslationMap = {
       'PRD được viết bởi các nhà phát triển; BRD được viết bởi các nhà quản lý',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'BRD trả lời “tại sao doanh nghiệp lại cần điều này?” — tập trung vào các mục tiêu kinh doanh, ROI và sự biện minh. PRD trả lời "chúng ta đang xây dựng sản phẩm gì?" - tập trung vào tầm nhìn sản phẩm, tính cách người dùng, danh sách tính năng, luồng người dùng và số liệu thành công. Trong các tổ chức định hướng sản phẩm, PRD (do Người quản lý sản phẩm viết) thường thay thế BRD. Cả hai có thể cùng tồn tại trong các tổ chức lớn hơn.',
   },
   'ba-doc-006': {
@@ -699,7 +699,7 @@ export const baVi: QuestionTranslationMap = {
       'Bản thảo đầu tiên của các tài liệu chưa bao giờ được hoàn thiện',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Tài liệu sống luôn cập nhật bằng cách được liên kết chặt chẽ với hệ thống: thông số kỹ thuật thực thi (kịch bản thử nghiệm BDD đóng vai trò là yêu cầu), tài liệu API được tạo tự động (Swagger/OpenAPI), wiki được cập nhật mỗi lần chạy nước rút và bản ghi quyết định kiến ​​trúc (ADR). Cách tiếp cận này làm giảm vấn đề "thối nát tài liệu" khi tài liệu trở nên lỗi thời ngay sau khi tạo.',
   },
   'ba-doc-008': {
@@ -711,7 +711,7 @@ export const baVi: QuestionTranslationMap = {
       'Sơ đồ thực thể-mối quan hệ',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Bảng quyết định ánh xạ các kết hợp điều kiện (độ tuổi, loại chính sách, mức độ rủi ro) tới kết quả (tỷ lệ phí bảo hiểm, phạm vi bảo hiểm) trong một mạng lưới có cấu trúc. Chúng vượt trội hơn văn bản đối với các bộ quy tắc phức tạp vì: (1) chúng hiển thị tất cả các kết hợp, (2) chúng tiết lộ các khoảng trống (các kết hợp bị thiếu), (3) chúng có thể kiểm tra trực tiếp và (4) cả nhóm kinh doanh và công nghệ đều có thể đọc chúng. Cây quyết định hoạt động tương tự nhưng hiển thị trực quan logic phân nhánh.',
   },
   'ba-doc-009': {
@@ -738,7 +738,7 @@ export const baVi: QuestionTranslationMap = {
       'Chuyển dự án sang Waterfall để phù hợp với khách hàng',
       ''
     ],
-    answer: 2,
+    answer: '2',
     explanation: 'Giải pháp cân bằng kỳ vọng của khách hàng với các nguyên tắc Agile. Tài liệu trả trước mang lại sự tin cậy mà khách hàng cần (kiến trúc, các quyết định quan trọng, NFR) mà không trở thành một đặc tả toàn diện sẽ lỗi thời trước khi bắt đầu phát triển. Việc xây dựng tiến bộ thông qua các tạo phẩm chạy nước rút giúp cập nhật tài liệu. Cập nhật thường xuyên cho khách hàng thấy rằng tài liệu sẽ phát triển cùng với sản phẩm.',
   },
   'ba-re-001': {
@@ -750,7 +750,7 @@ export const baVi: QuestionTranslationMap = {
       'Mô tả về phần cứng mà hệ thống chạy trên đó',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Yêu cầu chức năng mô tả những gì hệ thống nên làm - hành vi, tính năng hoặc chức năng cụ thể. Các yêu cầu phi chức năng bao gồm “mức độ tốt” (hiệu suất, bảo mật, khả năng sử dụng). Mục tiêu kinh doanh là mục tiêu cấp cao hơn, không phải yêu cầu cấp hệ thống.',
   },
   'ba-re-002': {
@@ -767,7 +767,7 @@ export const baVi: QuestionTranslationMap = {
       'Phân tích tài liệu',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Việc quan sát (hoặc theo dõi công việc) cho phép BA biết cách người dùng thực sự làm việc - thường tiết lộ những nhu cầu chưa được nêu ra, cách giải quyết và những điểm khó khăn mà người dùng quên đề cập đến trong các cuộc phỏng vấn. Nó đặc biệt hữu ích khi người dùng không thể trình bày rõ ràng các quy trình của họ.',
   },
   'ba-re-004': {
@@ -796,7 +796,7 @@ export const baVi: QuestionTranslationMap = {
       'Muốn',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'MoSCoW là một kỹ thuật ưu tiên: Phải có (quan trọng để phân phối), Nên có (quan trọng nhưng không quan trọng), Có thể có (có thì tốt), Sẽ không có (đồng ý loại trừ khỏi bản phát hành này). Chữ "o" được thêm vào để làm cho từ viết tắt có thể phát âm được.',
   },
   'ba-re-005': {
@@ -811,7 +811,7 @@ export const baVi: QuestionTranslationMap = {
       'Chỉ ghi lại lịch sử thay đổi yêu cầu',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'RTM đảm bảo mọi yêu cầu đều được liên kết từ nguồn gốc (nhu cầu kinh doanh/các bên liên quan) thông qua thiết kế, triển khai và thử nghiệm. Nó giúp phát hiện các lỗ hổng (yêu cầu chưa được kiểm tra), mạ vàng (các tính năng không có yêu cầu) và hỗ trợ phân tích tác động khi có thay đổi.',
   },
   'ba-re-006': {
@@ -825,7 +825,7 @@ export const baVi: QuestionTranslationMap = {
       'Chuyển tiếp trực tiếp đến người thiết kế giao diện người dùng mà không cần sửa đổi',
       ''
     ],
-    answer: 2,
+    answer: '2',
     explanation: '"Thân thiện với người dùng" là mơ hồ và không thể đo lường được. Một BA tốt sẽ phân tách các yêu cầu mơ hồ thành các tiêu chí SMART: Cụ thể, Có thể đo lường được, Có thể đạt được, Có liên quan, Có thời hạn. Ví dụ: "90% người dùng mới hoàn tất đăng ký trong vòng 2 phút mà không cần hỗ trợ."',
   },
   'ba-re-007': {
@@ -837,7 +837,7 @@ export const baVi: QuestionTranslationMap = {
       'nguyên mẫu',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Một hội thảo được hỗ trợ (Phát triển ứng dụng chung - JAD) tập hợp các bên liên quan xung đột lại với nhau trong một phiên có cấu trúc với một người hỗ trợ trung lập. Điều này cho phép đàm phán, thỏa hiệp và xây dựng sự đồng thuận theo thời gian thực. Các cuộc khảo sát quá khách quan để giải quyết xung đột và việc phân tích tài liệu không giải quyết được xung đột.',
   },
   'ba-re-008': {
@@ -856,7 +856,7 @@ export const baVi: QuestionTranslationMap = {
       'Tạo một tài liệu SRS toàn diện ngay từ đầu và không bao giờ cập nhật nó',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Các phương pháp lặp lại/Agile chấp nhận các yêu cầu phát triển. Một sản phẩm tồn đọng đang hoạt động với sự sàng lọc liên tục, đánh giá nước rút để lấy phản hồi của các bên liên quan và các chu kỳ ngắn cho phép nhóm thích ứng với những thay đổi. BDUF không thành công khi các yêu cầu không ổn định; bỏ qua các yêu cầu dẫn đến phạm vi sai lệch và sai lệch.',
   },
   'ba-re-010': {
@@ -870,7 +870,7 @@ export const baVi: QuestionTranslationMap = {
       'Sử dụng các công cụ đắt tiền để quản lý yêu cầu - gây lãng phí ngân sách',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Mạ vàng xảy ra khi các nhà phát triển hoặc BA thêm các tính năng, sự đánh bóng hoặc các khả năng mà các bên liên quan không yêu cầu. Mặc dù có mục đích tốt nhưng nó làm tăng phạm vi, trì hoãn việc phân phối, giới thiệu chức năng chưa được kiểm tra và tiêu tốn ngân sách cho công việc chưa được phê duyệt. RTM giúp phát hiện việc mạ vàng bằng cách tiết lộ các tính năng được triển khai mà không cần yêu cầu phù hợp.',
   },
   'ba-re-011': {
@@ -888,7 +888,7 @@ export const baVi: QuestionTranslationMap = {
       'Các cuộc phỏng vấn không thể nắm bắt được các yêu cầu phi chức năng',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Các cuộc phỏng vấn dựa vào việc các bên liên quan trình bày rõ ràng những gì họ biết - nhưng phần lớn kiến ​​thức là ẩn (chuyên môn vô thức). Người dùng có thể quên các trường hợp đặc biệt, thừa nhận kiến ​​thức phổ biến hoặc mô tả quy trình làm việc lý tưởng hóa. Việc bổ sung khả năng quan sát, tạo nguyên mẫu và phân tích tài liệu sẽ giúp lấp đầy những khoảng trống này.',
   },
   'ba-re-013': {
@@ -907,7 +907,7 @@ export const baVi: QuestionTranslationMap = {
       'Triển khai tất cả các tính năng bảo mật có thể bất kể áp dụng quy định nào',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Ma trận truy xuất nguồn gốc tuân thủ ánh xạ các điều khoản quy định cụ thể (ví dụ: GDPR Điều 17 "Quyền xóa") tới các yêu cầu bắt nguồn (ví dụ: "Hệ thống sẽ xóa vĩnh viễn dữ liệu người dùng trong vòng 30 ngày kể từ ngày yêu cầu"), các quyết định thiết kế, bằng chứng triển khai và các trường hợp thử nghiệm chứng minh sự tuân thủ. Điều này cung cấp bằng chứng có thể kiểm tra được và đảm bảo không bỏ sót điều khoản quy định nào.',
   },
   'ba-re-015': {
@@ -921,7 +921,7 @@ export const baVi: QuestionTranslationMap = {
       'Chuyển từ Agile sang Waterfall để có nhiều thời gian đáp ứng yêu cầu hơn',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Phân tích nguyên nhân gốc rễ cho thấy các vấn đề về chất lượng yêu cầu. Cải tiến có hệ thống bao gồm: (1) đánh giá ngang hàng có cấu trúc với danh sách kiểm tra (tính đầy đủ, nhất quán, khả năng kiểm tra, rõ ràng), (2) theo dõi số liệu (tỷ lệ rò rỉ lỗi, độ biến động của yêu cầu, phạm vi đánh giá) và (3) vòng phản hồi trong đó các lỗi sản xuất được truy ngược lại các yêu cầu và bài học kinh nghiệm được áp dụng. Đây là một cải tiến quy trình, không chỉ là thêm nhiều người hơn.',
   },
   'ba-re-016': {
@@ -984,7 +984,7 @@ export const baVi: QuestionTranslationMap = {
       'và yêu cầu khách hàng ưu tiên chúng so với phạm vi phát hành hiện tại.',
       'Âm thầm đưa các tính năng vào cơ sở mã mà không cần thông báo cho Người quản lý dự án.'
     ],
-    answer: 2,
+    answer: '2',
     explanation: 'Phạm vi leo thang là một rủi ro lớn, đặc biệt là vào giai đoạn cuối của dự án. Là một BA, bạn không bao giờ nên chấp nhận một cách mù quáng hoặc từ chối một cách cứng nhắc các yêu cầu. Thay vào đó, hãy ghi lại chúng dưới dạng CR, phân tích tác động và trình bày những đánh đổi cho các bên liên quan để đưa ra quyết định sáng suốt.',
   },
   'ba-rw-002': {
@@ -997,7 +997,7 @@ export const baVi: QuestionTranslationMap = {
       'và cập nhật Câu chuyện của người dùng cho phù hợp.',
       'Nâng cao "thái độ không tốt" của nhà phát triển đối với Người quản lý dự án.'
     ],
-    answer: 2,
+    answer: '2',
     explanation: 'BA đóng vai trò là cầu nối giữa kinh doanh và công nghệ. Nếu tồn tại các hạn chế về mặt kỹ thuật, bạn nên cộng tác với nhà phát triển để tìm giải pháp thay thế đáp ứng nhu cầu kinh doanh cốt lõi, thay vì buộc phải triển khai không thể thực hiện được hoặc loại bỏ hoàn toàn tính năng này.',
   },
   'ba-rw-003': {
@@ -1010,7 +1010,7 @@ export const baVi: QuestionTranslationMap = {
       'Bỏ qua yêu cầu vì nó không thể đạt được.',
       'Chỉ định nhóm UI để làm cho thiết kế trông nhanh chóng.'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Các yêu cầu phi chức năng phải cụ thể, có thể đo lường được và có thể kiểm tra được. "Nhanh như chớp" là chủ quan. Việc chuyển đổi nó thành các số liệu có thể đo lường được (thời gian tải, người dùng đồng thời) đảm bảo nhóm phát triển và nhóm QA biết chính xác những gì cần nhắm mục tiêu.',
   },
   'ba-rw-004': {
@@ -1023,7 +1023,7 @@ export const baVi: QuestionTranslationMap = {
       'và nhấn mạnh những rủi ro khi thiếu thông tin đầu vào.',
       'Hủy bỏ dự án cho đến khi họ tham dự.'
     ],
-    answer: 2,
+    answer: '2',
     explanation: 'Sự tham gia của các bên liên quan là chìa khóa. Nếu các cuộc họp đồng bộ không thành công, hãy tìm những cách khác để thu thập ý kiến ​​đóng góp của họ một cách không đồng bộ và giúp họ nhận thức được những rủi ro (sự chậm trễ, tính năng không chính xác) khi không tham gia.',
   },
   'ba-rw-005': {
@@ -1042,7 +1042,7 @@ export const baVi: QuestionTranslationMap = {
       'và tạo điều kiện cho sự thỏa hiệp hoặc leo thang tới nhà tài trợ dự án.',
       'Đợi đến khi họ ngừng đánh nhau mới tiếp tục làm việc.'
     ],
-    answer: 2,
+    answer: '2',
     explanation: 'BA phải hỗ trợ giải quyết xung đột bằng cách tập trung vào các tiêu chí khách quan (chi phí, rủi ro, mục tiêu kinh doanh, tuân thủ) thay vì sở thích cá nhân. Nếu không thể đạt được sự đồng thuận, vấn đề cần được chính thức chuyển đến nhà tài trợ dự án có thẩm quyền ra quyết định.',
   },
   'ba-rw-007': {
@@ -1054,7 +1054,7 @@ export const baVi: QuestionTranslationMap = {
       'Các nhà phát triển đã mã hóa nó kém. Hãy bắt họ viết lại nó.',
       'Nhóm QA không thể kiểm tra tính năng này.'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Khách hàng thường đồng ý với các tài liệu văn bản mà không hình dung đầy đủ về sản phẩm cuối cùng. Sử dụng các công cụ hỗ trợ trực quan (wireframe, nguyên mẫu) và thực hiện các vòng lặp demo thường xuyên (phương pháp tiếp cận Agile) đảm bảo phát hiện sớm những điểm không khớp giữa “những gì được viết” và “những gì cần thiết”.',
   },
   'ba-rw-008': {
@@ -1067,7 +1067,7 @@ export const baVi: QuestionTranslationMap = {
       'và ghi lại quy trình "Như hiện tại" trước khi thiết kế "Tương lai".',
       'Yêu cầu các nhà phát triển mới đoán logic chỉ dựa trên mã nguồn cũ.'
     ],
-    answer: 2,
+    answer: '2',
     explanation: 'Kỹ thuật đảo ngược kết hợp với việc quan sát người dùng cuối là cách tiếp cận tiêu chuẩn cho các hệ thống cũ không có giấy tờ. Người dùng biết quy trình công việc và việc điều tra lược đồ cơ sở dữ liệu hoặc dấu vết dữ liệu sẽ giúp khám phá logic kinh doanh ẩn.',
   },
   'ba-rw-009': {
@@ -1080,7 +1080,7 @@ export const baVi: QuestionTranslationMap = {
       'và sắp xếp một cuộc họp giữa bộ phận Tuân thủ và Bán hàng để thương lượng một giải pháp tuân thủ nhưng thân thiện với người dùng.',
       'Yêu cầu các nhà phát triển tự mình tìm ra giải pháp trung gian.'
     ],
-    answer: 2,
+    answer: '2',
     explanation: 'Các yêu cầu xung đột từ các lĩnh vực khác nhau phải được ghi lại và đàm phán rõ ràng. BA tạo điều kiện cho sự thỏa hiệp (ví dụ: xác thực dựa trên rủi ro trong đó 2FA chỉ được yêu cầu đối với giỏ hàng có giá trị cao) đáp ứng cả hai bộ phận.',
   },
   'ba-rw-010': {
@@ -1098,7 +1098,7 @@ export const baVi: QuestionTranslationMap = {
       'và ước tính CR cho Giai đoạn 2 hoặc chu kỳ thanh toán riêng.',
       'Tạm dừng toàn bộ dự án cho đến khi khách hàng thanh toán thêm 40 hạng mục.'
     ],
-    answer: 2,
+    answer: '2',
     explanation: 'Phân loại là điều cần thiết trong UAT. Sử dụng đường cơ sở đã được phê duyệt (BRD/SRS) để phân biệt giữa các khiếm khuyết (không đáp ứng các yêu cầu đã thống nhất) và các cải tiến. Việc quản lý họ với tư cách là CR sẽ duy trì tiến trình dự án trong khi vẫn bảo vệ phạm vi và nguồn lực của nhà cung cấp mà không gây ra sự đối đầu nghiêm ngặt.',
   },
   'ba-rw-012': {
@@ -1111,7 +1111,7 @@ export const baVi: QuestionTranslationMap = {
       'và nêu chi tiết các yêu cầu (Câu chuyện của người dùng) chỉ 1-2 lần chạy nước rút trước khi phát triển.',
       'Đợi Huấn luyện viên Agile nói chuyện với họ.'
     ],
-    answer: 2,
+    answer: '2',
     explanation: 'Quá trình chuyển đổi linh hoạt đòi hỏi phải huấn luyện các bên liên quan. Các BA phải thu hẹp khoảng cách tư duy này bằng cách chứng minh giá trị thông qua quá trình xây dựng tiến bộ—cung cấp đủ chi tiết đúng lúc, từ đó giảm lãng phí trong khi vẫn đảm bảo đủ sự chắc chắn cho việc lập kế hoạch kinh doanh.',
   },
   'ba-rw-013': {
@@ -1122,7 +1122,7 @@ export const baVi: QuestionTranslationMap = {
       'Tập trung cuộc trò chuyện vào cách hệ thống sẽ loại bỏ công việc tẻ nhạt và cho phép họ nâng cao kỹ năng vào vai trò phân tích. Thu hút họ với tư cách là "Nhà vô địch quy trình" để mang lại cho họ cảm giác sở hữu.',
       'Hãy hủy tính năng tự động hóa để không ai bị mất việc.'
     ],
-    answer: 2,
+    answer: '2',
     explanation: 'Quản lý thay đổi và vượt qua sự phản kháng là những kỹ năng BA cấp cao quan trọng. Giải quyết nỗi sợ hãi tiềm ẩn bằng cách điều chỉnh lại sự thay đổi (từ mất việc làm đến phát triển công việc) và trao quyền cho những người dùng phản kháng vì các chuyên gia về chủ đề này thường phá vỡ các rào cản giao tiếp.',
   },
   'ba-rw-014': {
@@ -1144,7 +1144,7 @@ export const baVi: QuestionTranslationMap = {
       'Một cáp vật lý kết nối hai máy chủ',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'API giống như người phục vụ trong nhà hàng: bạn (khách hàng) nói với người phục vụ (API) những gì bạn muốn, người phục vụ nhận đơn đặt hàng của bạn đến nhà bếp (máy chủ) và mang thức ăn trở lại (phản hồi). API xác định cách các hệ thống giao tiếp với nhau - dữ liệu nào sẽ gửi, ở định dạng nào và những gì mong đợi nhận lại. BA cần hiểu API để xác định các yêu cầu tích hợp.',
   },
   'ba-si-002': {
@@ -1156,7 +1156,7 @@ export const baVi: QuestionTranslationMap = {
       'Công nghệ phần mềm doanh nghiệp đáng tin cậy',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'REST là một kiểu kiến ​​trúc (không phải giao thức) sử dụng các phương thức HTTP: GET (đọc), POST (tạo), PUT/PATCH (cập nhật), DELETE (xóa). API REST trao đổi dữ liệu ở định dạng JSON hoặc XML. API RESTful không có trạng thái (mỗi yêu cầu chứa tất cả thông tin cần thiết). BA nên hiểu REST khi viết yêu cầu tích hợp và thông số kỹ thuật API.',
   },
   'ba-si-003': {
@@ -1175,7 +1175,7 @@ export const baVi: QuestionTranslationMap = {
       'Không có sự khác biệt thực tế',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Đồng bộ (ví dụ: lệnh gọi API REST): Hệ thống A gọi Hệ thống B và chờ phản hồi - đơn giản nhưng tạo ra sự kết nối chặt chẽ. Không đồng bộ (ví dụ: hàng đợi tin nhắn): Hệ thống A gửi tin nhắn đến hàng đợi (Kafka, RabbitMQ) và tiếp tục - Hệ thống B xử lý tin nhắn đó khi sẵn sàng. Async phù hợp hơn cho: các tác vụ chạy dài, xử lý khối lượng lớn và tách rời hệ thống. BA phải chỉ định mẫu nào phù hợp với từng kịch bản tích hợp.',
   },
   'ba-si-005': {
@@ -1196,7 +1196,7 @@ export const baVi: QuestionTranslationMap = {
       'Danh sách tất cả các API có sẵn trên internet',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Thông số tích hợp hoàn chỉnh bao gồm: (1) Các hệ thống liên quan và chỉ đạo (nguồn → đích), (2) Ánh xạ dữ liệu (từng trường: trường nguồn → trường đích, chuyển đổi), (3) Chi tiết kỹ thuật (giao thức, định dạng, phương thức xác thực), (4) Trình kích hoạt/tần suất (theo hướng sự kiện, được lên lịch, theo yêu cầu), (5) Xử lý lỗi (điều gì xảy ra khi lỗi), (6) Bảo mật (khóa API, OAuth, chứng chỉ), (7) SLA (thời gian phản hồi, tính khả dụng, thông lượng), (8) Kiểm tra cách tiếp cận.',
   },
   'ba-si-006': {
@@ -1208,7 +1208,7 @@ export const baVi: QuestionTranslationMap = {
       'Webhooks yêu cầu thiết lập thủ công; bỏ phiếu là tự động',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Webhook (đẩy): "Gọi cho tôi khi có chuyện gì xảy ra" — máy chủ thông báo cho khách hàng bằng cách gửi HTTP POST tới URL đã đăng ký khi xảy ra sự kiện (ví dụ: thanh toán đã hoàn tất). Bỏ phiếu (kéo): "Tôi sẽ kiểm tra 5 phút một lần" — máy khách liên tục truy vấn máy chủ. Webhooks hiệu quả hơn (không lãng phí yêu cầu) nhưng yêu cầu máy khách lưu trữ điểm cuối. Các BA nên đề xuất webhooks khi có sẵn để tích hợp theo sự kiện.',
   },
   'ba-si-007': {
@@ -1225,7 +1225,7 @@ export const baVi: QuestionTranslationMap = {
       'Xung đột phiên bản API',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Trở kháng mô hình dữ liệu không khớp là một trong những thách thức tích hợp phổ biến nhất. BA phải xác định ánh xạ dữ liệu chi tiết: target_first_name = SPLIT(source_customer_name, " ")[0], target_last_name = SPLIT(source_customer_name, " ")[1:]. Các thông tin không khớp khác: các định dạng ngày khác nhau (US so với ISO), các đơn vị khác nhau (dặm so với km), hệ thống mã hóa khác nhau (mã quốc gia: US so với USA so với 840) và các loại dữ liệu khác nhau (chuỗi so với ID số nguyên).',
   },
   'ba-si-009': {
@@ -1250,7 +1250,7 @@ export const baVi: QuestionTranslationMap = {
       'Chỉ cần xác minh khóa API hoạt động',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'API của bên thứ ba tạo ra sự phụ thuộc kinh doanh. BA khách hàng tiềm năng phải đánh giá: (1) SLA - nhà cung cấp đảm bảo thời gian hoạt động và thời gian phản hồi như thế nào? (2) Quyền sở hữu dữ liệu - ai sở hữu dữ liệu được xử lý thông qua API? (3) DPA/tuân thủ — nhà cung cấp có tuân thủ GDPR/PDPA đối với dữ liệu cá nhân không? (4) Giới hạn tỷ lệ - chúng ta có thể mở rộng quy mô sử dụng mà không cần đạt đến giới hạn không? (5) Định giá - định giá cho mỗi cuộc gọi có thể gây bất ngờ trên quy mô lớn, (6) Khấu hao - điều gì xảy ra khi nhà cung cấp không dùng phiên bản API nữa? (7) Khóa chặt - việc chuyển đổi nhà cung cấp khó đến mức nào? Những yếu tố này phải được ghi lại trong các yêu cầu.',
   },
   'ba-sm-001': {
@@ -1266,7 +1266,7 @@ export const baVi: QuestionTranslationMap = {
       'Chỉ có thành viên nhóm phát triển',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Các bên liên quan bao gồm bất kỳ ai quan tâm hoặc có tác động từ dự án: nhà tài trợ, người dùng cuối, nhà phát triển, cơ quan quản lý, khách hàng, ban quản lý, nhóm hỗ trợ, thậm chí cả đối thủ cạnh tranh. Việc xác định sớm TẤT CẢ các bên liên quan sẽ ngăn ngừa những bất ngờ sau này. Việc thiếu một bên liên quan chính có thể dẫn đến những thay đổi yêu cầu muộn hoặc sự phản đối của dự án.',
   },
   'ba-sm-002': {
@@ -1278,7 +1278,7 @@ export const baVi: QuestionTranslationMap = {
       'Xếp hạng các bên liên quan theo mức lương của họ',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Lưới Quyền lực/Lợi ích tạo ra 4 góc phần tư: Quyền lực cao + Lãi suất cao → Quản lý chặt chẽ (những người đóng vai trò chủ chốt), Quyền lực cao + Lãi suất thấp → Luôn hài lòng, Quyền lực thấp + Lãi suất cao → Luôn cập nhật thông tin, Quyền lực thấp + Lãi suất thấp → Giám sát. Điều này giúp BA phân bổ nỗ lực giao tiếp một cách hiệu quả - không phải tất cả các bên liên quan đều cần mức độ tham gia như nhau.',
   },
   'ba-sm-003': {
@@ -1298,7 +1298,7 @@ export const baVi: QuestionTranslationMap = {
       'Loại bỏ các tính năng ảnh hưởng đến đội ngũ Bán hàng',
       ''
     ],
-    answer: 2,
+    answer: '2',
     explanation: 'Sự phản kháng thường xuất phát từ nỗi sợ thay đổi, mất kiểm soát hoặc thiếu hiểu biết. BA nên: (1) lắng nghe và xác thực các mối quan ngại, (2) hiểu nguyên nhân cốt lõi (điều gì khiến họ lo lắng cụ thể?), (3) lôi kéo các bên liên quan vào thiết kế để họ có quyền sở hữu, (4) thể hiện những lợi ích cụ thể cho nhóm CỦA HỌ (không chỉ tổ chức), (5) cung cấp hỗ trợ đào tạo. Bỏ qua hoặc áp đảo sẽ tạo ra một kẻ thù mạnh mẽ.',
   },
   'ba-sm-005': {
@@ -1313,7 +1313,7 @@ export const baVi: QuestionTranslationMap = {
       'Biên bản ghi lại tất cả các cuộc họp được tổ chức với các bên liên quan',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Kế hoạch truyền thông ánh xạ từng nhóm bên liên quan tới: Thông tin cần thiết (cập nhật trạng thái, quyết định, rủi ro), Kênh (email, cuộc họp, bảng thông tin, báo cáo), Tần suất (dự kiến ​​hàng ngày, báo cáo hàng tuần, chỉ đạo hàng tháng), Chủ sở hữu (người gửi nó) và Định dạng (slide deck, một trang, bảng thông tin). Điều này đảm bảo đúng người nhận được thông tin phù hợp vào đúng thời điểm — ngăn ngừa tình trạng quá tải thông tin và thiếu hụt thông tin.',
   },
   'ba-sm-006': {
@@ -1329,7 +1329,7 @@ export const baVi: QuestionTranslationMap = {
       'Ghi lại cả hai yêu cầu một cách riêng biệt và để các nhà phát triển quyết định',
       ''
     ],
-    answer: 2,
+    answer: '2',
     explanation: 'Các yêu cầu xung đột là phổ biến khi các bên liên quan có những ưu tiên khác nhau. BA đóng vai trò là người hỗ trợ trung lập: (1) đảm bảo mỗi bên hiểu quan điểm của bên kia, (2) khám phá các lựa chọn thay thế sáng tạo (ví dụ: áp dụng công nghệ theo từng giai đoạn, các lựa chọn thay thế nguồn mở), (3) sử dụng các tiêu chí khách quan (phân tích ROI, đánh giá rủi ro) để đánh giá các lựa chọn, (4) nếu không thể đạt được sự đồng thuận, hãy báo cáo với cơ quan quản trị hoặc nhà tài trợ để đưa ra quyết định ưu tiên.',
   },
   'ba-sm-007': {
@@ -1348,7 +1348,7 @@ export const baVi: QuestionTranslationMap = {
       'Nó xếp hạng các bên liên quan theo thâm niên tổ chức của họ',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Mô hình nổi bật sử dụng 3 khía cạnh: Quyền lực (khả năng gây ảnh hưởng), Tính hợp pháp (sự tham gia phù hợp của họ), Tính khẩn cấp (sự nhạy cảm về thời gian trong các tuyên bố của họ). Sự kết hợp tạo ra 7 loại: ví dụ: "Dứt khoát" (cả 3), "Thống trị" (quyền lực + chính đáng), "Nguy hiểm" (quyền lực + cấp bách, không chính đáng). Điều này giúp xác định các bên liên quan có thể bị các mô hình đơn giản hơn bỏ qua - ví dụ: các cơ quan quản lý có thể có tính hợp pháp và tính cấp bách cao nhưng quyền lực hàng ngày lại thấp.',
   },
   'ba-sm-009': {
@@ -1367,7 +1367,7 @@ export const baVi: QuestionTranslationMap = {
       'Từ bỏ dự án vì phạm vi sẽ thay đổi',
       ''
     ],
-    answer: 2,
+    answer: '2',
     explanation: 'Thay đổi CEO là một sự kiện quan trọng của các bên liên quan. Đề án kinh doanh của dự án có thể phù hợp hoặc không phù hợp với tầm nhìn của CEO mới. BA trưởng nhóm nên chủ động: (1) yêu cầu một cuộc họp (không chờ được triệu tập), (2) chuẩn bị một bản tóm tắt đề án kinh doanh ngắn gọn thể hiện giá trị đã phân phối và lên kế hoạch, (3) lắng nghe các ưu tiên của CEO mới, (4) đánh giá sự liên kết và những thiếu sót, (5) đề xuất điều chỉnh nếu cần. Điều này thể hiện giá trị BA và giúp dự án không bị hủy bỏ hoặc bị loại bỏ nếu không có phân tích thích hợp.',
   },
   'ba-sm-011': {
@@ -1429,7 +1429,7 @@ export const baVi: QuestionTranslationMap = {
       'Danh sách truy vấn tuần tự',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'SQL (Ngôn ngữ truy vấn có cấu trúc) là ngôn ngữ tiêu chuẩn để quản lý và truy vấn cơ sở dữ liệu quan hệ. Nó được sử dụng để truy xuất dữ liệu (CHỌN), thao tác dữ liệu (CHÈN, CẬP NHẬT, XÓA) và định nghĩa dữ liệu (CREATE, ALTER, DROP). BA sử dụng SQL để phân tích dữ liệu, xác thực các yêu cầu và tạo báo cáo.',
   },
   'ba-sql-002': {
@@ -1441,8 +1441,8 @@ export const baVi: QuestionTranslationMap = {
       'CÓ',
       ''
     ],
-    answer: 2,
-    explanation: 'WHERE lọc các hàng trước khi nhóm. Ví dụ: CHỌN * TỪ đơn hàng WHERE trạng thái = \\'shipped\\'. ORDER BY sắp xếp kết quả. GROUP BY nhóm các hàng để tổng hợp. HAVING lọc các nhóm sau GROUP BY. Thứ tự thực hiện là: FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY.',
+    answer: '2',
+    explanation: 'WHERE lọc các hàng trước khi nhóm. Ví dụ: CHỌN * TỪ đơn hàng WHERE trạng thái = \'shipped\'. ORDER BY sắp xếp kết quả. GROUP BY nhóm các hàng để tổng hợp. HAVING lọc các nhóm sau GROUP BY. Thứ tự thực hiện là: FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY.',
   },
   'ba-sql-003': {
     question: 'Viết câu truy vấn SQL để tìm tất cả các khách hàng trong bảng “customer” ở “TPHCM” và đã hoạt động từ năm 2025.',
@@ -1458,7 +1458,7 @@ export const baVi: QuestionTranslationMap = {
       'INNER THAM GIA hoạt động trên 2 bảng; LEFT THAM GIA hoạt động trên hơn 3 bảng',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'INNER THAM GIA: chỉ các hàng có điều kiện nối khớp trong cả hai bảng (giao lộ). THAM GIA TRÁI: tất cả các hàng từ bảng bên trái + các hàng khớp từ bảng bên phải; các giá trị bên phải chưa được so sánh là NULL. Ví dụ: LEFT JOIN hiển thị tất cả khách hàng ngay cả khi họ không có đơn hàng nào (cột đơn hàng = NULL), trong khi INNER JOIN sẽ loại trừ họ.',
   },
   'ba-sql-005': {
@@ -1478,8 +1478,8 @@ export const baVi: QuestionTranslationMap = {
       'CẤP VÀ THU HỒI',
       ''
     ],
-    answer: 1,
-    explanation: 'Phân tích xu hướng yêu cầu trích xuất các thành phần thời gian (tháng, năm) và tổng hợp số liệu theo từng thời kỳ. Ví dụ: CHỌN DATE_TRUNC(\\'tháng\',
+    answer: '1',
+    explanation: "Phân tích xu hướng yêu cầu trích xuất các thành phần thời gian (tháng, năm) và tổng hợp số liệu theo từng thời kỳ. Ví dụ: CHỌN DATE_TRUNC('tháng', order_date), SUM(amount) FROM orders GROUP BY DATE_TRUNC('tháng', order_date).",
   },
   'ba-sql-007': {
     question: 'Viết truy vấn SQL để tìm những khách hàng thực hiện giao dịch mua hàng đầu tiên vào năm 2025 VÀ đã thực hiện ít nhất 3 đơn hàng kể từ đó. Sử dụng bảng "đơn hàng" (customer_id, order_date, Total_amount).',
@@ -1496,7 +1496,7 @@ export const baVi: QuestionTranslationMap = {
       'Vấn đề về tính hợp lệ của dữ liệu',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Tính nhất quán của dữ liệu có nghĩa là cùng một thực thể dữ liệu có cùng giá trị trên tất cả các hệ thống. Sự không nhất quán thường xuất phát từ: không có nguồn thông tin chính xác duy nhất, nhập dữ liệu thủ công trong nhiều hệ thống hoặc thiếu đồng bộ hóa dữ liệu. Giải pháp là Quản lý dữ liệu tổng thể (MDM): thiết lập bản ghi vàng (nguồn có thẩm quyền) và đồng bộ hóa nó trên các hệ thống. Các khía cạnh chất lượng dữ liệu bao gồm: tính chính xác, tính đầy đủ, tính nhất quán, tính kịp thời, tính hợp lệ và tính duy nhất.',
   },
   'ba-sql-009': {
@@ -1519,7 +1519,7 @@ export const baVi: QuestionTranslationMap = {
       'Tài liệu đào tạo cho nhóm phát triển',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Dự án kho dữ liệu phải được thúc đẩy bởi các câu hỏi kinh doanh chứ không phải công nghệ. BA Lead trước tiên cần hiểu: (1) Doanh nghiệp cần đưa ra những quyết định gì? (2) Những câu hỏi/KPI nào thúc đẩy những quyết định đó? (3) Cần có dữ liệu gì để trả lời chúng? (4) Dữ liệu đó đến từ đâu (hệ thống nguồn)? (5) Đường cơ sở chất lượng dữ liệu là gì? (6) Ai cần tiếp cận và ở cấp độ nào? Cách tiếp cận "dựa trên câu hỏi" này đảm bảo DW mang lại giá trị kinh doanh.',
   },
   'ba-uq-001': {
@@ -1531,7 +1531,7 @@ export const baVi: QuestionTranslationMap = {
       'Kiểm thử ứng dụng toàn cầu - kiểm thử trên tất cả các nền tảng',
       ''
     ],
-    answer: 0,
+    answer: '0',
     explanation: 'UAT là giai đoạn thử nghiệm cuối cùng trong đó người dùng doanh nghiệp thực tế xác nhận rằng hệ thống đáp ứng các yêu cầu và quy trình kinh doanh của họ. Đây KHÔNG phải là thử nghiệm chức năng/kỹ thuật (được thực hiện bởi QA trước đó). UAT trả lời câu hỏi: “Hệ thống này có làm được những gì doanh nghiệp cần không?” UAT thành công dẫn đến việc phê duyệt chính thức và triển khai sản xuất.',
   },
   'ba-uq-002': {
@@ -1550,7 +1550,7 @@ export const baVi: QuestionTranslationMap = {
       'Nhận xét về mã của nhà phát triển giải thích logic kiểm tra',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Một trường hợp kiểm thử bao gồm: ID kiểm thử, Mô tả, Điều kiện tiên quyết, Các bước kiểm thử (hành động cụ thể), Dữ liệu kiểm thử (đầu vào cụ thể), Kết quả mong đợi (điều gì sẽ xảy ra) và Kết quả thực tế (điều thực sự đã xảy ra). Các trường hợp thử nghiệm được bắt nguồn từ các yêu cầu và tiêu chí chấp nhận. Mỗi trường hợp thử nghiệm phải xác minh một khía cạnh cụ thể của hệ thống.',
   },
   'ba-uq-004': {
@@ -1562,7 +1562,7 @@ export const baVi: QuestionTranslationMap = {
       'Mức độ nghiêm trọng chỉ áp dụng cho UAT; Ưu tiên áp dụng cho thử nghiệm phát triển',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Ví dụ: Lỗi đánh máy trong logo công ty trên trang chủ = mức độ nghiêm trọng thấp (không ảnh hưởng đến chức năng) nhưng mức độ ưu tiên cao (tất cả người dùng đều có thể nhìn thấy, hình ảnh thương hiệu). Một sự cố hiếm gặp trong báo cáo quản trị được sử dụng hàng quý = mức độ nghiêm trọng cao (sự cố hệ thống) nhưng mức độ ưu tiên thấp hơn (hiếm khi được sử dụng, có giải pháp thay thế). BA giúp các bên liên quan hiểu được sự khác biệt này khi phân loại lỗi.',
   },
   'ba-uq-005': {
@@ -1578,7 +1578,7 @@ export const baVi: QuestionTranslationMap = {
       'Chỉ cần chuẩn bị sẵn tài liệu kế hoạch kiểm tra UAT',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Tiêu chí đầu vào ngăn chặn việc khởi động UAT sớm gây lãng phí thời gian của người dùng doanh nghiệp. Tiêu chí chính: (1) SIT hoàn chỉnh, không có lỗi mở nghiêm trọng/lớn, (2) môi trường thử nghiệm ổn định, giống như sản xuất, (3) các trường hợp thử nghiệm UAT được xem xét và phê duyệt, (4) dữ liệu thử nghiệm được chuẩn bị (thực tế, ẩn danh nếu cần), (5) quyền truy cập của người dùng được cung cấp, (6) người dùng doanh nghiệp được tóm tắt/đào tạo, (7) lịch trình UAT được truyền đạt. Bắt đầu UAT mà không có những thứ này sẽ dẫn đến sự thất vọng và kết quả không hợp lệ.',
   },
   'ba-uq-006': {
@@ -1590,7 +1590,7 @@ export const baVi: QuestionTranslationMap = {
       'Kiểm tra hiệu suất dưới tải nặng',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Kiểm tra hồi quy bảo vệ chống lại các tác dụng phụ ngoài ý muốn. Khi một lỗi được sửa hoặc một tính năng mới được thêm vào, sự thay đổi đó có thể làm hỏng một số thứ khác. Kiểm tra hồi quy chạy lại các trường hợp kiểm thử hiện có để xác minh không có gì bị hỏng. Tự động hóa rất có giá trị cho thử nghiệm hồi quy vì các thử nghiệm tương tự được chạy lặp đi lặp lại. BA phải đảm bảo phạm vi kiểm tra hồi quy bao gồm các lĩnh vực liên quan đến thay đổi.',
   },
   'ba-uq-007': {
@@ -1611,7 +1611,7 @@ export const baVi: QuestionTranslationMap = {
       'Phạm vi yêu cầu hoàn toàn thuộc trách nhiệm của nhóm QA',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Yêu cầu và thử nghiệm cầu nối của BA: (1) tạo/duy trì các yêu cầu liên kết Ma trận truy xuất nguồn gốc yêu cầu (RTM) → trường hợp thử nghiệm, (2) xem xét các trường hợp thử nghiệm QA về độ chính xác trong kinh doanh (QA có thể hiểu sai các yêu cầu), (3) xác định các khoảng trống trong phạm vi (yêu cầu chưa được kiểm tra hoặc tiêu chí chấp nhận), (4) đảm bảo các yêu cầu phi chức năng có phương pháp thử nghiệm, (5) tham gia phân loại lỗi để xác định xem lỗi là lỗi yêu cầu hay lỗi triển khai.',
   },
   'ba-uq-009': {
@@ -1630,7 +1630,7 @@ export const baVi: QuestionTranslationMap = {
       'Hãy để người quản lý dự án đưa ra quyết định này mà không cần đầu vào BA',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Bỏ qua hoàn toàn UAT là vô trách nhiệm (vấn đề sản xuất tốn kém hơn so với việc trì hoãn ra mắt). Tuy nhiên, việc nhấn mạnh vào UAT đầy đủ khi lịch trình là quan trọng có thể không thực tế. Cách tiếp cận dựa trên rủi ro tập trung UAT vào các lộ trình quan trọng (tác động kinh doanh cao nhất), trì hoãn các kịch bản có rủi ro thấp hơn (với sự chấp nhận rủi ro được ghi lại) và cung cấp mạng lưới an toàn (kế hoạch khôi phục, giám sát sau phát hành). Điều này giúp cân bằng chất lượng với tính cấp bách trong kinh doanh - một kỹ năng quan trọng của Lead BA.',
   },
   'ba-us-001': {
@@ -1638,7 +1638,7 @@ export const baVi: QuestionTranslationMap = {
     options: [
       'Cho [bối cảnh'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Định dạng câu chuyện tiêu chuẩn của người dùng là: "Là một [loại người dùng], tôi muốn [mục tiêu/mong muốn], để [lợi ích/lý do]." Định dạng này nắm bắt được AI cần tính năng này, NHỮNG GÌ họ cần và TẠI SAO. Định dạng Given-When-Then được sử dụng cho tiêu chí chấp nhận (BDD), chứ không phải bản thân câu chuyện.',
   },
   'ba-us-002': {
@@ -1670,7 +1670,7 @@ export const baVi: QuestionTranslationMap = {
       'Minh bạch',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'INVEST là một công cụ ghi nhớ cho chất lượng câu chuyện tốt của người dùng: Độc lập (không phụ thuộc), Có thể thương lượng (không phải hợp đồng), Có giá trị (mang lại giá trị kinh doanh), Ước tính (nhóm có thể xác định quy mô), Nhỏ (phù hợp với chạy nước rút), Có thể kiểm thử (tiêu chí chấp nhận rõ ràng). Những câu chuyện vi phạm ĐẦU TƯ sẽ khó lập kế hoạch và phân phối hơn.',
   },
   'ba-us-003': {
@@ -1689,7 +1689,7 @@ export const baVi: QuestionTranslationMap = {
       'Kịch bản thử nghiệm cho hệ thống',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Tác nhân là bất kỳ thực thể nào bên ngoài hệ thống tương tác với nó. Đây có thể là người dùng con người (ví dụ: Khách hàng, Quản trị viên), hệ thống khác (ví dụ: Cổng thanh toán) hoặc thiết bị (ví dụ: cảm biến IoT). Các tác nhân được vẽ dưới dạng hình que bên ngoài ranh giới hệ thống trong sơ đồ ca sử dụng UML.',
   },
   'ba-us-005': {
@@ -1701,7 +1701,7 @@ export const baVi: QuestionTranslationMap = {
       'Không có sự khác biệt - chúng là những thuật ngữ có thể hoán đổi cho nhau',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Epic là một câu chuyện người dùng lớn, quá lớn cho một lần chạy nước rút và cần được phân tách. Hệ thống phân cấp: Chủ đề → Sử thi → Câu chuyện của người dùng → Nhiệm vụ. Ví dụ: Sử thi: "Hệ thống xác thực người dùng" → Câu chuyện: "Đăng nhập bằng email',
   },
   'ba-us-006': {
@@ -1719,7 +1719,7 @@ export const baVi: QuestionTranslationMap = {
       'Một công cụ để ước tính điểm câu chuyện bằng cách lập kế hoạch chơi bài poker',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Bản đồ câu chuyện người dùng (của Jeff Patton) tạo bản đồ 2D: trục hoành hiển thị các bước trong hành trình của người dùng (xương sống/hoạt động) và trục tung hiển thị các câu chuyện theo từng bước được sắp xếp theo mức độ ưu tiên. Một đường ngang cắt ngang để xác định MVP hoặc phạm vi phát hành. Nó cung cấp bối cảnh mà một hồ sơ tồn đọng phẳng thiếu - cho thấy các câu chuyện liên quan như thế nào đến trải nghiệm tổng thể của người dùng.',
   },
   'ba-us-008': {
@@ -1731,7 +1731,7 @@ export const baVi: QuestionTranslationMap = {
       'Chúng giống hệt nhau; hoặc có thể được sử dụng thay thế cho nhau',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: '<<include>> = thành phần bắt buộc: trường hợp sử dụng cơ sở luôn gọi thành phần được bao gồm (ví dụ: "Đặt hàng" <<includes>> "Xác thực thanh toán"). <<extend>> = phần mở rộng tùy chọn: trường hợp sử dụng mở rộng chỉ thêm hành vi khi một điều kiện được đáp ứng (ví dụ: "Đặt hàng" được <<mở rộng bởi>> "Áp dụng phiếu giảm giá" nếu nhập mã phiếu giảm giá). Sự khác biệt này rất quan trọng để hiểu được tính đầy đủ của hành vi hệ thống.',
   },
   'ba-us-009': {
@@ -1744,7 +1744,7 @@ export const baVi: QuestionTranslationMap = {
       'Chỉ định tất cả các câu chuyện phụ thuộc cho cùng một nhà phát triển',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Cắt dọc tạo ra các câu chuyện mang lại giá trị từ đầu đến cuối thông qua tất cả các lớp (UI → API → DB) thay vì cắt ngang theo lớp. Ví dụ: thay vì "Xây dựng bảng người dùng" + "Xây dựng API người dùng" + "Xây dựng biểu mẫu người dùng',
   },
   'ba-us-010': {
@@ -1769,7 +1769,7 @@ export const baVi: QuestionTranslationMap = {
       'Tiêu chuẩn',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Ron Jeffries đã xác định 3 chữ C: Thẻ (câu chuyện được viết trên thẻ - ngắn gọn, lời nhắc), Hội thoại (đối thoại liên tục giữa BA, PO, nhà phát triển và người kiểm tra để xác định chi tiết) và Xác nhận (tiêu chí/kiểm tra chấp nhận xác nhận câu chuyện đã hoàn thành). Câu chuyện của người dùng KHÔNG phải là thông số kỹ thuật chi tiết — Thẻ là phần giữ chỗ cho Cuộc trò chuyện, được xác nhận bằng các thử nghiệm.',
   },
   'ba-us-012': {
@@ -1791,7 +1791,7 @@ export const baVi: QuestionTranslationMap = {
       'Chỉ khi dự án sử dụng phương pháp Thác nước',
       ''
     ],
-    answer: 2,
+    answer: '2',
     explanation: 'Câu chuyện của người dùng hoạt động tốt trong Agile đối với hầu hết các tính năng vì chúng nhấn mạnh vào cuộc trò chuyện. Tuy nhiên, các lĩnh vực phức tạp (y tế, tài chính, quy định) thường cần các luồng tương tác chi tiết, từng bước với các điều kiện tiên quyết, hậu điều kiện, luồng ngoại lệ và quy tắc kinh doanh rõ ràng. Các trường hợp sử dụng được trang bị đầy đủ (theo Alistair Cockburn) mang lại sự nghiêm ngặt này. Sự lựa chọn phụ thuộc vào ngữ cảnh, không phụ thuộc vào phương pháp luận - ngay cả các nhóm Agile cũng có thể sử dụng các trường hợp sử dụng khi mức độ phức tạp đòi hỏi điều đó.',
   },
   'ba-us-014': {
@@ -1802,7 +1802,7 @@ export const baVi: QuestionTranslationMap = {
       'Để liệt kê các bên liên quan đã yêu cầu tính năng này',
       'Để đặt mức độ ưu tiên của câu chuyện'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Phần "Vậy đó" giải thích động lực. Hiểu được TẠI SAO giúp nhóm phát triển đề xuất những “cách thức” tốt hơn và đảm bảo việc triển khai thực sự đạt được lợi ích mong muốn.',
   },
   'ba-us-015': {
@@ -1818,7 +1818,7 @@ export const baVi: QuestionTranslationMap = {
       'Hệ thống tự động đăng xuất người dùng sau 30 phút',
       'Quá trình lưu file vào cơ sở dữ liệu'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Mở rộng mối quan hệ thể hiện hành vi tùy chọn hoặc có điều kiện. Luồng cơ sở (thanh toán) hoàn tất nếu không có nó, nhưng có thể được mở rộng bằng luồng tùy chọn (mã giảm giá).',
   },
   'ba-us-017': {
@@ -1850,7 +1850,7 @@ export const baVi: QuestionTranslationMap = {
       'Viết chúng dưới dạng "Câu chuyện kỹ thuật" riêng biệt',
       'Đặt chúng vào một tài liệu riêng biệt mà không ai từng đọc'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'NFR (như hiệu suất hoặc bảo mật) phải là các ràng buộc đối với các câu chuyện cụ thể (thông qua AC) hoặc các tiêu chuẩn toàn cầu (thông qua DoD) để đảm bảo chúng được xác minh trong mỗi lần chạy nước rút.',
   },
   'ba-us-022': {
@@ -1862,7 +1862,7 @@ export const baVi: QuestionTranslationMap = {
       'Một câu chuyện có tác động tiêu cực đến ngân sách',
       'Một câu chuyện đã bị xóa khỏi hồ sơ tồn đọng'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Câu chuyện tiêu cực (hoặc Câu chuyện về kẻ lạm dụng) giúp các nhóm suy nghĩ về những điều KHÔNG NÊN xảy ra, dẫn đến các yêu cầu bảo mật và xác thực tốt hơn.',
   },
   'ba-us-023': {
@@ -1880,7 +1880,7 @@ export const baVi: QuestionTranslationMap = {
       'Wireframe được thiết kế bởi các nhà phát triển; một nguyên mẫu được thiết kế bởi các nhà thiết kế',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Wireframe là các bố cục khung - giống như bản thiết kế hiển thị vị trí của các phần tử (điều hướng, khu vực nội dung, nút) mà không có chi tiết thiết kế trực quan. Nguyên mẫu thêm tính tương tác: các nút có thể nhấp, chuyển trang, gửi biểu mẫu. Phổ độ trung thực: phác thảo → wireframe → mockup (thiết kế trực quan) → nguyên mẫu (tương tác). BA thường tạo wireframe có độ chính xác thấp/trung bình để xác thực các yêu cầu.',
   },
   'ba-wp-002': {
@@ -1896,7 +1896,7 @@ export const baVi: QuestionTranslationMap = {
       'không phải BA',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Wireframe giúp BA vì: (1) các bên liên quan hiểu hình ảnh tốt hơn thông số văn bản, (2) cách trình bày trực quan cho thấy những khoảng trống ("thông báo lỗi đi đâu?"), (3) tạo điều kiện cho các vòng phản hồi nhanh hơn, (4) giảm thông tin sai lệch giữa BA, thiết kế và phát triển. Wireframe BA có độ chính xác thấp - chúng truyền đạt cấu trúc và dòng chảy chứ không phải thiết kế cuối cùng.',
   },
   'ba-wp-003': {
@@ -1916,7 +1916,7 @@ export const baVi: QuestionTranslationMap = {
       'Luồng người dùng là kế hoạch triển khai của nhà phát triển',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Luồng người dùng hiển thị hành trình (màn hình A → quyết định → màn hình B hoặc C), trong khi wireframe hiển thị bố cục màn hình riêng lẻ. Chúng cùng nhau tạo thành một bức tranh hoàn chỉnh: luồng hiển thị ĐÂU người dùng đến và wireframe hiển thị NHỮNG GÌ họ nhìn thấy ở mỗi điểm dừng. Ví dụ: Luồng đăng nhập → Bảng điều khiển → Danh sách sản phẩm → Chi tiết sản phẩm → Giỏ hàng → Thanh toán → Xác nhận.',
   },
   'ba-wp-005': {
@@ -1930,7 +1930,7 @@ export const baVi: QuestionTranslationMap = {
       'Photoshop',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Figma là tiêu chuẩn ngành cho wireframing và tạo mẫu vì: (1) cộng tác trong thời gian thực (như Google Docs dành cho thiết kế), (2) thư viện hệ thống thiết kế/thành phần để đảm bảo tính nhất quán, (3) tạo mẫu tích hợp sẵn (khung liên kết, thêm chuyển tiếp), (4) miễn phí cho các nhóm nhỏ, (5) chạy trong trình duyệt (không cần cài đặt). Các công cụ khác: Sketch (chỉ dành cho máy Mac), Adobe XD (đã ngừng sản xuất), Balsamiq (chỉ lo-fi), Axure (tạo mẫu nâng cao).',
   },
   'ba-wp-006': {
@@ -1945,7 +1945,7 @@ export const baVi: QuestionTranslationMap = {
       'Kiểm tra chất lượng mã trong các ứng dụng lối vào',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: '10 chẩn đoán của Jakob Nielsen là một khuôn khổ để đánh giá khả năng sử dụng UI: (1) Khả năng hiển thị trạng thái hệ thống, (2) Sự phù hợp giữa hệ thống và thế giới thực, (3) Kiểm soát người dùng và sự tự do, (4) Tính nhất quán và tiêu chuẩn, (5) Ngăn ngừa lỗi, (6) Nhận biết hơn là thu hồi, (7) Tính linh hoạt và hiệu quả, (8) Thiết kế thẩm mỹ và tối giản, (9) Giúp người dùng nhận ra/khắc phục sau lỗi, (10) Trợ giúp và tài liệu hóa. Các BA sử dụng chúng để xem xét wireframe trước khi chuyển giao.',
   },
   'ba-wp-007': {
@@ -1966,7 +1966,7 @@ export const baVi: QuestionTranslationMap = {
       'IA là một khung CSS cho bố cục đáp ứng',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Kiến trúc thông tin xác định cách tổ chức, gắn nhãn và truy cập nội dung. Nó bao gồm: cấu trúc điều hướng (menu, đường dẫn), phân loại nội dung (danh mục, thẻ), chiến lược tìm kiếm và ghi nhãn (những thứ được gọi là gì). BA ảnh hưởng đến IA thông qua: mô hình hóa miền (mối quan hệ thực thể), nghiên cứu người dùng (cách người dùng nghĩ về nội dung) và bài tập sắp xếp thẻ (cho phép người dùng sắp xếp nội dung một cách tự nhiên).',
   },
   'ba-wp-009': {
@@ -1986,7 +1986,7 @@ export const baVi: QuestionTranslationMap = {
       'Chỉ khi có người thiết kế',
       ''
     ],
-    answer: 2,
+    answer: '2',
     explanation: 'Nguyên mẫu có độ chính xác cao là một khoản đầu tư. Chúng có giá trị khi: (1) Sản phẩm mới và chưa có mô hình tinh thần hiện có, (2) Các bên liên quan không thể đồng ý về những gì họ muốn từ thông số kỹ thuật văn bản, (3) Chi phí phát triển rất cao (ứng dụng di động, hệ thống nhúng) — rẻ hơn khi lặp lại trên nguyên mẫu, (4) Phê duyệt theo quy định yêu cầu trình diễn giao diện người dùng trước khi xây dựng, (5) Khả năng sử dụng là điểm khác biệt chính. Đối với các tính năng hoặc công cụ nội bộ được hiểu rõ, độ trung thực thấp hơn là đủ.',
   },
 }

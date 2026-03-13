@@ -59,12 +59,12 @@ export const baEn: QuestionTranslationMap = {
     explanation: 'For a 2-week sprint, the retrospective is timeboxed at 1.5 hours (max 3 hours for a 4-week sprint). The retrospective inspects the last sprint regarding people, relationships, process, and tools. The team identifies the most helpful changes and creates an actionable improvement plan. It is the key event for continuous improvement.',
   },
   'ba-ag-006': {
-    question: 'What is the BA\\'s primary role during Sprint Planning in a Scrum team?',
+    question: 'What is the BA\'s primary role during Sprint Planning in a Scrum team?',
     options: [
       'Write code for the highest-priority stories',
       'Clarify requirements',
       'answer questions about acceptance criteria',
-      'and help the team understand the user\\'s perspective and business context',
+      'and help the team understand the user\'s perspective and business context',
       'Run the Sprint Planning meeting as the facilitator',
       'Estimate story points for each backlog item',
       ''
@@ -75,7 +75,7 @@ export const baEn: QuestionTranslationMap = {
     question: 'What is the difference between a Sprint Review and a Sprint Retrospective?',
     options: [
       'They are the same meeting with different names',
-      'Sprint Review inspects the product increment and gets stakeholder feedback; Sprint Retrospective inspects the team\\'s process and identifies improvements',
+      'Sprint Review inspects the product increment and gets stakeholder feedback; Sprint Retrospective inspects the team\'s process and identifies improvements',
       'Sprint Review is for the dev team only; Sprint Retrospective includes stakeholders',
       'Sprint Review happens at the start of a sprint; Sprint Retrospective happens at the end',
       ''
@@ -137,15 +137,15 @@ export const baEn: QuestionTranslationMap = {
     question: 'In a large Agile organization, velocity varies significantly across teams (one team delivers 40 points/sprint, another delivers 20). A manager wants to standardize story points across teams. What should the Lead BA advise?',
     options: [
       'Agree and create a standard story point rubric for all teams',
-      'Advise against it — story points are relative estimates meaningful only within a team\\'s context; instead',
+      'Advise against it — story points are relative estimates meaningful only within a team\'s context; instead',
       'use other metrics like cycle time',
       'throughput',
       'or features delivered for cross-team comparison',
       'Suggest using hours instead of story points for more accuracy',
-      'Recommend doubling the slower team\\'s estimates to normalize',
+      'Recommend doubling the slower team\'s estimates to normalize',
       ''
     ],
-    explanation: 'Story points are relative to each team\\'s historical performance. A "5" in Team A reflects THAT team\\'s complexity assessment, not a universal measure. Standardizing points across teams creates false equivalence and gaming behavior. For cross-team comparison, use team-neutral metrics: cycle time (how fast), throughput (how many items delivered per sprint), or value delivered (business outcomes).',
+    explanation: 'Story points are relative to each team\'s historical performance. A "5" in Team A reflects THAT team\'s complexity assessment, not a universal measure. Standardizing points across teams creates false equivalence and gaming behavior. For cross-team comparison, use team-neutral metrics: cycle time (how fast), throughput (how many items delivered per sprint), or value delivered (business outcomes).',
   },
   'ba-ag-014': {
     question: 'How long is a Daily Scrum session time-boxed for?',
@@ -190,9 +190,9 @@ export const baEn: QuestionTranslationMap = {
     explanation: 'The DoD ensures everyone has a shared understanding of what "finished" means (e.g., code reviewed, unit tested, documentation updated). An increment is only "Done" if it meets the DoD.',
   },
   'ba-ag-018': {
-    question: 'Your team is struggling with "Scrum-but" (we use Scrum but we don\\'t do retrospectives). How do you convince them of the value of retros?',
+    question: 'Your team is struggling with "Scrum-but" (we use Scrum but we don\'t do retrospectives). How do you convince them of the value of retros?',
     answer: 'Strategy:\n1. Highlight Pain Points: Point out recurring issues that never get fixed.\n2. Small Experiment: Suggest a 45-min "Speed Retro" for one sprint only.\n3. Action Oriented: Ensure at least one improvement is implemented immediately so they see the result.\n4. Safe Space: Use anonymous tools like FunRetrospectives to ensure participation.',
-    explanation: 'Resistance to retros usually stems from them feeling like "useless meetings." Connecting the meeting to direct improvements in the team\\'s daily life is the key.',
+    explanation: 'Resistance to retros usually stems from them feeling like "useless meetings." Connecting the meeting to direct improvements in the team\'s daily life is the key.',
   },
   'ba-ag-019': {
     question: 'The Sprint Backlog is owned by the Product Owner.',
@@ -308,12 +308,12 @@ export const baEn: QuestionTranslationMap = {
     explanation: 'Events are circles in BPMN. Start Events (thin border) trigger the process, End Events (thick border) conclude it, and Intermediate Events (double border) occur during the process. Events can be typed: message (envelope icon), timer (clock icon), error (lightning bolt), signal, etc. They represent triggers and results.',
   },
   'ba-bp-007': {
-    question: 'Model the "Employee Onboarding" process using BPMN concepts. Describe the pools/lanes, key activities, gateways, and events for a process involving HR, IT, and the new employee\\'s Manager.',
+    question: 'Model the "Employee Onboarding" process using BPMN concepts. Describe the pools/lanes, key activities, gateways, and events for a process involving HR, IT, and the new employee\'s Manager.',
     answer: 'Pool: "Employee Onboarding Process"\n\nLane 1 — HR Department:\n- Start Event: "New hire contract signed"\n- Task: "Create employee record in HRIS"\n- Task: "Send welcome packet and orientation schedule"\n- Task: "Conduct Day-1 orientation session"\n- Task: "Enroll in benefits plan"\n\nLane 2 — IT Department:\n- Task: "Provision laptop and access credentials"\n- Task: "Setup email and software accounts"\n- Task: "Grant system access based on role"\n- Exclusive Gateway: "Remote employee?"\n  - Yes → Task: "Ship equipment to home address"\n  - No → Task: "Setup desk and office equipment"\n\nLane 3 — Manager:\n- Task: "Prepare 30-60-90 day plan"\n- Task: "Assign onboarding buddy"\n- Task: "Schedule introduction meetings with team"\n- Timer Intermediate Event: "After 30 days"\n- Task: "Conduct first check-in review"\n\nParallel Gateway after Start: HR',
     explanation: 'This process model demonstrates key BPMN concepts: multiple lanes for role separation, parallel gateway for concurrent tracks (HR, IT, Manager all start simultaneously), exclusive gateway for conditional branching (remote vs. office), timer event for scheduled activities, and message flows for inter-department communication. Gap analysis might reveal bottlenecks like IT provisioning delays.',
   },
   'ba-bp-008': {
-    question: 'When analyzing a business process for improvement, which Lean methodology concept identifies steps that do NOT add value from the customer\\'s perspective?',
+    question: 'When analyzing a business process for improvement, which Lean methodology concept identifies steps that do NOT add value from the customer\'s perspective?',
     options: [
       'Critical Path Analysis',
       'Value Stream Mapping — identifying value-adding vs. non-value-adding (waste/muda) activities',
@@ -371,7 +371,7 @@ export const baEn: QuestionTranslationMap = {
       'End the meeting early because it is no longer productive',
       ''
     ],
-    explanation: 'The "parking lot" technique captures off-topic items without dismissing them: "That\\'s an important point — let me add it to our parking lot list and we\\'ll address it separately after the meeting." This respects the stakeholder while keeping the meeting on track. Review parking lot items at the end or schedule follow-up sessions.',
+    explanation: 'The "parking lot" technique captures off-topic items without dismissing them: "That\'s an important point — let me add it to our parking lot list and we\'ll address it separately after the meeting." This respects the stakeholder while keeping the meeting on track. Review parking lot items at the end or schedule follow-up sessions.',
   },
   'ba-cn-004': {
     question: 'What is the "5 Whys" technique and when should a BA use it?',
@@ -412,7 +412,7 @@ export const baEn: QuestionTranslationMap = {
   'ba-cn-007': {
     question: 'You need to facilitate a 2-hour requirements workshop with 12 participants from different departments who have never worked together. Design the workshop agenda, facilitation techniques, and how you would handle dominant and silent participants.',
     answer: 'Workshop Design:\n\nPre-workshop:\n- Send agenda',
-    explanation: 'Effective workshop facilitation requires structured techniques that balance participation. Silent brainstorming prevents the HIPPO effect (Highest Paid Person\\'s Opinion dominating). Dot voting democratizes prioritization. Round-robin ensures all voices are heard. The facilitator\\'s role is to manage group dynamics, not to contribute opinions — neutrality builds trust.',
+    explanation: 'Effective workshop facilitation requires structured techniques that balance participation. Silent brainstorming prevents the HIPPO effect (Highest Paid Person\'s Opinion dominating). Dot voting democratizes prioritization. Round-robin ensures all voices are heard. The facilitator\'s role is to manage group dynamics, not to contribute opinions — neutrality builds trust.',
   },
   'ba-cn-008': {
     question: 'During a negotiation about project scope, the client demands 5 additional features with no budget increase. Which negotiation strategy is MOST appropriate?',
@@ -462,7 +462,7 @@ export const baEn: QuestionTranslationMap = {
     question: 'What is the "Yes, and..." technique in facilitation?',
     options: [
       'Agreeing with everything the stakeholder says',
-      'A technique from improvisational theatre used to build on others\\' ideas without immediately shutting them down',
+      'A technique from improvisational theatre used to build on others\' ideas without immediately shutting them down',
       'fostering creativity in sessions',
       'Saying yes but doing the opposite',
       'A way to trick people into agreeing'
@@ -509,7 +509,7 @@ export const baEn: QuestionTranslationMap = {
       'The code written by developers',
       'Body language',
       'eye contact',
-      'and tone of voice — it often reveals more about a stakeholder\\'s true feelings or level of agreement than their words alone',
+      'and tone of voice — it often reveals more about a stakeholder\'s true feelings or level of agreement than their words alone',
       'The silent part of a video call',
       'A type of email that contains no text'
     ],
@@ -525,7 +525,7 @@ export const baEn: QuestionTranslationMap = {
       'Accept any price they give',
       'Cancel the project'
     ],
-    explanation: 'When you can\\'t walk away, you must shift from competitive negotiation (splitting the pie) to collaborative negotiation (finding additional value for both sides).',
+    explanation: 'When you can\'t walk away, you must shift from competitive negotiation (splitting the pie) to collaborative negotiation (finding additional value for both sides).',
   },
   'ba-cn-019': {
     question: 'Which conflict management style is most appropriate when the business relationship is critical and the issue is complex?',
@@ -537,11 +537,11 @@ export const baEn: QuestionTranslationMap = {
       'Accommodating (I lose',
       'you win)'
     ],
-    explanation: 'Collaboration takes longer but ensures both parties\\' interests are met, which is vital for long-term stakeholder partnerships on complex projects.',
+    explanation: 'Collaboration takes longer but ensures both parties\' interests are met, which is vital for long-term stakeholder partnerships on complex projects.',
   },
   'ba-cn-020': {
     question: 'Design a "Feedback Mechanism" to improve BA communication skills across your team of 10 BAs.',
-    answer: 'BA Feedback Loop:\n1. Peer Reviews: BAs attend each others\\' workshops and provide "Post-Session Feedback."\n2. Recording & Analysis: Recording (with permission) key elicitation sessions for self-review.\n3. Stakeholder NPS: Quarterly 3-question survey to internal stakeholders about BA clarity and responsiveness.\n4. Success Stories: Monthly knowledge-sharing sessions where "difficult negotiations" are discussed and learned from.',
+    answer: 'BA Feedback Loop:\n1. Peer Reviews: BAs attend each others\' workshops and provide "Post-Session Feedback."\n2. Recording & Analysis: Recording (with permission) key elicitation sessions for self-review.\n3. Stakeholder NPS: Quarterly 3-question survey to internal stakeholders about BA clarity and responsiveness.\n4. Success Stories: Monthly knowledge-sharing sessions where "difficult negotiations" are discussed and learned from.',
     explanation: 'Communication is a soft skill that requires a culture of continuous feedback and safe practice to improve.',
   },
   'ba-dk-001': {
@@ -549,7 +549,7 @@ export const baEn: QuestionTranslationMap = {
     options: [
       'BAs need domain knowledge to write code for the system',
       'Domain knowledge helps BAs understand the business context',
-      'speak stakeholders\\' language',
+      'speak stakeholders\' language',
       'ask better questions',
       'and identify gaps that non-domain experts would miss',
       'Domain knowledge is only important for senior BAs',
@@ -619,12 +619,12 @@ export const baEn: QuestionTranslationMap = {
     question: 'In logistics, what does "last-mile delivery" refer to?',
     options: [
       'The first step of the delivery process from warehouse to distribution center',
-      'The final leg of delivery from a distribution hub to the end customer\\'s doorstep — typically the most expensive and complex part of the supply chain',
+      'The final leg of delivery from a distribution hub to the end customer\'s doorstep — typically the most expensive and complex part of the supply chain',
       'The process of returning products to the manufacturer',
       'Long-distance shipping between countries',
       ''
     ],
-    explanation: 'Last-mile delivery is the final (and often most expensive) step: from the local distribution center/hub to the customer\\'s door. It accounts for ~53% of total shipping costs due to: small individual deliveries, urban traffic, failed delivery attempts, and customer availability windows. BAs in logistics focus on optimizing this through route optimization, delivery time windows, real-time tracking, and alternative delivery points (lockers, pickup stores).',
+    explanation: 'Last-mile delivery is the final (and often most expensive) step: from the local distribution center/hub to the customer\'s door. It accounts for ~53% of total shipping costs due to: small individual deliveries, urban traffic, failed delivery attempts, and customer availability windows. BAs in logistics focus on optimizing this through route optimization, delivery time windows, real-time tracking, and alternative delivery points (lockers, pickup stores).',
   },
   'ba-dk-007': {
     question: 'Design the key functional requirements for a fintech "digital wallet" application. Include core features, regulatory requirements, and security considerations.',
@@ -778,7 +778,7 @@ export const baEn: QuestionTranslationMap = {
   'ba-doc-011': {
     question: 'A client demands a 200-page SRS document before any development begins, but the project is following Agile. How should a Lead BA navigate this situation?',
     options: [
-      'Refuse the client\\'s request and explain that Agile means no documentation',
+      'Refuse the client\'s request and explain that Agile means no documentation',
       'Write the full 200-page SRS to satisfy the client',
       'then ignore it during development',
       'Negotiate a compromise: deliver a lightweight "SRS-lite" covering architecture',
@@ -794,7 +794,7 @@ export const baEn: QuestionTranslationMap = {
   'ba-re-001': {
     question: 'Which of the following is the BEST definition of a "functional requirement"?',
     options: [
-      'A constraint on the system\\'s performance (e.g. response time < 2s)',
+      'A constraint on the system\'s performance (e.g. response time < 2s)',
       'A specific behavior or function the system must perform (e.g. "the system shall allow users to reset passwords")',
       'A business goal the stakeholder wants to achieve',
       'A description of the hardware the system runs on',
@@ -830,7 +830,7 @@ export const baEn: QuestionTranslationMap = {
       'Must have',
       'Should have',
       'Could have',
-      'Won\\'t have (this time)',
+      'Won\'t have (this time)',
       'Most important',
       'Some importance',
       'Common',
@@ -844,7 +844,7 @@ export const baEn: QuestionTranslationMap = {
       'Wanted',
       ''
     ],
-    explanation: 'MoSCoW is a prioritization technique: Must have (critical for delivery), Should have (important but not vital), Could have (nice-to-have), Won\\'t have (agreed to exclude from this release). The "o"s are added to make the acronym pronounceable.',
+    explanation: 'MoSCoW is a prioritization technique: Must have (critical for delivery), Should have (important but not vital), Could have (nice-to-have), Won\'t have (agreed to exclude from this release). The "o"s are added to make the acronym pronounceable.',
   },
   'ba-re-005': {
     question: 'What is the PRIMARY purpose of a Requirements Traceability Matrix (RTM)?',
@@ -991,7 +991,7 @@ export const baEn: QuestionTranslationMap = {
       'pain points',
       'and workflows as they function today before any changes',
       'The wishlist of features for the next two years',
-      'The project manager\\'s contact information'
+      'The project manager\'s contact information'
     ],
     explanation: 'Documenting the "As-Is" state is vital to identify gaps, calculate ROI, and ensure the new solution ("To-Be") actually solves the current problems without creating new ones in the existing workflow.',
   },
@@ -1062,7 +1062,7 @@ export const baEn: QuestionTranslationMap = {
       'To define temporary capabilities needed to transition from the current state to the new state (e.g.',
       'data migration',
       'training)',
-      'To describe the user\\'s transition between screens',
+      'To describe the user\'s transition between screens',
       'To document when a project manager leaves the project'
     ],
     explanation: 'Transition requirements are temporary. Once the "To-Be" system is live, they are no longer needed. Examples include data mapping for migration or training manuals for staff.',
@@ -1092,7 +1092,7 @@ export const baEn: QuestionTranslationMap = {
       'Ask the developer to explain the technical limitation',
       'discuss alternative solutions that still satisfy the business goal',
       'and update the User Story accordingly.',
-      'Escalate the developer\\'s "bad attitude" to the Project Manager.'
+      'Escalate the developer\'s "bad attitude" to the Project Manager.'
     ],
     explanation: 'A BA acts as a bridge between business and tech. If technical constraints exist, you should collaborate with the developer to find a workaround that meets the core business need, rather than forcing an impossible implementation or dropping the feature outright.',
   },
@@ -1121,7 +1121,7 @@ export const baEn: QuestionTranslationMap = {
     explanation: 'Stakeholder engagement is key. If synchronous meetings fail, find alternative ways to gather their input asynchronously and make them aware of the risks (delays, incorrect features) of not participating.',
   },
   'ba-rw-005': {
-    question: 'True or False: If a developer discovers that a requirement is logically flawed during coding, the BA should fix the document silently to match the developer\\'s new code.',
+    question: 'True or False: If a developer discovers that a requirement is logically flawed during coding, the BA should fix the document silently to match the developer\'s new code.',
     options: [
       'Side with the department head who has a higher title.',
       'Implement a toggle so the system can do both',
@@ -1132,7 +1132,7 @@ export const baEn: QuestionTranslationMap = {
       'Wait until they stop fighting to continue working.'
     ],
     answer: 'False',
-    explanation: 'False. The BA must analyze the developer\\'s finding, confirm with the business stakeholders that the proposed change aligns with business rules, officially update the requirement, and inform all necessary teams (like QA). Silent changes cause misalignment.',
+    explanation: 'False. The BA must analyze the developer\'s finding, confirm with the business stakeholders that the proposed change aligns with business rules, officially update the requirement, and inform all necessary teams (like QA). Silent changes cause misalignment.',
   },
   'ba-rw-006': {
     question: 'Two department heads strongly disagree on a core business rule for a new workflow. Department A wants strict approval, Department B wants auto-approval. As the BA, how do you resolve this?',
@@ -1186,7 +1186,7 @@ export const baEn: QuestionTranslationMap = {
     question: 'True or False: A BA should always act as a proxy for the Product Owner (PO), writing stories, accepting them, and managing the backlog independently if the PO is too busy.',
     options: [
       'Reject the 40 items aggressively and tell them they signed the SRS',
-      'so they can\\'t complain now.',
+      'so they can\'t complain now.',
       'Fix all 40 items quietly so the client accepts the system on time.',
       'Categorize the list into "Defects" (to be fixed now) and "Change Requests" (CRs). Explain the baseline scope with evidence',
       'and estimate the CRs for a Phase 2 or a separate billing cycle.',
@@ -1199,20 +1199,20 @@ export const baEn: QuestionTranslationMap = {
     question: 'During UAT, the users report 50 "bugs". Upon investigation, you realize 40 of them are actually new requirements (enhancements) disguised as bugs. How do you handle this diplomatically?',
     options: [
       'Reject the 40 items aggressively and tell them they signed the SRS',
-      'so they can\\'t complain now.',
+      'so they can\'t complain now.',
       'Fix all 40 items quietly so the client accepts the system on time.',
       'Categorize the list into "Defects" (to be fixed now) and "Change Requests" (CRs). Explain the baseline scope with evidence',
       'and estimate the CRs for a Phase 2 or a separate billing cycle.',
       'Pause the entire project until the client pays for the extra 40 items.'
     ],
-    explanation: 'Triage is essential during UAT. Use the approved baseline (BRD/SRS) to distinguish between defects (failure to meet agreed requirements) and enhancements. Managing them as CRs maintains the project timeline while protecting the vendor\\'s scope and resources without being strictly confrontational.',
+    explanation: 'Triage is essential during UAT. Use the approved baseline (BRD/SRS) to distinguish between defects (failure to meet agreed requirements) and enhancements. Managing them as CRs maintains the project timeline while protecting the vendor\'s scope and resources without being strictly confrontational.',
   },
   'ba-rw-012': {
     question: 'Your organization is transitioning from Waterfall to Agile. The business stakeholders still demand the "complete detailed requirements document upfront" before giving developers the green light. How do you guide them?',
     options: [
       'Give in and write a 200-page SRS because the business is the boss.',
       'Refuse to write any documents and tell them "We are Agile',
-      'we don\\'t do documentation".',
+      'we don\'t do documentation".',
       'Explain the Agile concept of progressive elaboration. Propose writing a high-level vision and backlog first',
       'and detail the requirements (User Stories) only 1-2 sprints ahead of development.',
       'Wait for the Agile Coach to talk to them.'
@@ -1220,7 +1220,7 @@ export const baEn: QuestionTranslationMap = {
     explanation: 'Agile transition requires coaching stakeholders. BAs must bridge this mindset gap by proving value through progressive elaboration—giving enough detail just-in-time, thereby reducing waste while still providing enough certainty for business planning.',
   },
   'ba-rw-013': {
-    question: 'You discover that a new system implementation will make 30% of the operational staff\\'s manual data entry jobs redundant. The staff has become resistant and refuses to share process details with you. What is your strategy?',
+    question: 'You discover that a new system implementation will make 30% of the operational staff\'s manual data entry jobs redundant. The staff has become resistant and refuses to share process details with you. What is your strategy?',
     options: [
       'Report them to HR for insubordination.',
       'Design the system without their input using your best guess.',
@@ -1232,7 +1232,7 @@ export const baEn: QuestionTranslationMap = {
   'ba-rw-014': {
     question: 'The client wants to build a "Machine Learning AI to predict user buying behavior',
     answer: 'Handling an unrealistic AI request:\n\n1. Feasibility & Reality Check:\n- Acknowledge their vision but politely explain the prerequisites for ML (clean',
-    explanation: 'Senior BAs don\\'t just gather requirements; they act as business consultants. When clients propose buzzword-heavy, unrealistic solutions, the BA must trace back to the actual business problem and propose a pragmatic, iterative roadmap that respects constraints (budget, data maturity).',
+    explanation: 'Senior BAs don\'t just gather requirements; they act as business consultants. When clients propose buzzword-heavy, unrealistic solutions, the BA must trace back to the actual business problem and propose a pragmatic, iterative roadmap that respects constraints (budget, data maturity).',
   },
   'ba-rw-015': {
     question: 'Your company won a massive enterprise government contract. You are assigned to lead a team of 5 Junior/Mid BAs. The requirements are complex, highly regulated, and the timeline is aggressive. Outline your BA Strategy for the first 30 days.',
@@ -1317,7 +1317,7 @@ export const baEn: QuestionTranslationMap = {
       'Webhooks require manual setup; polling is automatic',
       ''
     ],
-    explanation: 'Webhook (push): "Call me when something happens" — the server notifies the client by sending an HTTP POST to a registered URL when an event occurs (e.g., payment completed). Polling (pull): "I\\'ll check every 5 minutes" — the client repeatedly queries the server. Webhooks are more efficient (no wasted requests) but require the client to host an endpoint. BAs should recommend webhooks when available for event-driven integrations.',
+    explanation: 'Webhook (push): "Call me when something happens" — the server notifies the client by sending an HTTP POST to a registered URL when an event occurs (e.g., payment completed). Polling (pull): "I\'ll check every 5 minutes" — the client repeatedly queries the server. Webhooks are more efficient (no wasted requests) but require the client to host an endpoint. BAs should recommend webhooks when available for event-driven integrations.',
   },
   'ba-si-007': {
     question: 'Design the integration architecture for an e-commerce platform that needs to integrate with: Payment Gateway, Shipping Provider, Inventory System, and Email Service. Specify the integration pattern, data flow, and error handling for each.',
@@ -1344,7 +1344,7 @@ export const baEn: QuestionTranslationMap = {
     question: 'When defining requirements for a third-party API integration, what legal/contractual consideration must a Lead BA ensure is covered?',
     options: [
       'Only the API documentation needs to be reviewed',
-      'The API\\'s terms of service',
+      'The API\'s terms of service',
       'SLA guarantees (uptime',
       'latency)',
       'data ownership',
@@ -1401,7 +1401,7 @@ export const baEn: QuestionTranslationMap = {
     explanation: 'RACI defines roles per task: Responsible (does the work), Accountable (ultimately answerable — only ONE per task), Consulted (provides input — two-way communication), Informed (kept in the loop — one-way communication). A RACI matrix prevents confusion about who does what and ensures every task has clear ownership.',
   },
   'ba-sm-004': {
-    question: 'A key stakeholder (VP of Sales) is resistant to the new system because it changes their team\\'s workflow. What is the BEST approach?',
+    question: 'A key stakeholder (VP of Sales) is resistant to the new system because it changes their team\'s workflow. What is the BEST approach?',
     options: [
       'Ignore their resistance — the project has executive sponsorship',
       'Escalate immediately to the project sponsor to overrule the VP',
@@ -1434,14 +1434,14 @@ export const baEn: QuestionTranslationMap = {
       'Side with the CFO because budget is always the priority',
       'Side with the CTO because better technology means better results',
       'Facilitate a discussion between both stakeholders',
-      'help them understand each other\\'s constraints',
+      'help them understand each other\'s constraints',
       'explore alternatives that balance cost and technology goals',
       'and if needed',
       'escalate to the project sponsor for a priority decision',
       'Document both requirements separately and let the developers decide',
       ''
     ],
-    explanation: 'Conflicting requirements are common when stakeholders have different priorities. The BA acts as a neutral facilitator: (1) ensure each party understands the other\\'s perspective, (2) explore creative alternatives (e.g., phased technology adoption, open-source alternatives), (3) use objective criteria (ROI analysis, risk assessment) to evaluate options, (4) if consensus cannot be reached, escalate to the governance body or sponsor for a priority decision.',
+    explanation: 'Conflicting requirements are common when stakeholders have different priorities. The BA acts as a neutral facilitator: (1) ensure each party understands the other\'s perspective, (2) explore creative alternatives (e.g., phased technology adoption, open-source alternatives), (3) use objective criteria (ROI analysis, risk assessment) to evaluate options, (4) if consensus cannot be reached, escalate to the governance body or sponsor for a priority decision.',
   },
   'ba-sm-007': {
     question: 'Design a stakeholder engagement strategy for a company-wide ERP implementation that affects 500+ employees across 6 departments. Include identification, analysis, engagement approaches, and how to handle resistance.',
@@ -1472,12 +1472,12 @@ export const baEn: QuestionTranslationMap = {
       'Continue with the current plan — the project was already approved',
       'Immediately stop all work until the CEO provides new direction',
       'Request a strategic alignment meeting with the CEO to understand their vision',
-      'present the project\\'s business case and current progress',
+      'present the project\'s business case and current progress',
       'and assess whether the project still aligns with the new strategic direction',
       'Resign from the project because the scope will change',
       ''
     ],
-    explanation: 'A CEO change is a significant stakeholder event. The project\\'s business case may or may not align with the new CEO\\'s vision. The Lead BA should proactively: (1) request a meeting (don\\'t wait to be summoned), (2) prepare a concise business case summary showing value delivered and planned, (3) listen to the new CEO\\'s priorities, (4) assess alignment and gaps, (5) recommend adjustments if needed. This demonstrates BA value and prevents the project from being cancelled or deprioritized without proper analysis.',
+    explanation: 'A CEO change is a significant stakeholder event. The project\'s business case may or may not align with the new CEO\'s vision. The Lead BA should proactively: (1) request a meeting (don\'t wait to be summoned), (2) prepare a concise business case summary showing value delivered and planned, (3) listen to the new CEO\'s priorities, (4) assess alignment and gaps, (5) recommend adjustments if needed. This demonstrates BA value and prevents the project from being cancelled or deprioritized without proper analysis.',
   },
   'ba-sm-011': {
     question: 'If you have a stakeholder with "High Power" but "Low Interest," what is the recommended engagement strategy?',
@@ -1487,7 +1487,7 @@ export const baEn: QuestionTranslationMap = {
       'Monitor (minimum effort)',
       'Keep informed'
     ],
-    explanation: 'Stakeholders with high power but low interest are influential but not personally invested. You must keep them satisfied (e.g., ensuring they get the reports they need) so they don\\'t block the project.',
+    explanation: 'Stakeholders with high power but low interest are influential but not personally invested. You must keep them satisfied (e.g., ensuring they get the reports they need) so they don\'t block the project.',
   },
   'ba-sm-012': {
     question: 'In the middle of an elicitation interview, a stakeholder becomes visibly frustrated and stops participating. What should the BA do?',
@@ -1550,7 +1550,7 @@ export const baEn: QuestionTranslationMap = {
       'Write requirements for each silo separately',
       'Report everyone to the CEO'
     ],
-    explanation: 'Silos are broken by aligning people around the end-to-end user value rather than their specific department\\'s task.',
+    explanation: 'Silos are broken by aligning people around the end-to-end user value rather than their specific department\'s task.',
   },
   'ba-sm-019': {
     question: 'What is "Political Mapping" in stakeholder analysis?',
@@ -1589,7 +1589,7 @@ export const baEn: QuestionTranslationMap = {
       'HAVING',
       ''
     ],
-    explanation: 'WHERE filters rows before grouping. Example: SELECT * FROM orders WHERE status = \\'shipped\\'. ORDER BY sorts results. GROUP BY groups rows for aggregation. HAVING filters groups after GROUP BY. The execution order is: FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY.',
+    explanation: 'WHERE filters rows before grouping. Example: SELECT * FROM orders WHERE status = \'shipped\'. ORDER BY sorts results. GROUP BY groups rows for aggregation. HAVING filters groups after GROUP BY. The execution order is: FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY.',
   },
   'ba-sql-003': {
     question: 'Write a SQL query to find all customers from the "customers" table who are located in "Ho Chi Minh City" and have been active since 2025.',
@@ -1631,7 +1631,7 @@ export const baEn: QuestionTranslationMap = {
       'GRANT and REVOKE',
       ''
     ],
-    explanation: 'Trend analysis requires extracting time components (month, year) and aggregating metrics per period. Example: SELECT DATE_TRUNC(\\'month\',
+    explanation: "Trend analysis requires extracting time components (month, year) and aggregating metrics per period. Example: SELECT DATE_TRUNC('month', order_date), SUM(amount) FROM orders GROUP BY DATE_TRUNC('month', order_date).",
   },
   'ba-sql-007': {
     question: 'Write a SQL query to find customers who made their first purchase in 2025 AND have made at least 3 orders since then. Use the "orders" table (customer_id, order_date, total_amount).',
@@ -1666,7 +1666,7 @@ export const baEn: QuestionTranslationMap = {
       ''
     ],
     answer: 'Data-Driven Market Expansion Analysis:\n\n1. Data Collection:\n- Internal: sales data by region',
-    explanation: 'Data-driven decision-making combines internal analytics, external market intelligence, and financial modeling. The BA\\'s value is translating raw data into actionable insights with clear recommendations. Presenting scenarios (not just one number) gives executives the confidence to make informed decisions with understood risk levels.',
+    explanation: 'Data-driven decision-making combines internal analytics, external market intelligence, and financial modeling. The BA\'s value is translating raw data into actionable insights with clear recommendations. Presenting scenarios (not just one number) gives executives the confidence to make informed decisions with understood risk levels.',
   },
   'ba-sql-010': {
     question: 'A company wants to implement a data warehouse for business intelligence. As Lead BA, which requirements should you prioritize in the initial discovery?',
@@ -1709,7 +1709,7 @@ export const baEn: QuestionTranslationMap = {
       'actions',
       'and expected outcomes that verifies a particular requirement or business process',
       'A summary of all bugs found during testing',
-      'A developer\\'s code comment explaining test logic',
+      'A developer\'s code comment explaining test logic',
       ''
     ],
     explanation: 'A test case includes: Test ID, Description, Preconditions, Test Steps (specific actions), Test Data (specific inputs), Expected Result (what should happen), and Actual Result (what actually happened). Test cases are derived from requirements and acceptance criteria. Each test case should verify one specific aspect of the system.',
@@ -1738,7 +1738,7 @@ export const baEn: QuestionTranslationMap = {
       'Only the UAT test plan document needs to be ready',
       ''
     ],
-    explanation: 'Entry criteria prevent premature UAT starts that waste business users\\' time. Key criteria: (1) SIT complete, no critical/major open defects, (2) stable, production-like test environment, (3) UAT test cases reviewed and approved, (4) test data prepared (realistic, anonymized if needed), (5) user access provisioned, (6) business users briefed/trained, (7) UAT schedule communicated. Starting UAT without these leads to frustration and invalid results.',
+    explanation: 'Entry criteria prevent premature UAT starts that waste business users\' time. Key criteria: (1) SIT complete, no critical/major open defects, (2) stable, production-like test environment, (3) UAT test cases reviewed and approved, (4) test data prepared (realistic, anonymized if needed), (5) user access provisioned, (6) business users briefed/trained, (7) UAT schedule communicated. Starting UAT without these leads to frustration and invalid results.',
   },
   'ba-uq-006': {
     question: 'What is regression testing and when is it needed?',
@@ -1757,7 +1757,7 @@ export const baEn: QuestionTranslationMap = {
     explanation: 'A good UAT plan sets clear boundaries (scope), involves the right people (business users, not IT), covers critical business scenarios (not just happy path), defines measurable exit criteria (not "UAT is done when we feel good"), and has a structured defect management process. The 30/70 split between scripted and exploratory testing balances coverage with discovery of unexpected issues.',
   },
   'ba-uq-008': {
-    question: 'What is the BA\\'s role in ensuring "requirements coverage" during testing?',
+    question: 'What is the BA\'s role in ensuring "requirements coverage" during testing?',
     options: [
       'BAs should write all test scripts themselves',
       'BAs ensure every requirement has associated test cases (traceability)',
@@ -1766,7 +1766,7 @@ export const baEn: QuestionTranslationMap = {
       'and verify that acceptance criteria are testable',
       'BAs only participate in UAT',
       'not earlier testing phases',
-      'Requirements coverage is exclusively the QA team\\'s responsibility',
+      'Requirements coverage is exclusively the QA team\'s responsibility',
       ''
     ],
     explanation: 'BAs bridge requirements and testing: (1) create/maintain the Requirements Traceability Matrix (RTM) linking requirements → test cases, (2) review QA test cases for business accuracy (QA may misinterpret requirements), (3) identify coverage gaps (untested requirements or acceptance criteria), (4) ensure non-functional requirements have test approaches, (5) participate in defect triage to determine if defects are requirements bugs or implementation bugs.',
@@ -1774,7 +1774,7 @@ export const baEn: QuestionTranslationMap = {
   'ba-uq-009': {
     question: 'As Lead BA, design a quality assurance strategy that involves BAs throughout the entire SDLC (not just UAT). Include BA checkpoints at each phase, quality metrics, and how to shift quality left.',
     answer: 'BA-Integrated Quality Strategy:\n\n1. Requirements Phase (Shift Left - Prevention):\n- Requirements peer review with checklist (completeness',
-    explanation: 'Shifting quality left means preventing defects at their source (requirements) rather than finding them later (testing). Each dollar spent on requirements quality saves $10-100 in later phases (Boehm\\'s Law). BAs are uniquely positioned to embed quality throughout the SDLC because they own the requirements that everything else is built from. The metrics dashboard provides visibility into where quality breaks down.',
+    explanation: 'Shifting quality left means preventing defects at their source (requirements) rather than finding them later (testing). Each dollar spent on requirements quality saves $10-100 in later phases (Boehm\'s Law). BAs are uniquely positioned to embed quality throughout the SDLC because they own the requirements that everything else is built from. The metrics dashboard provides visibility into where quality breaks down.',
   },
   'ba-uq-010': {
     question: 'Stakeholders want to skip UAT because the project is behind schedule. As Lead BA, what is your recommendation?',
@@ -2045,7 +2045,7 @@ export const baEn: QuestionTranslationMap = {
   'ba-wp-002': {
     question: 'Why should a BA create wireframes during the requirements phase?',
     options: [
-      'To replace the UI designer\\'s job',
+      'To replace the UI designer\'s job',
       'To visually communicate requirements',
       'validate understanding with stakeholders',
       'identify missing requirements early',
@@ -2066,7 +2066,7 @@ export const baEn: QuestionTranslationMap = {
       'and actions',
       'while wireframes show what each individual screen looks like',
       'A user flow is a database diagram showing data movement',
-      'A user flow is a developer\\'s implementation plan',
+      'A user flow is a developer\'s implementation plan',
       ''
     ],
     answer: 'False',
@@ -2081,7 +2081,7 @@ export const baEn: QuestionTranslationMap = {
       'and actions',
       'while wireframes show what each individual screen looks like',
       'A user flow is a database diagram showing data movement',
-      'A user flow is a developer\\'s implementation plan',
+      'A user flow is a developer\'s implementation plan',
       ''
     ],
     explanation: 'User flows show the journey (screen A → decision → screen B or C), while wireframes show individual screen layouts. Together they form a complete picture: the flow shows WHERE the user goes, and wireframes show WHAT they see at each stop. Example: Login flow → Dashboard → Product List → Product Detail → Cart → Checkout → Confirmation.',
@@ -2100,7 +2100,7 @@ export const baEn: QuestionTranslationMap = {
     explanation: 'Figma is the industry standard for wireframing and prototyping because: (1) real-time collaboration (like Google Docs for design), (2) component/design system libraries for consistency, (3) built-in prototyping (link frames, add transitions), (4) free for small teams, (5) runs in the browser (no install needed). Other tools: Sketch (Mac only), Adobe XD (discontinued), Balsamiq (lo-fi only), Axure (advanced prototyping).',
   },
   'ba-wp-006': {
-    question: 'What are Nielsen\\'s 10 Usability Heuristics primarily used for?',
+    question: 'What are Nielsen\'s 10 Usability Heuristics primarily used for?',
     options: [
       'Measuring website loading speed',
       'Evaluating the usability of a user interface by assessing it against 10 recognized usability principles (visibility of system status',
@@ -2111,10 +2111,10 @@ export const baEn: QuestionTranslationMap = {
       'Testing code quality in frontend applications',
       ''
     ],
-    explanation: 'Jakob Nielsen\\'s 10 heuristics are a framework for evaluating UI usability: (1) Visibility of system status, (2) Match between system and real world, (3) User control and freedom, (4) Consistency and standards, (5) Error prevention, (6) Recognition rather than recall, (7) Flexibility and efficiency, (8) Aesthetic and minimalist design, (9) Help users recognize/recover from errors, (10) Help and documentation. BAs use these to review wireframes before handoff.',
+    explanation: 'Jakob Nielsen\'s 10 heuristics are a framework for evaluating UI usability: (1) Visibility of system status, (2) Match between system and real world, (3) User control and freedom, (4) Consistency and standards, (5) Error prevention, (6) Recognition rather than recall, (7) Flexibility and efficiency, (8) Aesthetic and minimalist design, (9) Help users recognize/recover from errors, (10) Help and documentation. BAs use these to review wireframes before handoff.',
   },
   'ba-wp-007': {
-    question: 'Design the user flow and key wireframe screens for a mobile banking app\\'s "Send Money" feature. Include happy path, error handling, and security considerations.',
+    question: 'Design the user flow and key wireframe screens for a mobile banking app\'s "Send Money" feature. Include happy path, error handling, and security considerations.',
     answer: 'User Flow:\n1. Dashboard (CTA: "Send Money" button)\n2. Recipient Selection screen (search contacts',
     explanation: 'This design follows UX best practices: progressive disclosure (one task per screen), clear feedback at each step, error prevention (balance check, format validation), and trust-building (fee transparency, confirmation review). The BA ensures all functional requirements are represented visually: validation rules, security, error states, and edge cases (insufficient funds, network failure, daily limit exceeded).',
   },

@@ -9,7 +9,7 @@ export const brseVi: QuestionTranslationMap = {
       'Đưa ra một bài thuyết trình dài về những thành tựu của công ty bạn',
       'Nhận báo giá ngay bây giờ'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Những điểm chính trong lần gặp đầu tiên: 1) Trao đổi danh thiếp (quan sát cách cư xử lịch sự), 2) Giới thiệu ngắn gọn về công ty (trong vòng 5 phút), 3) Dành 80% thời gian để lắng nghe những gì khách hàng nói, 4) Vừa lắng nghe vừa ghi chép (điều này thể hiện sự nghiêm túc của bạn), 5) Nhắc lại những gì bạn đã hiểu và 6) Kết thúc bằng cách làm rõ hành động tiếp theo của bạn. Chúng tôi tôn trọng văn hóa “xây dựng mối quan hệ trước tiên” của Nhật Bản.',
   },
   'brse-cm-002': {
@@ -25,7 +25,7 @@ export const brseVi: QuestionTranslationMap = {
       'Quản lý doanh số dự kiến',
       'Quản lý mục tiêu của thành viên'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Những điểm để quản lý kỳ vọng: 1. Đầu tiên, hãy làm rõ những gì bạn có thể và không thể làm. 2. Luôn giữ đúng những gì bạn đã cam kết. 3. Chia sẻ tiến độ thường xuyên và báo cáo sớm mọi thiếu sót. 4. Lý tưởng nhất là hứa ít, làm nhiều (hứa một cách khiêm tốn và làm nhiều hơn).',
   },
   'brse-cm-004': {
@@ -36,7 +36,7 @@ export const brseVi: QuestionTranslationMap = {
       '“Đó là lỗi của đội,” anh giải thích.',
       'Tôi sẽ giải quyết nó vào một ngày sau đó.'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Các vấn đề tái diễn là trường hợp xấu nhất và có thể gây tổn hại nghiêm trọng đến niềm tin. Điều quan trọng là phải phân tích kỹ lưỡng nguyên nhân cốt lõi tại sao sự việc lại xảy ra (các biện pháp đối phó trước đó là không đủ) và đề xuất các biện pháp phòng ngừa (cải tiến quy trình, bổ sung các thử nghiệm tự động, v.v.). Các biện pháp đối phó dựa vào sự chú ý của từng cá nhân có thể dẫn đến tái phát.',
   },
   'brse-cm-005': {
@@ -47,7 +47,7 @@ export const brseVi: QuestionTranslationMap = {
       'cung cấp giảm giá',
       'thường xuyên ghé thăm bán hàng'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Cải thiện CX là sự tích lũy kinh nghiệm vượt quá mong đợi. 1) Tốc độ phản hồi (trả lời các câu hỏi trong vòng 24 giờ sẽ tăng cường sự tin cậy), 2) Nhìn về phía trước (“Chúng tôi đang chuẩn bị điều này cho bản phát hành vào tháng tới”), 3) Suy ngẫm (thường xuyên hỏi, “Chúng tôi có thể làm gì để cải thiện không?”), 4) Mối quan hệ với người phụ trách (không chỉ về công việc mà còn về cách trò chuyện và sự chú ý phù hợp).',
   },
   'brse-cm-006': {
@@ -63,7 +63,7 @@ export const brseVi: QuestionTranslationMap = {
       'nói xấu đối thủ cạnh tranh',
       'Nếu bạn không giảm giá, hợp đồng sẽ bị chấm dứt.'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Chỉ riêng cạnh tranh về giá là không bền vững. Điểm khác biệt: 1) Hiệu suất chất lượng (tỷ lệ lỗi, dữ liệu về sự hài lòng của khách hàng), 2) Chi phí thay đổi nhà cung cấp (chuyển giao kiến ​​thức, giai đoạn khởi động, rủi ro chất lượng), 3) Sự ổn định của nhóm (tỷ lệ thay thế, thời gian phục vụ trung bình), 4) Giá trị gia tăng (đề xuất cải tiến, phản hồi chủ động, kiến ​​thức về miền). Điều quan trọng là phải thể hiện “giá trị tổng thể” hơn là “rẻ”.',
   },
   'brse-cm-008': {
@@ -74,7 +74,7 @@ export const brseVi: QuestionTranslationMap = {
       'số lượng nhà phát triển',
       'Số lượt ghé thăm bán hàng'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'KPI cho mối quan hệ lâu dài: ① NPS (mức độ khuyến nghị - chỉ số về sự hài lòng và lòng trung thành của khách hàng), ② tỷ lệ gia hạn hợp đồng (tỷ lệ kinh doanh tiếp tục, mục tiêu 90% trở lên), ③ tốc độ tăng trưởng tài khoản (mở rộng kinh doanh từ cùng một khách hàng - hiệu quả hơn so với doanh số bán hàng mới). Ba điều này tạo thành một vòng tuần hoàn: Chất lượng cao → NPS cao → Gia hạn hợp đồng → Mở rộng kinh doanh → Đầu tư thêm → Chất lượng cao...',
   },
   'brse-cm-009': {
@@ -90,7 +90,7 @@ export const brseVi: QuestionTranslationMap = {
       'Số tiền ngân sách dự án',
       'Số lần chạy thử'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Tháng người là đơn vị giờ công phổ biến nhất trong ngành CNTT Nhật Bản. 1 người-tháng ≈ 20 người-ngày ≈ 160 người-giờ (8 giờ mỗi ngày). BrSE được tính theo tháng người tại thời điểm báo giá và gửi cho khách hàng. Lưu ý: Về lý thuyết, 3 người có thể hoàn thành công việc trong 1 tháng, nhưng thực tế thường lâu hơn từ 1,2 đến 1,5 lần do mất công việc song song và mất liên lạc.',
   },
   'brse-est-002': {
@@ -106,7 +106,7 @@ export const brseVi: QuestionTranslationMap = {
       'Về tỷ suất lợi nhuận',
       'Về lương làm thêm giờ'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Bộ đệm là bảo hiểm. Các loại rủi ro: ① Rủi ro thay đổi thông số kỹ thuật (thay đổi yêu cầu của khách hàng), ② Rủi ro công nghệ (sự cố kỹ thuật không mong muốn), ③ Rủi ro tài nguyên (thành viên rút lui/nghỉ ốm), ④ Rủi ro giao tiếp (làm lại do hiểu lầm). Thị trường nước ngoài có xu hướng có một vùng đệm lớn.',
   },
   'brse-est-004': {
@@ -117,7 +117,7 @@ export const brseVi: QuestionTranslationMap = {
       'Cách chấm điểm khả năng của các thành viên trong nhóm',
       'Cách ước tính số giờ làm việc theo số cuộc họp'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Năm thành phần của phương pháp FP (Điểm chức năng): ① Đầu vào bên ngoài (EI), ② Đầu ra bên ngoài (EO), ③ Truy vấn bên ngoài (EQ), ④ Tệp logic bên trong (ILF), ⑤ Tệp giao diện bên ngoài (EIF). Tính giá trị FP bằng cách tính trọng số của từng phần tử theo độ phức tạp (thấp/trung bình/cao). Giá trị FP x hệ số năng suất (ngày công/FP) = giờ công. Nó được sử dụng rộng rãi bởi các nhà tích hợp hệ thống Nhật Bản.',
   },
   'brse-est-005': {
@@ -128,7 +128,7 @@ export const brseVi: QuestionTranslationMap = {
       '“Đây là số tiền chính xác,” tôi trả lời.',
       'Phù hợp với giá của đối thủ cạnh tranh của bạn'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Các điểm đàm phán ước tính: 1) Tính minh bạch của sự phân tích (hình dung chi phí sẽ là bao nhiêu), 2) Làm rõ các điều kiện tiên quyết (tính cuối cùng của thông số kỹ thuật, khó khăn về mặt kỹ thuật), 3) Trình bày các kế hoạch thay thế (giảm phạm vi, phát hành theo từng giai đoạn, điều chỉnh mức chất lượng), 4) So sánh với giá trị thực tế của các dự án tương tự, 5) Giải thích rằng "làm cho nó rẻ hơn = cắt bỏ một cái gì đó". Giảm giá không có cơ sở làm tăng nguy cơ suy giảm chất lượng.',
   },
   'brse-est-006': {
@@ -144,7 +144,7 @@ export const brseVi: QuestionTranslationMap = {
       'Giá trị tốt nhất × giá trị xấu nhất / giá trị có thể xảy ra nhất',
       'Giá trị trung bình của 3 ước tính'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Ước tính ba điểm (PERT): O=giá trị lạc quan (trường hợp nhanh nhất), M=giá trị cao nhất có thể (trường hợp bình thường), P=giá trị bi quan (trường hợp xấu nhất). Giá trị kỳ vọng = (O+4M+P)/6, độ lệch chuẩn = (P-O)/6. Ví dụ: Nếu O=5 ngày, M=8 ngày, P=17 ngày, giá trị kỳ vọng=(5+32+17)/6=9 ngày. Điều này cung cấp một con số thực tế hơn phản ánh rủi ro tốt hơn so với ước tính giá trị duy nhất.',
   },
   'brse-est-008': {
@@ -160,7 +160,7 @@ export const brseVi: QuestionTranslationMap = {
       'Cố định cho một người phụ trách ước tính',
       'Luôn ước tính theo ngân sách của khách hàng'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Chu trình PDCA để cải thiện độ chính xác của ước tính: Tạo ước tính P (lập kế hoạch) → Thực hiện dự án D (thực thi) → Phân tích C (xác nhận) về sự khác biệt giữa dữ liệu thực tế và ước tính → A (cải tiến) cập nhật các hệ số ước tính. Ví dụ: Nếu chúng tôi có dữ liệu cho biết ``Màn hình CRUD trên các trang web thương mại điện tử trung bình 2,5 người-ngày/màn hình\'\', thì ước tính sau đây sẽ có cơ sở vững chắc. Sự tích lũy này trở thành sức mạnh ước tính của tổ chức.',
   },
   'brse-ik-001': {
@@ -171,7 +171,7 @@ export const brseVi: QuestionTranslationMap = {
       'Thiết kế mặt trước, triển khai mặt sau',
       'Các tính năng mới ở mặt trước, các tính năng cũ ở mặt sau'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Front-end (FE): Giao diện người dùng, chạy trên trình duyệt, Công nghệ: HTML/CSS/JS, React/Vue/Angular. Phần cuối (BE): Xử lý phía máy chủ, cung cấp API, vận hành cơ sở dữ liệu, Công nghệ: Java/PHP/Python/Node.js. BrSE cần làm rõ sự phân chia vai trò giữa FE và BE khi truyền đạt thông số kỹ thuật.',
   },
   'brse-ik-002': {
@@ -182,7 +182,7 @@ export const brseVi: QuestionTranslationMap = {
       'soạn thảo văn bản',
       'công cụ dịch thuật'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Các khái niệm cơ bản về Git: 1. Repository (lưu trữ mã), 2. Branch (phân nhánh để phát triển song song), 3. Commit (ghi lại các thay đổi), 4. Hợp nhất (tích hợp các nhánh), 5. Pull request (yêu cầu xem xét). Với tư cách là BrSE: Cần phải có quản lý nhánh phát hành, hiểu chiến lược nhánh (Git Flow, v.v.) và quản lý mã cho từng môi trường.',
   },
   'brse-ik-003': {
@@ -198,7 +198,7 @@ export const brseVi: QuestionTranslationMap = {
       'Tất cả có thể được thực hiện bằng cách sử dụng POST',
       'Phương pháp không quan trọng; tất cả những gì bạn cần quyết định là URL.'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Khái niệm cơ bản về thiết kế API RESTful: GET (truy xuất, idempotent), POST (tạo), PUT (cập nhật đầy đủ), PATCH (cập nhật một phần), DELETE (xóa). BrSE phải hiểu thiết kế API trong đặc tả và truyền đạt nó cho nhóm phát triển. Điều quan trọng nữa là có khả năng đọc cấu trúc JSON của các yêu cầu/phản hồi API.',
   },
   'brse-ik-005': {
@@ -209,7 +209,7 @@ export const brseVi: QuestionTranslationMap = {
       'Chỉ phát triển với nguồn mở và miễn phí',
       'Bỏ qua bài kiểm tra và hoàn thành nó một cách nhanh chóng'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Đặc điểm của microservice: ① Mỗi dịch vụ có thể được triển khai độc lập, ② Dịch vụ giao tiếp bằng API (REST/gRPC), ③ Có thể chọn ngăn xếp công nghệ cho từng dịch vụ, ④ Dịch vụ do nhóm “sở hữu”. Tác động đến BrSE: Thông số kỹ thuật sẽ được phân tách theo dịch vụ, việc quản lý hợp đồng API sẽ trở nên quan trọng và thử nghiệm tích hợp sẽ trở nên quan trọng hơn.',
   },
   'brse-ik-006': {
@@ -220,7 +220,7 @@ export const brseVi: QuestionTranslationMap = {
       'Sự khác biệt về quy mô dịch vụ',
       'Chỉ khác nhau về giá'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Ba lớp đám mây: ①IaaS (AWS EC2, v.v.): Cung cấp máy chủ và mạng, đồng thời tự quản lý mọi thứ phía trên hệ điều hành ②PaaS (Heroku, GAE, v.v.): Cung cấp môi trường thực thi ứng dụng, không cần quản lý cơ sở hạ tầng ③SaaS (Salesforce, Google Workspace, v.v.): Sử dụng ứng dụng như nguyên trạng. BrSE phải hiểu môi trường cơ sở hạ tầng của khách hàng và truyền đạt các thông số kỹ thuật về môi trường cho nhóm phát triển.',
   },
   'brse-ik-007': {
@@ -231,7 +231,7 @@ export const brseVi: QuestionTranslationMap = {
       'Chỉ cần báo cáo rằng bạn đã cài đặt phần mềm vi-rút',
       'Chỉ báo cáo độ dài mật khẩu'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Bảo mật là yêu cầu phi chức năng được khách hàng Nhật Bản (đặc biệt là tài chính và y tế) đặt lên hàng đầu. BrSE: Phải có hiểu biết cơ bản về OWASP Top 10 (SQL SQL, XSS, v.v.), tổng quan về các phương thức xác thực (OAuth2.0, JWT), các loại mã hóa (khóa chung AES/khóa chung RSA/băm SHA), tổng quan về nguyên tắc ISMS/ISMS và có thể báo cáo để khách hàng yên tâm.',
   },
   'brse-ik-008': {
@@ -247,7 +247,7 @@ export const brseVi: QuestionTranslationMap = {
       'Mời giảng viên bên ngoài mỗi tháng',
       'Phân phát sách kỹ thuật cho mọi người'
     ],
-    answer: 1,
+    answer: '1',
     explanation: '``Hệ thống hóa\'\' là chìa khóa để nâng cao trình độ kiến ​​thức kỹ thuật. ①Buổi học: Các thành viên lần lượt trình bày (kết quả đầu ra là cách học tốt nhất), ②Radar công nghệ: Phân loại công nghệ theo Áp dụng/Thử nghiệm/Đánh giá/Giữ (không khuyến khích), ③PoC: Học tập thực tế với văn hóa “cố gắng”, ④Wiki: Chuyển kiến ​​thức ngầm thành kiến ​​thức rõ ràng. Thay vì dựa vào sự tự hoàn thiện của cá nhân, chúng tôi tạo ra một hệ thống học tập như một tổ chức.',
   },
   'brse-jbc-001': {
@@ -259,7 +259,7 @@ export const brseVi: QuestionTranslationMap = {
       'sử dụng làm chủ đề email',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: '“Cảm ơn bạn đã làm việc chăm chỉ” là lời chào sử dụng nội bộ. Đối với khách hàng bên ngoài công ty, chúng tôi sử dụng "Cảm ơn sự giúp đỡ của bạn" và "Cảm ơn bạn đã tiếp tục hỗ trợ". “Cảm ơn vì đã làm việc chăm chỉ” là cách diễn đạt được sử dụng giữa cấp trên và cấp dưới, vì vậy hãy cẩn thận đừng sử dụng nó với cấp trên của bạn.',
   },
   'brse-jbc-002': {
@@ -276,7 +276,7 @@ export const brseVi: QuestionTranslationMap = {
       '“Tên tôi là Tanak” (không có tên công ty)',
       ''
     ],
-    answer: 0,
+    answer: '0',
     explanation: 'Khi bạn gọi, hãy nói ``Đây là 〇〇 từ 〇〇 Co., Ltd.\'\' và cho biết tên + tên công ty của bạn. Tôi không sử dụng "san" cho chính mình. ``Maimasu\'\' là cách diễn đạt lịch sự của ``desu.\'\' Khi gọi từ bên ngoài, thông điệp cơ bản là "Cảm ơn bạn đã gọi. Đây là 〇〇 từ 〇〇 Co., Ltd.".',
   },
   'brse-jbc-004': {
@@ -288,7 +288,7 @@ export const brseVi: QuestionTranslationMap = {
       '“Tôi hiểu” chỉ có thể được sử dụng ở dạng viết.',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: '“Tôi hiểu” là cách diễn đạt lịch sự nhất, bao gồm cả sự khiêm tốn, phù hợp với khách hàng và cấp trên. "Tôi hiểu" sẽ kém lịch sự hơn và có thể thô lỗ với sếp hoặc khách hàng của bạn. Các giai đoạn: Tôi hiểu (lịch sự nhất) > Tôi hiểu > Tôi hiểu > Tôi hiểu (thông thường)',
   },
   'brse-jbc-005': {
@@ -300,7 +300,7 @@ export const brseVi: QuestionTranslationMap = {
       'Nó chỉ có nghĩa là hỏi ý kiến ​​người khác',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Trong giao tiếp kinh doanh của người Nhật, điều quan trọng là phải “đọc được bầu không khí”. “Tôi sẽ xem xét nó”, “Nó khó khăn” và “Tôi sẽ xem xét nó một cách tích cực” thường có nghĩa là một lời từ chối gián tiếp. Với tư cách là BrSE, điều quan trọng là phải hiểu ý định thực sự của khách hàng và truyền đạt chúng một cách chính xác cho đội ngũ Việt Nam. Sẽ rất hiệu quả khi hỏi cụ thể, “Khi nào bạn có thể trả lời?”',
   },
   'brse-jbc-006': {
@@ -312,7 +312,7 @@ export const brseVi: QuestionTranslationMap = {
       'Chỉ xin lỗi (không cần chi tiết)',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Trong kinh doanh Nhật Bản, lời xin lỗi được đặt lên hàng đầu và bao gồm: ① Đầu tiên, lời xin lỗi ("Chúng tôi xin lỗi vì sự bất tiện lần này đã gây ra.") ② Giải thích nguyên nhân (sự thật chứ không phải lời bào chữa) ③ Biện pháp tạm thời (hành động ngay lập tức) ④ Biện pháp lâu dài (biện pháp ngăn ngừa tái diễn) ⑤ Xin lỗi lần nữa và quyết định trong tương lai. Cấu trúc này có hiệu quả nhất trong việc khôi phục lòng tin.',
   },
   'brse-jbc-007': {
@@ -324,7 +324,7 @@ export const brseVi: QuestionTranslationMap = {
       'Những cách diễn đạt thông thường không phải là những cách diễn đạt kính cẩn đặc biệt',
       ''
     ],
-    answer: 2,
+    answer: '2',
     explanation: 'Việc sử dụng thêm ``o\'\' và ``go\'\' vào danh từ được phân loại là bikago (một loại ngôn ngữ lịch sự). Trong ``Tôi sẽ gửi cho bạn một câu trích dẫn\'\' ``trích dẫn\'\' là một từ hay, và ``Tôi sẽ gửi nó cho bạn\'\' là một từ khiêm tốn. Sử dụng đúng kính ngữ: Hiểu ngôn ngữ kính ngữ (đối với hành động của người khác), kenjogo (đối với hành động của chính mình) và ngôn ngữ lịch sự (``desu\'\' và ``masu\'\') là điều cần thiết cho BrSE.',
   },
   'brse-jbc-008': {
@@ -341,7 +341,7 @@ export const brseVi: QuestionTranslationMap = {
       'nói nhiều trong cuộc họp',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Kỹ năng quan trọng nhất đối với BrSE là khả năng đặt câu hỏi loại bỏ sự mơ hồ. Khách hàng Nhật Bản thường truyền đạt các thông số kỹ thuật một cách ngầm định, sử dụng các cách diễn đạt mơ hồ như “theo cách tốt”, “một cách thích hợp” và “theo cách thông thường”. BrSE yêu cầu: 1) đưa ra các con số và ví dụ cụ thể, 2) xác nhận trực quan bằng sơ đồ và mô hình, và 3) ghi lại các chi tiết xác nhận trong vài phút và xin phê duyệt.',
   },
   'brse-jbc-010': {
@@ -358,7 +358,7 @@ export const brseVi: QuestionTranslationMap = {
       'Chuyển sang chủ đề khác và kiểm tra sau',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: '"Nó hơi khắc nghiệt" là một uyển ngữ tiếng Nhật thường có nghĩa là "không thể/không thể chấp nhận được". Với tư cách là BrSE: ① Điều tra chi tiết, ``Phần nào đặc biệt khó?\'\' ② Chuẩn bị phương án thay thế, ③ Truyền đạt chính xác ý nghĩa thực chất (NO) cho phía Việt Nam mà không dịch sai sắc thái. Bản dịch theo nghĩa đen là sai lệch.',
   },
   'brse-jbc-012': {
@@ -375,7 +375,7 @@ export const brseVi: QuestionTranslationMap = {
       'Không nói nhiều trong các cuộc họp',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Điều không thích nhất trong văn hóa kinh doanh Nhật Bản là “che đậy vấn đề” và “chậm trễ báo cáo”. Những sai sót trong ngôn ngữ kính ngữ có thể chấp nhận được, nhưng “Tôi biết nhưng không báo cáo” hoàn toàn làm mất uy tín. Nguyên tắc của Horenso: (1) Báo tin xấu nhanh chóng; (2) Báo cáo bao gồm thông tin thực tế → tác động → biện pháp ứng phó; và (3) Tốt hơn hết bạn nên chia sẻ nhanh chóng, ngay cả khi bạn mở đầu bằng "Chúng tôi vẫn đang xác nhận điều đó".',
   },
   'brse-jbc-014': {
@@ -396,7 +396,7 @@ export const brseVi: QuestionTranslationMap = {
       'Tôi giả vờ nghe và liên tục gật đầu.',
       'Chỉ cần gửi "Tôi không thể nghe thấy" trong cuộc trò chuyện'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Câu "âm thanh ở xa" là cách diễn đạt lịch sự mang sắc thái đổ lỗi cho hệ thống hơn là đổ lỗi cho bên kia. Trong kinh doanh, điều quan trọng là không được “cắt ngang” cuộc trò chuyện của người khác mà phải xác nhận lại tình hình bằng cách cư xử lịch sự.',
   },
   'brse-jbc-016': {
@@ -407,7 +407,7 @@ export const brseVi: QuestionTranslationMap = {
       'Hãy xin lời khuyên khi bạn nhận ra rằng bạn không thể tự mình giải quyết vấn đề và đã lâu rồi bạn chưa đi vào bế tắc.',
       'Hãy tìm thời điểm mà sếp của bạn không bận và hỏi ý kiến ​​ông ấy.'
     ],
-    answer: 2,
+    answer: '2',
     explanation: 'Sự chậm trễ trong việc tư vấn trực tiếp dẫn đến sự chậm trễ trong toàn bộ dự án. Điều quan trọng là bạn phải có một quy tắc trong mình: ``Hãy nghiên cứu một chút và nếu bạn không hiểu điều gì đó, hãy hỏi ngay.\'\' Đặc biệt, BrSE đóng vai trò như một cầu nối nên việc ứ đọng thông tin là tai hại.',
   },
   'brse-jbc-017': {
@@ -448,13 +448,13 @@ export const brseVi: QuestionTranslationMap = {
       'Buộc kết thúc cuộc họp',
       'Tôi cứ đợi vài phút mà không nói gì.'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Sự im lặng trong các cuộc họp của người Nhật thường là khoảng thời gian “suy nghĩ” hoặc “chọn từ ngữ”. Nói một chiều quá nhiều sẽ phản tác dụng. Bạn sẽ phải đọc những phần "tạm dừng" thích hợp và tạo điều kiện thuận lợi khi cần thiết.',
   },
   'brse-jbc-023': {
     question: 'Đội tuyển Việt Nam nói “Có”, nhưng tôi cảm thấy họ chưa thực sự hiểu. Với tư cách là một BrSE, hãy tạo ra một hệ thống để loại bỏ “NO ẩn” này (giả vờ hiểu).',
     answer: 'Cách giải quyết:\n1. Câu hỏi hiểu: Sau phần hướng dẫn, yêu cầu đầu ra: ``Hãy tóm tắt và giải thích nội dung trong 5 phút.\'\' \n2. Hỏi đáp kéo dài 5 phút: Cuối cuộc họp, hãy đặt ra quy tắc hỏi ``Phần nào có vẻ khó nhất?\'\' thay vì ``Có câu hỏi nào không?\'\' \n3. Chia nhỏ thành WBS: Chia nhỏ hướng dẫn thành các nhiệm vụ ngay lập tức và đo lường mức độ hiểu dựa trên độ phân giải đó. \n4. Đảm bảo an toàn tâm lý: Đảm bảo quy tắc ứng xử “nói không biết không phải xấu hổ mà là tránh rủi ro”.',
-    explanation: 'Văn hóa “có” là kẻ thù lớn nhất của sự phát triển ra nước ngoài. Vai trò của Trưởng nhóm BrSE là giới thiệu một quy trình đo lường khách quan mức độ hiểu biết của bên kia thông qua một hệ thống, thay vì chỉ kiểm tra.',
+    explanation: 'Văn hóa “có” là kẻ thù lớn nhất của sự phát triển ra nước ngoài. Vai trò của Trưởng BrSE là giới thiệu một quy trình đo lường khách quan mức độ hiểu biết của bên kia thông qua một hệ thống, thay vì chỉ kiểm tra.',
   },
   'brse-jc-001': {
     question: 'Ý nào sau đây là đúng về "Horensou"?',
@@ -465,7 +465,7 @@ export const brseVi: QuestionTranslationMap = {
       'Phương pháp kiểm soát chất lượng của Nhật Bản',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Horenso là một trong những nguyên tắc quan trọng nhất trong kinh doanh của người Nhật. Báo cáo (cho chính phủ biết kết quả), giao tiếp (chia sẻ thông tin với các bên liên quan) và tham vấn (xin lời khuyên khi bạn gặp vấn đề hoặc không chắc chắn về quyết định). Đặc biệt trong quá trình phát triển ở nước ngoài, việc thiếu giao tiếp dẫn đến sự lo lắng của khách hàng. Nguyên tắc vàng là báo tin xấu càng sớm càng tốt.',
   },
   'brse-jc-002': {
@@ -482,7 +482,7 @@ export const brseVi: QuestionTranslationMap = {
       'Đánh giá các thành viên trong nhóm',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Nemawashi là một khái niệm quan trọng trong văn hóa kinh doanh của người Nhật. Nếu bạn đưa ra một đề xuất mới “bất ngờ” trong một cuộc họp chính thức, các bên liên quan có thể phản đối. Bằng cách đưa ra những lời giải thích cá nhân, lắng nghe ý kiến ​​và đưa ra những điều chỉnh cần thiết trước, việc đạt được thỏa thuận tại cuộc họp sẽ dễ dàng hơn. Với tư cách là BrSE, việc thực hiện một số nghiên cứu trước khi đưa ra đề xuất với phía Nhật Bản sẽ rất hiệu quả.',
   },
   'brse-jc-004': {
@@ -494,7 +494,7 @@ export const brseVi: QuestionTranslationMap = {
       'Chi phí dịch thuật tăng',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Khách hàng Nhật Bản đôi khi giao tiếp với suy nghĩ rằng họ sẽ hiểu mà không cần bạn phải nói. Ví dụ: "Hãy làm cho nó trông thật đẹp", "Bình thường thì nó phải như thế này". Tuy nhiên, phía Việt Nam có xu hướng thực hiện “đúng những gì được bảo”. Vai trò quan trọng của BrSE là thu hẹp khoảng cách văn hóa này - ghi lại những kỳ vọng tiềm ẩn thành các thông số kỹ thuật cụ thể.',
   },
   'brse-jc-005': {
@@ -506,7 +506,7 @@ export const brseVi: QuestionTranslationMap = {
       'Cách xem lại mã cho một dự án',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Ringi là một quá trình xây dựng sự đồng thuận trong các tổ chức của Nhật Bản. Lập đề xuất và nhận tem phê duyệt (tem) từ người phụ trách → quản lý bộ phận → quản lý → người điều hành theo thứ tự. Vì lý do này: (1) Phải mất vài ngày đến vài tuần để đưa ra quyết định, (2) BrSE cần lập một lịch trình có nhiều thời gian để phê duyệt báo giá và yêu cầu thay đổi lịch trình, và (3) Có thể làm cho quá trình phê duyệt suôn sẻ hơn bằng cách sắp xếp trước.',
   },
   'brse-jc-006': {
@@ -518,7 +518,7 @@ export const brseVi: QuestionTranslationMap = {
       'Hãy hỏi thẳng: “Xin hãy nói cho tôi biết bạn thực sự nghĩ gì”.',
       ''
     ],
-    answer: 2,
+    answer: '2',
     explanation: 'Honne (cảm xúc thật) và tatemae (ý kiến ​​chính thức) là đặc điểm trong giao tiếp của người Nhật. Có nhiều tuyên bố trang trọng trong các cuộc họp và việc bày tỏ cảm xúc thật của bạn trong các cuộc trò chuyện cá nhân và môi trường thân mật sẽ dễ dàng hơn. Với tư cách là một BrSE: ① Đừng cảm thấy nhẹ nhõm chỉ bằng sự đồng ý hời hợt. ② Tạo cơ hội xác nhận trực tiếp. ③ Đảm bảo ghi lại các quyết định và nhận được xác nhận. ④ Kiểm tra lại "Cách hiểu này có đúng không?"',
   },
   'brse-jc-007': {
@@ -535,7 +535,7 @@ export const brseVi: QuestionTranslationMap = {
       'Tham gia mọi bữa tiệc uống rượu của người Nhật',
       ''
     ],
-    answer: 2,
+    answer: '2',
     explanation: 'Điều người Nhật coi trọng nhất là “sự đáng tin cậy”. Niềm tin được xây dựng không phải bởi những thành tựu to lớn mà bằng sự tích lũy những lời hứa nhỏ hàng ngày: (1) giữ đúng những gì bạn nói, (2) đáp ứng đúng thời hạn (hứa nhiều thời gian), (3) không hạ thấp tiêu chuẩn chất lượng và (4) báo cáo vấn đề sớm mà không giấu giếm. Ngược lại, một khi niềm tin đã bị đánh mất thì phải mất rất nhiều thời gian mới lấy lại được.',
   },
   'brse-jc-009': {
@@ -552,7 +552,7 @@ export const brseVi: QuestionTranslationMap = {
       'Lên kế hoạch tổ chức tiệc cuối năm cho nhóm',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Cuối năm tài chính ở Nhật Bản (cuối tháng 3) là thời điểm quan trọng: (1) Có khả năng các dự án bổ sung sẽ đột ngột đến do cạn kiệt ngân sách (đảm bảo nguồn lực), (2) Nhân sự phụ trách (PM, SE, PL) sẽ thay đổi do thay đổi nhân sự trong tháng 4 (xử lý bàn giao), và (3) Gia hạn hợp đồng và nộp dự toán cho năm sau (chuẩn bị từ tháng 1-tháng 2). Với tư cách là Lead BrSE, bạn sẽ có thể dự đoán và chủ động dự đoán chu kỳ cuối năm hàng năm và chứng tỏ uy tín của mình.',
   },
   'brse-op-001': {
@@ -564,7 +564,7 @@ export const brseVi: QuestionTranslationMap = {
       'Thời gian giao hàng chắc chắn sẽ được rút ngắn',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Ưu điểm của phát triển ở nước ngoài: 1) Giảm chi phí (sự khác biệt về chi phí lao động giữa các vùng), 2) Đảm bảo nguồn lực (giải quyết tình trạng thiếu kỹ sư trong nước), 3) Khả năng hệ thống phát triển 24 giờ tận dụng sự khác biệt về thời gian. Mặt khác, nhược điểm: chi phí truyền thông, khó kiểm soát chất lượng, khác biệt về văn hóa. BrSE chịu trách nhiệm cân bằng những điều này.',
   },
   'brse-op-002': {
@@ -581,7 +581,7 @@ export const brseVi: QuestionTranslationMap = {
       'Chỉ thực hiện dịch thuật tiếng Nhật',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Vai trò của BrSE rất rộng: 1) Dịch thuật và truyền đạt các thông số kỹ thuật (không chỉ dịch ngôn ngữ mà còn cả sắc thái văn hóa), 2) Kiểm soát chất lượng (thâm nhập các tiêu chuẩn chất lượng của Nhật Bản sang phía Việt Nam), 3) Quản lý tiến độ (hiểu và báo cáo tình hình của cả hai bên) và 4) Phối hợp giải quyết vấn đề (kết nối các vấn đề kỹ thuật và văn hóa). Anh không chỉ là phiên dịch viên mà còn là người chủ chốt tạo nên sự thành công của dự án.',
   },
   'brse-op-004': {
@@ -593,7 +593,7 @@ export const brseVi: QuestionTranslationMap = {
       'Loại phòng thí nghiệm dành cho hợp đồng trong nước, loại hợp đồng dành cho hợp đồng nước ngoài.',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Loại phòng thí nghiệm (gần với hợp đồng gần như ủy quyền): Một nhóm chuyên trách được đảm bảo hàng tháng, có thể phát triển linh hoạt và rủi ro về tài nguyên thuộc về phía khách hàng. Loại hợp đồng: Sản phẩm bàn giao và ngày giao hàng được hứa hẹn nhưng rủi ro về chất lượng thuộc về phía nhà cung cấp. BrSE phải đề xuất mẫu hợp đồng phù hợp theo tính chất của dự án và thực hiện các biện pháp quản lý theo rủi ro.',
   },
   'brse-op-005': {
@@ -605,7 +605,7 @@ export const brseVi: QuestionTranslationMap = {
       'Việc kiểm tra được để lại theo quyết định của cá nhân nhà phát triển.',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Vấn đề chất lượng trong phát triển ngoài khơi trực tiếp dẫn đến mất niềm tin. Quản lý QA của BrSE: ① Lập kế hoạch kiểm tra theo tiêu chuẩn chất lượng của khách hàng, ② BrSE xem xét các trường hợp kiểm thử (xác nhận tính nhất quán với thông số kỹ thuật của Nhật Bản), ③ Trực quan hóa kết quả kiểm tra bằng tiếng Nhật (số lượng lỗi, mức độ nghiêm trọng, tốc độ tiến triển), ④ Báo cáo ngay các lỗi nghiêm trọng cho khách hàng.',
   },
   'brse-op-006': {
@@ -622,7 +622,7 @@ export const brseVi: QuestionTranslationMap = {
       'Sự khác biệt là không thể tránh khỏi, vì vậy hãy chấp nhận chúng.',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Các biện pháp nhằm giảm thiểu sự khác biệt trong việc nhận dạng thông số kỹ thuật: (1) Điều chỉnh sự hiểu biết của cả hai bên thông qua các cuộc họp Hỏi đáp (hướng dẫn đặc tả kỹ thuật), (2) Kiểm tra trực quan bằng các mô hình của các màn hình quan trọng, (3) Ghi lại tất cả các câu hỏi vào bảng Hỏi đáp và nhận được phê duyệt, (4) Cung cấp sớm với chu kỳ phát triển ngắn và (5) Hiển thị trước các nguyên mẫu của các chức năng quan trọng. \'\'Kiểm tra quá nhiều\'\' là đúng.',
   },
   'brse-op-008': {
@@ -634,7 +634,7 @@ export const brseVi: QuestionTranslationMap = {
       'Chỉ trình độ tiếng Nhật của thành viên',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Cần có KPI nhiều mặt: (1) Chất lượng: Mật độ lỗi (lỗi/KLOC), số lượng lỗi sau phát hành, phạm vi kiểm tra, (2) Năng suất: Xu hướng vận tốc, tỷ lệ thực tế/kế hoạch, (3) Quy trình: Tỷ lệ giao hàng đúng hạn, tốc độ phản hồi Q&A thông số kỹ thuật, (4) Khách hàng: Khảo sát mức độ hài lòng của khách hàng, tỷ lệ gia hạn hợp đồng. Chúng tôi đo lường bằng sự cân bằng chứ không phải bằng một chỉ báo duy nhất và kết nối nó với các hoạt động cải tiến.',
   },
   'brse-op-009': {
@@ -650,7 +650,7 @@ export const brseVi: QuestionTranslationMap = {
       'Tài liệu thiết kế wireframe',
       'Bảng tóm tắt kết quả kiểm tra'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'WBS là một công cụ cơ bản để quản lý dự án. Phân chia theo cấp bậc thành các sản phẩm bàn giao lớn → các sản phẩm bàn giao trung gian → các gói công việc → các nhiệm vụ riêng lẻ. BrSE quản lý công việc phía Việt Nam dựa trên WBS và báo cáo tiến độ cho khách hàng Nhật Bản. Nếu không có WBS, sẽ khó có thể bỏ qua công việc và giám sát tiến độ một cách chính xác.',
   },
   'brse-pm-002': {
@@ -661,7 +661,7 @@ export const brseVi: QuestionTranslationMap = {
       'Biểu đồ hiển thị dữ liệu bán hàng',
       'Sơ đồ ER cơ sở dữ liệu'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Biểu đồ Gantt sắp xếp thời gian trên trục hoành và các nhiệm vụ trên trục tung, đồng thời độ dài của thanh biểu thị khoảng thời gian. Đây là một công cụ quản lý thiết yếu cho các dự án của Nhật Bản và được sử dụng để báo cáo tiến độ cho khách hàng, hiểu các lộ trình quan trọng và lập kế hoạch phân bổ nguồn lực. BrSE yêu cầu khả năng tạo và cập nhật biểu đồ Gantt bằng tiếng Nhật.',
   },
   'brse-pm-003': {
@@ -677,7 +677,7 @@ export const brseVi: QuestionTranslationMap = {
       'Danh sách các nhiệm vụ có thể hoàn thành trong thời gian ngắn nhất',
       'Con đường liên lạc quan trọng để bảo mật'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Các nhiệm vụ trên đường găng có biên độ bằng 0 (float) = trễ 1 ngày tức là trễ hạn 1 ngày. Với tư cách là BrSE: ① Ưu tiên xác nhận tiến độ của các nhiệm vụ trên đường quan trọng, ② Đặt trước bộ đệm cho các nhiệm vụ rủi ro, ③ Xác định phạm vi có thể chấp nhận được đối với độ trễ trong các nhiệm vụ không quan trọng.',
   },
   'brse-pm-005': {
@@ -688,7 +688,7 @@ export const brseVi: QuestionTranslationMap = {
       'Hiệu quả dưới ngân sách',
       'dự án đã bị hủy bỏ'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'CPI (Chỉ số Hiệu suất Chi phí) = EV/AC. CPI < 1,0 = Không hiệu quả về mặt chi phí (vượt ngân sách). SPI (Chỉ số Hiệu suất Lịch trình) = EV/PV. SPI < 1.0 = độ trễ lịch trình. Với tư cách là BrSE: (1) Tính toán và báo cáo cả hai chỉ số hàng tháng, (2) Phân tích nguyên nhân và đề xuất biện pháp khắc phục nếu nó dưới 1,0, (3) Kiểm tra xu hướng (cải thiện/xuống cấp).',
   },
   'brse-pm-006': {
@@ -704,7 +704,7 @@ export const brseVi: QuestionTranslationMap = {
       'Thay thế các thành viên trong nhóm một cách nhanh chóng',
       'Yêu cầu gia hạn thời hạn mà không báo cáo sự chậm trễ'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Quản lý tin xấu là kỹ năng quan trọng nhất của BrSE. Đặt hàng: ① Xác nhận thực tế (cái gì bị trì hoãn và bao nhiêu?), ② Phân tích nguyên nhân (thay đổi thông số kỹ thuật? Vấn đề kỹ thuật? Thiếu nguồn lực?), ③ Phân tích tác động (tác động đến các nhiệm vụ khác, tác động đến ngày giao hàng cuối cùng), ④ Xây dựng kế hoạch phục hồi (chuẩn bị nhiều kế hoạch), ⑤ Báo cáo sớm cho khách hàng (báo cáo cùng với các biện pháp đối phó). Điều tồi tệ nhất để làm là che giấu nó.',
   },
   'brse-pm-008': {
@@ -715,7 +715,7 @@ export const brseVi: QuestionTranslationMap = {
       'thổi phồng lên 90%',
       'Không cần báo cáo tiến độ'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Để tránh "hội chứng 90%" (10% còn lại không bao giờ hoàn thành): 1) Sử dụng chỉ báo khách quan làm tốc độ tiến độ (đã hoàn thành/tổng ​​số), 2) Xác định rõ ràng mức độ hoàn thành (hoàn thành mã hóa? Hoàn thành kiểm tra? Đã hoàn thành đánh giá?), 3) Thêm rủi ro của công việc còn lại ("20% còn lại chứa các hàm phức tạp") và 4) Cho biết ngày hoàn thành dự kiến ​​kèm theo bằng chứng. Khách hàng Nhật Bản đánh giá cao độ chính xác của con số.',
   },
   'brse-pm-009': {
@@ -816,7 +816,7 @@ export const brseVi: QuestionTranslationMap = {
       'Sao chép mã nguồn',
       'Số tiền ước tính'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Các yếu tố thiết yếu của trường hợp kiểm thử: 1) ID kiểm thử (số kiểm soát), 2) Mục kiểm thử (kiểm tra nội dung gì), 3) Điều kiện tiên quyết (trạng thái cần thiết trước khi thực hiện kiểm thử), 4) Quy trình kiểm thử (từng bước), 5) Dữ liệu kiểm thử (giá trị đầu vào cụ thể), 6) Kết quả mong đợi (xác định hành vi đúng), 7) Kết quả thực tế (hành vi thực tế), 8) Đánh giá đạt/không đạt (OK/NG). BrSE xem xét các trường hợp thử nghiệm và xác nhận tính nhất quán với các thông số kỹ thuật của Nhật Bản.',
   },
   'brse-qt-002': {
@@ -827,7 +827,7 @@ export const brseVi: QuestionTranslationMap = {
       'Đơn = Nhật Bản, Kết hợp = Việt Nam, Toàn diện = Thử nghiệm do khách hàng thực hiện',
       'Sự khác biệt về số lượng người tham gia'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Tương ứng với mô hình hình chữ V: Thiết kế chi tiết ↔ Kiểm thử đơn vị (UT), Thiết kế cơ bản ↔ Kiểm thử tích hợp (IT), Xác định yêu cầu ↔ Kiểm thử toàn diện (ST). Khi ở nước ngoài, các thử nghiệm đơn vị và tích hợp thường được thực hiện bởi phía Việt Nam, còn các thử nghiệm toàn diện và UAT được thực hiện bởi phía khách hàng. BrSE chịu trách nhiệm xây dựng kế hoạch kiểm tra và đánh giá chất lượng kết quả.',
   },
   'brse-qt-003': {
@@ -843,7 +843,7 @@ export const brseVi: QuestionTranslationMap = {
       'Các vấn đề với ngăn xếp công nghệ được sử dụng',
       'Ảnh hưởng của chênh lệch thời gian'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Hơn 70% nguyên nhân gốc rễ của các vấn đề về chất lượng là do "hiểu sai về thông số kỹ thuật". Các biện pháp cải thiện chất lượng BrSE: (1) Kiểm tra các ví dụ cụ thể khi truyền đạt thông số kỹ thuật, (2) Xem xét các nguyên mẫu trước khi bắt đầu phát triển, (3) Xác minh so với các thông số kỹ thuật khi tạo trường hợp thử nghiệm, (4) Kiểm thử từ góc độ của khách hàng (không phải "các thử nghiệm mà nhà phát triển hài lòng" mà là "các thử nghiệm mà khách hàng hài lòng").',
   },
   'brse-qt-005': {
@@ -854,7 +854,7 @@ export const brseVi: QuestionTranslationMap = {
       'Về kế hoạch kiểm tra',
       'Báo cáo công việc hàng ngày của nhà phát triển'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Bằng chứng kiểm nghiệm là một yếu tố kiểm soát chất lượng được khách hàng Nhật Bản đánh giá cao. Các loại bằng chứng: ① Chụp màn hình (trước khi nhập/sau khi thực hiện), ② Kết quả xác nhận dữ liệu DB, ③ Phần tương ứng của tệp nhật ký, ④ Nội dung phản hồi API. Điểm chất lượng của bằng chứng: Ngày và giờ được biết rõ, mối liên hệ với ID ca kiểm thử rõ ràng, các xét nghiệm bất thường cũng để lại bằng chứng. BrSE đánh giá chất lượng của bằng chứng.',
   },
   'brse-qt-006': {
@@ -865,7 +865,7 @@ export const brseVi: QuestionTranslationMap = {
       'Khoảng thời gian lỗi tập trung',
       'Số lỗi được báo cáo mỗi ngày'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Mật độ lỗi = tổng số lỗi/số lượng mã (KLOC). Hướng dẫn chung: 6-12 lỗi/KLOC trong quá trình phát triển, 0,5-3 lỗi/KLOC khi phát hành. Cách sử dụng: 1) Hiểu xu hướng chất lượng bằng cách so sánh với các dự án trước đây, 2) Xác định mức độ đầy đủ của kiểm tra (nếu mật độ lỗi cực thấp thì có khả năng kiểm tra không đủ), 3) Phát hiện các biến thể về chất lượng bằng cách so sánh giữa các mô-đun.',
   },
   'brse-qt-007': {
@@ -881,7 +881,7 @@ export const brseVi: QuestionTranslationMap = {
       'Không có vấn đề gì nếu tất cả các lỗi đã được sửa',
       'Đổ lỗi cho đội QA'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Các lỗi thường xuyên xảy ra ở giai đoạn UAT gây tổn hại lớn đến niềm tin. Phản hồi: 1. Xin lỗi một cách chân thành, 2. Phân tích lỗi (vấn đề trong việc hiểu các thông số kỹ thuật? Kiểm tra chưa đầy đủ? Sự khác biệt về môi trường?), 3. Trình bày kế hoạch cải thiện nguyên nhân gốc rễ bằng văn bản, 4. Hứa hẹn về lịch trình thực hiện cải tiến, 5. Báo cáo kết quả cải tiến trong lần lặp tiếp theo. Thể hiện sự sẵn sàng cải thiện là bước đầu tiên để khôi phục lòng tin.',
   },
   'brse-qt-009': {
@@ -892,7 +892,7 @@ export const brseVi: QuestionTranslationMap = {
       'Kiểm soát chất lượng được gia công cho một tổ chức chuyên môn bên ngoài',
       'Phản hồi các vấn đề về chất lượng sau khi chúng xảy ra'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Xây dựng văn hóa chất lượng: (1) Thấm nhuần tư duy “chất lượng là sự đầu tư chứ không phải chi phí”. (2) Xây dựng chất lượng trong các quy trình thượng nguồn (đánh giá thiết kế); (3) Thiết lập cổng chất lượng thông qua tự động hóa (CI/CD, phân tích tĩnh, kiểm tra tự động); (4) Rà soát và cải tiến các vấn đề về chất lượng trong quá trình hồi cứu; (5) Hình dung và khen ngợi kết quả chất lượng. Chìa khóa để cải tiến bền vững là tạo ra một môi trường nơi việc cải tiến chất lượng diễn ra một cách tự nhiên chứ không phải thông qua hình phạt.',
   },
   'brse-qt-010': {
@@ -991,7 +991,7 @@ export const brseVi: QuestionTranslationMap = {
       'Công nghệ được sử dụng trong dự án',
       'Đánh giá của các thành viên dự án'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Định nghĩa rủi ro: “Một vấn đề chưa xảy ra nhưng có thể xảy ra”. Rủi ro ≠ Sự cố (sự cố đã xảy ra). Đặc điểm của rủi ro: (1) Có khả năng xảy ra, (2) Có mức độ tác động nếu xảy ra, (3) Có thể thực hiện các biện pháp sơ bộ. Với tư cách là BrSE, chúng tôi ngăn chặn các vấn đề xảy ra bằng cách xác định trước rủi ro và thực hiện các biện pháp đối phó.',
   },
   'brse-rm-002': {
@@ -1002,7 +1002,7 @@ export const brseVi: QuestionTranslationMap = {
       'Để tính toán ngân sách dự án',
       'Để xác định số lượng ca kiểm thử'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Ma trận rủi ro ánh xạ từng rủi ro bằng cách đặt mức độ tác động (cao/trung bình/thấp) trên trục tung và xác suất xảy ra (cao/trung bình/thấp) trên trục hoành. Xác suất cao x tác động cao = biện pháp ưu tiên hàng đầu, xác suất thấp x tác động thấp = chỉ giám sát. BrSE tạo ra danh sách các rủi ro khi bắt đầu dự án, sắp xếp chúng theo thứ tự ưu tiên trong ma trận và lên kế hoạch cho các biện pháp đối phó.',
   },
   'brse-rm-003': {
@@ -1018,7 +1018,7 @@ export const brseVi: QuestionTranslationMap = {
       'Chỉ rủi ro thời tiết',
       'Chỉ có rủi ro pháp lý'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Rủi ro đặc thù ở nước ngoài: ① Giao tiếp (khác biệt về thông số kỹ thuật, khác biệt văn hóa, khác biệt về thời gian) → Biện pháp đối phó: Quản lý hỏi đáp, họp thường xuyên, bảng chú giải ② Nhân sự (tách các thành viên chủ chốt, khoảng cách kỹ năng) → Biện pháp đối phó: Chia sẻ kiến thức, hệ thống dự phòng ③ Chất lượng (khác biệt với tiêu chuẩn chất lượng Nhật Bản) → Biện pháp đối phó: đánh giá mã, bằng chứng kiểm tra ④ Trao đổi tiền tệ (biến động VNĐ/JPY) → Biện pháp đối phó: Quy định điều kiện trao đổi trong hợp đồng dài hạn',
   },
   'brse-rm-005': {
@@ -1029,7 +1029,7 @@ export const brseVi: QuestionTranslationMap = {
       '4 cấp độ: trên/giữa/dưới/không',
       '4 giai đoạn: phát triển/thử nghiệm/quản lý/bảo trì'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Ví dụ về ứng phó rủi ro: ① Phòng tránh: Từ bỏ áp dụng các công nghệ mới có rủi ro kỹ thuật cao và chọn các công nghệ đã được chứng minh ② Giảm thiểu: Đào tạo chéo và duy trì tài liệu để giảm rủi ro khi luân chuyển thành viên ③ Chuyển giao: Gia công việc kiểm tra lỗ hổng cho một công ty bảo mật chuyên ngành để phát hiện các rủi ro bảo mật ④ Chấp nhận: Chỉ theo dõi tình trạng hiện tại đối với các rủi ro có xác suất xảy ra thấp và tác động nhỏ',
   },
   'brse-rm-006': {
@@ -1045,7 +1045,7 @@ export const brseVi: QuestionTranslationMap = {
       'Chờ đội thích nghi tự nhiên',
       'Rủi ro này không thể lường trước được nên không thể giúp đỡ được.'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Việc các thành viên chủ chốt nghỉ hưu có nguy cơ xảy ra cao. Các biện pháp sơ bộ: (1) Ngăn chặn việc tri thức bị cá nhân hóa (tài liệu, lập trình cặp), (2) Phát triển nhân sự dự phòng, (3) Thỏa thuận hợp đồng đảm bảo thời gian bàn giao. Các biện pháp sau sự cố: báo cáo sớm, chuyển giao kiến ​​thức nhanh chóng và giảm thiểu tác động. Câu hỏi không phải là liệu tình huống này có “không thể đoán trước” hay không mà là liệu các biện pháp có được thực hiện trước hay không.',
   },
   'brse-rm-008': {
@@ -1056,7 +1056,7 @@ export const brseVi: QuestionTranslationMap = {
       'Lên kế hoạch hủy bỏ dự án',
       'Lập kế hoạch bổ sung ngân sách'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Ví dụ về kế hoạch dự phòng: ① Lỗi máy chủ → Chuẩn bị trước các quy trình chuyển sang môi trường dự phòng ② Thành viên chủ chốt nghỉ hưu → Duy trì tài liệu bàn giao và danh sách ứng viên thay thế ③ Trì hoãn giao hàng → Xem xét trước các kịch bản khôi phục (tăng nhân sự, giảm phạm vi, công việc song song) ④ Sự cố bảo mật → Chuẩn bị quy trình ứng phó sự cố. Công việc của một người chuyên nghiệp là chuẩn bị trước khi bạn thức dậy, thay vì nghĩ về nó sau khi bạn thức dậy.',
   },
   'brse-rm-009': {
@@ -1157,7 +1157,7 @@ export const brseVi: QuestionTranslationMap = {
       'Bảng đánh giá nhà phát triển',
       'Báo cáo kết quả thử nghiệm'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Tài liệu định nghĩa yêu cầu là tài liệu cấp cao nhất xác định "nội dung cần tạo". Mô tả quy trình kinh doanh, yêu cầu chức năng, yêu cầu phi chức năng (hiệu suất, bảo mật, v.v.) và các hạn chế. BrSE phải hiểu chính xác tài liệu này và truyền đạt nó cho nhóm phát triển.',
   },
   'brse-rs-002': {
@@ -1168,7 +1168,7 @@ export const brseVi: QuestionTranslationMap = {
       'Tài liệu thiết kế cơ bản được viết bằng tiếng Nhật, còn tài liệu thiết kế chi tiết được viết bằng tiếng Anh.',
       'Tài liệu thiết kế cơ bản được tạo bởi khách hàng và tài liệu thiết kế chi tiết được tạo bởi nhà phát triển.'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Thiết kế cơ bản (thiết kế bên ngoài): Kiến trúc hệ thống tổng thể, thiết kế màn hình, thiết kế DB, thiết kế API, chuyển đổi màn hình - những phần hiển thị cho người dùng. Thiết kế chi tiết (thiết kế nội bộ): Logic xử lý, thiết kế lớp và sơ đồ trình tự cho từng mô-đun - thông số kỹ thuật chi tiết dành cho nhà phát triển. Đối với BrSE, việc hiểu rõ tài liệu thiết kế cơ bản là đặc biệt quan trọng.',
   },
   'brse-rs-003': {
@@ -1184,7 +1184,7 @@ export const brseVi: QuestionTranslationMap = {
       'Sơ đồ cơ cấu đội',
       'Danh sách trường hợp thử nghiệm'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Bảng CRUD (Ma trận CRUD) trực quan hóa mối quan hệ giữa dữ liệu và hàm. Sắp xếp các thực thể dữ liệu (bảng) theo trục tung và các chức năng/màn hình theo trục ngang và ghi C/R/U/D vào từng ô. Điều này giúp có thể 1) xác nhận tính nhất quán của dữ liệu, 2) phát hiện các chức năng còn thiếu và 3) phân tích phạm vi tác động. BrSE hiểu luồng dữ liệu dựa trên các bảng CRUD.',
   },
   'brse-rs-005': {
@@ -1200,7 +1200,7 @@ export const brseVi: QuestionTranslationMap = {
       'Chức năng xuất CSV',
       'Chức năng in biểu mẫu'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Các loại yêu cầu phi chức năng (NFR): hiệu suất (thời gian phản hồi, thông lượng), độ tin cậy (độ khả dụng 99,9%, thời gian khắc phục thảm họa), bảo mật (mã hóa, xác thực), khả năng mở rộng (số lượng kết nối đồng thời, lượng dữ liệu), khả năng bảo trì (tài liệu, chất lượng mã). BrSE có xu hướng bỏ qua các yêu cầu phi chức năng, những yêu cầu quyết định chất lượng hệ thống.',
   },
   'brse-rs-007': {
@@ -1216,7 +1216,7 @@ export const brseVi: QuestionTranslationMap = {
       'Chỉ mã hóa màu bảng',
       'Chỉ ngày và giờ tạo'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Các mục quan trọng trong tài liệu định nghĩa bảng: ① Ràng buộc NOT NULL (ảnh hưởng đến yêu cầu đầu vào và xác thực), ② khóa ngoại (ảnh hưởng đến mối quan hệ giữa các bảng và truy vấn THAM GIA), ③ chỉ mục (ảnh hưởng đến hiệu suất tìm kiếm), ④ loại/kích thước dữ liệu (VARCHAR(50) so với TEXT, v.v.), ⑤ giá trị mặc định (ảnh hưởng đến việc chèn dữ liệu ban đầu), ⑥ mã ký tự (UTF-8 là tiêu chuẩn cho hỗ trợ tiếng Nhật).',
   },
   'brse-rs-009': {
@@ -1317,7 +1317,7 @@ export const brseVi: QuestionTranslationMap = {
       'Do thông số kỹ thuật không rõ ràng, việc phát triển sẽ tạm thời bị dừng lại.',
       'Hãy hỏi trực tiếp các nhà phát triển Việt Nam và để họ quyết định'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Văn hóa “đọc không khí” và những hướng dẫn mơ hồ dựa trên “hơi thở của Aun” của Nhật Bản là những khía cạnh nguy hiểm nhất của hoạt động phát triển ngoài khơi. Vì BrSE đóng vai trò là cầu nối chuyển đổi kiến ​​thức ngầm thành kiến ​​thức rõ ràng nên cần phải tiến hành các cuộc phỏng vấn để đưa nó vào các thông số kỹ thuật và yêu cầu cụ thể mà không chuyển tiếp nó như hiện tại.',
   },
   'brse-rw-002': {
@@ -1328,7 +1328,7 @@ export const brseVi: QuestionTranslationMap = {
       'Lỗi của phía Nhật là không ghi trong thông số kỹ thuật nên tôi đã nói với họ là không cần thực hiện.',
       'Hãy tự đưa ra quyết định và báo cáo phía Nhật Bản sau.'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Thông số kỹ thuật thiếu thường xuyên xảy ra. Nếu BrSE đưa ra quyết định tùy tiện thì có nguy cơ cao phải làm lại sau này, vì vậy chúng tôi luôn kiểm tra với khách hàng. Khi đó, thay vì chỉ hỏi “Bạn muốn làm gì?”, bằng cách đưa ra các phương án (giải pháp), bạn có thể đẩy nhanh quá trình ra quyết định của khách hàng.',
   },
   'brse-rw-003': {
@@ -1339,7 +1339,7 @@ export const brseVi: QuestionTranslationMap = {
       'Hãy im lặng lắng nghe và từ bỏ việc ghi phút.',
       'Tiếp tục nói "Có, tôi hiểu" một cách ngẫu nhiên.'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Tiến hành mà không hiểu rõ là nguyên nhân lớn nhất gây ra những hiểu lầm tai hại trong quá trình phát triển ngoài khơi. Trong kinh doanh Nhật Bản cũng vậy, việc kiểm tra mọi thứ ngay tại chỗ sẽ trung thực hơn thay vì tiến hành một cách không chắc chắn và có thể ngăn ngừa những rắc rối lớn (hiểu lầm) sau này.',
   },
   'brse-rw-004': {
@@ -1350,7 +1350,7 @@ export const brseVi: QuestionTranslationMap = {
       'Giao sản phẩm có lỗi để phía Nhật không phát hiện ra.',
       'Đợi cho đến khi khách hàng liên hệ với bạn'
     ],
-    answer: 0,
+    answer: '0',
     explanation: 'Trong kinh doanh Nhật Bản, nguyên tắc vàng là “tin xấu trước” (báo cáo tin xấu càng sớm càng tốt). Việc che giấu và báo cáo muộn làm suy yếu lòng tin nhiều nhất. Cách chính xác để báo cáo sự việc là trước tiên chỉ báo cáo sự việc, sau đó cung cấp báo cáo chi tiết về nguyên nhân và kế hoạch khắc phục.',
   },
   'brse-rw-005': {
@@ -1366,7 +1366,7 @@ export const brseVi: QuestionTranslationMap = {
       'Phía Việt Nam sẽ được yêu cầu làm việc vào các ngày nghỉ lễ theo đúng lịch Nhật Bản.',
       'Ước tính ngày giao hàng một cách thích hợp'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Những ngày nghỉ do sự khác biệt về văn hóa và hệ thống (sự khác biệt về lịch nghỉ lễ) là một rủi ro đặc biệt của việc phát triển ra nước ngoài. Nếu sau này bạn nói, “Việt Nam đóng cửa vì hôm nay là ngày nghỉ lễ”, bạn sẽ gặp rắc rối. Điều quan trọng là phải phản ánh điều này trong lịch trình tổng thể ở giai đoạn đầu và đảm bảo rằng tất cả các bên liên quan đều có cùng quan điểm.',
   },
   'brse-rw-007': {
@@ -1377,7 +1377,7 @@ export const brseVi: QuestionTranslationMap = {
       'Giải thích cơ sở rằng người dùng cuối Nhật Bản rất nhạy cảm với chất lượng UI/UX và nỗ lực thống nhất các nguyên tắc về tiêu chuẩn chất lượng (mức độ chấp nhận được) với bên QA ở giai đoạn đặc tả.',
       'Bỏ qua những lời phàn nàn của nhóm phát triển và buộc họ phải sửa nó'
     ],
-    answer: 2,
+    answer: '2',
     explanation: '"Tiêu chuẩn chất lượng cao" của Nhật Bản có thể khiến các đội ở nước ngoài khó hiểu. Vai trò của cầu nối là giải thích lý do tại sao một điều gì đó được coi là quan trọng (chẳng hạn như kỳ vọng của người dùng cuối) và đồng thời tạo ra các tiêu chuẩn được thống nhất rõ ràng để ngăn chặn chất lượng quá mức.',
   },
   'brse-rw-008': {
@@ -1388,7 +1388,7 @@ export const brseVi: QuestionTranslationMap = {
       'Nguyên nhân xảy ra (tại sao nó xảy ra) và "các biện pháp ngăn chặn tái diễn vĩnh viễn (cải tiến quy trình)" để ngăn chặn lỗi tương tự xảy ra lần nữa trong tương lai',
       'Phản biện cho rằng thông số kỹ thuật phía Nhật viết kém'
     ],
-    answer: 2,
+    answer: '2',
     explanation: 'Trong kinh doanh Nhật Bản, người ta nhấn mạnh nhiều vào việc báo cáo “tại sao sự việc lại xảy ra (nguyên nhân gốc rễ)” và “làm thế nào để ngăn chặn nó (các biện pháp phòng ngừa tái diễn)” hơn là bản thân sai lầm. Thay vì đổ lỗi cho cá nhân, việc đưa ra cách tiếp cận giải quyết vấn đề thông qua các “cơ chế” như hệ thống đánh giá và quy trình kiểm tra sẽ giúp khôi phục lòng tin.',
   },
   'brse-rw-009': {
@@ -1399,7 +1399,7 @@ export const brseVi: QuestionTranslationMap = {
       '``Hiện tại rất khó do những hạn chế về kỹ thuật của 〇〇, nhưng như một phương pháp thay thế, chúng tôi có thể đạt được mục tiêu tương tự với chi phí thấp. Bạn có cân nhắc không?\'\'',
       'Im lặng lắng nghe và bỏ qua trong quá trình thực hiện'
     ],
-    answer: 2,
+    answer: '2',
     explanation: 'Hoạt động truyền thông có giá trị gia tăng cao của BrSE không chỉ đơn giản là phủ nhận rằng điều đó không thể thực hiện được mà còn giải thích một cách hợp lý lý do tại sao việc đó gặp khó khăn (ngân sách, công nghệ, ngày giao hàng) và đưa ra một "giải pháp thay thế" có thể đạt được mục tiêu kinh doanh của khách hàng.',
   },
   'brse-rw-010': {
@@ -1415,7 +1415,7 @@ export const brseVi: QuestionTranslationMap = {
       'Tạo bảng quản lý thay đổi và trực quan hóa `` phạm vi tác động \'\' `` số giờ công cần thiết \'\' và `` nguy cơ chậm tiến độ \'\' do các thông số kỹ thuật bổ sung. Đàm phán với khách hàng về những tính năng cần cân nhắc trong phạm vi hiện tại.',
       'bỏ dự án giữa chừng'
     ],
-    answer: 2,
+    answer: '2',
     explanation: 'Đây là phản ứng đối với hiện tượng leo thang phạm vi (mở rộng thông số kỹ thuật không ngừng). Thay vì chỉ từ chối bằng câu trả lời "không", phương pháp kiểm soát chính xác là hình dung thực tế rằng các thay đổi đòi hỏi chi phí và thời gian sử dụng dữ liệu (chẳng hạn như bảng quản lý thay đổi) và để khách hàng quyết định đánh đổi.',
   },
   'brse-rw-012': {
@@ -1426,7 +1426,7 @@ export const brseVi: QuestionTranslationMap = {
       'Thực hiện cả hai ý kiến ​​như hiện tại và làm phức tạp hệ thống',
       'Hãy để nhóm phát triển Việt Nam quyết định áp dụng ý kiến ​​nào.'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Trong các xung đột giữa các bên liên quan, BrSE cần đóng vai trò là người điều phối. Vai trò của thành viên cấp cao trong nhóm là giải quyết các tranh luận của nhau từ góc độ kỹ thuật và vận hành, đồng thời cố gắng xây dựng sự đồng thuận thông qua Nemawashi và các cuộc họp phối hợp.',
   },
   'brse-rw-013': {
@@ -1437,7 +1437,7 @@ export const brseVi: QuestionTranslationMap = {
       'Vận hành triệt để Wiki (tài liệu) trong dự án, giới thiệu văn hóa đánh giá mã và lập trình cặp, đồng thời xây dựng một hệ thống (tiêu chuẩn hóa) trong đó bí quyết được phân phối và chia sẻ trong toàn nhóm.',
       'BrSE tự viết lại toàn bộ code'
     ],
-    answer: 2,
+    answer: '2',
     explanation: '“Xóa bỏ cá nhân hóa” và “quản lý tri thức” là những vấn đề quan trọng trong phát triển ngoài khơi. Bằng cách kết hợp các quy trình hiện đại hóa, tiêu chuẩn hóa tài liệu và chất lượng mã thống nhất, bạn có thể tạo ra một nhóm có khả năng chống lại rủi ro biến động tài nguyên, ngay cả khi mọi người nghỉ việc.',
   },
   'brse-rw-014': {
@@ -1458,7 +1458,7 @@ export const brseVi: QuestionTranslationMap = {
       'làm thêm giờ mỗi ngày',
       'để mọi thứ theo ý của cá nhân'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Lý thuyết Động lực của Herzberg: Các yếu tố vệ sinh (tiền lương, môi trường, v.v. không gây ra sự bất mãn) ngăn ngừa sự không hài lòng, nhưng các yếu tố thúc đẩy (tăng trưởng, sự công nhận, ý thức hoàn thành, trách nhiệm) sẽ làm tăng động lực. Với tư cách là BrSE: ① Làm rõ mục đích của dự án và vai trò của các thành viên, ② Tạo cơ hội nâng cao kỹ năng, ③ Đưa ra phản hồi cụ thể về công việc tốt, ④ Chia sẻ phản hồi tích cực từ khách hàng.',
   },
   'brse-tm-002': {
@@ -1474,7 +1474,7 @@ export const brseVi: QuestionTranslationMap = {
       'Không cần đào tạo đặc biệt - chỉ cần tự học',
       'Kết thúc bằng việc phát tài liệu đào tạo'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Danh sách kiểm tra giới thiệu: ① Môi trường phát triển (mã nguồn, công cụ, quyền truy cập), ② Tổng quan dự án (mục đích, kiến ​​trúc, cấu trúc nhóm), ③ Quy tắc mã hóa và tiêu chuẩn đánh giá, ④ Phân công người cố vấn/bạn bè, ⑤ Nhiệm vụ trong hai tuần đầu tiên (bắt đầu với việc sửa một số lỗi nhỏ và các tính năng đơn giản). Thường mất 2-4 tuần để bắt đầu. Việc tích hợp tốt sẽ dẫn đến tăng năng suất sớm.',
   },
   'brse-tm-004': {
@@ -1485,7 +1485,7 @@ export const brseVi: QuestionTranslationMap = {
       'bỏ qua ý kiến ​​của một bên để tránh tranh cãi',
       'thúc đẩy ý kiến ​​của một người'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Xung đột kỹ thuật là dấu hiệu của cuộc tranh luận lành mạnh. Với tư cách là BrSE: 1) Lắng nghe cả hai ý kiến ​​như nhau, 2) Hướng dẫn cuộc thảo luận bằng sự kiện và dữ liệu thay vì cảm xúc, 3) Đề xuất đề xuất để được xác minh bằng nguyên mẫu/PoC (bằng chứng về khái niệm), 4) Nuôi dưỡng văn hóa trong đó toàn bộ nhóm tôn trọng quyết định sau khi đạt được thỏa thuận, 5) Đặt tiêu chí đánh giá từ góc độ yêu cầu của dự án (ngày giao hàng, khả năng bảo trì, kỹ năng của nhóm).',
   },
   'brse-tm-005': {
@@ -1496,7 +1496,7 @@ export const brseVi: QuestionTranslationMap = {
       'Nơi trao đổi đánh giá hiệu quả công việc',
       'buổi học kỹ thuật'
     ],
-    answer: 1,
+    answer: '1',
     explanation: '1on1 là “thời gian dành cho các thành viên”. Những gì BrSE nên làm: 1) Tổ chức các cuộc họp thường xuyên (khuyến nghị 30 phút mỗi tuần), 2) Yêu cầu các thành viên đặt ra chủ đề (không để sếp dẫn dắt), 3) Lắng nghe những gì họ đang gặp khó khăn trong công việc, những gì họ muốn cải thiện với tư cách là một nhóm và mục tiêu nghề nghiệp của họ, 4) Xác định và giải quyết sớm các vấn đề (dấu hiệu từ chức, tích tụ sự không hài lòng). Nếu bỏ bê 1on1, bạn sẽ chỉ nhận ra vấn đề khi một thành viên rời đi.',
   },
   'brse-tm-006': {
@@ -1507,7 +1507,7 @@ export const brseVi: QuestionTranslationMap = {
       'Chỉ tiêu quản lý chi phí vận tải xe buýt',
       'Số liệu về số lần chạy thử nghiệm'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Hệ số xe buýt = “Có bao nhiêu người bị xe buýt đâm trước khi dự án dừng lại?” (ẩn dụ). Lý tưởng nhất là 3 hoặc nhiều hơn. Biện pháp đối phó: (1) Tài liệu hóa các kiến ​​thức quan trọng, (2) Đánh giá code thường xuyên (chia sẻ kiến ​​thức), (3) Lập trình cặp/lập trình mob, (4) Luân chuyển (cùng một người không tiếp tục phụ trách cùng một module). Với tư cách là một BrSE, tôi hiểu hệ số xe buýt của đội và cải thiện những điểm yếu.',
   },
   'brse-tm-007': {
@@ -1523,7 +1523,7 @@ export const brseVi: QuestionTranslationMap = {
       'Hãy để tôi học bài kiểm tra tiếng Nhật',
       'Phân công một người phụ trách ngay một vụ việc'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Các giai đoạn đào tạo BrSE: ① Thời gian quan sát (1-2 tháng): Tham dự các cuộc họp cấp cao và ghi biên bản ② Thời gian hỗ trợ (2-4 tháng): Chịu trách nhiệm xác nhận các thông số kỹ thuật nhỏ và hỏi đáp dưới sự giám sát cấp cao ③ Thời gian lãnh đạo (4-6 tháng): Chịu trách nhiệm về các dự án nhỏ (được hỗ trợ bởi cấp cao) ④ Giai đoạn độc lập (sau 6 tháng): Chịu trách nhiệm độc lập các dự án cỡ trung bình. Cung cấp phản hồi thường xuyên và đánh giá kỹ năng ở từng giai đoạn để xác định và cải thiện các vấn đề.',
   },
   'brse-tm-009': {
@@ -1599,7 +1599,7 @@ export const brseVi: QuestionTranslationMap = {
       'loại bỏ những người không thể thích nghi',
       'Thay đổi toàn bộ văn hóa Nhật Bản sang Việt Nam'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Rào cản văn hóa không thể vượt qua được bằng lý thuyết tâm lý. ``Chuyển đổi kiến ​​thức ngầm thành kiến ​​thức rõ ràng\'\' là công nghệ của BrSE và trở thành thế mạnh của chúng tôi với tư cách là một tổ chức.',
   },
   'brse-tm-018': {
@@ -1626,7 +1626,7 @@ export const brseVi: QuestionTranslationMap = {
       'Đánh giá mã',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: '"Định nghĩa yêu cầu" = Định nghĩa/Đặc tả yêu cầu. Sự tương ứng giữa thuật ngữ CNTT của Nhật Bản và tiếng Anh: Định nghĩa yêu cầu → Thiết kế cơ bản → Thiết kế cơ bản/Thiết kế cấp cao, Thiết kế chi tiết → Thiết kế chi tiết, Kiểm tra đơn vị → Kiểm tra tích hợp, Kiểm tra toàn diện → Kiểm tra hệ thống. BrSE cần hiểu chính xác những tương ứng này.',
   },
   'brse-tt-002': {
@@ -1638,7 +1638,7 @@ export const brseVi: QuestionTranslationMap = {
       'Cấu trúc liên kết mạng',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Sơ đồ chuyển đổi/dòng chảy màn hình. Các thuật ngữ liên quan: Danh sách màn hình → Danh sách màn hình, Tài liệu thiết kế màn hình → Tài liệu thiết kế màn hình/Đặc tả giao diện người dùng, Định nghĩa mục màn hình → Định nghĩa mục màn hình, Mô hình màn hình → Mô hình màn hình/Khung dây. BrSE phải dịch chính xác các thuật ngữ liên quan đến màn hình và truyền đạt chúng cho nhóm phát triển.',
   },
   'brse-tt-003': {
@@ -1655,7 +1655,7 @@ export const brseVi: QuestionTranslationMap = {
       'Tất cả các thử nghiệm được thực hiện cùng nhau sau khi phát triển',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Sự tương ứng trong mô hình hình chữ V: Xác định yêu cầu → thử nghiệm toàn diện (ST), thiết kế cơ bản → thử nghiệm tích hợp (IT), thiết kế chi tiết → thử nghiệm đơn vị (UT). Mô hình hình chữ V này là tiêu chuẩn dành cho các nhà tích hợp hệ thống của Nhật Bản. BrSE phải hiểu các khía cạnh thử nghiệm và sản phẩm bàn giao của từng giai đoạn và truyền đạt chúng một cách chính xác cho đội ngũ Việt Nam.',
   },
   'brse-tt-005': {
@@ -1672,7 +1672,7 @@ export const brseVi: QuestionTranslationMap = {
       'Để thể hiện kỹ năng dịch thuật của bạn với khách hàng',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Bảng thuật ngữ là nền tảng của chất lượng dịch thuật. Ví dụ: Thật khó hiểu khi dịch "màn hình" ở nơi này là "màn hình" và nơi khác là "trang". Những điểm chính để quản lý bảng thuật ngữ: (1) Xác định các thuật ngữ dành riêng cho dự án, (2) Hỗ trợ bằng ba ngôn ngữ: tiếng Nhật, tiếng Anh và tiếng Việt, (3) Thêm thuật ngữ mới mỗi lần, (4) Chia sẻ với toàn bộ nhóm và (5) Xem xét và cập nhật thường xuyên.',
   },
   'brse-tt-007': {
@@ -1689,7 +1689,7 @@ export const brseVi: QuestionTranslationMap = {
       'Dịch tất cả “việc cần làm” thành “PHẢI”',
       ''
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Các mức yêu cầu của RFC 2119: PHẢI, NÊN, CÓ THỂ. Tất cả các từ tiếng Nhật cho ``〇〇do\'\' đều có cùng một âm điệu, nhưng mức độ thực sự của yêu cầu là khác nhau. Ví dụ: "Mật khẩu phải có ít nhất 8 ký tự" (PHẢI) so với "Màu màn hình phải dựa trên màu xanh lam" (NÊN). BrSE phải xác định mức độ yêu cầu từ ngữ cảnh và truyền đạt chính xác yêu cầu đó cho nhóm phát triển.',
   },
   'brse-tt-009': {
@@ -1725,7 +1725,7 @@ export const brseVi: QuestionTranslationMap = {
       'Tôi không biết',
       'Điểm kỹ năng'
     ],
-    answer: 1,
+    answer: '1',
     explanation: 'Những cách diễn đạt mang tính tượng hình chỉ có ở tiếng Nhật không thể hiểu được ngay cả khi dịch theo nghĩa đen. Cần phải chia nhỏ và dịch từ này sang nghĩa dự định của nó là ``điểm quan trọng nhất\'\' hoặc `` thủ thuật.\'\'',
   },
   'brse-tt-013': {
