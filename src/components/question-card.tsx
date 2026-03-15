@@ -52,7 +52,7 @@ function HintSection({ hints, currentHintIdx, onShowNextHint }: {
       {!collapsed && (
         <ul className="mt-2 flex flex-col gap-1.5">
           {revealed.map((hint, i) => (
-            <li key={i} className="text-sm text-[var(--color-warning)]">
+            <li key={i} className="text-sm text-[var(--color-warning)] whitespace-pre-wrap">
               <span className="font-medium">{i + 1}.</span> {hint}
             </li>
           ))}
@@ -218,7 +218,7 @@ export function QuestionCard({ question: rawQuestion, progress, onAnswer, onBook
       </div>
 
       {/* Question text */}
-      <h3 className="mb-3 text-base font-medium text-[var(--color-text)]">{question.question}</h3>
+      <h3 className="mb-3 text-base font-medium text-[var(--color-text)] whitespace-pre-wrap">{formatContent(question.question)}</h3>
 
       {/* Code snippet */}
       {question.code && <CodeBlock code={question.code} />}
@@ -345,11 +345,11 @@ export function QuestionCard({ question: rawQuestion, progress, onAnswer, onBook
               {isCodeAnswer(question.type) ? (
                 <CodeBlock code={String(question.answer)} />
               ) : (
-                <p className="text-sm font-semibold text-[var(--color-text)]">{String(question.answer)}</p>
+                <p className="text-sm font-semibold text-[var(--color-text)] whitespace-pre-wrap">{formatContent(String(question.answer))}</p>
               )}
             </div>
           )}
-          <p className="text-sm leading-relaxed text-[var(--color-text)]">{question.explanation}</p>
+          <p className="text-sm leading-relaxed text-[var(--color-text)] whitespace-pre-wrap">{formatContent(question.explanation)}</p>
           {question.references && question.references.length > 0 && (
             <div className="mt-2 flex flex-wrap gap-2">
               {question.references.map((ref, i) => (
@@ -412,6 +412,14 @@ function isCodeAnswer(type: string): boolean {
   return type === 'code-write' || type === 'debug' || type === 'code-output'
 }
 
+/** Helper to format content by inserting newlines before numbered list items */
+function formatContent(text: string | null | undefined): string {
+  if (!text) return ''
+  // Insert newline before: 1), 2), 1., 2., (1), (2)
+  // We look for space followed by digits and then punctuation.
+  return text.replace(/\s+(\d+[\)\.]|\(\d+\))/g, '\n$1')
+}
+
 /* MCQ options sub-component */
 function McqOptions({ options, correctIdx, selectedOption, isRevealed, onSelect, optionExplanations }: {
   options: string[]; correctIdx: number; selectedOption: number | null; isRevealed: boolean
@@ -442,8 +450,8 @@ function McqOptions({ options, correctIdx, selectedOption, isRevealed, onSelect,
               {isRevealed && selectedOption === idx && idx !== correctIdx && <XCircle className="ml-auto h-4 w-4 shrink-0 text-[var(--color-error)]" />}
             </button>
             {isWrong && explanation && (
-              <p className="mt-0.5 px-3 text-xs italic text-[var(--color-text-secondary)]">
-                <span className="font-medium not-italic">{t('question.optionWrong')}: </span>{explanation}
+              <p className="mt-0.5 px-3 text-xs italic text-[var(--color-text-secondary)] whitespace-pre-wrap">
+                <span className="font-medium not-italic">{t('question.optionWrong')}: </span>{formatContent(explanation)}
               </p>
             )}
           </div>
