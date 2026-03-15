@@ -420,7 +420,8 @@ function formatContent(text: string | null | undefined): string {
     // 1. Insert newline before bullet points: - , * , •
     .replace(/\s+([-*•])\s+/g, '\n$1 ')
     // 2. Insert newline before numbered list items: 1), 2), 1., 2., (1), (2)
-    .replace(/\s+(\d+[\)\.]|\(\d+\))/g, '\n$1')
+    // IMPORTANT: We require a following space to avoid splitting decimals like 4.5
+    .replace(/\s+(\d+[\)\.]|\(\d+\))(?=\s)/g, '\n$1')
     // 3. Insert newline after periods, exclamation marks, or question marks followed by a space and a capital letter (sentence splitting)
     // We use a positive lookahead to ensure we don't consume the next sentence's start.
     .replace(/([.!?])\s+([A-ZÀ-Ỹ])/g, '$1\n$2')
