@@ -412,12 +412,20 @@ function isCodeAnswer(type: string): boolean {
   return type === 'code-write' || type === 'debug' || type === 'code-output'
 }
 
-/** Helper to format content by inserting newlines before numbered list items */
+/** Helper to format content by inserting newlines before numbered list items, bullet points, and after sentences */
 function formatContent(text: string | null | undefined): string {
   if (!text) return ''
-  // Insert newline before: 1), 2), 1., 2., (1), (2)
-  // We look for space followed by digits and then punctuation.
-  return text.replace(/\s+(\d+[\)\.]|\(\d+\))/g, '\n$1')
+  
+  return text
+    // 1. Insert newline before bullet points: - , * , •
+    .replace(/\s+([-*•])\s+/g, '\n$1 ')
+    // 2. Insert newline before numbered list items: 1), 2), 1., 2., (1), (2)
+    .replace(/\s+(\d+[\)\.]|\(\d+\))/g, '\n$1')
+    // 3. Insert newline after periods, exclamation marks, or question marks followed by a space and a capital letter (sentence splitting)
+    // We use a positive lookahead to ensure we don't consume the next sentence's start.
+    .replace(/([.!?])\s+([A-ZÀ-Ỹ])/g, '$1\n$2')
+    // 4. Remove leading/trailing whitespace from each line and join (optional but keeps it clean)
+    .split('\n').map(line => line.trim()).join('\n')
 }
 
 /* MCQ options sub-component */
