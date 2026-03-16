@@ -124,8 +124,8 @@ export function QuestionCard({ question: rawQuestion, progress, onAnswer, onBook
   const answered = progress.answered[question.id]
   const isBookmarked = progress.bookmarked.includes(question.id)
   const isFlagged = progress.flaggedQuestions?.includes(question.id) ?? false
-  /* revealed = manually toggled OR answered correctly OR force-reveal by some modes */
-  const isRevealed = (showAnswer || !!answered) && !forceHideAnswer
+  /* revealed = manually toggled OR (answered correctly && not forceHideAnswer) */
+  const isRevealed = showAnswer || (!!answered && !forceHideAnswer)
   const isSelfRateType = question.type === 'debug' || question.type === 'code-write' || question.type === 'system-design'
 
   const hints = question.hints ?? []

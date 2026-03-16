@@ -36,7 +36,7 @@ export function PracticePage({ questions, progress, onAnswer, onBookmark, onRetr
   const [selectedDifficulties, setSelectedDifficulties] = useState<Difficulty[]>(initialDifficulty ? [initialDifficulty] : [])
   const [selectedTypes, setSelectedTypes] = useState<QuestionType[]>(initialType ? [initialType] : [])
   const [search, setSearch] = useState('')
-  const [hideAnswered, setHideAnswered] = useState(false)
+  const [hideAnswered, setHideAnswered] = useState(true)
 
   // Persist page in URL so reload keeps the same page
   const page = Math.max(1, parseInt(searchParams.get('page') ?? '1', 10))
@@ -76,7 +76,7 @@ export function PracticePage({ questions, progress, onAnswer, onBookmark, onRetr
     setSelectedDifficulties([])
     setSelectedTypes([])
     setSearch('')
-    setHideAnswered(false)
+    setHideAnswered(true)
     setPage(1)
   }
 
@@ -185,7 +185,15 @@ export function PracticePage({ questions, progress, onAnswer, onBookmark, onRetr
       <div className="space-y-4">
         {paginated.map((q) => (
           <div key={q.id} id={`q-${q.id}`}>
-            <QuestionCard question={q} progress={progress} onAnswer={onAnswer} onBookmark={onBookmark} onRetry={onRetry} onSaveNote={onSaveNote} />
+            <QuestionCard 
+              question={q} 
+              progress={progress} 
+              onAnswer={onAnswer} 
+              onBookmark={onBookmark} 
+              onRetry={onRetry} 
+              onSaveNote={onSaveNote} 
+              forceHideAnswer={true}
+            />
           </div>
         ))}
       </div>
