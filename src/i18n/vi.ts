@@ -132,6 +132,7 @@ export const vi = {
     filters: 'Bộ lọc',
     more: 'thêm',
     showLess: 'Thu gọn',
+    hideAnswered: 'Ẩn câu đã trả lời',
   },
 
   /* ─── Practice Page ────────────────────────────────────────────────────────── */

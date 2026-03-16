@@ -132,6 +132,7 @@ export const en = {
     filters: 'Filters',
     more: 'more',
     showLess: 'Show less',
+    hideAnswered: 'Hide answered',
   },
 
   /* ─── Practice Page ────────────────────────────────────────────────────────── */
