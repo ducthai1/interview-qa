@@ -12,22 +12,17 @@ interface CodeWriteInteractionProps {
 export function CodeWriteInteraction({ revealed, onSubmit, onReveal }: CodeWriteInteractionProps) {
   const { t } = useTranslation()
   const [userCode, setUserCode] = useState('')
-  const [submitted, setSubmitted] = useState(false)
-
   const handleSubmit = () => {
-    setSubmitted(true)
     onSubmit(userCode)
   }
 
-  if (revealed && !submitted) return null
-
-  if (submitted) {
+  if (revealed) {
     return (
       <div className="mt-3">
-        <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-[var(--color-text-secondary)]">
+        <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-[var(--color-primary)]">
           <Code2 className="h-3.5 w-3.5" /> {t('common.yourSolution')}:
         </div>
-        <pre className="overflow-x-auto rounded-lg bg-[#1e293b] p-4 text-sm leading-relaxed text-[#e2e8f0] dark:bg-[#0f172a]">
+        <pre className="overflow-x-auto rounded-lg bg-[#1e293b] p-4 text-sm leading-relaxed text-[#e2e8f0] dark:bg-[#0f172a] border border-[var(--color-primary-bg)]">
           <code>{userCode || t('common.empty')}</code>
         </pre>
       </div>

@@ -24,6 +24,8 @@ interface QuestionCardProps {
   onSaveNote?: (questionId: string, note: string) => void
   /** Hide retry button in exam modes (mock interview, challenge) */
   hideRetry?: boolean
+  /** Force hide the answer even if already answered (used for Review mode) */
+  forceHideAnswer?: boolean
 }
 
 const difficultyColors: Record<string, string> = {
@@ -106,7 +108,7 @@ function SelfRateRubric({ onRate }: { onRate: (level: 'nailed' | 'partial' | 're
   )
 }
 
-export function QuestionCard({ question: rawQuestion, progress, onAnswer, onBookmark, onRetry, onFlag, onSaveNote, hideRetry }: QuestionCardProps) {
+export function QuestionCard({ question: rawQuestion, progress, onAnswer, onBookmark, onRetry, onFlag, onSaveNote, hideRetry, forceHideAnswer }: QuestionCardProps) {
   const { t } = useTranslation()
   const { tq } = useQuestionTranslation()
   const question = tq(rawQuestion)
@@ -122,7 +124,8 @@ export function QuestionCard({ question: rawQuestion, progress, onAnswer, onBook
   const answered = progress.answered[question.id]
   const isBookmarked = progress.bookmarked.includes(question.id)
   const isFlagged = progress.flaggedQuestions?.includes(question.id) ?? false
-  const isRevealed = showAnswer || !!answered
+  /* revealed = manually toggled OR answered correctly OR force-reveal by some modes */
+  const isRevealed = (showAnswer || !!answered) && !forceHideAnswer
   const isSelfRateType = question.type === 'debug' || question.type === 'code-write' || question.type === 'system-design'
 
   const hints = question.hints ?? []
@@ -256,7 +259,7 @@ export function QuestionCard({ question: rawQuestion, progress, onAnswer, onBook
       )}
 
       {/* Debug — editable code */}
-      {question.type === 'debug' && !isRevealed && (
+      {question.type === 'debug' && (
         <DebugInteraction
           originalCode={question.code || ''}
           revealed={isRevealed}
@@ -266,7 +269,7 @@ export function QuestionCard({ question: rawQuestion, progress, onAnswer, onBook
       )}
 
       {/* Code Write — write code from scratch */}
-      {question.type === 'code-write' && !isRevealed && (
+      {question.type === 'code-write' && (
         <CodeWriteInteraction
           revealed={isRevealed}
           onSubmit={(code) => { if (code !== undefined) setUserAnswerForAI(code); setPendingSelfRate(true); setShowAnswer(true) }}
@@ -275,7 +278,7 @@ export function QuestionCard({ question: rawQuestion, progress, onAnswer, onBook
       )}
 
       {/* System Design — open-ended text */}
-      {question.type === 'system-design' && !isRevealed && (
+      {question.type === 'system-design' && (
         <SystemDesignInteraction
           revealed={isRevealed}
           onSubmit={(text) => { if (text !== undefined) setUserAnswerForAI(text); setPendingSelfRate(true); setShowAnswer(true) }}
@@ -422,9 +425,9 @@ function formatContent(text: string | null | undefined): string {
     // 2. Insert newline before numbered list items: 1), 2), 1., 2., (1), (2)
     // IMPORTANT: We require a following space to avoid splitting decimals like 4.5
     .replace(/\s+(\d+[\)\.]|\(\d+\))(?=\s)/g, '\n$1')
-    // 3. Insert newline after periods, exclamation marks, or question marks followed by a space and a capital letter (sentence splitting)
+    // 3. Insert newline after periods, exclamation marks, or question marks followed by a space and a capital letter or HTML tag start
     // We use a positive lookahead to ensure we don't consume the next sentence's start.
-    .replace(/([.!?])\s+([A-ZÀ-Ỹ])/g, '$1\n$2')
+    .replace(/([.!?])\s+([A-ZÀ-Ỹ<])/g, '$1\n$2')
     // 4. Remove leading/trailing whitespace from each line and join (optional but keeps it clean)
     .split('\n').map(line => line.trim()).join('\n')
 }

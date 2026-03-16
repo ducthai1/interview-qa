@@ -167,6 +167,7 @@ export function ReviewPage({ questions, progress, onAnswer, onBookmark, onRetry,
         onAnswer={handleAnswer}
         onBookmark={onBookmark}
         onRetry={onRetry}
+        forceHideAnswer={true}
       />
     </div>
   )

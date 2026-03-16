@@ -12,22 +12,17 @@ interface SystemDesignInteractionProps {
 export function SystemDesignInteraction({ revealed, onSubmit, onReveal }: SystemDesignInteractionProps) {
   const { t } = useTranslation()
   const [userAnswer, setUserAnswer] = useState('')
-  const [submitted, setSubmitted] = useState(false)
-
   const handleSubmit = () => {
-    setSubmitted(true)
     onSubmit(userAnswer)
   }
 
-  if (revealed && !submitted) return null
-
-  if (submitted) {
+  if (revealed) {
     return (
       <div className="mt-3">
-        <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-[var(--color-text-secondary)]">
+        <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-[var(--color-primary)]">
           <Lightbulb className="h-3.5 w-3.5" /> {t('common.yourApproach')}:
         </div>
-        <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-secondary)] p-3 text-sm text-[var(--color-text)]">
+        <div className="rounded-lg border border-[var(--color-primary-bg)] bg-[var(--color-bg-secondary)] p-3 text-sm text-[var(--color-text)]">
           {userAnswer || t('common.empty')}
         </div>
       </div>

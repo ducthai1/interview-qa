@@ -434,6 +434,7 @@ export function ChallengePage({
             onBookmark={onBookmark}
             onRetry={onRetry}
             hideRetry
+            forceHideAnswer={true}
           />
         )}
       </div>

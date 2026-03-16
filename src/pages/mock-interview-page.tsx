@@ -250,6 +250,7 @@ export function MockInterviewPage({ questions, progress, onAnswer, onBookmark, o
           onBookmark={onBookmark}
           onRetry={onRetry}
           hideRetry
+          forceHideAnswer={true}
         />
       )}
 

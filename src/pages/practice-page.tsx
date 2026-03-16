@@ -36,6 +36,7 @@ export function PracticePage({ questions, progress, onAnswer, onBookmark, onRetr
   const [selectedDifficulties, setSelectedDifficulties] = useState<Difficulty[]>(initialDifficulty ? [initialDifficulty] : [])
   const [selectedTypes, setSelectedTypes] = useState<QuestionType[]>(initialType ? [initialType] : [])
   const [search, setSearch] = useState('')
+  const [hideAnswered, setHideAnswered] = useState(false)
 
   // Persist page in URL so reload keeps the same page
   const page = Math.max(1, parseInt(searchParams.get('page') ?? '1', 10))
@@ -49,8 +50,14 @@ export function PracticePage({ questions, progress, onAnswer, onBookmark, onRetr
   }
 
   const filtered = useMemo(
-    () => filterQuestions(questions, { topics: selectedTopics, difficulties: selectedDifficulties, types: selectedTypes, search }),
-    [questions, selectedTopics, selectedDifficulties, selectedTypes, search],
+    () => {
+      let result = filterQuestions(questions, { topics: selectedTopics, difficulties: selectedDifficulties, types: selectedTypes, search })
+      if (hideAnswered) {
+        result = result.filter(q => !progress.answered[q.id])
+      }
+      return result
+    },
+    [questions, selectedTopics, selectedDifficulties, selectedTypes, search, hideAnswered, progress.answered],
   )
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE))
@@ -69,6 +76,7 @@ export function PracticePage({ questions, progress, onAnswer, onBookmark, onRetr
     setSelectedDifficulties([])
     setSelectedTypes([])
     setSearch('')
+    setHideAnswered(false)
     setPage(1)
   }
 
@@ -165,6 +173,8 @@ export function PracticePage({ questions, progress, onAnswer, onBookmark, onRetr
         onTypesChange={(t) => { setSelectedTypes(t); setPage(1) }}
         onSearchChange={(s) => { setSearch(s); setPage(1) }}
         onClearAll={clearAll}
+        hideAnswered={hideAnswered}
+        onHideAnsweredChange={(val) => { setHideAnswered(val); setPage(1) }}
         topics={getTopicsByRole(role)}
       />
 
