@@ -164,16 +164,18 @@ export function FilterBar(props: FilterBarProps) {
 
           <div className="flex items-center justify-between">
             <label className="flex cursor-pointer items-center gap-2 text-sm font-medium text-[var(--color-text)]">
-              <div className="relative inline-flex h-5 w-9 shrink-0 cursor-pointer items-center rounded-full bg-[var(--color-bg-secondary)] transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:ring-offset-2">
-                <input
-                  type="checkbox"
-                  className="peer sr-only"
-                  checked={props.hideAnswered}
-                  onChange={(e) => props.onHideAnsweredChange(e.target.checked)}
-                />
-                <span className={`pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${props.hideAnswered ? 'translate-x-4' : 'translate-x-1'}`} />
-                <span className={`absolute inset-0 rounded-full transition-colors duration-200 ease-in-out ${props.hideAnswered ? 'bg-[var(--color-primary)]' : 'bg-[var(--color-border)]'}`} style={{ zIndex: -1 }} />
-              </div>
+            <div 
+              onClick={() => props.onHideAnsweredChange(!props.hideAnswered)}
+              className={`relative inline-flex h-5 w-9 shrink-0 cursor-pointer items-center rounded-full px-0.5 transition-colors duration-200 ease-in-out focus-within:ring-2 focus-within:ring-[var(--color-primary)] focus-within:ring-offset-2 ${props.hideAnswered ? 'bg-[var(--color-primary)]' : 'bg-[var(--color-bg-secondary)] border border-[var(--color-border)]'}`}
+            >
+              <input
+                type="checkbox"
+                className="sr-only"
+                checked={props.hideAnswered}
+                onChange={(e) => props.onHideAnsweredChange(e.target.checked)}
+              />
+              <span className={`pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${props.hideAnswered ? 'translate-x-4' : 'translate-x-0'}`} />
+            </div>
               {t('filter.hideAnswered')}
             </label>
 
