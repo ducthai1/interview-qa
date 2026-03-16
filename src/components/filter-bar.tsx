@@ -164,10 +164,7 @@ export function FilterBar(props: FilterBarProps) {
 
           <div className="flex items-center justify-between">
             <label className="flex cursor-pointer items-center gap-2 text-sm font-medium text-[var(--color-text)]">
-            <div 
-              onClick={() => props.onHideAnsweredChange(!props.hideAnswered)}
-              className={`relative inline-flex h-5 w-9 shrink-0 cursor-pointer items-center rounded-full px-0.5 transition-colors duration-200 ease-in-out focus-within:ring-2 focus-within:ring-[var(--color-primary)] focus-within:ring-offset-2 ${props.hideAnswered ? 'bg-[var(--color-primary)]' : 'bg-[var(--color-bg-secondary)] border border-[var(--color-border)]'}`}
-            >
+            <div className={`relative inline-flex h-5 w-9 shrink-0 cursor-pointer items-center rounded-full px-0.5 transition-colors duration-200 ease-in-out focus-within:ring-2 focus-within:ring-[var(--color-primary)] focus-within:ring-offset-2 ${props.hideAnswered ? 'bg-[var(--color-primary)]' : 'bg-[var(--color-bg-secondary)] border border-[var(--color-border)]'}`}>
               <input
                 type="checkbox"
                 className="sr-only"
